@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 ruby "2.1.5"
 
-gem 'rails_12factor','0.0.3'
+gem 'haml',          '4.0.5'
+gem 'haml-rails',    '0.5.3'
 gem 'thin',          '1.6.3'
+gem 'rails_12factor','0.0.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
