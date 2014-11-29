@@ -6,14 +6,33 @@
   .tag Routing
   .tag Wildcard
 
-Recently I encountered a use-case where I wanted to use HAML to write static content.  One way to do this is place the HAML files under RR/public/ and then use a haml2html utility to generate HTML files in the same directory.
+%br/
+Recently I encountered a use-case where I wanted to use HAML to write static content.  
 
-Another way to do it is to place the HAML files in a directory under RR/apps/views/ and then use a wildcard route to help Rails serve the HAML files as HTML.
+%br/
+If performance is an issue, 
+probably the best way to do this is to place the HAML files under 
+RR/public/ and then use a haml2html utility to generate HTML files in the same directory.
 
+%br/
+The problem with this idea is that it saddles the webmaster with an administrative task.
+On the other hand if the site is usually under heavy load,
+the webmaster is probably already carrying many tasks and 
+the running of haml2html via a scheduler should not be a big deal.
+
+%br/
+If the site serves light traffic loads,
+another way to do it is to place the HAML files 
+in a directory under RR/apps/views/ 
+and then use a wildcard route to help Rails serve the HAML files as HTML.
+
+%br/
 So, in Rails how do I implement a wildcard route?
 
+%br/
 First I need to create a controller unless I already have one.
 
+%br/
 This shell command would do that:
 
 %pre
@@ -32,9 +51,7 @@ Next, I mkdir a directory like this:
   %code.bash
     mkdir app/views/posts/
 
-And, I place my static HAML code there.
-
-For example:
+And, I place my static HAML code there.  For example:
 
 %pre
   %code.bash
@@ -46,9 +63,10 @@ Then, I use a browser to send a GET request to the server:
   %code.bash
     \/posts/post1
 
-I should see this HTML somewhere in the response:
+And, I should see this HTML somewhere in the response:
 
 %pre
   %code.html
     &lt;h1>Hello World&lt;/h1>
 
+So, implementing a wild-card route in Rails is both easy and useful for serving static content from under /app/views.
