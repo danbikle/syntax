@@ -1,2 +1,53 @@
-%span.question
-  In Rails how do I implement wildcard routes?
+%span.q
+  In Rails how do I implement a wildcard route?
+Tags:
+%span.t Rails
+%span.t Routing
+%span.t Wildcard
+
+Recently I encountered a use-case where I wanted to use HAML to write static content.  One way to do this is place the HAML files under RR/public/ and then use a haml2html utility to generate HTML files in the same directory.
+
+Another way to do it is to place the HAML files in a directory under RR/apps/views/ and then use a wildcard route to help Rails serve the HAML files as HTML.
+
+So, in Rails how do I implement a wildcard route?
+
+First I need to create a controller unless I already have one.
+
+This shell command would do that:
+
+%pre
+  %code.bash
+    bin/rails generate controller posts
+
+Then, I place syntax at the end of RR/config/routes.rb which looks like this:
+
+%pre
+  %code.ruby
+    get ':controller(/:action)'
+
+Next, I mkdir a directory like this:
+
+%pre
+  %code.bash
+    mkdir app/views/posts/
+
+And, I place my static HAML code there.
+
+For example:
+
+%pre
+  %code.bash
+    echo '%h1 Hello World' > app/views/posts/post1.haml
+
+Then, I use a browser to send a GET request to the server:
+
+%pre
+  %code.bash
+    \/posts/post1
+
+I should see this HTML somewhere in the response:
+
+%pre
+  %code.html
+    &lt;h1>Hello World&lt;/h1>
+
