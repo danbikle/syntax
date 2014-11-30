@@ -9,7 +9,7 @@
 # Then I should make note of the question.
 # Then, in /tmp/, I should make a 2nd HAML file with the question in it.
 # The question will be a link to the 1st HAML file.
-# The name of this 2nd HAML file should be...
+# The name of this 2nd HAML file should be built from the question.
 
 # Next, I should look for a 3rd HAML file in 
 # ~/x611/app/views/questions/
@@ -35,7 +35,9 @@ adir.each{ |fn|
       # I should make note of the HAML file name.
       if line =~ /^.q2 /
         # Then, in /tmp/, I should make a 2nd HAML file with the question in it.
-        
+        # The name of this 2nd HAML file should be built from the question.
+        byebug
+        fn2 = "how#{line[0,79].gsub(/ /,'_').gsub(/\?/,'').gsub(/\n/,'').sub(/\.q2/,'')}.haml"
       end
 
     } # afile.each_line
