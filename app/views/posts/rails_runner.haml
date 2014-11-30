@@ -1,6 +1,20 @@
+.q1 Question:
+.q2 In Rails how do I run a Ruby script with the Rails environment loaded?
+
+.tags
+  %span.tagtag Tags:
+  .tag Rails
+  .tag Ruby
+  .tag Runner
+
 I can use rails runner to run ruby scripts with a full rails environment loaded into the interpreter.
 
 
 dan@hp ~/x611 $ bin/rails runner script/hamlposts2questions.rb 
+"hello"
+dan@hp ~/x611 $ 
+
+
+dan@hp ~/x611 $ bin/rails runner -e production script/hamlposts2questions.rb 
 "hello"
 dan@hp ~/x611 $ 
