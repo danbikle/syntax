@@ -21,17 +21,19 @@ adir = Dir["#{Rails.root}/app/views/posts/*.haml"]
 adir.each{ |fn|
   # I should stage my edits in tmpfile
   tmpfile = Tempfile.new('tmp.haml')
-  # I should look for a both a question and a tag in this file
+  # I should flag if any tags in this file have been linkized.
+  linkized? = false
+  # I should note the href of this post.
+  hrefp = fn.sub(/^.*\/posts\//,'/posts/').sub(/.haml$/,'')
+  # Later I will build an anchor pointing to this post.
+  # If this post has a question, 
+  # later I should set acont to the question string.
+  # Until then, I should give anchor content a default value.
+  acont = hrefp
   File.open(fn, 'r') do |afile|
-    # I should note the href of this post.
-    hrefp = fn.sub(/^.*\/posts\//,'/posts/').sub(/.haml$/,'')
-    # Later I will build an anchor pointing to this post.
-    # I should give anchor content a default value.
-    # If this post has a question, 
-    # later I should set acont to the question string.
-    acont = hrefp
     afile.each_line{ |line| 
-      # In this file, the question should come before any tags.
+      # I should look for a both a question and tags in this file.
+      # The question should come before any tags.
       # A question should look like this:
       # .q2 In Rails how do I implement a wildcard route?
       acont = line.sub(/\.q2/,'') if line =~ /^.q2 /
@@ -47,6 +49,8 @@ adir.each{ |fn|
         fh.close
         # Now I should linkize line.
         line = "  %a(href='/tags/#{tagstring}') #{tagstring}"
+        # I should note fn was linkized
+        linkized? = true
       end # if
       tmpfile.puts line
     } # afile.each_line
@@ -54,5 +58,7 @@ adir.each{ |fn|
   tmpfile.close
   # I should overwrite fn if I linkized any tags.
   # I should detect linkization by file size.
-  p 'FileUtils.mv(tmpfile.path, fn) if tmpfile.size != fn.size'
+  byebug
+  p 'FileUtils.mv(tmpfile.path, "/tmp/j.haml") if linkized?'
+  p 'FileUtils.mv(tmpfile.path, fn) if linkized?'
 } # adir.each
