@@ -21,25 +21,25 @@ adir.each{ |fn|
   # I should look for a both a question and a tag in this file
   File.open(fn, 'r') do |afile|
     afile.each_line{ |line| 
+      # I should note the href of this post.
+      hrefp = fn.sub(/^.*\/posts\//,'/posts/').sub(/.haml$/,'')
+      # Later I will build an anchor pointing to this post.
+      # I should give anchor content a default value.
+      # If this post has a question, 
+      # later I should set acont to the question string.
+      acont = hrefp
+      # In this file, the question should come before any tags.
+      # A question should look like this:
+      # .q2 In Rails how do I implement a wildcard route?
+      acont = line.sub(/\.q2/,'') if line =~ /^.q2 /
       # A tag should look like this:
       #   .tag Rails
       if line =~ /^  \.tag /
-        # If I find a tag, I should note href of the post:
-        hrefp = fn.sub(/^.*\/posts\//,'/posts/').sub(/.haml$/,'')
         # I should make a note of the tag string:
         tagstring = line.sub(/^  .tag /,'').gsub(/ /,'_').chomp.downcase
         # I should build an anchor-elem and write it.
         fn2 = "#{tagdir}/_#{tagstring}.haml"
         fh = File.open(fn2, 'a+')
-        # I should give anchor content default value
-        acont = hrefp
-        # I should look for the question in this post.
-        # If I find it, copy it into anchor content.
-        afile.each_line{ |aline|
-          # A question should look like this:
-          # .q2 In Rails how do I implement a wildcard route?
-          acont = aline.sub(/\.q2/,'') if aline =~ /^.q2 /
-        } # afile.each_line
         fh.puts("%a(href='#{hrefp}') #{acont}")
         fh.close
       end # if
