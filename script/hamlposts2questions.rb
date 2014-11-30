@@ -21,11 +21,10 @@
 # ~/x611/app/views/questions/
 # and now this 3rd file should exist.
 
-p 'hello'
-byebug
+require 'tempfile'
+
 adir = Dir['/home/dan/x611/app/views/posts/*.haml']
 adir.each{ |fn|
-  p fn
   # I should look for a question in this file
   File.open(fn, 'r') do |afile|
     afile.each_line{ |line| 
@@ -36,10 +35,11 @@ adir.each{ |fn|
       if line =~ /^.q2 /
         # Then, in /tmp/, I should make a 2nd HAML file with the question in it.
         # The name of this 2nd HAML file should be built from the question.
-        byebug
-        fn2 = "how#{line[0,79].gsub(/ /,'_').gsub(/\?/,'').gsub(/\n/,'').sub(/\.q2/,'')}.haml"
-        tfile = Tempfile(fn2)
-        tfile.puts(line)
+        acont = line.sub(/\.q2/,'')
+        href = "how#{acont[0,79].gsub(/ /,'_').gsub(/\?/,'').gsub(/\n/,'')}"
+        fn2  = "#{href}.haml"
+        tfile = Tempfile.new(fn2)
+        tfile.puts("href='#{href}'")
         tfile.close
         FileUtils.mv(tfile.path, "/tmp/#{fn2}")
       end
