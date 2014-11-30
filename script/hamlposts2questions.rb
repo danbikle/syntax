@@ -20,3 +20,5 @@
 # ~/x611/app/views/questions/
 # and now this 3rd file should exist.
 
+p 'hello'
+
