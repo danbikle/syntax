@@ -36,10 +36,10 @@ adir.each{ |fn|
         # Then, in /tmp/, I should make a 2nd HAML file with the question in it.
         # The name of this 2nd HAML file should be built from the question.
         acont = line.sub(/\.q2/,'')
-        href = "how#{acont[0,79].gsub(/ /,'_').gsub(/\?/,'').gsub(/\n/,'')}"
-        fn2  = "#{href}.haml"
+        paction = "how#{acont[0,79].gsub(/ /,'_').gsub(/\?/,'').gsub(/\n/,'')}"
+        fn2  = "#{paction}.haml"
         tfile = Tempfile.new(fn2)
-        tfile.puts("href='#{href}'")
+        tfile.puts("href='/posts/#{paction}'")
         tfile.close
         FileUtils.mv(tfile.path, "/tmp/#{fn2}")
       end
