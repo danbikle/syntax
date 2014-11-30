@@ -18,7 +18,6 @@
 require 'tempfile'
 
 fn2 = "#{Rails.root}/app/views/questions/_index.haml"
-File.unlink(fn2)
 
 adir = Dir["#{Rails.root}/app/views/posts/*.haml"]
 adir.each{ |fn|
@@ -32,10 +31,8 @@ adir.each{ |fn|
         rpath = fn.sub(/^.*\/posts\//,'/posts/').sub(/.haml$/,'')
         # I should make a note of the anchor content:
         acont = line.sub(/\.q2/,'')
-        # Then, in /tmp/, I should make a 2nd HAML file with the question in it.
-        # The question should be inside an anchor pointing to the post.
-        # The name of this 2nd HAML file should be built from the question.
-        fh = File.open(fn2, 'a')
+        # I should build an anchor-elem and write it.
+        fh = File.open(fn2, 'a+')
         fh.puts("%a(href='#{rpath}') #{acont}")
         fh.close
       end # if
