@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   get 'blog'      => 'posts#blog'
   get 'contact'   => 'posts#contact'
   get 'tags'      => 'posts#tags'
-  get 'questions' => 'posts#questions'
+  get 'questions' => 'questions#index'
   get ':controller(/:action)'
 end
