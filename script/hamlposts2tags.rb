@@ -59,6 +59,5 @@ adir.each{ |fn|
   # I should overwrite fn if I linkized any tags.
   # I should detect linkization by file size.
   byebug
-  FileUtils.mv(tmpfile.path, "/tmp/j.haml") if linkized
-  p 'FileUtils.mv(tmpfile.path, fn) if linkized'
+  FileUtils.mv(tmpfile.path, fn) if linkized
 } # adir.each
