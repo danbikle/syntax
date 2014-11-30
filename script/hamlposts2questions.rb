@@ -21,4 +21,25 @@
 # and now this 3rd file should exist.
 
 p 'hello'
+byebug
+adir = Dir['/home/dan/x611/app/views/posts/*.haml']
+adir.each{ |fn|
+  p fn
+  # I should look for a question in this file
+  File.open(fn, 'r') do |afile|
+    afile.each_line{ |line| 
+      # A question should look like this:
+      # .q2 In Rails how do I implement a wildcard route?
+      # If I find a question,
+      # I should make note of the HAML file name.
+      if line =~ /^.q2 /
+        p line
+      end
+
+    } # afile.each_line
+  end
+
+} # adir.each
+
+
 
