@@ -32,7 +32,7 @@ adir.each{ |fn|
         # Then, in /tmp/, I should make a 2nd HAML file with the question in it.
         # The question should be inside an anchor pointing to the post.
         # The name of this 2nd HAML file should be built from the question.
-        fn2 = "/tmp/index.haml"
+        fn2 = ""#{Rails.root}/app/views/questions/index.haml"
         fh = File.open(fn2, 'a')
         fh.puts("%a(href='#{rpath}') #{acont}")
         fh.close
