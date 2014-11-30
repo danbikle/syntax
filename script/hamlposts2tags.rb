@@ -57,7 +57,5 @@ adir.each{ |fn|
   end # File.open
   tmpfile.close
   # I should overwrite fn if I linkized any tags.
-  # I should detect linkization by file size.
-  byebug
   FileUtils.mv(tmpfile.path, fn) if linkized
 } # adir.each
