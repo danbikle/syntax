@@ -38,6 +38,10 @@ adir.each{ |fn|
         # The name of this 2nd HAML file should be built from the question.
         byebug
         fn2 = "how#{line[0,79].gsub(/ /,'_').gsub(/\?/,'').gsub(/\n/,'').sub(/\.q2/,'')}.haml"
+        tfile = Tempfile(fn2)
+        tfile.puts(line)
+        tfile.close
+        FileUtils.mv(tfile.path, "/tmp/#{fn2}")
       end
 
     } # afile.each_line
