@@ -30,16 +30,19 @@ adir.each{ |fn|
     afile.each_line{ |line| 
       # A question should look like this:
       # .q2 In Rails how do I implement a wildcard route?
-      # If I find a question,
-      # I should make note of the HAML file name.
       if line =~ /^.q2 /
-        # Then, in /tmp/, I should make a 2nd HAML file with the question in it.
-        # The name of this 2nd HAML file should be built from the question.
+        # If I find a question, I should make a note of the post:
+        byebug
+        rpath = fn.sub(/.haml$/,'')
+        # I should make a note of the anchor content:
         acont = line.sub(/\.q2/,'')
-        paction = "how#{acont[0,79].gsub(/ /,'_').gsub(/\?/,'').gsub(/\n/,'')}"
-        fn2  = "#{paction}.haml"
+        # Then, in /tmp/, I should make a 2nd HAML file with the question in it.
+        # The question should be inside an anchor pointing to the post.
+        # The name of this 2nd HAML file should be built from the question.
+        fn2 = "how#{acont[0,79].gsub(/ /,'_').gsub(/\?/,'').gsub(/\n/,'')}.haml"
         tfile = Tempfile.new(fn2)
-        tfile.puts("href='/posts/#{paction}'")
+        tfile.puts("href='#{rpath}'")
+        tfile.puts(acont)
         tfile.close
         FileUtils.mv(tfile.path, "/tmp/#{fn2}")
       end
