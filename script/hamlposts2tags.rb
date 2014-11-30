@@ -15,9 +15,12 @@
 # ~/x611/app/views/tags/rails.haml
 
 require 'tempfile'
+
 tagdir   = "#{Rails.root}/app/views/tags"
 adir = Dir["#{Rails.root}/app/views/posts/*.haml"]
 adir.each{ |fn|
+  # I should stage my edits in tmpfile
+  tmpfile = Tempfile.new('tmp.haml')
   # I should look for a both a question and a tag in this file
   File.open(fn, 'r') do |afile|
     # I should note the href of this post.
@@ -45,7 +48,11 @@ adir.each{ |fn|
         # Now I should linkize line.
         line = "  %a(href='/tags/#{tagstring}') #{tagstring}"
       end # if
-      puts line
+      tmpfile.puts line
     } # afile.each_line
   end # File.open
+  tmpfile.close
+  # I should overwrite fn if I linkized any tags.
+  # I should detect linkization by file size.
+  p 'FileUtils.mv(tmpfile.path, fn) if tmpfile.size != fn.size'
 } # adir.each
