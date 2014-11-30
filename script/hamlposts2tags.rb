@@ -20,14 +20,14 @@ adir = Dir["#{Rails.root}/app/views/posts/*.haml"]
 adir.each{ |fn|
   # I should look for a both a question and a tag in this file
   File.open(fn, 'r') do |afile|
+    # I should note the href of this post.
+    hrefp = fn.sub(/^.*\/posts\//,'/posts/').sub(/.haml$/,'')
+    # Later I will build an anchor pointing to this post.
+    # I should give anchor content a default value.
+    # If this post has a question, 
+    # later I should set acont to the question string.
+    acont = hrefp
     afile.each_line{ |line| 
-      # I should note the href of this post.
-      hrefp = fn.sub(/^.*\/posts\//,'/posts/').sub(/.haml$/,'')
-      # Later I will build an anchor pointing to this post.
-      # I should give anchor content a default value.
-      # If this post has a question, 
-      # later I should set acont to the question string.
-      acont = hrefp
       # In this file, the question should come before any tags.
       # A question should look like this:
       # .q2 In Rails how do I implement a wildcard route?
