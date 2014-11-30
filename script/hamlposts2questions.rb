@@ -33,7 +33,7 @@ adir.each{ |fn|
         # The question should be inside an anchor pointing to the post.
         # The name of this 2nd HAML file should be built from the question.
         fn2 = "/tmp/index.haml"
-        fh = File.open(fn, 'a')
+        fh = File.open(fn2, 'a')
         fh.puts("%a(href='#{rpath}') #{acont}")
         fh.close
       end
