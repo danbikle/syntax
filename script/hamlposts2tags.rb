@@ -42,7 +42,10 @@ adir.each{ |fn|
         fh = File.open(fn2, 'a+')
         fh.puts("%a(href='#{hrefp}') #{acont}")
         fh.close
+        # Now I should linkize line.
+        line = "  %a(href='/tags/#{tagstring}') #{tagstring}"
       end # if
+      puts line
     } # afile.each_line
   end # File.open
 } # adir.each
