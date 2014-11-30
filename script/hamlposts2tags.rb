@@ -22,7 +22,7 @@ adir.each{ |fn|
   # I should stage my edits in tmpfile
   tmpfile = Tempfile.new('tmp.haml')
   # I should flag if any tags in this file have been linkized.
-  linkized? = false
+  linkized = false
   # I should note the href of this post.
   hrefp = fn.sub(/^.*\/posts\//,'/posts/').sub(/.haml$/,'')
   # Later I will build an anchor pointing to this post.
@@ -50,7 +50,7 @@ adir.each{ |fn|
         # Now I should linkize line.
         line = "  %a(href='/tags/#{tagstring}') #{tagstring}"
         # I should note fn was linkized
-        linkized? = true
+        linkized = true
       end # if
       tmpfile.puts line
     } # afile.each_line
