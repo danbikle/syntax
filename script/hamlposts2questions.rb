@@ -16,7 +16,7 @@
 
 require 'tempfile'
 
-tfh = TempFile.new('tmpf.haml')
+tfh = Tempfile.new('tmpf.haml')
 adir = Dir["#{Rails.root}/app/views/posts/*.haml"]
 adir.each{ |pfn|
   # I should look for a question in this file
