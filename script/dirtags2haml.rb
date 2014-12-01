@@ -15,4 +15,4 @@ adir.each{ |fn|
 }
 
 tfh.close
-Fileutil.mv(tfh.path, "#{Rails.root}/app/views/posts/_tags.haml")
+FileUtils.mv(tfh.path, "#{Rails.root}/app/views/posts/_tags.haml")
