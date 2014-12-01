@@ -5,10 +5,14 @@
 
 require 'tempfile'
 
+tfh = Tempfile.new('tmp.haml')
 tagdir = "#{Rails.root}/app/views/tags"
 adir = Dir["#{tagdir}/_*.haml"]
 adir.each{ |fn|
   p fn
-  hrefp = fn.sub(/\/.*tags\/_/,'/tags/').sub(/.haml$/,'')
-  p hrefp
+  acont = fn.sub(/\/.*tags\/_/,'').sub(/.haml$/,'')
+  hrefp = "/tags/#{acont}"
+  tfh.puts "%a(href='#{hrefp}') #{acont}"
 }
+
+tfh.close
