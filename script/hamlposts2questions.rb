@@ -14,28 +14,27 @@
 # Next, I should append the question-link to
 # ~/x611/app/views/questions/index.haml
 
-
 require 'tempfile'
 
-fn2 = "#{Rails.root}/app/views/questions/_index.haml"
-
+tfh = TempFile.new('tmpf.haml')
 adir = Dir["#{Rails.root}/app/views/posts/*.haml"]
-adir.each{ |fn|
+adir.each{ |pfn|
   # I should look for a question in this file
-  File.open(fn, 'r') do |afile|
+  File.open(pfn, 'r') do |afile|
     afile.each_line{ |line| 
       # A question should look like this:
       # .q2 In Rails how do I implement a wildcard route?
       if line =~ /^.q2 /
         # If I find a question, I should make a note of the post:
-        rpath = fn.sub(/^.*\/posts\//,'/posts/').sub(/.haml$/,'')
+        rpath = pfn.sub(/^.*\/posts\//,'/posts/').sub(/.haml$/,'')
         # I should make a note of the anchor content:
         acont = line.sub(/\.q2/,'')
         # I should build an anchor-elem and write it.
-        fh = File.open(fn2, 'a+')
-        fh.puts("%a(href='#{rpath}') #{acont}")
-        fh.close
+        tfh.puts("%a(href='#{rpath}') #{acont}")        
       end # if
     } # afile.each_line
   end # File.open
 } # adir.each
+tfh.close
+fn2 = "#{Rails.root}/app/views/questions/_index.haml"
+FileUtils.mv(tfh.path, fn2)
