@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'posts'     => 'posts#index'
   get 'blog'      => 'posts#blog'
   get 'contact'   => 'posts#contact'
-  #get 'tags'      => 'posts#tags'
+  get 'tags'      => 'posts#tags'
   get 'questions' => 'questions#index'
   get 'tags(/:tag)' => 'tags#tag'
   get ':controller(/:action)'
