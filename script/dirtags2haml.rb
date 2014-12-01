@@ -6,13 +6,13 @@
 require 'tempfile'
 
 tfh = Tempfile.new('tmp.haml')
-tagdir = "#{Rails.root}/app/views/tags"
-adir = Dir["#{tagdir}/_*.haml"]
+adir = Dir["#{Rails.root}/app/views/tags/_*.haml"]
 adir.each{ |fn|
-  p fn
+  # I should get anchor content
   acont = fn.sub(/\/.*tags\/_/,'').sub(/.haml$/,'')
   hrefp = "/tags/#{acont}"
   tfh.puts "%a(href='#{hrefp}') #{acont}"
 }
 
 tfh.close
+Fileutil.mv(tfh.path, "#{Rails.root}/app/views/posts/_tags.haml")
