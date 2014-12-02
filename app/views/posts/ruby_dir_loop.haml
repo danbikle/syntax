@@ -9,14 +9,28 @@
 
 %br/
 Recently I encountered a use-case where I wanted to look inside all the files in a directory.
+%br/
+%br/
 
 For each file I wanted to create a second file which contained some enhanced content.
+%br/
+%br/
 
 A script which does this task has two parts.
+%br/
+%br/
 
 The first part uses a Ruby class named Dir which can transform a directory into an enumerable object.
+%br/
+%br/
 
 An enumerable object in Ruby fits well with looping scenarios.
+%br/
+%br/
+
+The second part captures the enhancements and then writes them to the target file.
+%br/
+%br/
 
 The syntax below demonstrates how to build a loop from a directory full of files:
 
