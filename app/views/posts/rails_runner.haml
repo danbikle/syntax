@@ -36,3 +36,11 @@ Also I can use a command line option to specify that I want the script to run in
 %br/
 
 Rails runner is a useful feature of Rails.
+%br/
+%br/
+One lesson I learned from the school of hard knocks is that I need to be careful about where I place adhoc Ruby scripts.  Rails is designed to load any scripts it finds in some directories.  So, if I place an adhoc script in Rails.root/controllers, it will get loaded and thus run when I don't want it to run.
+%br/
+%br/
+The convention I established for myself is to create a directory called script under Rails.root and then place adhoc Ruby scripts in that directory.
+%br/
+%br/
