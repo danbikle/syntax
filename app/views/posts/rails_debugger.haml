@@ -2,315 +2,111 @@
 .q2 In Rails 4.x how do I step through Ruby code using a debugger?
 .tags
   %span.tagtag Tags:
+  %a(href='/tags/byebug') byebug
   %a(href='/tags/rails') rails
   %a(href='/tags/ruby') ruby
   %a(href='/tags/debugger') debugger
   %a(href='/tags/rubygems') rubygems
 
+%br/
 Rubygems offers a gem called debugger.
+%br/
+%br/
 
 When I create a new rails project I should see the debugger gem listed in the Gemfile.
+%br/
+%br/
 
 Although the debugger entry is commented out, 
 I consider that entry to be evidence 
 that the debugger should behave properly 
 when I want to use it 
 to step through Ruby syntax in my Rails app.
+%br/
+%br/
 
 screendump:
-dan@hp ~/x611/app/views/posts $ cd /tmp
-dan@hp /tmp $ 
-dan@hp /tmp $ 
-dan@hp /tmp $ which ruby
-/home/dan/.rbenv/shims/ruby
-dan@hp /tmp $ 
-dan@hp /tmp $ which rails
-/home/dan/.rbenv/shims/rails
-dan@hp /tmp $ 
-dan@hp /tmp $ 
-dan@hp /tmp $ rails -v
-Rails 4.1.8
-dan@hp /tmp $ 
-dan@hp /tmp $ 
-dan@hp /tmp $ ruby -v
-ruby 2.1.5p273 (2014-11-13 revision 48405) [x86_64-linux]
-dan@hp /tmp $ 
-dan@hp /tmp $ rails new mydemo -d sqlite
-Invalid value for --database option. Supported for preconfiguration are: mysql, oracle, postgresql, sqlite3, frontbase, ibm_db, sqlserver, jdbcmysql, jdbcsqlite3, jdbcpostgresql, jdbc.
-dan@hp /tmp $ 
-dan@hp /tmp $ rails new mydemo -d sqlite3
-      create  
-      create  README.rdoc
-      create  Rakefile
-      create  config.ru
-      create  .gitignore
-      create  Gemfile
-      create  app
-      create  app/assets/javascripts/application.js
-      create  app/assets/stylesheets/application.css
-      create  app/controllers/application_controller.rb
-      create  app/helpers/application_helper.rb
-      create  app/views/layouts/application.html.erb
-      create  app/assets/images/.keep
-      create  app/mailers/.keep
-      create  app/models/.keep
-      create  app/controllers/concerns/.keep
-      create  app/models/concerns/.keep
-      create  bin
-      create  bin/bundle
-      create  bin/rails
-      create  bin/rake
-      create  config
-      create  config/routes.rb
-      create  config/application.rb
-      create  config/environment.rb
-      create  config/secrets.yml
-      create  config/environments
-      create  config/environments/development.rb
-      create  config/environments/production.rb
-      create  config/environments/test.rb
-      create  config/initializers
-      create  config/initializers/assets.rb
-      create  config/initializers/backtrace_silencers.rb
-      create  config/initializers/cookies_serializer.rb
-      create  config/initializers/filter_parameter_logging.rb
-      create  config/initializers/inflections.rb
-      create  config/initializers/mime_types.rb
-      create  config/initializers/session_store.rb
-      create  config/initializers/wrap_parameters.rb
-      create  config/locales
-      create  config/locales/en.yml
-      create  config/boot.rb
-      create  config/database.yml
-      create  db
-      create  db/seeds.rb
-      create  lib
-      create  lib/tasks
-      create  lib/tasks/.keep
-      create  lib/assets
-      create  lib/assets/.keep
-      create  log
-      create  log/.keep
-      create  public
-      create  public/404.html
-      create  public/422.html
-      create  public/500.html
-      create  public/favicon.ico
-      create  public/robots.txt
-      create  test/fixtures
-      create  test/fixtures/.keep
-      create  test/controllers
-      create  test/controllers/.keep
-      create  test/mailers
-      create  test/mailers/.keep
-      create  test/models
-      create  test/models/.keep
-      create  test/helpers
-      create  test/helpers/.keep
-      create  test/integration
-      create  test/integration/.keep
-      create  test/test_helper.rb
-      create  tmp/cache
-      create  tmp/cache/assets
-      create  vendor/assets/javascripts
-      create  vendor/assets/javascripts/.keep
-      create  vendor/assets/stylesheets
-      create  vendor/assets/stylesheets/.keep
-         run  bundle install
-Fetching gem metadata from https://rubygems.org/..........
-Resolving dependencies...
-Using rake 10.4.0
-Using i18n 0.6.11
-Using json 1.8.1
-Using minitest 5.4.3
-Using thread_safe 0.3.4
-Using tzinfo 1.2.2
-Using activesupport 4.1.8
-Using builder 3.2.2
-Using erubis 2.7.0
-Using actionview 4.1.8
-Using rack 1.5.2
-Using rack-test 0.6.2
-Using actionpack 4.1.8
-Using mime-types 2.4.3
-Using mail 2.6.3
-Using actionmailer 4.1.8
-Using activemodel 4.1.8
-Using arel 5.0.1.20140414130214
-Using activerecord 4.1.8
-Using bundler 1.7.7
-Using coffee-script-source 1.8.0
-Using execjs 2.2.2
-Using coffee-script 2.3.0
-Using thor 0.19.1
-Using railties 4.1.8
-Using coffee-rails 4.0.1
-Using hike 1.2.3
-Using multi_json 1.10.1
-Using jbuilder 2.2.5
-Using jquery-rails 3.1.2
-Using tilt 1.4.1
-Using sprockets 2.12.3
-Installing sprockets-rails 2.2.2
-Using rails 4.1.8
-Using rdoc 4.1.2
-Using sass 3.2.19
-Using sass-rails 4.0.5
-Using sdoc 0.4.1
-Using spring 1.2.0
-Installing sqlite3 1.3.10
-Using turbolinks 2.5.2
-Using uglifier 2.5.3
-Your bundle is complete!
-Use `bundle show [gemname]` to see where a bundled gem is installed.
-         run  bundle exec spring binstub --all
-* bin/rake: spring inserted
-* bin/rails: spring inserted
-dan@hp /tmp $ 
-dan@hp /tmp $ cd mydemo
-dan@hp /tmp/mydemo $ 
-dan@hp /tmp/mydemo $ gem install debugger
-Fetching: columnize-0.8.9.gem (100%)
-Successfully installed columnize-0.8.9
-Fetching: debugger-ruby_core_source-1.3.7.gem (100%)
-Successfully installed debugger-ruby_core_source-1.3.7
-Fetching: debugger-linecache-1.2.0.gem (100%)
-Successfully installed debugger-linecache-1.2.0
-Fetching: debugger-1.6.8.gem (100%)
-Building native extensions.  This could take a while...
-ERROR:  Error installing debugger:
-	ERROR: Failed to build gem native extension.
+%pre
+  =render 'rails_debugger1'
 
-    /home/dan/.rbenv/versions/2.1.5/bin/ruby extconf.rb
-*** extconf.rb failed ***
-Could not create Makefile due to some reason, probably lack of necessary
-libraries and/or headers.  Check the mkmf.log file for more details.  You may
-need configuration options.
+If I were the product manager for Rails, I would remove the debugger
+gem declaration from default Gemfiles.
+%br/
+%br/
 
-Provided configuration options:
-	--with-opt-dir
-	--without-opt-dir
-	--with-opt-include
-	--without-opt-include=${opt-dir}/include
-	--with-opt-lib
-	--without-opt-lib=${opt-dir}/lib
-	--with-make-prog
-	--without-make-prog
-	--srcdir=.
-	--curdir
-	--ruby=/home/dan/.rbenv/versions/2.1.5/bin/ruby
-/home/dan/.rbenv/versions/2.1.5/lib/ruby/2.1.0/fileutils.rb:1401:in `initialize': No such file or directory @ rb_sysopen - ./215/ruby_debug.h (Errno::ENOENT)
-	from /home/dan/.rbenv/versions/2.1.5/lib/ruby/2.1.0/fileutils.rb:1401:in `open'
-	from /home/dan/.rbenv/versions/2.1.5/lib/ruby/2.1.0/fileutils.rb:1401:in `copy_file'
-	from /home/dan/.rbenv/versions/2.1.5/lib/ruby/2.1.0/fileutils.rb:483:in `copy_file'
-	from /home/dan/.rbenv/versions/2.1.5/lib/ruby/2.1.0/fileutils.rb:400:in `block in cp'
-	from /home/dan/.rbenv/versions/2.1.5/lib/ruby/2.1.0/fileutils.rb:1579:in `block in fu_each_src_dest'
-	from /home/dan/.rbenv/versions/2.1.5/lib/ruby/2.1.0/fileutils.rb:1593:in `fu_each_src_dest0'
-	from /home/dan/.rbenv/versions/2.1.5/lib/ruby/2.1.0/fileutils.rb:1577:in `fu_each_src_dest'
-	from /home/dan/.rbenv/versions/2.1.5/lib/ruby/2.1.0/fileutils.rb:399:in `cp'
-	from extconf.rb:83:in `block in <main>'
-	from extconf.rb:82:in `each'
-	from extconf.rb:82:in `<main>'
-
-extconf failed, exit code 1
-
-Gem files will remain installed in /home/dan/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/debugger-1.6.8 for inspection.
-Results logged to /home/dan/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/extensions/x86_64-linux/2.1.0-static/debugger-1.6.8/gem_make.out
-dan@hp /tmp/mydemo $ 
-dan@hp /tmp/mydemo $ 
+It is obviously broken.
+%br/
+%br/
 
 I looked at this page:
+%br/
+%br/
 
-https://github.com/cldwalker/debugger
+%a(href='https://github.com/cldwalker/debugger' target='x')
+  https://github.com/cldwalker/debugger
 
-Note:
+%br/
+%br/
+I noticed this tip:
+%br/
+%br/
+
 Description
-A fork of ruby-debug(19) that works on 1.9.2 and 1.9.3 and installs easily for rvm/rbenv rubies. ruby >= 2.0 are not supported
+%br/
+A fork of ruby-debug(19) that works on 1.9.2 and 1.9.3 and installs easily for rvm/rbenv rubies. 
+
+%br/
+%br/
+ruby >= 2.0 are not supported
+%br/
+%br/
 
 For 2.X rubies, consider using byebug.
+%br/
+%br/
 
 I found it:
+%br/
+%br/
 
-http://rubygems.org/gems/byebug
-
-Tried installing it:
-
-
-dan@hp /tmp/mydemo $ 
-dan@hp /tmp/mydemo $ gem install byebug
-Fetching: slop-3.6.0.gem (100%)
-Successfully installed slop-3.6.0
-Fetching: byebug-3.5.1.gem (100%)
-Building native extensions.  This could take a while...
-Successfully installed byebug-3.5.1
-2 gems installed
-dan@hp /tmp/mydemo $ 
-dan@hp /tmp/mydemo $ 
-
-vi Gemfile:
-
-gem 'byebug', group: [:development, :test]
-
-bundle install
-
-class PostsController < ApplicationController
-  def index
-    a=1
-    b=2
-
-# console should stop here:
-byebug
-
-    c=3
-  end
-end
-
-bin/rails s
-
-dan@hp /tmp/mydemo $ 
-dan@hp /tmp/mydemo $ 
-dan@hp /tmp/mydemo $ 
-dan@hp /tmp/mydemo $ bin/rails s
-=> Booting WEBrick
-=> Rails 4.1.8 application starting in development on http://0.0.0.0:3000
-=> Run `rails server -h` for more startup options
-=> Notice: server is listening on all interfaces (0.0.0.0). Consider using 127.0.0.1 (--binding option)
-=> Ctrl-C to shutdown server
-[2014-11-29 22:04:09] INFO  WEBrick 1.3.1
-[2014-11-29 22:04:09] INFO  ruby 2.1.5 (2014-11-13) [x86_64-linux]
-[2014-11-29 22:04:09] INFO  WEBrick::HTTPServer#start: pid=15437 port=3000
+%a(href='http://rubygems.org/gems/byebug' target='x')
+  http://rubygems.org/gems/byebug
+%br/
+%br/
 
 
-visit localhost:3000/posts/index
+I tried installing it:
+%br/
 
+%pre
+  =render 'rails_debugger2'
+%br/
 
-Started GET "/posts/index" for 127.0.0.1 at 2014-11-29 22:05:09 +0000
-Processing by PostsController#index as HTML
+I did vi Gemfile:
+%br/
 
-[2, 11] in /tmp/mydemo/app/controllers/posts_controller.rb
-    2:   def index
-    3:     a=1
-    4:     b=2
-    5: 
-    6: # console should stop here:
-    7: byebug
-    8: 
-=>  9:     c=3
-   10:   end
-   11: end
-(byebug) a
-1
-(byebug) ?
-SyntaxError Exception: /tmp/mydemo/app/controllers/posts_controller.rb:9: incomplete character syntax
-nil
-(byebug) help
-byebug help v3.5.1
-Type "help <command-name>" for help on a specific command
-Available commands:
-(en|dis)able  bt         continue  down  exit    help     interrupt  list    p   putl    restart  show    thread     up   
-backtrace     catch      delete    edit  finish  history  irb        method  pp  quit    save     source  trace      var  
-break         condition  display   eval  frame   info     kill       next    ps  reload  set      step    undisplay  where
-(byebug) delete
-Delete all breakpoints? (y/n) y
-(byebug) 
+%pre
+  %code.ruby
+    gem 'byebug', group: [:development, :test]
 
+Then I did this:
+%pre
+  %code.bash
+    bundle install
+
+The byebug gem worked very well with my combo of Ruby 2.1.5 and Rails 4.1.8:
+%br/
+
+%pre
+  =render 'rails_debugger3'
+
+%pre
+  =render 'rails_debugger4'
+%br/
+In the future when I need to step through Rails code while Rails is responding to a request, I will use the byebug gem.
+
+%br/
+%a(href='http://rubygems.org/gems/byebug' target='x')
+  http://rubygems.org/gems/byebug
+%br/
+%br/

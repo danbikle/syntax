@@ -1,0 +1,39 @@
+<code class='bash'>dan@hp /tmp/mydemo $ 
+dan@hp /tmp/mydemo $ 
+dan@hp /tmp/mydemo $ bin/rails s
+=> Booting WEBrick
+=> Rails 4.1.8 application starting in development on http://0.0.0.0:3000
+=> Run `rails server -h` for more startup options
+=> Notice: server is listening on all interfaces (0.0.0.0). Consider using 127.0.0.1 (--binding option)
+=> Ctrl-C to shutdown server
+[2014-11-29 22:04:09] INFO  WEBrick 1.3.1
+[2014-11-29 22:04:09] INFO  ruby 2.1.5 (2014-11-13) [x86_64-linux]
+[2014-11-29 22:04:09] INFO  WEBrick::HTTPServer#start: pid=15437 port=3000
+
+Started GET "/posts/index" for 127.0.0.1 at 2014-11-29 22:05:09 +0000
+Processing by PostsController#index as HTML
+
+[2, 11] in /tmp/mydemo/app/controllers/posts_controller.rb
+    2:   def index
+    3:     a=1
+    4:     b=2
+    5: 
+    6: # console should stop here:
+    7: byebug
+    8: 
+=>  9:     c=3
+   10:   end
+   11: end
+(byebug) a
+1
+(byebug) help
+byebug help v3.5.1
+Type "help <command-name>" for help on a specific command
+Available commands:
+(en|dis)able  bt         continue  down  exit    help     interrupt  list    p   putl    restart  show    thread     up   
+backtrace     catch      delete    edit  finish  history  irb        method  pp  quit    save     source  trace      var  
+break         condition  display   eval  frame   info     kill       next    ps  reload  set      step    undisplay  where
+(byebug) delete
+Delete all breakpoints? (y/n) y
+(byebug) 
+</code>
