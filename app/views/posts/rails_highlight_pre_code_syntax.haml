@@ -9,25 +9,42 @@
   %a(href='/tags/pre_code') pre_code
 
 %br/
-Recently I encountered a use-case where I wanted to highlight Python syntax inside a blog entry.
+Recently I encountered a use-case where I wanted to highlight Python syntax inside a blog post.
+%br/
+%br/
 
 The website was being served by Rails.
+%br/
+%br/
 
 I searched on google and found a JavaScript library named highlight.js:
+%br/
+%br/
 
 %a(href='https://highlightjs.org' target='x')
   https://highlightjs.org
 
+%br/
+%br/
 I read the directions there and then added some syntax to my Rails layout file:
+%br/
 
 %pre
   =render 'rails_highlight_pre_code_syntax1'
 
+%br/
+I then placed the Python syntax in a pre-code element:
+%br/
+%pre
+  =render 'rails_highlight_pre_code_syntax2'
 
-I then placed the Python syntax in a pre-code element and looked at it
-with my browser.
+%br/
+And I looked at it with my browser.
+%br/
+%br/
 
-The Python syntax looks like this:
+In my browser, the Python syntax looks like this:
+%br/
 
 %pre
   %code.python
