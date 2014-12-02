@@ -1,0 +1,26 @@
+<code class='ruby'># Simple demo: 3 dollar variables
+
+alien_string = 'Hello intelligent Earthlings. Talk to me.'
+
+alien_string =~ /intelligent/
+
+p 'text before the match:'
+p $`
+
+p 'the match:'
+p $&
+
+p 'text after the match:'
+p $'
+
+# dan@hp ~/ruby-code $ 
+# dan@hp ~/ruby-code $ ruby /tmp/jj.rb
+# "text before the match:"
+# "Hello "
+# "the match:"
+# "intelligent"
+# "text after the match:"
+# " Earthlings. Talk to me."
+# dan@hp ~/ruby-code $ 
+# dan@hp ~/ruby-code $ 
+</code>
