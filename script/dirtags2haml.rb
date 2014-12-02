@@ -7,7 +7,7 @@ require 'tempfile'
 
 tfh = Tempfile.new('tmp.haml')
 adir = Dir["#{Rails.root}/app/views/tags/_*.haml"]
-adir.each{ |fn|
+adir.sort.each{ |fn|
   # I should get anchor content
   acont = fn.sub(/\/.*tags\/_/,'').sub(/.haml$/,'')
   hrefp = "/tags/#{acont}"

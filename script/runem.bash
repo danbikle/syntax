@@ -8,7 +8,9 @@
 set -x
 cd ~/x611/
 
-bin/rails r script/dirposts2haml.rb
-bin/rails r script/dirtags2haml.rb
 bin/rails r script/hamlposts2questions.rb
 bin/rails r script/hamlposts2tags.rb
+bin/rails r script/dirposts2haml.rb
+bin/rails r script/dirtags2haml.rb
+
+

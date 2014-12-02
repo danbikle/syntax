@@ -45,3 +45,4 @@ body table {
 span.tagtag { font-weight: 600; }
 
 
+table#maint {min-width: 600px; max-width: 900px;}
