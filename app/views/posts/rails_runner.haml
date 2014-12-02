@@ -7,14 +7,32 @@
   %a(href='/tags/ruby') ruby
   %a(href='/tags/runner') runner
 
+%br/
+Recently I encountered a use-case where I wanted to run a simple Ruby script which had access to a Rails environment.
+%br/
+%br/
 I can use rails runner to run ruby scripts with a full rails environment loaded into the interpreter.
+%br/
+%br/
 
+Here is a screendump of me using rails runner:
+%br/
 
-dan@hp ~/x611 $ bin/rails runner script/hamlposts2questions.rb 
-"hello"
-dan@hp ~/x611 $ 
+%pre
+  %code.bash
+    dan@hp ~/x611 $ bin/rails runner script/hamlposts2questions.rb 
+    "hello"
+    dan@hp ~/x611 $ 
 
+Also I can use a command line option to specify that I want the script to run in the Rails production environment:
+%br/
 
-dan@hp ~/x611 $ bin/rails runner -e production script/hamlposts2questions.rb 
-"hello"
-dan@hp ~/x611 $ 
+%pre
+  %code.bash
+    dan@hp ~/x611 $ bin/rails runner -e production script/hamlposts2questions.rb 
+    "hello"
+    dan@hp ~/x611 $ 
+
+%br/
+
+Rails runner is a useful feature of Rails.
