@@ -1,0 +1,11 @@
+<code class='ruby'># Simple demo: match and replace a string in large string:
+large_string = 'Hello , intelligent , but inferior, creatures of Earth.'
+smallstring = large_string.gsub(/,/,'').gsub(/ /,'').sub(/intel.*/, ' World')
+p smallstring
+
+# dan@hp ~/ruby-code $ 
+# dan@hp ~/ruby-code $ ruby /tmp/jj.rb
+# "Hello World"
+# dan@hp ~/ruby-code $ 
+# dan@hp ~/ruby-code $ 
+</code>
