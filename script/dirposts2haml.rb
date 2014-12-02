@@ -8,7 +8,7 @@ require 'tempfile'
 tfh = Tempfile.new('tmp.haml')
 
 filenames = Dir["#{Rails.root}/app/views/posts/*.haml"]
-byebug
+
 names_sorted_bydate = filenames.sort_by {|filename| File.mtime(filename) }
 
 names_sorted_bydate.each{ |fn|
@@ -17,7 +17,9 @@ names_sorted_bydate.each{ |fn|
   # I should create a link if filename starts with a through z.
   if acont =~ /^[a-z]/
     hrefp = "/posts/#{acont}"
-    tfh.puts "%a(href='#{hrefp}') #{acont}"
+    mydate = File.mtime(fn)
+byebug
+    tfh.puts "%a(href='#{hrefp}') #{mydate.strftime('%Y-%m-%d')} | #{acont}"
   end
 }
 
