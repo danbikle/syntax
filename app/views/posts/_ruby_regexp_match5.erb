@@ -1,0 +1,50 @@
+<code class='ruby'># Simple demo: remember what I matched.
+mypath    = "/app/views/posts/_index.haml"
+if mypath =~ %r{(/app)(/views)(/posts)(/_index.haml)}
+  p 'mypath contains 4 matches'
+else
+  p 'mypath does not contain 4 matches'
+end
+
+# My matches are stored in a MatchData object.
+# Name of object is $~
+p $~
+
+# MatchData object remembers LHS of =~
+p $~[0]
+
+# MatchData object remembers 1st match
+p $~[1]
+
+# MatchData object remembers 2nd match
+p $~[2]
+
+# MatchData object remembers 3rd match
+p $~[3]
+
+# MatchData object remembers 4th match
+p $~[4]
+
+# Plain $ sign easier to type:
+p $1 # same as $~[1]
+p $2
+p $3
+p $4
+
+# dan@hp ~/ruby-code $ 
+# dan@hp ~/ruby-code $ ruby /tmp/jj.rb
+# "mypath contains 5 matches"
+# #<MatchData "/app/views/posts/_index.haml" 1:"/app" 2:"/views" 3:"/posts" 4:"/_index.haml">
+# "/app/views/posts/_index.haml"
+# "/app"
+# "/views"
+# "/posts"
+# "/_index.haml"
+# "/app"
+# "/views"
+# "/posts"
+# "/_index.haml"
+# dan@hp ~/ruby-code $ 
+# dan@hp ~/ruby-code $ 
+# dan@hp ~/ruby-code $ 
+</code>

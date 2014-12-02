@@ -1,0 +1,9 @@
+<code class='ruby'># Simple demo of looking for smaller string in larger string.
+mypath      = "/app/views/posts/_index.haml"
+smallstring = "index.haml"
+if mypath =~ Regexp.new(smallstring)
+  p 'mypath contains index.haml'
+else
+  p 'mypath does not contain index.haml'
+end
+</code>

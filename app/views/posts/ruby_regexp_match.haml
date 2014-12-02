@@ -1,1 +1,37 @@
-In Ruby how do I match a regular expression and a string?
+.q1 Question:
+.q2 In Ruby how do I match a regular expression and a string?
+.tags
+  %span.tagtag Tags:
+  .tag regexp
+  .tag regular_expression
+  .tag ruby
+
+%br/
+When I write Ruby code, I often encounter a use-case where I want to match a regular expression and a string.
+%br/
+%br/
+
+Ruby offers three general ways to do this.
+%br/
+%br/
+
+Way 1 (hard-coded regular expression):
+%pre
+  =render 'ruby_regexp_match1'
+
+Way 2 (create regular expression from string variable):
+%pre
+  =render 'ruby_regexp_match2'
+
+Way 3 (use match() instead of =~):
+%pre
+  =render 'ruby_regexp_match3'
+
+Way 4 (use curly braces instead of slashes or Regexp.new()):
+%pre
+  =render 'ruby_regexp_match4'
+
+Way 5 (remember what I matched):
+%pre
+  =render 'ruby_regexp_match5'
+
