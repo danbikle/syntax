@@ -18,7 +18,6 @@ names_sorted_bydate.each{ |fn|
   if acont =~ /^[a-z]/
     hrefp = "/posts/#{acont}"
     mydate = File.mtime(fn)
-byebug
     tfh.puts "%a(href='#{hrefp}') #{mydate.strftime('%Y-%m-%d')} | #{acont}"
   end
 }

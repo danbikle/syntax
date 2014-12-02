@@ -1,0 +1,36 @@
+.q1 Question:
+.q2 How do I highlight Python syntax inside an HTML code-element served by a Rails application?
+.tags
+  %span.tagtag Tags:
+  %a(href='/tags/rails') rails
+  %a(href='/tags/javascript') javascript
+  %a(href='/tags/python') python
+  %a(href='/tags/highlight') highlight
+  %a(href='/tags/pre_code') pre_code
+
+%br/
+Recently I encountered a use-case where I wanted to highlight Python syntax inside a blog entry.
+
+The website was being served by Rails.
+
+I searched on google and found a JavaScript library named highlight.js:
+
+%a(href='https://highlightjs.org' target='x')
+  https://highlightjs.org
+
+I read the directions there and then added some syntax to my Rails layout file:
+
+%pre
+  =render 'rails_highlight_pre_code_syntax1'
+
+
+I then placed the Python syntax in a pre-code element and looked at it
+with my browser.
+
+The Python syntax looks like this:
+
+%pre
+  %code.python
+    print('Python says hello world')
+
+I am pleased with highlight.js and think it is a good general purpose syntax highlighting library.
