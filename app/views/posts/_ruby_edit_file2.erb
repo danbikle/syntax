@@ -1,0 +1,22 @@
+<code class='ruby'># ruby_edit_file.rb
+
+# This script should change some domains to some HTML-anchor-elements.
+
+require 'tempfile'
+require 'fileutils'
+
+somefiles = Dir["/tmp/f?.html"]
+
+somefiles.each {|fn|
+  tmpfile = Tempfile.new('tmpfile.html')
+  File.open(fn, 'r') do |afile|
+    afile.each_line{ |line|
+      domain = "http://#{line.chomp}"
+      anchor_elem = "&lt;a href='#{domain}'>#{domain}&lt;/a>"
+      tmpfile.puts anchor_elem
+    } # afile.each_line
+  end # fn now closed
+  tmpfile.close
+  FileUtils.mv(tmpfile.path, fn)
+}
+</code>
