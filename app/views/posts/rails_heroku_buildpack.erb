@@ -55,7 +55,7 @@ VirtualBox or on a provider like Amazon or DigitalOcean.
 
 From my clone of my forked repo, I load this file in my editor:
 
-master/lib/language_pack/ruby.rb
+lib/language_pack/ruby.rb
 
 You can refer to the original file here:
 
@@ -85,7 +85,11 @@ After:
               hbs = "#{pwd}/heroku_buildpack_scripts"
               # If #{hbs}/dothis.bash exists, then run it.
               if File.exists?("#{hbs}/dothis.bash")
-                bundler_output &lt;&lt; pipe("/bin/bash #{hbs}/dothis.bash")
+                cmd1 = "export GEM_PATH=#{ENV["GEM_PATH"]};"
+                cmd2 = "export GEM_HOME=#{ENV["GEM_HOME"]};"
+                cmd3 = "/bin/bash #{hbs}/dothis.bash"
+                cmds = "#{cmd1} #{cmd2} #{cmd3} "
+                bundler_output &lt;&lt; pipe("cmds")
               end
               # Bikle
               bundler_output &lt;&lt; pipe("#{bundle_command} --no-clean", out: "2>&1", env: env_vars, user_env: true)
@@ -116,27 +120,30 @@ My approach is to make the absolute minimum change to the buildpack.
 
 My change is really just one line of code:
 
-  bundler_output &lt;&lt; pipe("/bin/bash #{hbs}/dothis.bash")
+  bundler_output &lt;&lt; pipe("cmds")
 
 This is good because it will make it easy for me to keep my buildpack merged with the original Heroku buildpack in the future months/years when they enhance it.
 
 After I enhance my buildpack and git push it to github, I can test it with new-empty Rails-app.
 
 cd /tmp/
-rails new app2014 -d postgresql
-cd app2014
+rails new hero_app10 -d postgresql
+cd hero_app10
+vi Gemfile
+  Add ruby '2.1.5' to the top
+bundle install
 git init
 git add .
 git commit -am hello
-heroku apps:create app2014 --stack cedar --buildpack https://github.com/danbikle/heroku-buildpack-ruby
+heroku apps:create hero-app10 --stack cedar --buildpack https://github.com/danbikle/heroku-buildpack-ruby
 
-The Rails-app, app2014, should deploy the same as if I used the original buildpack.
+The Rails-app, hero_app10, should deploy the same as if I used the original buildpack.
 
-This should happen because my if-then logic will look for this file in app2014:
+This should happen because my if-then logic will look for this file in hero_app10:
 
 Rails.root/heroku_buildpack_scripts/dothis.bash
 
-But app2014 is a new empty Rails-app.
+But hero_app10 is a new empty Rails-app.
 
 So, dothis.bash does not exist yet.
 
@@ -153,7 +160,7 @@ First, it installs Sqlite3.
 
 Second, it installs the sqlite3 gem.
 
-The synax for that is displayed below:
+The syntax for that is displayed below:
 
 #!/bin/bash
 
@@ -181,13 +188,6 @@ make install
 
 # I should be able to gem install sqlite3 now
 cd ${rails_root}
-# I got the values for GEM_PATH, GEM_HOME from a trace of
-# setup_language_pack_environment()
-# here:
-# https://github.com/heroku/heroku-buildpack-ruby/blob/master/lib/language_pack/ruby.rb
-
-export GEM_PATH=vendor/bundle/ruby/2.0.0
-export GEM_HOME=vendor/bundle/ruby/2.0.0
 gem install sqlite3 -- --with-sqlite3-dir=${rails_root}/myvendor/sqlite3
 gem list    sqlite3
 
@@ -204,74 +204,396 @@ The file itself I got from this URL:
 
 http://www.sqlite.org/download.html
 
-Second, I need to set two env-variables: GEM_PATH, and GEM_HOME.
-I got the values by placing puts() statements in
-master/lib/language_pack/ruby.rb
-to find out what ruby.rb thought the values should be.
+Second, I need to eventually add gem 'sqlite3' to the Gemfile.
+But I should do that after the buildpack can get dothis.bash
+to run error-free.
 
-If I use my Gemfile to declare which version of Ruby I want,
-which by the way is considered a best practice,
-then this choice will change what ruby.rb thinks
-GEM_PATH, and GEM_HOME should be.
+Anyway it worked well for me.
 
-And thus I will need to match that requirement in my dothis.bash syntax.
+So, after I got dothis.bash to run and after I added gem 'sqlite3' to the Gemfile,
+I captured a screendump of installing sqlite3 gem on Heroku.
 
-For example if I have this line in my Gemfile:
-
-ruby '2.1.5'
-
-Then the buildpack script will set GEM_PATH, and GEM_HOME
-to vendor/bundle/ruby/2.1.0,
-(why not 2.1.5 I don't know),
-and I will need this syntax in dothis.bash:
-
-export GEM_PATH=vendor/bundle/ruby/2.1.0
-export GEM_HOME=vendor/bundle/ruby/2.1.0
-
-Displayed below is a screen dump of my ability to install the sqlite3 gem on Heroku:
-
+The shell commands are listed below:
 
 cd /tmp/
-rails new appsqlite -d postgresql
-cd appsqlite
+rails new hero_app11 -d postgresql
+cd hero_app11
 
-add  ${rails_root}/myvendor/sqlite-autoconf-3080702.tar.gz 
-add heroku_buildpack_scripts/dothis.bash
+by hand add  ${rails_root}/myvendor/sqlite-autoconf-3080702.tar.gz 
+by hand add heroku_buildpack_scripts/dothis.bash
+
+head Gemfile
+sed -i '1a ruby "2.1.5"' Gemfile
+head Gemfile
 
 git init
 git add .
 git commit -am hello
-heroku apps:create appsqlite --stack cedar --buildpack https://github.com/danbikle/heroku-buildpack-ruby
+heroku apps:create hero-app11 --stack cedar --buildpack https://github.com/danbikle/heroku-buildpack-ruby
+
+git push heroku master
+
+head Gemfile
+sed -i '2a gem "sqlite3"' Gemfile
+head Gemfile
+
+bundle install
+git commit -am hello
+git push heroku master
+heroku run 'gem list sqlite3'
+
+Here is the actual screendump:
+
+dan@hp /tmp $ 
+dan@hp /tmp $ which ruby
+/home/dan/.rbenv/shims/ruby
+dan@hp /tmp $ ruby -v
+ruby 2.1.5p273 (2014-11-13 revision 48405) [x86_64-linux]
+dan@hp /tmp $ which rails
+/home/dan/.rbenv/shims/rails
+dan@hp /tmp $ rails -v
+Rails 4.1.8
+dan@hp /tmp $ 
+dan@hp /tmp $ rails new hero_app11 -d postgresql
+      create  
+      create  README.rdoc
+      create  Rakefile
+      create  config.ru
+      create  .gitignore
+      create  Gemfile
+      create  app
+      create  app/assets/javascripts/application.js
+      create  app/assets/stylesheets/application.css
+      create  app/controllers/application_controller.rb
+      create  app/helpers/application_helper.rb
+      create  app/views/layouts/application.html.erb
+      create  app/assets/images/.keep
+      create  app/mailers/.keep
+      create  app/models/.keep
+      create  app/controllers/concerns/.keep
+      create  app/models/concerns/.keep
+      create  bin
+      create  bin/bundle
+      create  bin/rails
+      create  bin/rake
+      create  config
+      create  config/routes.rb
+      create  config/application.rb
+      create  config/environment.rb
+      create  config/secrets.yml
+      create  config/environments
+      create  config/environments/development.rb
+      create  config/environments/production.rb
+      create  config/environments/test.rb
+      create  config/initializers
+      create  config/initializers/assets.rb
+      create  config/initializers/backtrace_silencers.rb
+      create  config/initializers/cookies_serializer.rb
+      create  config/initializers/filter_parameter_logging.rb
+      create  config/initializers/inflections.rb
+      create  config/initializers/mime_types.rb
+      create  config/initializers/session_store.rb
+      create  config/initializers/wrap_parameters.rb
+      create  config/locales
+      create  config/locales/en.yml
+      create  config/boot.rb
+      create  config/database.yml
+      create  db
+      create  db/seeds.rb
+      create  lib
+      create  lib/tasks
+      create  lib/tasks/.keep
+      create  lib/assets
+      create  lib/assets/.keep
+      create  log
+      create  log/.keep
+      create  public
+      create  public/404.html
+      create  public/422.html
+      create  public/500.html
+      create  public/favicon.ico
+      create  public/robots.txt
+      create  test/fixtures
+      create  test/fixtures/.keep
+      create  test/controllers
+      create  test/controllers/.keep
+      create  test/mailers
+      create  test/mailers/.keep
+      create  test/models
+      create  test/models/.keep
+      create  test/helpers
+      create  test/helpers/.keep
+      create  test/integration
+      create  test/integration/.keep
+      create  test/test_helper.rb
+      create  tmp/cache
+      create  tmp/cache/assets
+      create  vendor/assets/javascripts
+      create  vendor/assets/javascripts/.keep
+      create  vendor/assets/stylesheets
+      create  vendor/assets/stylesheets/.keep
+         run  bundle install
+Fetching gem metadata from https://rubygems.org/...........
+Resolving dependencies...
+Using rake 10.4.2
+Using i18n 0.6.11
+Using json 1.8.1
+Using minitest 5.4.3
+Using thread_safe 0.3.4
+Using tzinfo 1.2.2
+Using activesupport 4.1.8
+Using builder 3.2.2
+Using erubis 2.7.0
+Using actionview 4.1.8
+Using rack 1.5.2
+Using rack-test 0.6.2
+Using actionpack 4.1.8
+Using mime-types 2.4.3
+Using mail 2.6.3
+Using actionmailer 4.1.8
+Using activemodel 4.1.8
+Using arel 5.0.1.20140414130214
+Using activerecord 4.1.8
+Using bundler 1.7.7
+Using coffee-script-source 1.8.0
+Using execjs 2.2.2
+Using coffee-script 2.3.0
+Using thor 0.19.1
+Using railties 4.1.8
+Using coffee-rails 4.0.1
+Using hike 1.2.3
+Using multi_json 1.10.1
+Using jbuilder 2.2.5
+Using jquery-rails 3.1.2
+Using pg 0.17.1
+Using tilt 1.4.1
+Using sprockets 2.12.3
+Using sprockets-rails 2.2.2
+Using rails 4.1.8
+Using rdoc 4.1.2
+Using sass 3.2.19
+Using sass-rails 4.0.5
+Using sdoc 0.4.1
+Using spring 1.2.0
+Using turbolinks 2.5.2
+Using uglifier 2.5.3
+Your bundle is complete!
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+         run  bundle exec spring binstub --all
+* bin/rake: spring inserted
+* bin/rails: spring inserted
+dan@hp /tmp $ 
+dan@hp /tmp $ cd hero_app11
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ rsync -av /tmp/appsqlite/myvendor .
+sending incremental file list
+myvendor/
+myvendor/sqlite-autoconf-3080702.tar.gz
+
+sent 1,999,609 bytes  received 39 bytes  3,999,296.00 bytes/sec
+total size is 1,998,965  speedup is 1.00
+dan@hp /tmp/hero_app11 $ rsync -av /tmp/appsqlite/heroku_buildpack_scripts .
+sending incremental file list
+heroku_buildpack_scripts/
+heroku_buildpack_scripts/dothis.bash
+
+sent 1,127 bytes  received 39 bytes  2,332.00 bytes/sec
+total size is 968  speedup is 0.83
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ cat heroku_buildpack_scripts/dothis.bash 
+#!/bin/bash
+
+# hbs/dothis.bash
+
+# I use this script to help me enhance the ability of 
+# heroku-buildpack
+
+# heroku-buildpack is software used by heroku to help me deploy applications.
+
+rails_root=`pwd`
+
+echo rails_root is
+echo $rails_root
+cd ${rails_root}/myvendor/
+
+# I should install sqlite3 software locally under Rails.root
+
+mkdir -p ${rails_root}/myvendor/sqlite3
+tar zxf  ${rails_root}/myvendor/sqlite-autoconf-3080702.tar.gz 
+cd sqlite-autoconf-3080702/
+./configure --prefix=${rails_root}/myvendor/sqlite3
+make
+make install
+
+# I should be able to gem install sqlite3 now
+cd ${rails_root}
+
+gem install sqlite3 -- --with-sqlite3-dir=${rails_root}/myvendor/sqlite3
+gem list    sqlite3
+
+exit
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ head Gemfile
+source 'https://rubygems.org'
 
 
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.1.8'
+# Use postgresql as the database for Active Record
+gem 'pg'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.3'
+# Use Uglifier as compressor for JavaScript assets
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ sed -i '1a ruby "2.1.5"' Gemfile
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ head Gemfile
+source 'https://rubygems.org'
+ruby "2.1.5"
 
-dan@hp /tmp/appsqlite $ 
-dan@hp /tmp/appsqlite $ git add .
-dan@hp /tmp/appsqlite $ git commit -am hello
-[master 4c1162e] hello
- 2 files changed, 3 insertions(+), 1 deletion(-)
-dan@hp /tmp/appsqlite $ 
-dan@hp /tmp/appsqlite $ heroku apps:create appsqlite --stack cedar --buildpack https://github.com/danbikle/heroku-buildpack-ruby
-Creating appsqlite... done, stack is cedar
+
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.1.8'
+# Use postgresql as the database for Active Record
+gem 'pg'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.3'
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ bundle install
+Using rake 10.4.2
+Using i18n 0.6.11
+Using json 1.8.1
+Using minitest 5.4.3
+Using thread_safe 0.3.4
+Using tzinfo 1.2.2
+Using activesupport 4.1.8
+Using builder 3.2.2
+Using erubis 2.7.0
+Using actionview 4.1.8
+Using rack 1.5.2
+Using rack-test 0.6.2
+Using actionpack 4.1.8
+Using mime-types 2.4.3
+Using mail 2.6.3
+Using actionmailer 4.1.8
+Using activemodel 4.1.8
+Using arel 5.0.1.20140414130214
+Using activerecord 4.1.8
+Using coffee-script-source 1.8.0
+Using execjs 2.2.2
+Using coffee-script 2.3.0
+Using thor 0.19.1
+Using railties 4.1.8
+Using coffee-rails 4.0.1
+Using hike 1.2.3
+Using multi_json 1.10.1
+Using jbuilder 2.2.5
+Using jquery-rails 3.1.2
+Using pg 0.17.1
+Using bundler 1.7.7
+Using tilt 1.4.1
+Using sprockets 2.12.3
+Using sprockets-rails 2.2.2
+Using rails 4.1.8
+Using rdoc 4.1.2
+Using sass 3.2.19
+Using sass-rails 4.0.5
+Using sdoc 0.4.1
+Using spring 1.2.0
+Using turbolinks 2.5.2
+Using uglifier 2.5.3
+Your bundle is complete!
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ git init
+Initialized empty Git repository in /tmp/hero_app11/.git/
+dan@hp /tmp/hero_app11 $ git add .
+dan@hp /tmp/hero_app11 $ git commit -am hello
+[master (root-commit) f83aab8] hello
+ 58 files changed, 992 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 Gemfile
+ create mode 100644 Gemfile.lock
+ create mode 100644 README.rdoc
+ create mode 100644 Rakefile
+ create mode 100644 app/assets/images/.keep
+ create mode 100644 app/assets/javascripts/application.js
+ create mode 100644 app/assets/stylesheets/application.css
+ create mode 100644 app/controllers/application_controller.rb
+ create mode 100644 app/controllers/concerns/.keep
+ create mode 100644 app/helpers/application_helper.rb
+ create mode 100644 app/mailers/.keep
+ create mode 100644 app/models/.keep
+ create mode 100644 app/models/concerns/.keep
+ create mode 100644 app/views/layouts/application.html.erb
+ create mode 100755 bin/bundle
+ create mode 100755 bin/rails
+ create mode 100755 bin/rake
+ create mode 100755 bin/spring
+ create mode 100644 config.ru
+ create mode 100644 config/application.rb
+ create mode 100644 config/boot.rb
+ create mode 100644 config/database.yml
+ create mode 100644 config/environment.rb
+ create mode 100644 config/environments/development.rb
+ create mode 100644 config/environments/production.rb
+ create mode 100644 config/environments/test.rb
+ create mode 100644 config/initializers/assets.rb
+ create mode 100644 config/initializers/backtrace_silencers.rb
+ create mode 100644 config/initializers/cookies_serializer.rb
+ create mode 100644 config/initializers/filter_parameter_logging.rb
+ create mode 100644 config/initializers/inflections.rb
+ create mode 100644 config/initializers/mime_types.rb
+ create mode 100644 config/initializers/session_store.rb
+ create mode 100644 config/initializers/wrap_parameters.rb
+ create mode 100644 config/locales/en.yml
+ create mode 100644 config/routes.rb
+ create mode 100644 config/secrets.yml
+ create mode 100644 db/seeds.rb
+ create mode 100644 heroku_buildpack_scripts/dothis.bash
+ create mode 100644 lib/assets/.keep
+ create mode 100644 lib/tasks/.keep
+ create mode 100644 log/.keep
+ create mode 100644 myvendor/sqlite-autoconf-3080702.tar.gz
+ create mode 100644 public/404.html
+ create mode 100644 public/422.html
+ create mode 100644 public/500.html
+ create mode 100644 public/favicon.ico
+ create mode 100644 public/robots.txt
+ create mode 100644 test/controllers/.keep
+ create mode 100644 test/fixtures/.keep
+ create mode 100644 test/helpers/.keep
+ create mode 100644 test/integration/.keep
+ create mode 100644 test/mailers/.keep
+ create mode 100644 test/models/.keep
+ create mode 100644 test/test_helper.rb
+ create mode 100644 vendor/assets/javascripts/.keep
+ create mode 100644 vendor/assets/stylesheets/.keep
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ heroku apps:create hero_app11 --stack cedar --buildpack https://github.com/danbikle/heroku-buildpack-ruby
+ !    Name must start with a letter and can only contain lowercase letters, numbers, and dashes.
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ heroku apps:create hero-app11 --stack cedar --buildpack https://github.com/danbikle/heroku-buildpack-ruby
+Creating hero-app11... done, stack is cedar
 BUILDPACK_URL=https://github.com/danbikle/heroku-buildpack-ruby
-https://appsqlite.herokuapp.com/ | https://git.heroku.com/appsqlite.git
+https://hero-app11.herokuapp.com/ | https://git.heroku.com/hero-app11.git
 Git remote heroku added
-dan@hp /tmp/appsqlite $ 
-dan@hp /tmp/appsqlite $ 
-
-dan@hp /tmp/appsqlite $ 
-dan@hp /tmp/appsqlite $ 
-dan@hp /tmp/appsqlite $ git add .
-dan@hp /tmp/appsqlite $ git commit -am hello
-[master 3b8b576] hello
- 2 files changed, 3 insertions(+), 2 deletions(-)
-dan@hp /tmp/appsqlite $ 
-dan@hp /tmp/appsqlite $ git push heroku master
-Counting objects: 77, done.
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ git push heroku master
+Counting objects: 67, done.
 Delta compression using up to 4 threads.
-Compressing objects: 100% (63/63), done.
-Writing objects: 100% (77/77), 1.92 MiB | 544.00 KiB/s, done.
-Total 77 (delta 8), reused 0 (delta 0)
+Compressing objects: 100% (55/55), done.
+Writing objects: 100% (67/67), 1.92 MiB | 567.00 KiB/s, done.
+Total 67 (delta 2), reused 0 (delta 0)
 remote: Compressing source files... done.        
 remote: Building source:        
 remote: 
@@ -282,7 +604,7 @@ remote: -----> Using Ruby version: ruby-2.1.5
 remote: -----> Installing dependencies using 1.6.3        
 remote:        Running: bundle install --without development:test --path vendor/bundle --binstubs vendor/bundle/bin -j4 --deployment        
 remote:        rails_root is        
-remote:        /tmp/build_48ba44af00bc0120f5a5bb76892f2550        
+remote:        /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f        
 remote:        checking for a BSD-compatible install... /usr/bin/install -c        
 remote:        checking whether build environment is sane... yes        
 remote:        checking for a thread-safe mkdir -p... /bin/mkdir -p        
@@ -389,7 +711,7 @@ remote:        /bin/bash ./libtool --tag=CC   --mode=compile gcc -DPACKAGE_NAME=
 remote:        libtool: compile:  gcc -DPACKAGE_NAME=\"sqlite\" -DPACKAGE_TARNAME=\"sqlite\" -DPACKAGE_VERSION=\"3.8.7.2\" "-DPACKAGE_STRING=\"sqlite 3.8.7.2\"" -DPACKAGE_BUGREPORT=\"http://www.sqlite.org\" -DPACKAGE_URL=\"\" -DPACKAGE=\"sqlite\" -DVERSION=\"3.8.7.2\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DHAVE_FDATASYNC=1 -DHAVE_USLEEP=1 -DHAVE_LOCALTIME_R=1 -DHAVE_GMTIME_R=1 -DHAVE_DECL_STRERROR_R=1 -DHAVE_STRERROR_R=1 -DHAVE_READLINE=1 -DHAVE_POSIX_FALLOCATE=1 -I. -D_REENTRANT=1 -DSQLITE_THREADSAFE=1 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2 -MT sqlite3.lo -MD -MP -MF .deps/sqlite3.Tpo -c sqlite3.c  -fPIC -DPIC -o .libs/sqlite3.o        
 remote:        libtool: compile:  gcc -DPACKAGE_NAME=\"sqlite\" -DPACKAGE_TARNAME=\"sqlite\" -DPACKAGE_VERSION=\"3.8.7.2\" "-DPACKAGE_STRING=\"sqlite 3.8.7.2\"" -DPACKAGE_BUGREPORT=\"http://www.sqlite.org\" -DPACKAGE_URL=\"\" -DPACKAGE=\"sqlite\" -DVERSION=\"3.8.7.2\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DHAVE_FDATASYNC=1 -DHAVE_USLEEP=1 -DHAVE_LOCALTIME_R=1 -DHAVE_GMTIME_R=1 -DHAVE_DECL_STRERROR_R=1 -DHAVE_STRERROR_R=1 -DHAVE_READLINE=1 -DHAVE_POSIX_FALLOCATE=1 -I. -D_REENTRANT=1 -DSQLITE_THREADSAFE=1 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2 -MT sqlite3.lo -MD -MP -MF .deps/sqlite3.Tpo -c sqlite3.c -o sqlite3.o >/dev/null 2>&1        
 remote:        mv -f .deps/sqlite3.Tpo .deps/sqlite3.Plo        
-remote:        /bin/bash ./libtool --tag=CC   --mode=link gcc -D_REENTRANT=1 -DSQLITE_THREADSAFE=1  -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2 -no-undefined -version-info 8:6:8  -o libsqlite3.la -rpath /tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib sqlite3.lo  -ldl -lpthread        
+remote:        /bin/bash ./libtool --tag=CC   --mode=link gcc -D_REENTRANT=1 -DSQLITE_THREADSAFE=1  -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2 -no-undefined -version-info 8:6:8  -o libsqlite3.la -rpath /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib sqlite3.lo  -ldl -lpthread        
 remote:        libtool: link: gcc -shared  -fPIC -DPIC  .libs/sqlite3.o   -ldl -lpthread  -O2   -Wl,-soname -Wl,libsqlite3.so.0 -o .libs/libsqlite3.so.0.8.6        
 remote:        libtool: link: (cd ".libs" && rm -f "libsqlite3.so.0" && ln -s "libsqlite3.so.0.8.6" "libsqlite3.so.0")        
 remote:        libtool: link: (cd ".libs" && rm -f "libsqlite3.so" && ln -s "libsqlite3.so.0.8.6" "libsqlite3.so")        
@@ -399,21 +721,21 @@ remote:        libtool: link: ( cd ".libs" && rm -f "libsqlite3.la" && ln -s "..
 remote:        gcc -DPACKAGE_NAME=\"sqlite\" -DPACKAGE_TARNAME=\"sqlite\" -DPACKAGE_VERSION=\"3.8.7.2\" -DPACKAGE_STRING=\"sqlite\ 3.8.7.2\" -DPACKAGE_BUGREPORT=\"http://www.sqlite.org\" -DPACKAGE_URL=\"\" -DPACKAGE=\"sqlite\" -DVERSION=\"3.8.7.2\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DHAVE_FDATASYNC=1 -DHAVE_USLEEP=1 -DHAVE_LOCALTIME_R=1 -DHAVE_GMTIME_R=1 -DHAVE_DECL_STRERROR_R=1 -DHAVE_STRERROR_R=1 -DHAVE_READLINE=1 -DHAVE_POSIX_FALLOCATE=1 -I.    -D_REENTRANT=1 -DSQLITE_THREADSAFE=1  -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2 -MT shell.o -MD -MP -MF .deps/shell.Tpo -c -o shell.o shell.c        
 remote:        mv -f .deps/shell.Tpo .deps/shell.Po        
 remote:        /bin/bash ./libtool --tag=CC   --mode=link gcc -D_REENTRANT=1 -DSQLITE_THREADSAFE=1  -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2   -o sqlite3 shell.o ./libsqlite3.la -lreadline -lcurses  -ldl -lpthread        
-remote:        libtool: link: gcc -D_REENTRANT=1 -DSQLITE_THREADSAFE=1 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2 -o .libs/sqlite3 shell.o  ./.libs/libsqlite3.so -lreadline -lcurses -ldl -lpthread -Wl,-rpath -Wl,/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib        
-remote:        make[1]: Entering directory `/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite-autoconf-3080702'        
-remote:        /bin/mkdir -p '/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib'        
-remote:        /bin/bash ./libtool   --mode=install /usr/bin/install -c   libsqlite3.la '/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib'        
-remote:        libtool: install: /usr/bin/install -c .libs/libsqlite3.so.0.8.6 /tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib/libsqlite3.so.0.8.6        
-remote:        libtool: install: (cd /tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib && { ln -s -f libsqlite3.so.0.8.6 libsqlite3.so.0 || { rm -f libsqlite3.so.0 && ln -s libsqlite3.so.0.8.6 libsqlite3.so.0; }; })        
-remote:        libtool: install: (cd /tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib && { ln -s -f libsqlite3.so.0.8.6 libsqlite3.so || { rm -f libsqlite3.so && ln -s libsqlite3.so.0.8.6 libsqlite3.so; }; })        
-remote:        libtool: install: /usr/bin/install -c .libs/libsqlite3.lai /tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib/libsqlite3.la        
-remote:        libtool: install: /usr/bin/install -c .libs/libsqlite3.a /tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib/libsqlite3.a        
-remote:        libtool: install: chmod 644 /tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib/libsqlite3.a        
-remote:        libtool: install: ranlib /tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib/libsqlite3.a        
-remote:        libtool: finish: PATH="vendor/bundle/bin:vendor/bundle/ruby/2.1.0/bin:vendor/ruby-2.1.5/bin:/app/bin:/app/vendor/bundle/bin:/app/vendor/bundle/ruby/1.9.1/bin:vendor/bundle/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:/bin:bin:/tmp/codon/vendor/bin:bin:/usr/local/bin:/usr/bin:/bin:/sbin" ldconfig -n /tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib        
+remote:        libtool: link: gcc -D_REENTRANT=1 -DSQLITE_THREADSAFE=1 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2 -o .libs/sqlite3 shell.o  ./.libs/libsqlite3.so -lreadline -lcurses -ldl -lpthread -Wl,-rpath -Wl,/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib        
+remote:        make[1]: Entering directory `/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite-autoconf-3080702'        
+remote:        /bin/mkdir -p '/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib'        
+remote:        /bin/bash ./libtool   --mode=install /usr/bin/install -c   libsqlite3.la '/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib'        
+remote:        libtool: install: /usr/bin/install -c .libs/libsqlite3.so.0.8.6 /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib/libsqlite3.so.0.8.6        
+remote:        libtool: install: (cd /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib && { ln -s -f libsqlite3.so.0.8.6 libsqlite3.so.0 || { rm -f libsqlite3.so.0 && ln -s libsqlite3.so.0.8.6 libsqlite3.so.0; }; })        
+remote:        libtool: install: (cd /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib && { ln -s -f libsqlite3.so.0.8.6 libsqlite3.so || { rm -f libsqlite3.so && ln -s libsqlite3.so.0.8.6 libsqlite3.so; }; })        
+remote:        libtool: install: /usr/bin/install -c .libs/libsqlite3.lai /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib/libsqlite3.la        
+remote:        libtool: install: /usr/bin/install -c .libs/libsqlite3.a /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib/libsqlite3.a        
+remote:        libtool: install: chmod 644 /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib/libsqlite3.a        
+remote:        libtool: install: ranlib /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib/libsqlite3.a        
+remote:        libtool: finish: PATH="vendor/bundle/bin:vendor/bundle/ruby/2.1.0/bin:vendor/ruby-2.1.5/bin:/app/bin:/app/vendor/bundle/bin:/app/vendor/bundle/ruby/1.9.1/bin:vendor/bundle/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:/bin:bin:/tmp/codon/vendor/bin:bin:/usr/local/bin:/usr/bin:/bin:/sbin" ldconfig -n /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib        
 remote:        ----------------------------------------------------------------------        
 remote:        Libraries have been installed in:        
-remote:        /tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib        
+remote:        /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib        
 remote:        If you ever happen to want to link against installed libraries        
 remote:        in a given directory, LIBDIR, you must either use libtool, and        
 remote:        specify the full pathname of the library, or use the `-LLIBDIR'        
@@ -427,43 +749,42 @@ remote:        - have your system administrator add LIBDIR to `/etc/ld.so.conf'
 remote:        See any operating system documentation about shared libraries for        
 remote:        more information, such as the ld(1) and ld.so(8) manual pages.        
 remote:        ----------------------------------------------------------------------        
-remote:        /bin/mkdir -p '/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/bin'        
-remote:        /bin/bash ./libtool   --mode=install /usr/bin/install -c sqlite3 '/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/bin'        
-remote:        libtool: install: /usr/bin/install -c .libs/sqlite3 /tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/bin/sqlite3        
-remote:        /bin/mkdir -p '/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/include'        
-remote:        /usr/bin/install -c -m 644 sqlite3.h sqlite3ext.h '/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/include'        
-remote:        /bin/mkdir -p '/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/share/man/man1'        
-remote:        /usr/bin/install -c -m 644 sqlite3.1 '/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/share/man/man1'        
-remote:        /bin/mkdir -p '/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib/pkgconfig'        
-remote:        /usr/bin/install -c -m 644 sqlite3.pc '/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3/lib/pkgconfig'        
-remote:        make[1]: Leaving directory `/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite-autoconf-3080702'        
-remote:        Building native extensions with: '--with-sqlite3-dir=/tmp/build_48ba44af00bc0120f5a5bb76892f2550/myvendor/sqlite3'        
+remote:        /bin/mkdir -p '/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/bin'        
+remote:        /bin/bash ./libtool   --mode=install /usr/bin/install -c sqlite3 '/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/bin'        
+remote:        libtool: install: /usr/bin/install -c .libs/sqlite3 /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/bin/sqlite3        
+remote:        /bin/mkdir -p '/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/include'        
+remote:        /usr/bin/install -c -m 644 sqlite3.h sqlite3ext.h '/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/include'        
+remote:        /bin/mkdir -p '/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/share/man/man1'        
+remote:        /usr/bin/install -c -m 644 sqlite3.1 '/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/share/man/man1'        
+remote:        /bin/mkdir -p '/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib/pkgconfig'        
+remote:        /usr/bin/install -c -m 644 sqlite3.pc '/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3/lib/pkgconfig'        
+remote:        make[1]: Leaving directory `/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite-autoconf-3080702'        
+remote:        Building native extensions with: '--with-sqlite3-dir=/tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/myvendor/sqlite3'        
 remote:        This could take a while...        
 remote:        Successfully installed sqlite3-1.3.10        
 remote:        Parsing documentation for sqlite3-1.3.10        
 remote:        Installing ri documentation for sqlite3-1.3.10        
-remote:        Done installing documentation for sqlite3 after 0 seconds        
+remote:        Done installing documentation for sqlite3 after 1 seconds        
 remote:        1 gem installed        
 remote:        sqlite3 (1.3.10)        
-remote:        Fetching gem metadata from https://rubygems.org/.........        
+remote:        Fetching gem metadata from https://rubygems.org/..........        
 remote:        Using json 1.8.1        
-remote:        Installing minitest 5.4.3        
 remote:        Installing i18n 0.6.11        
+remote:        Installing minitest 5.4.3        
 remote:        Installing rake 10.4.2        
 remote:        Installing thread_safe 0.3.4        
 remote:        Installing builder 3.2.2        
+remote:        Installing rack 1.5.2        
 remote:        Installing erubis 2.7.0        
 remote:        Installing mime-types 2.4.3        
-remote:        Installing rack 1.5.2        
 remote:        Installing arel 5.0.1.20140414130214        
 remote:        Installing coffee-script-source 1.8.0        
 remote:        Installing execjs 2.2.2        
 remote:        Installing hike 1.2.3        
 remote:        Installing thor 0.19.1        
-remote:        Using bundler 1.6.3        
 remote:        Installing multi_json 1.10.1        
+remote:        Using bundler 1.6.3        
 remote:        Installing tilt 1.4.1        
-remote:        Using sqlite3 1.3.10        
 remote:        Installing sass 3.2.19        
 remote:        Installing tzinfo 1.2.2        
 remote:        Installing rdoc 4.1.2        
@@ -478,12 +799,12 @@ remote:        Installing actionview 4.1.8
 remote:        Installing activemodel 4.1.8        
 remote:        Installing jbuilder 2.2.5        
 remote:        Installing actionpack 4.1.8        
-remote:        Installing activerecord 4.1.8        
 remote:        Installing actionmailer 4.1.8        
-remote:        Installing railties 4.1.8        
+remote:        Installing activerecord 4.1.8        
 remote:        Installing sprockets-rails 2.2.2        
-remote:        Installing coffee-rails 4.0.1        
+remote:        Installing railties 4.1.8        
 remote:        Installing jquery-rails 3.1.2        
+remote:        Installing coffee-rails 4.0.1        
 remote:        Installing sass-rails 4.0.5        
 remote:        Installing rails 4.1.8        
 remote:        Installing turbolinks 2.5.2        
@@ -497,13 +818,14 @@ remote:        <= 1.8.6 : unsupported
 remote:        = 1.8.7 : gem install rdoc-data; rdoc-data --install        
 remote:        = 1.9.1 : gem install rdoc-data; rdoc-data --install        
 remote:        >= 1.9.2 : nothing to do! Yay!        
-remote:        Bundle completed (98.93s)        
+remote:        Bundle completed (99.24s)        
 remote:        Cleaning up the bundler cache.        
+remote:        Removing sqlite3 (1.3.10)        
 remote: -----> Preparing app for Rails asset pipeline        
 remote:        Running: rake assets:precompile        
-remote:        I, [2014-12-05T11:19:49.407469 #2828]  INFO -- : Writing /tmp/build_48ba44af00bc0120f5a5bb76892f2550/public/assets/application-e72b1146580b2f35e6c3e8f1cbd4b845.js        
-remote:        I, [2014-12-05T11:19:49.427106 #2828]  INFO -- : Writing /tmp/build_48ba44af00bc0120f5a5bb76892f2550/public/assets/application-7eadaa6a15e069d84c07540345524b0e.css        
-remote:        Asset precompilation completed (7.55s)        
+remote:        I, [2014-12-05T21:23:48.494863 #2832]  INFO -- : Writing /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/public/assets/application-e72b1146580b2f35e6c3e8f1cbd4b845.js        
+remote:        I, [2014-12-05T21:23:48.513896 #2832]  INFO -- : Writing /tmp/build_170dbec7e2b8035ed226a4f49dff6d7f/public/assets/application-7eadaa6a15e069d84c07540345524b0e.css        
+remote:        Asset precompilation completed (6.69s)        
 remote:        Cleaning assets        
 remote:        Running: rake assets:clean        
 remote: 
@@ -519,25 +841,365 @@ remote: -----> Discovering process types
 remote:        Procfile declares types -> (none)        
 remote:        Default types for Ruby  -> console, rake, web, worker        
 remote: 
-remote: -----> Compressing... done, 33.0MB        
+remote: -----> Compressing... done, 32.9MB        
 remote: -----> Launching... done, v7        
-remote:        https://appsqlite.herokuapp.com/ deployed to Heroku        
+remote:        https://hero-app11.herokuapp.com/ deployed to Heroku        
 remote: 
 remote: Verifying deploy... done.        
-To https://git.heroku.com/appsqlite.git
+To https://git.heroku.com/hero-app11.git
  * [new branch]      master -> master
-dan@hp /tmp/appsqlite $ 
-dan@hp /tmp/appsqlite $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ head Gemfile
+source 'https://rubygems.org'
+ruby "2.1.5"
 
 
-dan@hp /tmp/appsqlite $ 
-dan@hp /tmp/appsqlite $ heroku run 'gem list sqlite3'
-Running `gem list sqlite3` attached to terminal... up, run.1221
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.1.8'
+# Use postgresql as the database for Active Record
+gem 'pg'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.3'
+dan@hp /tmp/hero_app11 $ sed -i '2a gem "sqlite3"' Gemfile
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ head Gemfile
+source 'https://rubygems.org'
+ruby "2.1.5"
+gem "sqlite3"
+
+
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.1.8'
+# Use postgresql as the database for Active Record
+gem 'pg'
+# Use SCSS for stylesheets
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ bundle install
+Resolving dependencies...
+Using rake 10.4.2
+Using i18n 0.6.11
+Using json 1.8.1
+Using minitest 5.4.3
+Using thread_safe 0.3.4
+Using tzinfo 1.2.2
+Using activesupport 4.1.8
+Using builder 3.2.2
+Using erubis 2.7.0
+Using actionview 4.1.8
+Using rack 1.5.2
+Using rack-test 0.6.2
+Using actionpack 4.1.8
+Using mime-types 2.4.3
+Using mail 2.6.3
+Using actionmailer 4.1.8
+Using activemodel 4.1.8
+Using arel 5.0.1.20140414130214
+Using activerecord 4.1.8
+Using bundler 1.7.7
+Using coffee-script-source 1.8.0
+Using execjs 2.2.2
+Using coffee-script 2.3.0
+Using thor 0.19.1
+Using railties 4.1.8
+Using coffee-rails 4.0.1
+Using hike 1.2.3
+Using multi_json 1.10.1
+Using jbuilder 2.2.5
+Using jquery-rails 3.1.2
+Using pg 0.17.1
+Using tilt 1.4.1
+Using sprockets 2.12.3
+Using sprockets-rails 2.2.2
+Using rails 4.1.8
+Using rdoc 4.1.2
+Using sass 3.2.19
+Using sass-rails 4.0.5
+Using sdoc 0.4.1
+Using spring 1.2.0
+Using sqlite3 1.3.10
+Using turbolinks 2.5.2
+Using uglifier 2.5.3
+Your bundle is complete!
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ git commit -am hello
+[master 2e43116] hello
+ 2 files changed, 3 insertions(+)
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ git status
+On branch master
+nothing to commit, working directory clean
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ git push heroku master
+Counting objects: 7, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 399 bytes | 0 bytes/s, done.
+Total 4 (delta 3), reused 0 (delta 0)
+remote: Compressing source files... done.        
+remote: Building source:        
+remote: 
+remote: -----> Fetching custom git buildpack... done        
+remote: -----> Ruby app detected        
+remote: -----> Compiling Ruby/Rails        
+remote: -----> Using Ruby version: ruby-2.1.5        
+remote: -----> Installing dependencies using 1.6.3        
+remote:        Running: bundle install --without development:test --path vendor/bundle --binstubs vendor/bundle/bin -j4 --deployment        
+remote:        rails_root is        
+remote:        /tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66        
+remote:        checking for a BSD-compatible install... /usr/bin/install -c        
+remote:        checking whether build environment is sane... yes        
+remote:        checking for a thread-safe mkdir -p... /bin/mkdir -p        
+remote:        checking for gawk... no        
+remote:        checking for mawk... mawk        
+remote:        checking whether make sets $(MAKE)... yes        
+remote:        checking for style of include used by make... GNU        
+remote:        checking for gcc... gcc        
+remote:        checking whether the C compiler works... yes        
+remote:        checking for C compiler default output file name... a.out        
+remote:        checking for suffix of executables...        
+remote:        checking whether we are cross compiling... no        
+remote:        checking for suffix of object files... o        
+remote:        checking whether we are using the GNU C compiler... yes        
+remote:        checking whether gcc accepts -g... yes        
+remote:        checking for gcc option to accept ISO C89... none needed        
+remote:        checking dependency style of gcc... gcc3        
+remote:        checking for special C compiler options needed for large files... no        
+remote:        checking for _FILE_OFFSET_BITS value needed for large files... no        
+remote:        checking for gcc... (cached) gcc        
+remote:        checking whether we are using the GNU C compiler... (cached) yes        
+remote:        checking whether gcc accepts -g... (cached) yes        
+remote:        checking for gcc option to accept ISO C89... (cached) none needed        
+remote:        checking dependency style of gcc... (cached) gcc3        
+remote:        checking for ranlib... ranlib        
+remote:        checking build system type... x86_64-unknown-linux-gnu        
+remote:        checking host system type... x86_64-unknown-linux-gnu        
+remote:        checking how to print strings... printf        
+remote:        checking for a sed that does not truncate output... /bin/sed        
+remote:        checking for grep that handles long lines and -e... /bin/grep        
+remote:        checking for egrep... /bin/grep -E        
+remote:        checking for fgrep... /bin/grep -F        
+remote:        checking for ld used by gcc... /usr/bin/ld        
+remote:        checking if the linker (/usr/bin/ld) is GNU ld... yes        
+remote:        checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B        
+remote:        checking the name lister (/usr/bin/nm -B) interface... BSD nm        
+remote:        checking whether ln -s works... yes        
+remote:        checking the maximum length of command line arguments... 1572864        
+remote:        checking whether the shell understands some XSI constructs... yes        
+remote:        checking whether the shell understands "+="... yes        
+remote:        checking how to convert x86_64-unknown-linux-gnu file names to x86_64-unknown-linux-gnu format... func_convert_file_noop        
+remote:        checking how to convert x86_64-unknown-linux-gnu file names to toolchain format... func_convert_file_noop        
+remote:        checking for /usr/bin/ld option to reload object files... -r        
+remote:        checking for objdump... objdump        
+remote:        checking how to recognize dependent libraries... pass_all        
+remote:        checking for dlltool... no        
+remote:        checking how to associate runtime and link libraries... printf %s\n        
+remote:        checking for ar... ar        
+remote:        checking for archiver @FILE support... @        
+remote:        checking for strip... strip        
+remote:        checking for ranlib... (cached) ranlib        
+remote:        checking command to parse /usr/bin/nm -B output from gcc object... ok        
+remote:        checking for sysroot... no        
+remote:        checking for mt... mt        
+remote:        checking if mt is a manifest tool... no        
+remote:        checking how to run the C preprocessor... gcc -E        
+remote:        checking for ANSI C header files... yes        
+remote:        checking for sys/types.h... yes        
+remote:        checking for sys/stat.h... yes        
+remote:        checking for stdlib.h... yes        
+remote:        checking for string.h... yes        
+remote:        checking for memory.h... yes        
+remote:        checking for strings.h... yes        
+remote:        checking for inttypes.h... yes        
+remote:        checking for stdint.h... yes        
+remote:        checking for unistd.h... yes        
+remote:        checking for dlfcn.h... yes        
+remote:        checking for objdir... .libs        
+remote:        checking if gcc supports -fno-rtti -fno-exceptions... no        
+remote:        checking for gcc option to produce PIC... -fPIC -DPIC        
+remote:        checking if gcc PIC flag -fPIC -DPIC works... yes        
+remote:        checking if gcc static flag -static works... yes        
+remote:        checking if gcc supports -c -o file.o... yes        
+remote:        checking if gcc supports -c -o file.o... (cached) yes        
+remote:        checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes        
+remote:        checking whether -lc should be explicitly linked in... no        
+remote:        checking dynamic linker characteristics... GNU/Linux ld.so        
+remote:        checking how to hardcode library paths into programs... immediate        
+remote:        checking whether stripping libraries is possible... yes        
+remote:        checking if libtool supports shared libraries... yes        
+remote:        checking whether to build shared libraries... yes        
+remote:        checking whether to build static libraries... yes        
+remote:        checking for fdatasync... yes        
+remote:        checking for usleep... yes        
+remote:        checking for fullfsync... no        
+remote:        checking for localtime_r... yes        
+remote:        checking for gmtime_r... yes        
+remote:        checking whether strerror_r is declared... yes        
+remote:        checking for strerror_r... yes        
+remote:        checking whether strerror_r returns char *... no        
+remote:        checking for library containing tgetent... -lcurses        
+remote:        checking for library containing readline... -lreadline        
+remote:        checking for readline... yes        
+remote:        checking for library containing pthread_create... -lpthread        
+remote:        checking for library containing dlopen... -ldl        
+remote:        checking for whether to support dynamic extensions... yes        
+remote:        checking for posix_fallocate... yes        
+remote:        configure: creating ./config.status        
+remote:        config.status: creating Makefile        
+remote:        config.status: creating sqlite3.pc        
+remote:        config.status: executing depfiles commands        
+remote:        config.status: executing libtool commands        
+remote:        /bin/bash ./libtool --tag=CC   --mode=compile gcc -DPACKAGE_NAME=\"sqlite\" -DPACKAGE_TARNAME=\"sqlite\" -DPACKAGE_VERSION=\"3.8.7.2\" -DPACKAGE_STRING=\"sqlite\ 3.8.7.2\" -DPACKAGE_BUGREPORT=\"http://www.sqlite.org\" -DPACKAGE_URL=\"\" -DPACKAGE=\"sqlite\" -DVERSION=\"3.8.7.2\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DHAVE_FDATASYNC=1 -DHAVE_USLEEP=1 -DHAVE_LOCALTIME_R=1 -DHAVE_GMTIME_R=1 -DHAVE_DECL_STRERROR_R=1 -DHAVE_STRERROR_R=1 -DHAVE_READLINE=1 -DHAVE_POSIX_FALLOCATE=1 -I.    -D_REENTRANT=1 -DSQLITE_THREADSAFE=1  -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2 -MT sqlite3.lo -MD -MP -MF .deps/sqlite3.Tpo -c -o sqlite3.lo sqlite3.c        
+remote:        libtool: compile:  gcc -DPACKAGE_NAME=\"sqlite\" -DPACKAGE_TARNAME=\"sqlite\" -DPACKAGE_VERSION=\"3.8.7.2\" "-DPACKAGE_STRING=\"sqlite 3.8.7.2\"" -DPACKAGE_BUGREPORT=\"http://www.sqlite.org\" -DPACKAGE_URL=\"\" -DPACKAGE=\"sqlite\" -DVERSION=\"3.8.7.2\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DHAVE_FDATASYNC=1 -DHAVE_USLEEP=1 -DHAVE_LOCALTIME_R=1 -DHAVE_GMTIME_R=1 -DHAVE_DECL_STRERROR_R=1 -DHAVE_STRERROR_R=1 -DHAVE_READLINE=1 -DHAVE_POSIX_FALLOCATE=1 -I. -D_REENTRANT=1 -DSQLITE_THREADSAFE=1 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2 -MT sqlite3.lo -MD -MP -MF .deps/sqlite3.Tpo -c sqlite3.c  -fPIC -DPIC -o .libs/sqlite3.o        
+remote:        libtool: compile:  gcc -DPACKAGE_NAME=\"sqlite\" -DPACKAGE_TARNAME=\"sqlite\" -DPACKAGE_VERSION=\"3.8.7.2\" "-DPACKAGE_STRING=\"sqlite 3.8.7.2\"" -DPACKAGE_BUGREPORT=\"http://www.sqlite.org\" -DPACKAGE_URL=\"\" -DPACKAGE=\"sqlite\" -DVERSION=\"3.8.7.2\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DHAVE_FDATASYNC=1 -DHAVE_USLEEP=1 -DHAVE_LOCALTIME_R=1 -DHAVE_GMTIME_R=1 -DHAVE_DECL_STRERROR_R=1 -DHAVE_STRERROR_R=1 -DHAVE_READLINE=1 -DHAVE_POSIX_FALLOCATE=1 -I. -D_REENTRANT=1 -DSQLITE_THREADSAFE=1 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2 -MT sqlite3.lo -MD -MP -MF .deps/sqlite3.Tpo -c sqlite3.c -o sqlite3.o >/dev/null 2>&1        
+remote:        mv -f .deps/sqlite3.Tpo .deps/sqlite3.Plo        
+remote:        /bin/bash ./libtool --tag=CC   --mode=link gcc -D_REENTRANT=1 -DSQLITE_THREADSAFE=1  -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2 -no-undefined -version-info 8:6:8  -o libsqlite3.la -rpath /tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib sqlite3.lo  -ldl -lpthread        
+remote:        libtool: link: gcc -shared  -fPIC -DPIC  .libs/sqlite3.o   -ldl -lpthread  -O2   -Wl,-soname -Wl,libsqlite3.so.0 -o .libs/libsqlite3.so.0.8.6        
+remote:        libtool: link: (cd ".libs" && rm -f "libsqlite3.so.0" && ln -s "libsqlite3.so.0.8.6" "libsqlite3.so.0")        
+remote:        libtool: link: (cd ".libs" && rm -f "libsqlite3.so" && ln -s "libsqlite3.so.0.8.6" "libsqlite3.so")        
+remote:        libtool: link: ar cru .libs/libsqlite3.a  sqlite3.o        
+remote:        libtool: link: ranlib .libs/libsqlite3.a        
+remote:        libtool: link: ( cd ".libs" && rm -f "libsqlite3.la" && ln -s "../libsqlite3.la" "libsqlite3.la" )        
+remote:        gcc -DPACKAGE_NAME=\"sqlite\" -DPACKAGE_TARNAME=\"sqlite\" -DPACKAGE_VERSION=\"3.8.7.2\" -DPACKAGE_STRING=\"sqlite\ 3.8.7.2\" -DPACKAGE_BUGREPORT=\"http://www.sqlite.org\" -DPACKAGE_URL=\"\" -DPACKAGE=\"sqlite\" -DVERSION=\"3.8.7.2\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DHAVE_FDATASYNC=1 -DHAVE_USLEEP=1 -DHAVE_LOCALTIME_R=1 -DHAVE_GMTIME_R=1 -DHAVE_DECL_STRERROR_R=1 -DHAVE_STRERROR_R=1 -DHAVE_READLINE=1 -DHAVE_POSIX_FALLOCATE=1 -I.    -D_REENTRANT=1 -DSQLITE_THREADSAFE=1  -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2 -MT shell.o -MD -MP -MF .deps/shell.Tpo -c -o shell.o shell.c        
+remote:        mv -f .deps/shell.Tpo .deps/shell.Po        
+remote:        /bin/bash ./libtool --tag=CC   --mode=link gcc -D_REENTRANT=1 -DSQLITE_THREADSAFE=1  -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2   -o sqlite3 shell.o ./libsqlite3.la -lreadline -lcurses  -ldl -lpthread        
+remote:        libtool: link: gcc -D_REENTRANT=1 -DSQLITE_THREADSAFE=1 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -g -O2 -o .libs/sqlite3 shell.o  ./.libs/libsqlite3.so -lreadline -lcurses -ldl -lpthread -Wl,-rpath -Wl,/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib        
+remote:        make[1]: Entering directory `/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite-autoconf-3080702'        
+remote:        /bin/mkdir -p '/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib'        
+remote:        /bin/bash ./libtool   --mode=install /usr/bin/install -c   libsqlite3.la '/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib'        
+remote:        libtool: install: /usr/bin/install -c .libs/libsqlite3.so.0.8.6 /tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib/libsqlite3.so.0.8.6        
+remote:        libtool: install: (cd /tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib && { ln -s -f libsqlite3.so.0.8.6 libsqlite3.so.0 || { rm -f libsqlite3.so.0 && ln -s libsqlite3.so.0.8.6 libsqlite3.so.0; }; })        
+remote:        libtool: install: (cd /tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib && { ln -s -f libsqlite3.so.0.8.6 libsqlite3.so || { rm -f libsqlite3.so && ln -s libsqlite3.so.0.8.6 libsqlite3.so; }; })        
+remote:        libtool: install: /usr/bin/install -c .libs/libsqlite3.lai /tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib/libsqlite3.la        
+remote:        libtool: install: /usr/bin/install -c .libs/libsqlite3.a /tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib/libsqlite3.a        
+remote:        libtool: install: chmod 644 /tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib/libsqlite3.a        
+remote:        libtool: install: ranlib /tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib/libsqlite3.a        
+remote:        libtool: finish: PATH="vendor/bundle/bin:vendor/bundle/ruby/2.1.0/bin:vendor/ruby-2.1.5/bin:/app/bin:/app/vendor/bundle/bin:/app/vendor/bundle/ruby/1.9.1/bin:vendor/bundle/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:/bin:bin:/tmp/codon/vendor/bin:bin:/usr/local/bin:/usr/bin:/bin:/sbin" ldconfig -n /tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib        
+remote:        ----------------------------------------------------------------------        
+remote:        Libraries have been installed in:        
+remote:        /tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib        
+remote:        If you ever happen to want to link against installed libraries        
+remote:        in a given directory, LIBDIR, you must either use libtool, and        
+remote:        specify the full pathname of the library, or use the `-LLIBDIR'        
+remote:        flag during linking and do at least one of the following:        
+remote:        - add LIBDIR to the `LD_LIBRARY_PATH' environment variable        
+remote:        during execution        
+remote:        - add LIBDIR to the `LD_RUN_PATH' environment variable        
+remote:        during linking        
+remote:        - use the `-Wl,-rpath -Wl,LIBDIR' linker flag        
+remote:        - have your system administrator add LIBDIR to `/etc/ld.so.conf'        
+remote:        See any operating system documentation about shared libraries for        
+remote:        more information, such as the ld(1) and ld.so(8) manual pages.        
+remote:        ----------------------------------------------------------------------        
+remote:        /bin/mkdir -p '/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/bin'        
+remote:        /bin/bash ./libtool   --mode=install /usr/bin/install -c sqlite3 '/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/bin'        
+remote:        libtool: install: /usr/bin/install -c .libs/sqlite3 /tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/bin/sqlite3        
+remote:        /bin/mkdir -p '/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/include'        
+remote:        /usr/bin/install -c -m 644 sqlite3.h sqlite3ext.h '/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/include'        
+remote:        /bin/mkdir -p '/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/share/man/man1'        
+remote:        /usr/bin/install -c -m 644 sqlite3.1 '/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/share/man/man1'        
+remote:        /bin/mkdir -p '/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib/pkgconfig'        
+remote:        /usr/bin/install -c -m 644 sqlite3.pc '/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3/lib/pkgconfig'        
+remote:        make[1]: Leaving directory `/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite-autoconf-3080702'        
+remote:        Building native extensions with: '--with-sqlite3-dir=/tmp/build_e9b63ed26b3baaf5f79cc3a767cc5d66/myvendor/sqlite3'        
+remote:        This could take a while...        
+remote:        Successfully installed sqlite3-1.3.10        
+remote:        Parsing documentation for sqlite3-1.3.10        
+remote:        Done installing documentation for sqlite3 after 0 seconds        
+remote:        1 gem installed        
+remote:        sqlite3 (1.3.10)        
+remote:        Using rake 10.4.2        
+remote:        Using i18n 0.6.11        
+remote:        Using minitest 5.4.3        
+remote:        Using thread_safe 0.3.4        
+remote:        Using json 1.8.1        
+remote:        Using builder 3.2.2        
+remote:        Using erubis 2.7.0        
+remote:        Using rack 1.5.2        
+remote:        Using arel 5.0.1.20140414130214        
+remote:        Using coffee-script-source 1.8.0        
+remote:        Using execjs 2.2.2        
+remote:        Using mime-types 2.4.3        
+remote:        Using hike 1.2.3        
+remote:        Using thor 0.19.1        
+remote:        Using multi_json 1.10.1        
+remote:        Using bundler 1.6.3        
+remote:        Using pg 0.17.1        
+remote:        Using sqlite3 1.3.10        
+remote:        Using tzinfo 1.2.2        
+remote:        Using sass 3.2.19        
+remote:        Using tilt 1.4.1        
+remote:        Using rdoc 4.1.2        
+remote:        Using mail 2.6.3        
+remote:        Using rack-test 0.6.2        
+remote:        Using coffee-script 2.3.0        
+remote:        Using uglifier 2.5.3        
+remote:        Using activesupport 4.1.8        
+remote:        Using sprockets 2.12.3        
+remote:        Using sdoc 0.4.1        
+remote:        Using actionview 4.1.8        
+remote:        Using jbuilder 2.2.5        
+remote:        Using actionpack 4.1.8        
+remote:        Using activemodel 4.1.8        
+remote:        Using actionmailer 4.1.8        
+remote:        Using railties 4.1.8        
+remote:        Using sprockets-rails 2.2.2        
+remote:        Using coffee-rails 4.0.1        
+remote:        Using activerecord 4.1.8        
+remote:        Using sass-rails 4.0.5        
+remote:        Using jquery-rails 3.1.2        
+remote:        Using rails 4.1.8        
+remote:        Using turbolinks 2.5.2        
+remote:        Your bundle is complete!        
+remote:        Gems in the groups development and test were not installed.        
+remote:        It was installed into ./vendor/bundle        
+remote:        Bundle completed (85.38s)        
+remote:        Cleaning up the bundler cache.        
+remote: -----> Preparing app for Rails asset pipeline        
+remote:        Running: rake assets:precompile        
+remote:        Asset precompilation completed (1.72s)        
+remote:        Cleaning assets        
+remote:        Running: rake assets:clean        
+remote:         
+remote: ###### WARNING:        
+remote:        Include 'rails_12factor' gem to enable all platform features        
+remote:        See https://devcenter.heroku.com/articles/rails-integration-gems for more information.        
+remote: 
+remote: ###### WARNING:        
+remote:        No Procfile detected, using the default web server (webrick)        
+remote:        https://devcenter.heroku.com/articles/ruby-default-web-server        
+remote: 
+remote: -----> Discovering process types        
+remote:        Procfile declares types -> (none)        
+remote:        Default types for Ruby  -> console, rake, web, worker        
+remote: 
+remote: -----> Compressing... done, 33.0MB        
+remote: -----> Launching... done, v8        
+remote:        https://hero-app11.herokuapp.com/ deployed to Heroku        
+remote: 
+remote: Verifying deploy... done.        
+To https://git.heroku.com/hero-app11.git
+   f83aab8..2e43116  master -> master
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ heroku run 'gem list sqlite3'
+Running `gem list sqlite3` attached to terminal... up, run.7248
 
 *** LOCAL GEMS ***
 
 sqlite3 (1.3.10)
-dan@hp /tmp/appsqlite $ 
-dan@hp /tmp/appsqlite $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+dan@hp /tmp/hero_app11 $ 
+
 
 </code></pre>
