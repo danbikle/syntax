@@ -1,0 +1,124 @@
+<pre><code>
+When I deploy a Rails app on Heroku, they run it in a Linux environment.
+
+The Heroku Linux environment contains most of the Linux libraries I need.
+
+On rare occasions, I need to enhance the Linux libraries in my Heroku Linux environments.
+
+An example of this is Sqlite3.
+
+Heroku does not support Sqlite3.
+
+I see this when I try to add a sqlite3 gem to a Rails Gemfile.
+
+I can use Sqlite3 as an example of how to enhance Heroku Linux environments.
+
+So, here is the question.
+
+Question: How do I install and use the sqlite3 gem in a Rails app which runs on Heroku?
+
+To me, Heroku offers three general ways to interact with its Linux
+environments.
+
+First, is a CLI called the Heroku Toolbelt:
+
+http://www.google.com/search?q=Heroku+Toolbelt
+
+Second, is an API:
+
+https://devcenter.heroku.com/categories/platform-api
+
+Third is the Heroku Ruby Buildpack for Cedar:
+
+https://github.com/heroku/heroku-buildpack-ruby
+
+I call it 'buildpack' and that is is the main topic of this post.
+
+If I want to install the sqlite3 gem on my Linux laptop, 
+I need to first install Sqlite3 which is easy to do if I have the root password.
+
+Since I do not have root access on Heroku Linux,
+how can I install Sqlite3 on Heroku Linux?
+
+The answer is I use buildpack to do it.
+
+First, I login to my github.com account and visit this page:
+
+https://github.com/heroku/heroku-buildpack-ruby
+
+Then, I press the fork-button at the top-right.
+
+Next, I clone my fork of the repo to my Linux laptop.
+
+If I don't have a Linux laptop handy I use a copy of Linux running in a
+VirtualBox or on a provider like Amazon or DigitalOcean.
+
+From my clone of my forked repo, I load this file in my editor:
+
+master/lib/language_pack/ruby.rb
+
+You can refer to the original file here:
+
+https://github.com/heroku/heroku-buildpack-ruby/blob/master/lib/language_pack/ruby.rb
+
+Next I search for the string:
+
+Running
+
+As I write this post, that string is on line 516, but that will change as Heroku enhances the file in the future months/years.
+
+Anyway, I add a few lines of code to the file:
+
+Before:
+          puts "Running: #{bundle_command}"
+          instrument "ruby.bundle_install" do
+            bundle_time = Benchmark.realtime do
+              bundler_output &lt;&lt; pipe("#{bundle_command} --no-clean", out: "2>&1", env: env_vars, user_env: true)
+            end
+          end
+
+After:
+          puts "Running: #{bundle_command}"
+          instrument "ruby.bundle_install" do
+            bundle_time = Benchmark.realtime do
+              # Bikle
+              hbs = "#{pwd}/heroku_buildpack_scripts"
+              # If #{hbs}/dothis.bash exists, then run it.
+              if File.exists?("#{hbs}/dothis.bash")
+                bundler_output &lt;&lt; pipe("/bin/bash #{hbs}/dothis.bash")
+              end
+              # Bikle
+              bundler_output &lt;&lt; pipe("#{bundle_command} --no-clean", out: "2>&1", env: env_vars, user_env: true)
+            end
+
+My intent behind this syntax is to defer the installation of Sqlite3
+until after Heroku has seen my Rails app.
+
+The way it should work is that all installation activity should
+be driven by a script named dothis.bash and that script should
+live in my Rails repo, not my buildpack repo.
+
+In my Rails repo the location of the script is here:
+
+Rails.root/heroku_buildpack_scripts/dothis.bash
+
+When I first studied this question of using buildpack to add the sqlite3 gem
+to heroku I found two other buildpack repos via google:
+
+https://github.com/yotsumoto/heroku-buildpack-ruby-with-sqlite3
+https://github.com/c4mprod/heroku-buildpack-ruby-sqlite
+
+Their approach is different than mine.
+
+They make significant changes to the buildpack.
+
+My approach is to make the absolute minimum change to the buildpack.
+
+My change is really just one line of code:
+
+  bundler_output &lt;&lt; pipe("/bin/bash #{hbs}/dothis.bash")
+
+This is good because it will make it easy for me to keep my buildpack merged with the original Heroku buildpack in the future months/years when they enhance it.
+
+
+</code></pre>
