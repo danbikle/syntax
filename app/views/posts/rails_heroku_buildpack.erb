@@ -1,5 +1,5 @@
 <pre><code>
-When I deploy a Rails app on Heroku, they run it in a Linux environment.
+When I deploy a Rails-app on Heroku, they run it in a Linux environment.
 
 The Heroku Linux environment contains most of the Linux libraries I need.
 
@@ -15,7 +15,7 @@ I can use Sqlite3 as an example of how to enhance Heroku Linux environments.
 
 So, here is the question.
 
-Question: How do I install and use the sqlite3 gem in a Rails app which runs on Heroku?
+Question: How do I install and use the sqlite3 gem in a Rails-app which runs on Heroku?
 
 To me, Heroku offers three general ways to interact with its Linux
 environments.
@@ -92,7 +92,7 @@ After:
             end
 
 My intent behind this syntax is to defer the installation of Sqlite3
-until after Heroku has seen my Rails app.
+until after Heroku has seen my Rails-app.
 
 The way it should work is that all installation activity should
 be driven by a script named dothis.bash and that script should
@@ -120,5 +120,112 @@ My change is really just one line of code:
 
 This is good because it will make it easy for me to keep my buildpack merged with the original Heroku buildpack in the future months/years when they enhance it.
 
+After I enhance my buildpack and git push it to github, I can test it with new-empty Rails-app.
+
+cd /tmp/
+rails new app2014 -d postgresql
+cd app2014
+git init
+git add .
+git commit -am hello
+heroku apps:create app2014 --stack cedar --buildpack https://github.com/danbikle/heroku-buildpack-ruby
+
+The Rails-app, app2014, should deploy the same as if I used the original buildpack.
+
+This should happen because my if-then logic will look for this file in app2014:
+
+Rails.root/heroku_buildpack_scripts/dothis.bash
+
+But app2014 is a new empty Rails-app.
+
+So, dothis.bash does not exist yet.
+
+So, the buildpack script does not try to run it.
+
+If dothis.bash does exist, the buildpack script should try to run it and I can
+test this by placing one shell command in the script:
+
+echo $0 says hello world.
+
+That should work okay and then I can enhance dothis.bash so it does two tasks.
+
+First, it installs Sqlite3.
+
+Second, it installs the sqlite3 gem.
+
+The synax for that is displayed below:
+
+#!/bin/bash
+
+# hbs/dothis.bash
+
+# I use this script to help me enhance the ability of 
+# heroku-buildpack
+
+# heroku-buildpack is software used by heroku to help me deploy applications.
+
+rails_root=`pwd`
+
+echo rails_root is
+echo $rails_root
+cd ${rails_root}/myvendor/
+
+# I should install sqlite3 software locally under Rails.root
+
+mkdir -p ${rails_root}/myvendor/sqlite3
+tar zxf  ${rails_root}/myvendor/sqlite-autoconf-3080702.tar.gz 
+cd sqlite-autoconf-3080702/
+./configure --prefix=${rails_root}/myvendor/sqlite3
+make
+make install
+
+# I should be able to gem install sqlite3 now
+cd ${rails_root}
+# I got the values for GEM_PATH, GEM_HOME from a trace of
+# setup_language_pack_environment()
+# here:
+# https://github.com/heroku/heroku-buildpack-ruby/blob/master/lib/language_pack/ruby.rb
+
+export GEM_PATH=vendor/bundle/ruby/2.0.0
+export GEM_HOME=vendor/bundle/ruby/2.0.0
+gem install sqlite3 -- --with-sqlite3-dir=${rails_root}/myvendor/sqlite3
+gem list    sqlite3
+
+exit
+
+I should note two bits of information about the above script.
+
+First, it assumes that the uninstalled sqlite3 software resides here:
+
+${rails_root}/myvendor/sqlite-autoconf-3080702.tar.gz 
+
+I should say that I put it there by hand and then committed it to the Rails-repo.
+The file itself I got from this URL:
+
+http://www.sqlite.org/download.html
+
+Second, I need to set two env-variables: GEM_PATH, and GEM_HOME.
+I got the values by placing puts() statements in
+master/lib/language_pack/ruby.rb
+to find out what ruby.rb thought the values should be.
+
+If I use my Gemfile to declare which version of Ruby I want,
+which by the way is considered a best practice,
+then this choice will change what ruby.rb thinks
+GEM_PATH, and GEM_HOME should be.
+
+And thus I will need to match that requirement in my dothis.bash syntax.
+
+For example if I have this line in my Gemfile:
+
+ruby '2.1.5'
+
+Then the buildpack script will set GEM_PATH, and GEM_HOME
+to vendor/bundle/ruby/2.1.0,
+(why not 2.1.5 I don't know),
+and I will need this syntax in dothis.bash:
+
+export GEM_PATH=vendor/bundle/ruby/2.1.0
+export GEM_HOME=vendor/bundle/ruby/2.1.0
 
 </code></pre>
