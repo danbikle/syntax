@@ -191,8 +191,6 @@ My approach is to make the absolute minimum change to the buildpack.
 %br
 
 My change is really just one line of code:
-%br/
-%br
 
 %pre
   %code.ruby
@@ -202,7 +200,69 @@ This is good because it will make it easy for me to keep my buildpack merged wit
 %br/
 %br
 
-After I enhance my buildpack and git push it to github, I can test it with new-empty Rails-app.
+After I enhance my buildpack and git push it to github, I can test it with a new-empty Rails-app.
 %br/
 %br
+
+Some shell commands I can use to do that test are listed below:
+
+%pre
+  %code.bash
+    cd /tmp/
+    rails new hero_app10 -d postgresql
+    cd hero_app10
+    sed -i '1a ruby "2.1.5"' Gemfile
+    bundle install
+    git init
+    git add .
+    git commit -am hello
+    heroku apps:create hero-app10 --stack cedar --buildpack https://github.com/danbikle/heroku-buildpack-ruby
+
+
+The Rails-app, hero_app10, should deploy the same as if I used the original buildpack.
+%br/
+%br
+
+This should happen because my if-then logic will look for this file in hero_app10:
+%br/
+%br
+
+Rails.root/heroku_buildpack_scripts/dothis.bash
+%br/
+%br
+
+But hero_app10 is a new empty Rails-app.
+%br/
+%br
+
+So, dothis.bash does not exist yet.
+%br/
+%br
+
+So, the buildpack script does not try to run it.
+%br/
+%br
+
+If dothis.bash does exist, the buildpack script should try to run it and I can
+test this by placing one shell command in the script:
+
+%pre
+  %code.bash
+    echo $0 says hello world.
+
+That should work okay and then I can enhance dothis.bash so it does two tasks.
+%br/
+%br
+
+First, it installs Sqlite3.
+%br/
+%br
+
+Second, it installs the sqlite3 gem.
+%br/
+%br
+
+The syntax for that is displayed below:
+%pre
+  =render 'heroku_buildpack11'
 
