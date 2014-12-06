@@ -37,7 +37,13 @@ adir.each{ |fn|
       # A question should look like this:
       # .q2 In Rails how do I implement a wildcard route?
       acont = line.sub(/\.q2/,'') if line =~ /^.q2 /
-      # A tag should look like this:
+      # A tag can look like this:
+      #   .tag Rails
+      if line =~ /(^  %a.xtag.href=)('.+')(.*)( .*) $/
+        byebug
+        p line
+      end #if 
+      # A tag can look like this:
       #   .tag Rails
       if line =~ /^  \.tag /
         # I should make a note of the tag string:
