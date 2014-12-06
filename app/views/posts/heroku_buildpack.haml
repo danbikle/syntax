@@ -54,7 +54,7 @@ Second, is an API:
 %br/
 
 
-Third is the Heroku Ruby Buildpack for Cedar:
+Third, is the Heroku Ruby Buildpack for Cedar:
 %br/
 %br/
 
@@ -141,4 +141,68 @@ Anyway, I add a few lines of code to the file:
 
 %pre
   =render 'heroku_buildpack10'
+
+
+My intent behind this syntax is to defer the installation of Sqlite3
+until after Heroku has seen my Rails-app.
+%br/
+%br
+
+The way it should work is that all installation activity should
+be driven by a script named dothis.bash and that script should
+live in my Rails repo, not my buildpack repo.
+%br/
+%br
+
+In my Rails repo the location of the script is here:
+%br/
+%br
+
+Rails.root/heroku_buildpack_scripts/dothis.bash
+%br/
+%br
+
+When I first studied this question of using buildpack to add the sqlite3 gem
+to Heroku I found two other buildpack repos via google:
+%br/
+%br
+
+%a(href='https://github.com/yotsumoto/heroku-buildpack-ruby-with-sqlite3' target='x')
+  https://github.com/yotsumoto/heroku-buildpack-ruby-with-sqlite3
+%br/
+%br
+
+%a(href='https://github.com/c4mprod/heroku-buildpack-ruby-sqlite' target='x')
+  https://github.com/c4mprod/heroku-buildpack-ruby-sqlite
+%br/
+%br
+
+
+Their approach is different than mine.
+%br/
+%br
+
+They make significant changes to the buildpack.
+%br/
+%br
+
+My approach is to make the absolute minimum change to the buildpack.
+%br/
+%br
+
+My change is really just one line of code:
+%br/
+%br
+
+%pre
+  %code.ruby
+    bundler_output &lt;&lt; pipe("cmds")
+
+This is good because it will make it easy for me to keep my buildpack merged with the original Heroku buildpack in the future months/years when they enhance it.
+%br/
+%br
+
+After I enhance my buildpack and git push it to github, I can test it with new-empty Rails-app.
+%br/
+%br
 
