@@ -7,6 +7,10 @@
 
 set -x
 cd ~/x611/
+rm ~/x611/app/views/posts/_tags.haml
+rm ~/x611/app/views/posts/_index.haml
+rm ~/x611/app/views/questions/_index.haml
+rm ~/x611/app/views/tags/_*.haml
 
 bin/rails r script/hamlposts2questions.rb
 bin/rails r script/hamlposts2tags.rb
