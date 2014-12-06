@@ -12,7 +12,7 @@
 # The name of this 2nd HAML file should be built from the tag.
 
 # Next, if the tag is Rails, I should append the tag-link to
-# ~/x611/app/views/tags/rails.haml
+# ~/x611/app/views/tags/_rails.haml
 
 require 'tempfile'
 
@@ -48,7 +48,7 @@ adir.each{ |fn|
         fh.puts("%a(href='#{hrefp}') #{acont}")
         fh.close
         # Now I should linkize line.
-        line = "  %a(href='/tags/#{tagstring}') #{tagstring}"
+        line = "  %a.xtag(href='/tags/#{tagstring}') #{tagstring}"
         # I should note fn was linkized
         linkized = true
       end # if
