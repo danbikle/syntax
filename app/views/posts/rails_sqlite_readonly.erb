@@ -1,0 +1,59 @@
+<pre><code>
+
+In Rails ActiveRecord, how do I connect directly to sqlite readonly database, and bypass database.yml?
+
+I start by creating a Rails app in /tmp/
+
+cd /tmp/
+ruby -v
+rails -v
+rails new sqlite100 -d postgresql
+cd sqlite100
+sed -i '1a ruby "2.1.5"' Gemfile
+bundle install
+git init
+git add .
+git commit -am hello
+
+heroku apps:create sqlite100 --stack cedar --buildpack https://github.com/danbikle/heroku-buildpack-ruby
+
+git push heroku master
+
+cd /tmp/sqlite100/db/
+sqlite3 questions.db
+create table questions(id integer, question string);
+insert into questions(id,question) values(1,'Is Ruby easy to learn?');
+
+vi app/models/question.rb
+
+class Question < ActiveRecord::Base
+  establish_connection({:adapter=>"sqlite3",:database=>"db/questions.db"})
+end
+
+
+sed -i '2a gem "sqlite3"' Gemfile
+bundle install
+git add .
+git commit -am hello
+
+bin/rails c
+Question.connection
+questions = Question.find_by_sql('select question from questions')
+quit
+
+cd /tmp/sql10/
+
+rsync -av heroku_buildpack_scripts myvendor /tmp/sql100/
+cd /tmp/sql100/
+
+git add .
+git commit -am hello
+git push heroku master
+
+heroku run console
+myc = Question.connection
+questions = Question.find_by_sql('select question from questions')
+quit
+
+
+</code></pre>
