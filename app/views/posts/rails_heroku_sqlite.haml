@@ -10,14 +10,33 @@
   .tag active_record
 
 By default, Heroku does not support my use of the sqlite3 gem when I deploy Rails applications there.
+%br/
+%br/
 
 Many use-cases though, find that deploying a read-only Sqlite3 database embedded within the git-repo of my Rails app is useful.
+%br/
+%br/
 
 For example, the Heroku free tier limits the number of records I can have in my Postgres database there.
+%br/
+%br/
 
 If I architect my Rails app so that I use Postgres for update-able data and Sqlite3 for read-only data, I can squeeze more value out of Heroku.
+%br/
+%br/
 
 Another use-case might ask me to check some read-only data into Git version control so I can track who changes it and when.
+%br/
+%br/
 
 This use-case is addressed nicely if I place the data into a Sqlite3 database (which is just a simple binary file) and then commit the database to the Rails git-repo.
+%br/
+%br/
 
+To start my deployment of Sqlite3 enabled Rails to Heroku, I read this post:
+%br/
+%br/
+
+%a(href='/posts/heroku_buildpack') On Heroku, how do I install the sqlite3 gem?
+%br/
+%br/
