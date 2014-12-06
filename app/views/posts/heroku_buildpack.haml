@@ -125,19 +125,19 @@ You can refer to the original file here:
 
 Next I search for the string:
 %br/
-%br
+%br/
 
 Running
 %br/
-%br
+%br/
 
 As I write this post, that string is on line 516, but that will change as Heroku enhances the file in the future months/years.
 %br/
-%br
+%br/
 
 Anyway, I add a few lines of code to the file:
 %br/
-%br
+%br/
 
 %pre
   =render 'heroku_buildpack10'
@@ -146,49 +146,49 @@ Anyway, I add a few lines of code to the file:
 My intent behind this syntax is to defer the installation of Sqlite3
 until after Heroku has seen my Rails-app.
 %br/
-%br
+%br/
 
 The way it should work is that all installation activity should
 be driven by a script named dothis.bash and that script should
 live in my Rails repo, not my buildpack repo.
 %br/
-%br
+%br/
 
 In my Rails repo the location of the script is here:
 %br/
-%br
+%br/
 
 Rails.root/heroku_buildpack_scripts/dothis.bash
 %br/
-%br
+%br/
 
 When I first studied this question of using buildpack to add the sqlite3 gem
 to Heroku I found two other buildpack repos via google:
 %br/
-%br
+%br/
 
 %a(href='https://github.com/yotsumoto/heroku-buildpack-ruby-with-sqlite3' target='x')
   https://github.com/yotsumoto/heroku-buildpack-ruby-with-sqlite3
 %br/
-%br
+%br/
 
 %a(href='https://github.com/c4mprod/heroku-buildpack-ruby-sqlite' target='x')
   https://github.com/c4mprod/heroku-buildpack-ruby-sqlite
 %br/
-%br
+%br/
 
 
 Their approach is different than mine.
 %br/
-%br
+%br/
 
 They make significant changes to the buildpack.
 %br/
-%br
+%br/
 
 My approach is to make the absolute minimum change to the buildpack.
 %br/
-%br
+%br/
 
 My change is really just one line of code:
 
@@ -198,11 +198,11 @@ My change is really just one line of code:
 
 This is good because it will make it easy for me to keep my buildpack merged with the original Heroku buildpack in the future months/years when they enhance it.
 %br/
-%br
+%br/
 
 After I enhance my buildpack and git push it to github, I can test it with a new-empty Rails-app.
 %br/
-%br
+%br/
 
 Some shell commands I can use to do that test are listed below:
 
@@ -221,27 +221,27 @@ Some shell commands I can use to do that test are listed below:
 
 The Rails-app, hero_app10, should deploy the same as if I used the original buildpack.
 %br/
-%br
+%br/
 
 This should happen because my if-then logic will look for this file in hero_app10:
 %br/
-%br
+%br/
 
 Rails.root/heroku_buildpack_scripts/dothis.bash
 %br/
-%br
+%br/
 
 But hero_app10 is a new empty Rails-app.
 %br/
-%br
+%br/
 
 So, dothis.bash does not exist yet.
 %br/
-%br
+%br/
 
 So, the buildpack script does not try to run it.
 %br/
-%br
+%br/
 
 If dothis.bash does exist, the buildpack script should try to run it and I can
 test this by placing one shell command in the script:
@@ -252,17 +252,85 @@ test this by placing one shell command in the script:
 
 That should work okay and then I can enhance dothis.bash so it does two tasks.
 %br/
-%br
+%br/
 
 First, it installs Sqlite3.
 %br/
-%br
+%br/
 
 Second, it installs the sqlite3 gem.
 %br/
-%br
+%br/
 
 The syntax for that is displayed below:
 %pre
   =render 'heroku_buildpack11'
 
+I should note two bits of information about the above script.
+%br/
+%br/
+
+First, it assumes that the uninstalled sqlite3 software resides here:
+%pre
+  %code.bash
+    ${rails_root}/myvendor/sqlite-autoconf-3080702.tar.gz 
+
+I should say that I put it there by hand and then committed it to the Rails-repo.
+The file itself I got from this URL:
+%br/
+%br/
+
+%a(href='http://www.sqlite.org/download.html' target='x')
+  http://www.sqlite.org/download.html
+
+%br/
+%br/
+
+Second, I need to eventually add gem 'sqlite3' to the Gemfile.
+But I should do that after the buildpack can get dothis.bash
+to run error-free.
+%br/
+%br/
+
+Anyway it worked well for me.
+%br/
+%br/
+
+So, after I got dothis.bash to run and after I added gem 'sqlite3' to the Gemfile,
+I captured a screendump of installing sqlite3 gem on Heroku.
+%br/
+%br/
+
+The shell commands are listed below:
+
+%pre
+  %code.bash
+    cd /tmp/
+    rails new hero_app11 -d postgresql
+    cd hero_app11
+
+    by hand add  ${rails_root}/myvendor/sqlite-autoconf-3080702.tar.gz 
+    by hand add heroku_buildpack_scripts/dothis.bash
+
+    head Gemfile
+    sed -i '1a ruby "2.1.5"' Gemfile
+    head Gemfile
+
+    git init
+    git add .
+    git commit -am hello
+    heroku apps:create hero-app11 --stack cedar --buildpack https://github.com/danbikle/heroku-buildpack-ruby
+
+    git push heroku master
+
+    head Gemfile
+    sed -i '2a gem "sqlite3"' Gemfile
+    head Gemfile
+
+    bundle install
+    git commit -am hello
+    git push heroku master
+    heroku run 'gem list sqlite3'
+
+
+Here is the actual screendump:
