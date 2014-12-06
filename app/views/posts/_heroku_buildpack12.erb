@@ -181,8 +181,6 @@ make
 make install
 
 # I should be able to gem install sqlite3 now
-cd ${rails_root}
-
 gem install sqlite3 -- --with-sqlite3-dir=${rails_root}/myvendor/sqlite3
 gem list    sqlite3
 
