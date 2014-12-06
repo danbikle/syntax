@@ -43,3 +43,102 @@ First, is a CLI called the Heroku Toolbelt:
 %br/
 %br/
 
+
+Second, is an API:
+%br/
+%br/
+
+%a(href='https://devcenter.heroku.com/categories/platform-api' target='x')
+  https://devcenter.heroku.com/categories/platform-api
+%br/
+%br/
+
+
+Third is the Heroku Ruby Buildpack for Cedar:
+%br/
+%br/
+
+%a(href='https://github.com/heroku/heroku-buildpack-ruby' target='x')
+  https://github.com/heroku/heroku-buildpack-ruby
+%br/
+%br/
+
+
+I call it 'buildpack' and that is is the main topic of this post.
+%br/
+%br/
+
+If I want to install the sqlite3 gem on my Linux laptop, 
+I need to first install Sqlite3 which is easy to do if I have the root password.
+%br/
+%br/
+
+Since I do not have root access on Heroku Linux,
+how can I install Sqlite3 on Heroku Linux?
+%br/
+%br/
+
+The answer is I use buildpack to do it.
+%br/
+%br/
+
+First, I login to my github.com account and visit this page:
+%br/
+%br/
+
+%a(href='https://github.com/heroku/heroku-buildpack-ruby' target='x')
+  https://github.com/heroku/heroku-buildpack-ruby
+%br/
+%br/
+
+Then, I press the fork-button at the top-right.
+%br/
+%br/
+
+Next, I clone my fork of the repo to my Linux laptop.
+%br/
+%br/
+
+If I don't have a Linux laptop handy I use a copy of Linux running in a
+VirtualBox or on a provider like Amazon or DigitalOcean.
+%br/
+%br/
+
+From my clone of my forked repo, I load this file in my editor:
+%br/
+%br/
+
+lib/language_pack/ruby.rb
+%br/
+%br/
+
+You can refer to the original file here:
+%br/
+%br/
+
+%a(href='https://github.com/heroku/heroku-buildpack-ruby/blob/master/lib/language_pack/ruby.rb' target='x')
+  https://github.com/heroku/heroku-buildpack-ruby/blob/master/lib/language_pack/ruby.rb
+
+%br/
+%br/
+
+
+Next I search for the string:
+%br/
+%br
+
+Running
+%br/
+%br
+
+As I write this post, that string is on line 516, but that will change as Heroku enhances the file in the future months/years.
+%br/
+%br
+
+Anyway, I add a few lines of code to the file:
+%br/
+%br
+
+%pre
+  =render 'heroku_buildpack10'
+
