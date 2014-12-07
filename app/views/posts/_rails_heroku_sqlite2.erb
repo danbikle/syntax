@@ -1,0 +1,32 @@
+<code class='bash'>#!/bin/bash
+
+# hbs/dothis.bash
+
+# I use this script to help me enhance the ability of 
+# heroku-buildpack
+
+# heroku-buildpack is software used by heroku to help me deploy applications.
+
+rails_root=`pwd`
+
+echo rails_root is
+echo $rails_root
+cd ${rails_root}/myvendor/
+
+# I should install sqlite3 software locally under Rails.root
+
+mkdir -p ${rails_root}/myvendor/sqlite3
+tar zxf  ${rails_root}/myvendor/sqlite-autoconf-3080702.tar.gz 
+cd sqlite-autoconf-3080702/
+./configure --prefix=${rails_root}/myvendor/sqlite3
+make
+make install
+
+# Heroku sets GEM_HOME to a relative path so I cd to the right place.
+cd ${rails_root}
+# I should be able to gem install sqlite3 now
+gem install sqlite3 -- --with-sqlite3-dir=${rails_root}/myvendor/sqlite3
+gem list    sqlite3
+
+exit
+</code>

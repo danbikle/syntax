@@ -41,3 +41,73 @@ To start my deployment of Sqlite3 enabled Rails to Heroku, I read this post:
 %a(href='/posts/heroku_buildpack') On Heroku, how do I install the sqlite3 gem?
 %br/
 %br/
+
+
+Next, I ran these shell commands:
+%br/
+%br/
+%pre
+  =render 'rails_heroku_sqlite1'
+
+Then, I added syntax and files to my Rails app which would force the Heroku buildpack to install Sqlite3 and the sqlite3 gem when I deploy my app to Heroku.
+
+How?
+
+First, I got a copy of the sqlite software from here:
+
+%a(href='http://www.sqlite.org/2014/sqlite-autoconf-3080702.tar.gz' target='x')
+  http://www.sqlite.org/2014/sqlite-autoconf-3080702.tar.gz
+
+
+And I put it here:
+
+%pre
+  %code.bash
+    myvendor/sqlite-autoconf-3080702.tar.gz
+
+Using these shell commands:
+%pre
+  %code.bash
+    cd myvendor/
+    wget http://www.sqlite.org/2014/sqlite-autoconf-3080702.tar.gz
+
+
+Then, I placed a shell script in directory:
+%pre
+  %code.bash
+    heroku_buildpack_scripts/
+
+%pre
+  =render 'rails_heroku_sqlite2'
+
+Next, I ran these shell commands:
+%pre
+  %code.bash
+    cd /tmp/sqlite103
+    git init
+    git add .
+    git commit -am hello
+    heroku apps:create sqlite103 --stack cedar --buildpack https://github.com/danbikle/heroku-buildpack-ruby
+    git push heroku master
+
+Then I queried the questions table in my sqlite3 database:
+%pre
+  %code.bash
+    dan@hp /tmp/sqlite103 $ 
+    dan@hp /tmp/sqlite103 $ heroku run console
+    Running `console` attached to terminal... up, run.8955
+    Loading production environment (Rails 4.1.8)
+    irb(main):001:0> myc = Question.connection
+    
+    snip...
+    
+    irb(main):002:0> questions = Question.find_by_sql('select question from questions')
+    &lt;= Question.find_by_sql('select question from questions')
+    => [#&lt;Question question: "Is Ruby easy to learn?">]
+    irb(main):003:0> quit
+    quit
+    dan@hp /tmp/sqlite103 $ 
+    dan@hp /tmp/sqlite103 $ 
+    dan@hp /tmp/sqlite103 $ 
+
+So, that is a demo of how to deploy a Sqlite3 read-only database to a Rails app running on Heroku.

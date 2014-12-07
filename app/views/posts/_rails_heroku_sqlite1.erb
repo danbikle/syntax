@@ -1,0 +1,25 @@
+ <code class='bash'>
+cd /tmp/
+ruby -v
+rails -v
+rails new sqlite103 -d postgresql
+cd sqlite103
+sed -i '1a ruby "2.1.5"'   Gemfile
+sed -i '2a gem  "sqlite3"' Gemfile
+mkdir myvendor
+mkdir heroku_buildpack_scripts
+ln -s heroku_buildpack_scripts hbs
+bundle install
+
+cat > app/models/question.rb %lt;%lt;EOF
+class Question %lt; ActiveRecord::Base
+  establish_connection({:adapter=>"sqlite3",:database=>"db/questions.db"})
+end
+EOF
+
+cd db
+sqlite3 questions.db %lt;%lt;EOF
+create table questions(id integer, question string);
+insert into questions(id,question) values(1,'Is Ruby easy to learn?');
+EOF
+</code>
