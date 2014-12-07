@@ -44,8 +44,6 @@ To start my deployment of Sqlite3 enabled Rails to Heroku, I read this post:
 
 
 Next, I ran these shell commands:
-%br/
-%br/
 %pre
   =render 'rails_heroku_sqlite1'
 
@@ -70,12 +68,12 @@ And I put it here:
 
 %pre
   %code.bash
-    myvendor/sqlite-autoconf-3080702.tar.gz
+    \/tmp/sqlite103/myvendor/sqlite-autoconf-3080702.tar.gz
 
 Using these shell commands:
 %pre
   %code.bash
-    cd myvendor/
+    cd /tmp/sqlite103/myvendor/
     wget http://www.sqlite.org/2014/sqlite-autoconf-3080702.tar.gz
 
 
@@ -112,7 +110,6 @@ Then I queried the questions table in my sqlite3 database:
     &lt;= Question.find_by_sql('select question from questions')
     \=> [#&lt;Question question: "Is Ruby easy to learn?">]
     irb(main):003:0> quit
-    quit
     dan@hp /tmp/sqlite103 $ 
     dan@hp /tmp/sqlite103 $ 
     dan@hp /tmp/sqlite103 $ 
