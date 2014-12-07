@@ -50,13 +50,20 @@ Next, I ran these shell commands:
   =render 'rails_heroku_sqlite1'
 
 Then, I added syntax and files to my Rails app which would force the Heroku buildpack to install Sqlite3 and the sqlite3 gem when I deploy my app to Heroku.
+%br/
+%br/
 
 How?
+%br/
 
 First, I got a copy of the sqlite software from here:
+%br/
+%br/
 
 %a(href='http://www.sqlite.org/2014/sqlite-autoconf-3080702.tar.gz' target='x')
   http://www.sqlite.org/2014/sqlite-autoconf-3080702.tar.gz
+%br/
+%br/
 
 
 And I put it here:
@@ -75,7 +82,7 @@ Using these shell commands:
 Then, I placed a shell script in directory:
 %pre
   %code.bash
-    heroku_buildpack_scripts/
+    /tmp/sqlite103/heroku_buildpack_scripts/
 
 %pre
   =render 'rails_heroku_sqlite2'
