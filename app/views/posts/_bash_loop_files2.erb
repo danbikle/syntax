@@ -3,12 +3,11 @@
 # unzip_truefx.bash
 
 cd ~/truefx/
-mkdir -p /tmp/truefx/
 
 for file in ~/truefx/*USD*zip
 do
-  unzip -p $file > /tmp/truefx/${file}.csv
+  unzip -p $file > ${file}.csv
 done
 
-ls -la /tmp/truefx/
+ls -la *.csv
 </code>
