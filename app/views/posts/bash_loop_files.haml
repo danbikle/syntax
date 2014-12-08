@@ -1,0 +1,39 @@
+.q1 Question:
+.q2 In Bash, how do I loop through a directory of files?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/bash') bash
+  %a.xtag(href='/tags/loop') loop
+  %a.xtag(href='/tags/directory') directory
+  %a.xtag(href='/tags/truefx') truefx
+  %a.xtag(href='/tags/unzip') unzip
+%br/
+
+A use-case I encounter frequently is reading text lines from a subset of files in a directory and acting on them.
+%br/
+%br/
+
+
+For example, a site named truefx.com offers free Forex data in CSV format.
+%br/
+%br/
+
+I copied some files from that site into a directory under my home directory.
+
+%pre
+  =render 'bash_loop_files1'
+
+Next I wrote a script to demonstrate how to loop through those files so that I can unzip each one.
+
+%pre
+  =render 'bash_loop_files2'
+
+Output from the script is displayed below:
+
+%pre
+  =render 'bash_loop_files3'
+
+So, the Bash language offers convenient and simple syntax for looping through
+a directory of files.
+%br/
+%br/
