@@ -44,8 +44,33 @@ The Forex data resides in a CSV file which looks like this:
     dan@hp ~/cjb4/fx $
     dan@hp ~/cjb4/fx $
     dan@hp ~/cjb4/fx $
+    dan@hp ~/cjb4/fx $ 
+    dan@hp ~/cjb4/fx $ du -sh ibf5min.csv 
+    81M	ibf5min.csv
+    dan@hp ~/cjb4/fx $ 
+    dan@hp ~/cjb4/fx $ wc -l ibf5min.csv
+    2401224 ibf5min.csv
+    dan@hp ~/cjb4/fx $ 
 
 The syntax I used to load the data into a Python Numpy Array is displayed below:
 
 %pre
   =render 'python_numpy_loadtxt1'
+
+Here is a screendump from my run of the script:
+%pre
+  %code.bash
+    dan@hp ~/cjb4/fx $ 
+    dan@hp ~/cjb4/fx $ python numpy_loadtxt.py
+    ('aud_usd', '2009-05-01 00:00:00', 0.729)
+    ('usd_jpy', '2014-11-28 22:00:00', 118.6338)
+    dan@hp ~/cjb4/fx $ 
+    dan@hp ~/cjb4/fx $ 
+
+I should note that the api documentation for numpy loadtxt() is here:
+%br/
+%br/
+%a(href='http://docs.scipy.org/doc/numpy/reference/generated/numpy.loadtxt.htm' target='x')
+  http://docs.scipy.org/doc/numpy/reference/generated/numpy.loadtxt.htm
+%br/
+%br/
