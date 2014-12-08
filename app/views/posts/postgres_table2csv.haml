@@ -1,6 +1,62 @@
-In Postgres, how do I copy a table to a CSV file?
 
-postgres
-copy
-csv
-export
+.q1 Question:
+.q2 In Postgres, how do I copy a table to a CSV file?
+.tags
+  %span.tagtag Tags:
+  .tag postgres
+  .tag copy
+  .tag csv
+  .tag export
+  .tag sql
+
+When I first asked this question, I did not expect the answer to be so simple.
+%br/
+%br/
+
+The answer is just one line of code:
+%pre
+  %code.sql
+    copy mytable to '/tmp/myfile.csv' delimiter ',';
+%br/
+%br/
+
+One small wrinkle is that the CSV file will be owned by the postgres user.
+%br/
+%br/
+Why?
+%br/
+It is because the file is created by a postgres background process rather
+than your process which is running the psql command line.
+%br/
+%br/
+Here is another demo:
+%pre
+  %code.sql
+    dan@z2.z2 ~/cjb4/fx $ 
+    dan@z2.z2 ~/cjb4/fx $ psql
+    psql (9.2.9)
+    Type "help" for help.
+    dan=# 
+    create table questions(id integer,question varchar);
+    insert into questions(id,question) values(1,'Is Postgres easy to learn?');
+    insert into questions(id,question) values(2,'Is Postgres free?');
+    insert into questions(id,question) values(3,'Is Postgres easy to install?');
+    insert into questions(id,question) values(4,'Is Postgres performant?');
+    copy questions to '/tmp/questions.csv' delimiter ',';
+
+%hr/
+
+%pre
+  %code.bash
+    dan@z2.z2 ~/cjb4/fx $ 
+    dan@z2.z2 ~/cjb4/fx $ ls -l /tmp/questions.csv
+    \-rw-r--r--. 1 postgres postgres 106 Dec  8 02:26 /tmp/questions.csv
+    dan@z2.z2 ~/cjb4/fx $ 
+    dan@z2.z2 ~/cjb4/fx $ 
+    dan@z2.z2 ~/cjb4/fx $ cat /tmp/questions.csv
+    1,Is Postgres easy to learn?
+    2,Is Postgres free?
+    3,Is Postgres easy to install?
+    4,Is Postgres performant?
+    dan@z2.z2 ~/cjb4/fx $ 
+    dan@z2.z2 ~/cjb4/fx $ 
