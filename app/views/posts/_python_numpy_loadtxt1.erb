@@ -1,0 +1,7 @@
+<code class='python'># numpy_loadtxt.py
+# Fill ibf5min from ibf5min.csv
+mydtype = [('pair','S7'),('ydate','S19'),('cp','f8')]
+ibf5min = np.loadtxt('ibf5min.csv',dtype=mydtype,delimiter=',')
+ibf5min[0]
+ibf5min[-1]
+</code>
