@@ -1,0 +1,97 @@
+<code class='bash'>
+dan@z2.z2 ~/cjb4/fx $ 
+dan@z2.z2 ~/cjb4/fx $ 
+dan@z2.z2 ~/cjb4/fx $ ./truefx_load.bash
+-rw-rw-r--. 1 dan dan  9288113 Dec  7 08:50 /home/dan/truefx/AUDUSD-2014-08.zip
+-rw-rw-r--. 1 dan dan 76196524 Dec  8 08:38 /tmp/truefx.csv
+--
+-- ~/cjb4/fx/truefx.sql
+--
+-- I use this script to load zip files in ~/truefx/
+-- I use a shell command to unzip each file into
+-- /tmp/truefx.csv
+-- So, this sql script only knows about /tmp/truefx.csv
+CREATE TABLE IF NOT EXISTS truefx_stage1
+(
+pair   VARCHAR(7)
+,ttime TIMESTAMP
+,bid   float8
+,ask   float8
+)
+;
+psql:truefx.sql:18: NOTICE:  relation "truefx_stage1" already exists, skipping
+CREATE TABLE
+TRUNCATE TABLE truefx_stage1;
+TRUNCATE TABLE
+COPY truefx_stage1
+(
+pair
+,ttime
+,bid
+,ask
+) FROM '/tmp/truefx.csv' WITH csv
+;
+COPY 1664537
+-- rpt
+SELECT COUNT(pair),MIN(ttime),MAX(ttime),MIN(bid),MAX(ask) FROM truefx_stage1;
+  count  |           min           |           max           |   min   |   max   
+---------+-------------------------+-------------------------+---------+---------
+ 1664537 | 2014-08-01 00:00:00.035 | 2014-08-29 21:00:00.039 | 0.92353 | 0.93761
+(1 row)
+
+CREATE TABLE IF NOT EXISTS truefx_stage2
+(
+pair   VARCHAR(7)
+,ttime TIMESTAMP
+,cp    FLOAT8
+)
+;
+psql:truefx.sql:40: NOTICE:  relation "truefx_stage2" already exists, skipping
+CREATE TABLE
+TRUNCATE TABLE truefx_stage2;
+TRUNCATE TABLE
+INSERT INTO truefx_stage2(pair,ttime,cp)
+SELECT
+pair
+,date_trunc('hour', ttime) + INTERVAL '5 min' * ROUND(date_part('minute', ttime) / 5.0) AS ttime
+,(bid+ask)/2 AS cp
+FROM truefx_stage1 
+;
+INSERT 0 1664537
+CREATE TABLE IF NOT EXISTS truefx
+(
+pair   VARCHAR(7)
+,ttime TIMESTAMP
+,cp    FLOAT8
+)
+;
+psql:truefx.sql:58: NOTICE:  relation "truefx" already exists, skipping
+CREATE TABLE
+INSERT INTO truefx(pair,ttime,cp)
+SELECT
+pair
+,ttime
+,ROUND(AVG(cp)::NUMERIC,4)::float8 AS cp
+FROM truefx_stage2
+GROUP BY pair,ttime
+;
+INSERT 0 5873
+\q
+
+snip ...
+
+psql:truefx.sql:58: NOTICE:  relation "truefx" already exists, skipping
+CREATE TABLE
+INSERT INTO truefx(pair,ttime,cp)
+SELECT
+pair
+,ttime
+,ROUND(AVG(cp)::NUMERIC,4)::float8 AS cp
+FROM truefx_stage2
+GROUP BY pair,ttime
+;
+INSERT 0 5094
+\q
+dan@z2.z2 ~/cjb4/fx $ 
+
+</code>

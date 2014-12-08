@@ -1,0 +1,20 @@
+<code class='bash'>dan@z2.z2 ~/cjb4/fx $ 
+dan@z2.z2 ~/cjb4/fx $ 
+dan@z2.z2 ~/cjb4/fx $ ./psqlmad.bash 
+psql (9.2.9)
+Type help for help.
+
+madlib=# SELECT pair,COUNT(pair),MIN(ttime),MAX(ttime) FROM truefx GROUP BY pair;
+  pair   | count |         min         |         max         
+---------+-------+---------------------+---------------------
+ EUR/USD | 22511 | 2014-08-01 00:00:00 | 2014-11-28 22:00:00
+ AUD/USD | 22248 | 2014-08-01 00:00:00 | 2014-11-28 22:00:00
+ GBP/USD | 21158 | 2014-08-01 00:00:00 | 2014-11-28 22:00:00
+ NZD/USD | 20324 | 2014-08-01 00:00:00 | 2014-11-28 00:00:00
+ USD/CAD | 14018 | 2014-08-01 00:00:00 | 2014-11-28 00:00:00
+ USD/JPY | 23121 | 2014-08-01 00:00:00 | 2014-11-28 22:00:00
+(6 rows)
+
+madlib=# 
+madlib=# 
+</code>

@@ -1,0 +1,13 @@
+<code class='bash'>#!/bin/bash
+
+# ~/cjb4/fx/truefx_load.bash
+
+cd ~/cjb4/fx/
+
+for file in ~/truefx/*USD*zip
+do
+  unzip -p $file > /tmp/truefx.csv
+  /bin/ls -l $file /tmp/truefx.csv
+  ~/cjb4/fx/psqlmad.bash -f truefx.sql
+done
+</code>

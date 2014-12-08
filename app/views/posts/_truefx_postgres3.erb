@@ -1,0 +1,69 @@
+<code class='bash'>--
+-- ~/cjb4/fx/truefx.sql
+--
+
+-- I use this script to load zip files in ~/truefx/
+-- I use a shell command to unzip each file into
+-- /tmp/truefx.csv
+
+-- So, this sql script only knows about /tmp/truefx.csv
+
+CREATE TABLE IF NOT EXISTS truefx_stage1
+(
+pair   VARCHAR(7)
+,ttime TIMESTAMP
+,bid   float8
+,ask   float8
+)
+;
+
+TRUNCATE TABLE truefx_stage1;
+
+COPY truefx_stage1
+(
+pair
+,ttime
+,bid
+,ask
+) FROM '/tmp/truefx.csv' WITH csv
+;
+
+-- rpt
+SELECT COUNT(pair),MIN(ttime),MAX(ttime),MIN(bid),MAX(ask) FROM truefx_stage1;
+
+CREATE TABLE IF NOT EXISTS truefx_stage2
+(
+pair   VARCHAR(7)
+,ttime TIMESTAMP
+,cp    FLOAT8
+)
+;
+
+TRUNCATE TABLE truefx_stage2;
+
+INSERT INTO truefx_stage2(pair,ttime,cp)
+SELECT
+pair
+,date_trunc('hour', ttime) + INTERVAL '5 min' * ROUND(date_part('minute', ttime) / 5.0) AS ttime
+,(bid+ask)/2 AS cp
+FROM truefx_stage1 
+;
+
+CREATE TABLE IF NOT EXISTS truefx
+(
+pair   VARCHAR(7)
+,ttime TIMESTAMP
+,cp    FLOAT8
+)
+;
+
+INSERT INTO truefx(pair,ttime,cp)
+SELECT
+pair
+,ttime
+,ROUND(AVG(cp)::NUMERIC,4)::float8 AS cp
+FROM truefx_stage2
+GROUP BY pair,ttime
+;
+\q
+</code>

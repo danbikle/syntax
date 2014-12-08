@@ -1,0 +1,81 @@
+.q1 Question:
+.q2 How do I copy truefx data into Postgres?
+.tags
+  %span.tagtag Tags:
+  .tag truefx
+  .tag postgres
+  .tag sql
+  .tag copy
+  .tag csv
+  .tag bash
+  .tag loop
+  .tag directory
+  .tag unzip
+%br/
+
+I often encounter machine learning use-cases.
+%br/
+%br/
+
+Machine learning algorithms are hungry for data.
+%br/
+%br/
+
+While searching google one day,
+I found a site named truefx.com which offers free Forex data in CSV format.
+%br/
+%br/
+
+Once I understood what the site was offering me,
+a question which came to my mind:
+%br/
+%br/
+
+Is it possible to look at past Forex data and predict future Forex price directions?
+
+%br/
+%br/
+
+After I found the site I spent a few hours building predictive models.
+%br/
+%br/
+
+Early in that process I wrote some scripts to copy the truefx data into Postgres.
+%br/
+%br/
+
+Those scripts are the topic of this post.
+%br/
+%br/
+
+Usually when I write these types of scripts I work from the outside in.
+%br/
+%br/
+
+Almost always the outside script is a shell script.
+%br/
+%br/
+
+The shell script I wrote to handle this task is displayed below:
+
+%pre
+  =render 'truefx_postgres1'
+
+The above shell script depended on another shell script named psqlmad.bash
+so I wrote that next:
+%pre
+  =render 'truefx_postgres2'
+
+Also the script depened on a SQL script named truefx.sql so I wrote that next:
+%pre
+  =render 'truefx_postgres3'
+
+Here is a screendump of me getting them to work together:
+%pre
+  =render 'truefx_postgres4'
+
+Next, I ran a simple query to help me see the truefx data I had just loaded into Postgres:
+
+%pre
+  =render 'truefx_postgres5'
+
