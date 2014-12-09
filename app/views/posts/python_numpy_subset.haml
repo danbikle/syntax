@@ -1,0 +1,84 @@
+.q1 Question:
+.q2 In Python NumPy, how do I get Array subset?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/python') python
+  .tag array
+  .tag subset
+  .tag csv
+  %a.xtag(href='/tags/numpy') numpy
+  %a.xtag(href='/tags/loadtxt') loadtxt
+%br/
+I just encountered a use-case asking me to get a subset of rows out of a NumPy Array.
+
+%br/
+%br/
+In this case the rows are Forex data and this data resides in a CSV file which looks like this:
+
+%pre
+  %code.bash
+    dan@hp ~/cjb4/fx $ 
+    dan@hp ~/cjb4/fx $ cat small.csv
+    aud_usd,2009-05-01 00:00:00,0.729
+    aud_usd,2009-05-01 00:05:00,0.7288
+    aud_usd,2009-05-01 00:10:00,0.729
+    aud_usd,2009-05-01 00:15:00,0.7287
+    aud_usd,2009-05-01 00:20:00,0.7287
+    aud_usd,2009-05-01 00:25:00,0.729
+    aud_usd,2009-05-01 00:30:00,0.729
+    aud_usd,2009-05-01 00:35:00,0.7294
+    aud_usd,2009-05-01 00:40:00,0.7293
+    aud_usd,2009-05-01 00:45:00,0.7289
+    usd_jpy,2014-11-28 21:15:00,118.7132
+    usd_jpy,2014-11-28 21:20:00,118.7136
+    usd_jpy,2014-11-28 21:25:00,118.7057
+    usd_jpy,2014-11-28 21:30:00,118.6778
+    usd_jpy,2014-11-28 21:35:00,118.6547
+    usd_jpy,2014-11-28 21:40:00,118.6669
+    usd_jpy,2014-11-28 21:45:00,118.67
+    usd_jpy,2014-11-28 21:50:00,118.6069
+    usd_jpy,2014-11-28 21:55:00,118.6076
+    usd_jpy,2014-11-28 22:00:00,118.6338
+    dan@hp ~/cjb4/fx $ 
+    dan@hp ~/cjb4/fx $ 
+
+The syntax I used to load the data into a Python NumPy Array is displayed below:
+
+%pre
+  %code.python
+    # numpy_subset.py
+    
+    import numpy as np
+    
+    mydtype = [('pair','S7'),('ydate','S19'),('cp','f8')]
+    
+    ibf5min = np.loadtxt('small.csv',dtype=mydtype,delimiter=',')
+    
+    # I should group the data by pair.
+    
+    predicate = ibf5min['pair'] == 'aud_usd'
+    mysubset  = ibf5min[predicate]
+    print(mysubset)
+    
+    # Equivalent SQL syntax:
+    # select * from ibf5min where pair = 'aud_usd';
+
+Here is a screendump from my run of the script:
+%pre
+  =render 'python_numpy_subset1'
+
+
+I should note that the api documentation for NumPy-subset is here.
+The documentation does not use the term subset.
+%br/
+%br/
+
+Instead it pushes a related idea called 'indexing':
+
+%br/
+%br/
+%a(href='http://docs.scipy.org/doc/numpy/user/basics.indexing.html' target='x')
+  http://docs.scipy.org/doc/numpy/user/basics.indexing.html
+
+%br/
+%br/
