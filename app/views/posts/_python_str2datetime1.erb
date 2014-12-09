@@ -1,0 +1,31 @@
+<code class='python'># str2datetime_demo.py
+
+import datetime
+
+mystr = '2009-05-01 00:45:00'
+
+mydt = datetime.datetime.strptime(mystr, "%Y-%m-%d %H:%M:%S")
+
+# Now that I have the string converted into a date,
+# I can use strftime() to convert the date back into intersting strings.
+
+# I can answer questions like the ones listed below:
+
+print('The date is:')
+print(mydt)
+
+print('The year of this date is:')
+print(mydt.strftime('%Y'))
+
+print('The month-name of this date is:')
+print(mydt.strftime('%B'))
+
+print('The week number of the year of this date is:')
+print(mydt.strftime('%j'))
+
+print('The day-name of this date is:')
+print(mydt.strftime('%A'))
+
+print('The weekday name of this date is:')
+print(mydt.strftime('%w'))
+</code>
