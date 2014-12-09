@@ -42,43 +42,31 @@ In this case the rows are Forex data and this data resides in a CSV file which l
     dan@hp ~/cjb4/fx $ 
     dan@hp ~/cjb4/fx $ 
 
-The syntax I used to load the data into a Python NumPy Array is displayed below:
+The syntax I used to load the data into a Python NumPy Array and then
+get the aud_usd subset is displayed below:
 
 %pre
-  %code.python
-    # numpy_subset.py
-    
-    import numpy as np
-    
-    mydtype = [('pair','S7'),('ydate','S19'),('cp','f8')]
-    
-    ibf5min = np.loadtxt('small.csv',dtype=mydtype,delimiter=',')
-    
-    # I should group the data by pair.
-    
-    predicate = ibf5min['pair'] == 'aud_usd'
-    mysubset  = ibf5min[predicate]
-    print(mysubset)
-    
-    # Equivalent SQL syntax:
-    # select * from ibf5min where pair = 'aud_usd';
+  =render 'python_numpy_subset2'
 
 Here is a screendump from my run of the script:
 %pre
   =render 'python_numpy_subset1'
 
 
-I should note that the api documentation for NumPy-subset is here.
-The documentation does not use the term subset.
-%br/
-%br/
-
-Instead it pushes a related idea called 'indexing':
+I should note that the api documentation for NumPy-subset is here:
 
 %br/
 %br/
 %a(href='http://docs.scipy.org/doc/numpy/user/basics.indexing.html' target='x')
   http://docs.scipy.org/doc/numpy/user/basics.indexing.html
+%br/
+%br/
+
+The documentation does not use the term subset.
+%br/
+%br/
+
+Instead it describes a related idea called 'indexing'.
 
 %br/
 %br/

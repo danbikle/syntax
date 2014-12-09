@@ -1,0 +1,17 @@
+<code class='python'># numpy_subset.py
+
+import numpy as np
+
+mydtype = [('pair','S7'),('ydate','S19'),('cp','f8')]
+
+ibf5min = np.loadtxt('small.csv',dtype=mydtype,delimiter=',')
+
+# I should group the data by pair.
+
+predicate = ibf5min['pair'] == 'aud_usd'
+mysubset  = ibf5min[predicate]
+print(mysubset)
+
+# Equivalent SQL syntax:
+# select * from ibf5min where pair = 'aud_usd';
+</code>
