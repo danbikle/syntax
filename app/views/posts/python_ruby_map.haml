@@ -1,0 +1,87 @@
+.q1 Question:
+.q2 In Python how do I mimic the Ruby .map method?
+.tags
+  %span.tagtag Tags:
+  .tag python
+  .tag ruby
+  .tag map
+  .tag comprehension
+  .tag list_comprehension
+  .tag loop
+  .tag loopin_brackets
+%br/
+
+Ruby offers a method called .map()
+%br/
+%br/
+
+Here is a demo of how it works:
+
+%pre
+  %code.ruby
+    nmbrs = [1,2,3,4]
+    
+    sqnmbrs = nmbrs.map { |nmbr| nmbr*nmbr}
+    
+    sqnmbrs == [1,4,9,16]
+
+If I did not have .map(), I'd need to write 4 lines of syntax instead of just 1:
+
+%pre
+  %code.ruby
+    sqnmbrs2 = []
+    for nmbr in nmbrs do
+      sqnmbrs2 << nmbr*nmbr
+    end
+
+So, does Python offer syntax similar to the Ruby .map method?
+%br/
+%br/
+
+Yes, it does.
+%br/
+%br/
+
+It looks like this:
+
+%pre
+  %code.python
+    nmbrs = [1,2,3,4]
+    sqnmbrs = [nmbr*nmbr for nmbr in nmbrs]
+
+It seems a little bit more verbose than the Ruby way.
+%br/
+%br/
+
+On the other hand it offers a clue about what it is doing.
+%br/
+%br/
+
+It's obvious that it is doing something with a for-loop.
+%br/
+%br/
+
+When I look at the Ruby syntax, I see no clue that a loop is running under the hood.
+%br/
+%br/
+
+In Python what is the name for this syntax?
+%br/
+%br/
+
+The answer is, 'List Comprehension'.
+%br/
+%br/
+
+I would have called it 'Loopin-Brackets'.
+%br/
+%br/
+
+Python documents it here:
+%br/
+%br/
+
+%a(href='https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions' target='x')
+  https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
+%br/
+%br/
