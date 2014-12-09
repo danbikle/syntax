@@ -1,0 +1,21 @@
+<code class='bash'>dan@hp ~/cjb4/fx $ 
+dan@hp ~/cjb4/fx $ python /tmp/python_pdb.python 
+> /tmp/python_pdb.python(22)<module>()
+-> dvar = 4
+(Pdb) avar
+1
+(Pdb) bvar
+2
+(Pdb) cvar
+3
+(Pdb) dvar
+*** NameError: name 'dvar' is not defined
+(Pdb) dvar = 44
+(Pdb) dvar
+44
+(Pdb) dvar += 1
+(Pdb) dvar
+45
+(Pdb) c
+dan@hp ~/cjb4/fx $ 
+dan@hp ~/cjb4/fx $ </code>

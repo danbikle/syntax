@@ -1,0 +1,57 @@
+.q1 Question:
+.q2 In Python debugger, how do I step through a running script?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/python') python
+  .tag debugger
+  .tag step
+  .tag pdb
+%br/
+
+A common use-case for working with code is to ask the code to stop
+running at a specific line.  Then I want a UI which allows me to 
+inspect data which the code is interacting with.
+Also I want the UI to allow me to experiment with snippets of
+code which can interact with that data.
+%br/
+%br/
+
+In Python, this UI is availble via a module called pdb.
+%br/
+%br/
+
+In the script below, I show you how to add pdb-syntax to a Python script.
+%br/
+%br/
+
+
+When I use Python to start the script, it will run until it encouncters pdb syntax.
+%br/
+%br/
+
+Then, the script will stop.
+%br/
+%br/
+
+Next, Python will present me a command line UI.
+%br/
+%br/
+
+Here is the script:
+
+%pre
+  =render 'python_pdb1'
+
+Since the UI is command line based, it is easy for me to capture some of my interactions with it and display them below:
+
+%pre
+  =render 'python_pdb2'
+
+I think that pdb is easy to understand and operate.  The Python documentation offers more information at the URL listed below:
+%br/
+%br/
+%a(href='https://docs.python.org/2/library/pdb.html' target='x')
+  https://docs.python.org/2/library/pdb.html
+%br/
+%br/
+
