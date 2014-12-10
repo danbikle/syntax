@@ -12,10 +12,7 @@
 
 Ruby offers me an elegant way to embed variables within a string:
 %pre
-  %code.ruby
-    myvariable = "World"
-    mystring   = "Hello #{myvariable}"
-    p(mystring)
+  =render 'python_str_interpolate1'
 
 The obvious way to glue together strings in Python is to use a plus-operator:
 %pre
@@ -23,7 +20,6 @@ The obvious way to glue together strings in Python is to use a plus-operator:
     myvariable = "World"
     mystring   = "Hello " + myvariable
     print(mystring)
-
 
 In Python, another way to do this is displayed below:
 %pre
