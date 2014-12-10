@@ -1,0 +1,37 @@
+.q1 Question:
+.q2 In Python, how do I embed variables within a string?
+.tags
+  %span.tagtag Tags:
+  .tag python
+  .tag string
+  .tag interpolate
+  .tag embed
+  .tag concatenate
+  .tag ruby
+%br/
+
+Ruby offers me an elegant way to embed variables within a string:
+%pre
+  %code.ruby
+    myvariable = "World"
+    mystring   = "Hello #{myvariable}"
+    p(mystring)
+
+The obvious way to glue together strings in Python is to use a plus-operator:
+%pre
+  %code.python
+    myvariable = "World"
+    mystring   = "Hello " + myvariable
+    print(mystring)
+
+
+In Python, another way to do this is displayed below:
+%pre
+  %code.python
+    myvariable = "World"
+    mystring   = "Hello {0}".format(myvariable)
+    print(mystring)
+
+I like the Ruby way.
+
+
