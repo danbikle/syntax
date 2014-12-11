@@ -2,19 +2,16 @@
 .q2 In Bundler how do I binstub a gem subset?
 .tags
   %span.tagtag Tags:
-  .tag bundler
-  .tag bundle
-  .tag ruby
-  .tag gemfile
-  .tag gem
-  .tag binstubs
-  .tag thin
+  %a.xtag(href='/tags/bundler') bundler
+  %a.xtag(href='/tags/bundle') bundle
+  %a.xtag(href='/tags/ruby') ruby
+  %a.xtag(href='/tags/gemfile') gemfile
+  %a.xtag(href='/tags/gem') gem
+  %a.xtag(href='/tags/binstubs') binstubs
+  %a.xtag(href='/tags/thin') thin
 %br/
 
 Sometimes in a Rails app I will run a bundler command like this:
-%br/
-%br/
-
 
 %pre
   %code.bash
@@ -46,12 +43,7 @@ How do I declare that I want only a subset of binstubs placed in bin?
 %br/
 
 
-Answer:
-%br/
-%br/
-
-
-I should use syntax like this:
+Answer, I should use syntax like this:
 %pre
   %code.bash
     bundle binstubs thin
