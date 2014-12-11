@@ -1,0 +1,48 @@
+.q1 Question:
+.q2 In Python how do I convert a datetime to unix-time?
+.tags
+  %span.tagtag Tags:
+  .tag python
+  .tag datetime
+  .tag epoch
+  .tag strptime
+  .tag strftime
+  .tag unix_time
+  .tag epoch
+  .tag epoch_time
+
+%br/
+
+I often encounter Python use-cases asking me to convert datetime to different formats.
+%br/
+%br/
+
+One format I see often is 'epoch-time' or sometimes called 'unix-time'.
+%br/
+%br/
+
+It is an integer format (usually but sometimes float) which represents a datetime as the number of seconds since 1970-01-01 00:00:00.
+%br/
+%br/
+
+The datetime 1970-01-01 00:00:00 is sometimes called the 'epoch'.
+%br/
+%br/
+
+So, a unix-time of 59 would be 59 seconds after the epoch and thus represent this datetime:
+1970-01-01 00:00:59
+%br/
+%br/
+
+Here is a more interesting demonstration of converting a date to unix-time:
+
+%pre
+  %code.python
+    from datetime import datetime
+    ds1 = '2014-10-31'
+    dd1 = datetime.strptime(ds1, '%Y-%m-%d')
+    print(dd1)
+    di1 = (dd1-datetime(1970,1,1)).total_seconds()
+    print(di1)
+
+I have found that unix-time is a useful format for helping me to serve plots of time-series data to the web using a combo of Rails and D3.js
