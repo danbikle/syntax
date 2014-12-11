@@ -42,7 +42,7 @@ Here is a more interesting demonstration of converting a date to unix-time:
     ds1 = '2014-10-31'
     dd1 = datetime.strptime(ds1, '%Y-%m-%d')
     print(dd1)
-    di1 = (dd1-datetime(1970,1,1)).total_seconds()
-    print(di1)
+    unix_time = (dd1-datetime(1970,1,1)).total_seconds()
+    print(unix_time)
 
 I have found that unix-time is a useful format for helping me to serve plots of time-series data to the web using a combo of Rails and D3.js
