@@ -1,0 +1,76 @@
+.q1 Question:
+.q2 In Bundler how do I binstub a gem subset?
+.tags
+  %span.tagtag Tags:
+  .tag bundler
+  .tag bundle
+  .tag ruby
+  .tag gemfile
+  .tag gem
+  .tag binstubs
+  .tag thin
+%br/
+
+Sometimes in a Rails app I will run a bundler command like this:
+%br/
+%br/
+
+
+%pre
+  %code.bash
+    bundle install --binstubs
+
+This command will place executable files (called 'binstubs') in the bin subdirectory.
+%br/
+%br/
+
+
+If any gem in the Gemfile has a corresponding binstub,
+then that file will get copied into bin.
+%br/
+%br/
+
+
+Sometimes I dont want all the binstubs placed in bin.
+%br/
+%br/
+
+
+Sometimes I want just a subset.
+%br/
+%br/
+
+
+How do I declare that I want only a subset of binstubs placed in bin?
+%br/
+%br/
+
+
+Answer:
+%br/
+%br/
+
+
+I should use syntax like this:
+%pre
+  %code.bash
+    bundle binstubs thin
+
+After I run the above shell command,
+assuming I have gem 'thin' in my Gemfile,
+I should find one new binstub in my bin directory named thin.
+%br/
+%br/
+
+
+And I can then use this shell command
+%pre
+  %code.bash
+    bin/thin -p 3000 
+to start to start the thin webserver for my Rails app.
+%br/
+%br/
+
+
+
+
