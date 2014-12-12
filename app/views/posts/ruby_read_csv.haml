@@ -6,6 +6,10 @@
   %a.xtag(href='/tags/csv') csv
   %a.xtag(href='/tags/ruby') ruby
   %a.xtag(href='/tags/rails') rails
+  %a.xtag(href='/tags/json') json
+  %a.xtag(href='/tags/to_json') to_json
+  %a.xtag(href='/tags/read') read
+  %a.xtag(href='/tags/map') map
 %br/
 
 I am currently working on a use-case which reuires that I feed data from a CSV file into a chart served by D3.js
@@ -15,13 +19,27 @@ An early step in this process is to use Rails to read data from the CSV file.
 %br/
 %br/
 
-The syntax below demonstrates the reading of data from a CSV file:
+The syntax below demonstrates the reading of data from a CSV file
+which looks like this:
+%pre
+  %code.bash
+    1241136000,1.325
+    1241136300,1.324
+    1241136600,1.323
+    1241136900,1.322
+    1241137200,1.321
+    1241137500,1.325
+    1241137800,1.329
+    1241138100,1.325
+    1241138400,1.326
+    1241138700,1.327
 
 %pre
   %code.ruby
     require 'csv'
-    rows4json = CSV.read("db/small.csv")
-    p rows4json
-
+    csvrows = CSV.read("db/small.csv")
+    p csvrows
+    rows4json = csvrows.map{|row| {:x =>row[0],:y =>row[1]} }
+    p rows4json.to_json
 %br/
 %br/
