@@ -19,8 +19,9 @@ The syntax below demonstrates the reading of data from a CSV file:
 
 %pre
   %code.ruby
-    CSV.foreach("path/to/file.csv") { |row| p(row) }
-
+    require 'csv'
+    rows4json = CSV.read("db/small.csv")
+    p rows4json
 
 %br/
 %br/
