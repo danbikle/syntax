@@ -1,0 +1,26 @@
+.q1 Question:
+.q2 In Ruby how do I read data from CSV file?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/array') array
+  %a.xtag(href='/tags/csv') csv
+  .tag ruby
+  .tag rails
+%br/
+
+I am currently working on a use-case which reuires that I feed data from a CSV file into a chart served by D3.js
+%br/
+%br/
+An early step in this process is to use Rails to read data from the CSV file.
+%br/
+%br/
+
+The syntax below demonstrates the reading of data from a CSV file:
+
+%pre
+  %code.ruby
+    CSV.foreach("path/to/file.csv") { |row| p(row) }
+
+
+%br/
+%br/
