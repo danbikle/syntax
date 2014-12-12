@@ -1,0 +1,61 @@
+.q1 Question:
+.q2 For Firefox On Linux how do I install latest flash plugin?
+.tags
+  %span.tagtag Tags:
+  .tag firefox
+  .tag linux
+  .tag flash
+  .tag plugin
+  .tag adobe
+%br/
+
+I prefer to do all my web surfing from a Linux laptop.
+%br/
+%br/
+
+I assume that people who web-serve viruses to browsers are usually targeting people on Windows or Mac.
+%br/
+%br/
+
+Obviously Linux is not 100% safe but it is probably safer than Windows or Mac.
+%br/
+%br/
+
+In order to see flash-content in my Linux-Firefox-browser, I need to have the flash plugin installed.
+%br/
+%br/
+
+I can download the plugin from this URL:
+%br/
+%br/
+
+%a(href='http://get.adobe.com/flashplayer/' target='x')
+  http://get.adobe.com/flashplayer/
+
+
+Although my laptop runs Ubuntu,
+from the select-option-field,
+ I pick the .tar.gz for other Linux option rather than the APT for Ubuntu option.
+%br/
+%br/
+
+After the download I run shell commands like this:
+%pre
+  %code.bash
+    cd /tmp/
+    tar zxvf ~/Downloads/install_flash_player_11_linux.x86_64.tar.gz
+    mkdir -p ~/.mozilla/plugins/
+    mv libflashplayer.so ~/.mozilla/plugins/
+    pkill firefox
+    firefox &
+
+Next I can test that the plugin is working okay at this URL:
+%br/
+%br/
+
+%a(href='www.youtube.com' target='x')
+  www.youtube.com
+%br/
+%br/
+
+
