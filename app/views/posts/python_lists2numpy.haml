@@ -12,7 +12,7 @@ When I work with Python NumPy, I often encounter use-cases
 which require that I create a NumPy Array from lists.
 %br/
 %br/
-The syntax below demonstrates creation of a simple Array from two lists which act as columns in the Array:
+The syntax below demonstrates creation of a simple Array from two lists which act as rowss in the Array:
 
 %pre
   %code.python
@@ -29,12 +29,19 @@ Another technique is to create an empty Array and then fill it with data from li
     import numpy as np
     list0 = [1.1, 2.2, 3.3]
     list1 = [11.1, 22.2, 33.3]
+    number_of_rows    = 2
+    number_of_columns = len(list0)
+    myarray2 = np.zeros((number_of_rows, number_of_columns))
+    myarray2[0,:] = list0
+    myarray2[1,:] = list1
+    print(myarray2)
+    print('If I want list0,1 to be columns instead of rows, do this:')
     number_of_rows    = len(list0)
     number_of_columns = 2
-    myarray2 = np.zeros((number_of_rows, number_of_columns))
-    myarray2[:,0] = list0
-    myarray2[:,1] = list1
-    print(myarray2)
+    myarray3 = np.zeros((number_of_rows, number_of_columns))
+    myarray3[:,0] = list0
+    myarray3[:,1] = list1
+    print(myarray3)
 
 When I work with Python NumPy, I encounter Numpy Arrays frequently.
 %br/

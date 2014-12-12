@@ -1,0 +1,37 @@
+.q1 Question:
+.q2 In Python NumPy how do I create a List from Array?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/python') python
+  %a.xtag(href='/tags/numpy') numpy
+  %a.xtag(href='/tags/array') array
+  %a.xtag(href='/tags/list') list
+  .tag tuple
+%br/
+
+When I work with Python NumPy, I often encounter use-cases
+which require that I create a List from a column in a NumPy Array.
+%br/
+%br/
+The syntax below demonstrates creation of a simple Array from two lists which act as rows in the Array.  Then it shows how to create a list from row or column:
+
+%pre
+  %code.python
+    import numpy as np
+    list0 = [1.1, 2.2, 3.3]
+    list1 = [11.1, 22.2, 33.3]
+    myarray = np.array([list0, list1])
+    print(myarray)
+    print('NumPy to English: 0th row, all columns.')
+    row0 = myarray[0,:]
+    list2 = list(row0)
+    print(list2)
+    print('If I want to convert columns to lists try this.')
+    print('NumPy to English: All rows, 0th column.')
+    col0 = myarray[:,0]
+    list3 = list(col0)
+    print(list3)
+
+When I work with Python NumPy, I often pass data between Lists and Arrays.
+%br/
+%br/
