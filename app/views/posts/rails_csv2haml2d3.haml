@@ -1,11 +1,14 @@
+.q1 Question:
 .q2 In Rails how do I use D3.js to plot CSV file?
-
+.tags
+  %span.tagtag Tags:
   .tag rails
   .tag d3
   .tag javascript
   .tag haml
   .tag csv
   .tag plot
+  .tag sed
 %br/
 Most Rails use-cases which require the serving of data from a data-store,
 result in me connecting my Rails app to a database server like Postgres.
@@ -68,4 +71,17 @@ Next, I create the CSV file.  I call it small.csv and put it in /tmp/d3plot/db/:
     dan@hp /tmp/d3plot/db $ 
     dan@hp /tmp/d3plot/db $ 
 
+HAML is a great DSL syntax for Rails demos. I use it to act as a container of different interpreted languages.  It cannot support a heavy request load but it can really shine when I use it to serve prototypes.  The page you are reading now is written in HAML.
+
+%br/
+%br/
+
+So for this demo, I work on the HAML file which I use to glue together several types of syntax:
+
+%ul
+  %li HTML
+  %li CSS
+  %li Ruby
+  %li Javascript
+  %li D3.js
 
