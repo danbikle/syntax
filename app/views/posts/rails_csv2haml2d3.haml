@@ -1,0 +1,71 @@
+.q2 In Rails how do I use D3.js to plot CSV file?
+
+  .tag rails
+  .tag d3
+  .tag javascript
+  .tag haml
+  .tag csv
+  .tag plot
+%br/
+Most Rails use-cases which require the serving of data from a data-store,
+result in me connecting my Rails app to a database server like Postgres.
+%br/
+%br/
+
+Sometimes though the data-store is a CSV file rather than a database.
+%br/
+%br/
+
+I can think of two ways to deal with this.
+%br/
+%br/
+
+One way is to copy the CSV data into a database and then connect Rails to the database.
+%br/
+%br/
+
+This post describes another way, which is to serve the data directly from the CSV file.
+%br/
+%br/
+
+I start the demo by creating a new Rails app on my laptop:
+%pre
+  %code.bash
+    cd /tmp/
+    rails new d3plot -d postgresql
+    cd d3plot
+    sed -i '1a gem "rails_12factor","0.0.3"' Gemfile
+    sed -i '1a gem "thin",          "1.6.3"' Gemfile
+    sed -i '1a gem "haml-rails",    "0.5.3"' Gemfile
+    sed -i '1a gem "haml",          "4.0.5"' Gemfile
+    sed -i '1a ruby "2.1.5"'                 Gemfile
+    bundle install
+    bundle binstub thin
+    bin/rails g controller charts eur_usd
+    bin/rake db:create
+    bin/rake db:migrate
+    bin/thin -p 3004 start
+
+Next, I create the CSV file.  I call it small.csv and put it in /tmp/d3plot/db/:
+%pre
+  %code.bash
+    dan@hp ~ $ 
+    dan@hp ~ $ cd /tmp/d3plot/db/
+    dan@hp /tmp/d3plot/db $ 
+    dan@hp /tmp/d3plot/db $ vi small.csv
+    dan@hp /tmp/d3plot/db $ 
+    dan@hp /tmp/d3plot/db $ cat small.csv
+    1241136000,1.325
+    1241136300,1.329
+    1241136600,1.320
+    1241136900,1.325
+    1241137200,1.327
+    1241137500,1.329
+    1241137800,1.323
+    1241138100,1.320
+    1241138400,1.326
+    1241138700,1.320
+    dan@hp /tmp/d3plot/db $ 
+    dan@hp /tmp/d3plot/db $ 
+
+
