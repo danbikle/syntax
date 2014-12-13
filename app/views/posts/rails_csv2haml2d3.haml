@@ -107,3 +107,24 @@ Next, I visited the HAML page with my browser: localhost:3004/charts/eur_usd
 
 I saw this:
 %img(src='/myassets/rails_csv2haml2d31.png')
+
+Then, I deployed it to heroku.
+
+%pre
+  %code.bash
+    cd /tmp/d3plot/
+    git init .
+    git add .
+    git commit hi
+    heroku apps:create d3plot
+    git push heroku master
+
+Now, we can see it here:
+%br/
+%br/
+%a(href='http://d3plot.herokuapp.com/charts/eur_usd' target='x')
+  http://d3plot.herokuapp.com/charts/eur_usd
+
+%br/
+%br/
+
