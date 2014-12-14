@@ -1,0 +1,21 @@
+.q1 Question:
+.q2 In Ruby how do I write to a file?
+.tags
+  %span.tagtag Tags:
+  .tag ruby
+  .tag write
+  .tag file
+  .tag open
+%br/
+Let the syntax do the writing:
+
+%pre
+  %code.ruby
+    mystring = 'hello world'
+    fh = File.open('/tmp/hello.txt','w')
+    fh.puts mystring
+    fh.close
+    p 'Do it another way'
+    File.open('/tmp/bye.txt', 'w') do |fh2|
+    fh2.puts 'bye now'
+    end
