@@ -1,0 +1,27 @@
+<code class='python'># zl20.py
+
+# Buy on 27th sell on 4th
+
+from zipline     import api
+from collections import deque
+import numpy  as np
+import pandas as pd
+import pdb
+import datetime
+
+def initialize(context):
+    ct        = context
+    ct.tkr    = api.symbol('^GSPC')
+
+def handle_data(context, data):
+    ct = context
+    adate = data[ct.tkr].datetime
+    dom   = int(datetime.datetime.strftime(adate,'%d'))
+    if (dom > 0) & (dom < 5):
+        api.order_target_percent(ct.tkr, 1.0)
+    if (dom > 4) & (dom < 27):
+        api.order_target_percent(ct.tkr, 0.0)
+    if dom > 26:
+        api.order_target_percent(ct.tkr, 1.0)
+    api.record(GSPC=data[api.symbol('^GSPC')].price*1000.0)
+</code>

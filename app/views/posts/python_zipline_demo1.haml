@@ -1,0 +1,59 @@
+.q1 Question:
+.q2 How do I demo Quantopian Zipline?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/python') python
+  %a.xtag(href='/tags/quantopian') quantopian
+  %a.xtag(href='/tags/zipline') zipline
+  %a.xtag(href='/tags/bash') bash
+  .tag trading
+  .tag backtester
+%br/
+
+I found out about Zipline at this URL:
+
+%br/
+%br/
+
+%a(href='http://quantopian.com' target='x')
+  http://quantopian.com
+
+
+%br/
+%br/
+
+The first step to learning Zipline is to write a shell script.  Here is a demo script:
+%pre
+  =render 'python_zipline_demo11'
+
+Next, write a python script.  Here is a demo script:
+%pre
+  =render 'python_zipline_demo12'
+The above script implements a very simple trading algorithm.
+%br/
+%br/
+
+Then, write another python script which helps us visualize the results:
+%pre
+  =render 'python_zipline_demo13'
+
+Next, run the shell script which should call both the Python scripts.
+When the shell script runs it should look like this:
+%pre
+  =render 'python_zipline_demo14'
+
+Also, a plot should appear which looks like this:
+%br/
+%img(src='/myassets/python_zipline_demo11.png')
+%br/
+
+When I analyze the above plot I see that the algorithm fails to perform better than buy and hold.
+%br/
+%br/
+
+Zipline is well suited for backtesting trading algos for GSPC
+which is the symbol for the S and P 500.
+
+%br/
+%br/
+

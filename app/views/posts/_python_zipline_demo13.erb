@@ -1,0 +1,17 @@
+<code class='python'># /a/ks/zl/zl20_analyze.py
+
+# This file is called by:
+# zl20.bash
+# After zl20.bash runs zl20.py
+# The calling is done automatically for me by the zipline api.
+
+import matplotlib.pyplot as plt
+
+def analyze(context, perf):
+    ax1 = plt.subplot(211)
+    perf.portfolio_value.plot(ax=ax1)
+    ax2 = plt.subplot(212, sharex=ax1)
+    perf.GSPC.plot(ax=ax2)
+    plt.gcf().set_size_inches(18, 8)
+    plt.show()
+</code>
