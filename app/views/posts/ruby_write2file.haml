@@ -6,6 +6,7 @@
   %a.xtag(href='/tags/write') write
   %a.xtag(href='/tags/file') file
   %a.xtag(href='/tags/open') open
+  .tag puts
 %br/
 Let the syntax do the writing:
 
@@ -16,6 +17,5 @@ Let the syntax do the writing:
     fh.puts mystring
     fh.close
     p 'Do it another way'
-    File.open('/tmp/bye.txt', 'w') do |fh2|
-    fh2.puts 'bye now'
-    end
+    File.open('/tmp/bye.txt', 'w') { |fh2| fh2.puts 'bye now' }
+
