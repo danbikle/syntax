@@ -1,1 +1,19 @@
-<code class='python'>under construction</code>
+<code class='python'># This script should convert unixtime, in the form of a float,
+# into a datetime object.
+
+import datetime
+
+d1970 = datetime.datetime.strptime( '1970-01-01', '%Y-%m-%d' )
+
+unixtime = 59.0
+
+mydate = d1970 + datetime.timedelta(seconds=int(unixtime)) 
+
+print(mydate)
+</code>
+<hr />
+<code class='bash'>dan@hp /a/ks/b/python $ python unixtime2datetime.py 
+1970-01-01 00:00:59
+dan@hp /a/ks/b/python $ 
+dan@hp /a/ks/b/python $ 
+</code>
