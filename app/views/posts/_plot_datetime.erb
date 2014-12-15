@@ -1,0 +1,29 @@
+<code class='bash'>$ cat eur_usd.csv
+1241136000,1.325
+1241136300,1.329
+1241136600,1.320
+1241136900,1.325
+1241137200,1.327
+1241137500,1.329
+1241137800,1.323
+1241138100,1.320
+1241138400,1.326
+1241138700,1.320
+</code>
+<hr />
+<code class='python'># plot_datetime.py
+import numpy as np
+eur_usd = np.loadtxt('eur_usd.csv', delimiter=',')
+
+import datetime
+d1970 = datetime.datetime.strptime( '1970-01-01', '%Y-%m-%d' )
+
+# Python comprehension is like Ruby-enummerable.map()
+mydt = [d1970 + datetime.timedelta(seconds=int(utime)) for utime in eur_usd[:,0]]
+# I should get a list from above expression.
+
+import matplotlib.pyplot as plt
+plt.plot(mydt, eur_usd[:,1])
+plt.show()
+
+</code>

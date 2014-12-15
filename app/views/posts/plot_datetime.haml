@@ -1,0 +1,51 @@
+.q1 Question:
+.q2 In Python Matplotlib how do I plot a time series?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/python') python
+  %a.xtag(href='/tags/matplotlib') matplotlib
+  %a.xtag(href='/tags/plot') plot
+  %a.xtag(href='/tags/pyplot') pyplot
+  %a.xtag(href='/tags/numpy') numpy
+  %a.xtag(href='/tags/comprehension') comprehension
+
+%br/
+%br/
+
+
+When I want to plot data using Matplotlib the first thing I do is
+separate the x-values into a list and the y-values into a list.
+%br/
+%br/
+
+Then the Matplotlib pyplot API is easy to use.
+%br/
+%br/
+
+Usually the values are either integers or floats.
+%br/
+%br/
+
+What if I want the x-values to correspond to a time dimension?
+%br/
+%br/
+
+The answer is easy, just convert whatever x-values I have into a list of 
+datetime objects.
+%br/
+%br/
+
+To script the conversion, I need to understand how to build a Python-comprehension which is a feature similar the .map() method in Ruby.
+%br/
+%br/
+Let the syntax do the plotting:
+%pre
+  =render 'plot_datetime1'
+
+I should see something like this:
+
+%br/
+img(src='/myassets/plot_datetime.png')
+%br/
+
+
