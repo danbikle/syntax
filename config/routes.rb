@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'hireme/index'
+  get 'hireme'    => 'hireme#index'
   root 'posts#index'
   get 'posts'     => 'posts#index'
   get 'blog'      => 'posts#blog'
