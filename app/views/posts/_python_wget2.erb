@@ -1,4 +1,6 @@
-<code class='python'>import urllib2
+<code class='python'># python_wget.py
+
+import urllib2
 response = urllib2.urlopen('http://www.syntax611.com')
 myhtml = response.read()
 response.close()
@@ -7,4 +9,20 @@ fh.write(myhtml)
 fh.close()
 from subprocess import call
 call(['head','/tmp/syntax611.html'])
+</code>
+<code class='bash'>dan@hp /tmp $ 
+dan@hp /tmp $ python python_wget.py 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Syntax611.com</title>
+  <link href="/myassets/site.css" media="all" rel="stylesheet" />
+  <script src="/myassets/jquery-2.1.0.min.js"></script>
+  <script src="/myassets/d3.min.js"></script>
+  <script src="/myassets/jquery.tablesorter.min.js"></script>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="/myassets/styles/default.css">
+dan@hp /tmp $ 
+dan@hp /tmp $ 
+dan@hp /tmp $ 
 </code>
