@@ -1,0 +1,10 @@
+<code class='python'>import urllib2
+response = urllib2.urlopen('http://www.syntax611.com')
+myhtml = response.read()
+response.close()
+fh = open('/tmp/syntax611.html','w')
+fh.write(myhtml)
+fh.close()
+from subprocess import call
+call(['head','/tmp/syntax611.html'])
+</code>
