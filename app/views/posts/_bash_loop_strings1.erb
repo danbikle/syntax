@@ -1,0 +1,39 @@
+<code class='bash'>#!/bin/bash
+
+# ~/fx/script/split2x.bash
+
+# This script should take a large Forex CSV file as input.
+# Then it should divide up the file into 6 pieces.
+# Each piece contains data for 1 pair aud_usd for example.
+# Each of the 6 pieces should be divided into 12 pieces.
+# Each piece contains data for a 5 minute interval.
+# I have 12 pieces because 1 hour contains 12 intervals.
+# When done, this script should give me 6x12 == 72 files.
+
+fxpairs='aud_usd eur_usd gbp_usd nzd_usd usd_cad usd_jpy'
+strvals='
+:00:00, 
+:05:00,
+:10:00,
+:15:00,
+:20:00,
+:25:00,
+:30:00,
+:35:00,
+:40:00,
+:45:00,
+:50:00,
+:55:00,
+'
+
+for fxpair in $fxpairs
+do
+  for strval in $strvals
+  do
+    echo $fxpair
+    echo $strval
+  done
+done
+
+exit
+</code>

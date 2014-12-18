@@ -1,0 +1,87 @@
+.q1 Question:
+.q2 In Bash how do I loop through a set of stings?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/bash') bash
+  %a.xtag(href='/tags/loop') loop
+  .tag grep
+  .tag echo
+  .tag for
+  .tag fxpair
+  .tag forex
+  .tag eur_usd
+%br/
+
+A use-case I encountered recently asks me to split a large CSV file full of Forex data into 72 smaller files.
+
+%br/
+%br/
+The data looks like this:
+%pre
+  %code
+    $ head large_fx.csv
+    aud_usd,2009-05-01 00:00:00,0.729
+    aud_usd,2009-05-01 00:05:00,0.7288
+    aud_usd,2009-05-01 00:10:00,0.729
+    aud_usd,2009-05-01 00:15:00,0.7287
+    aud_usd,2009-05-01 00:20:00,0.7287
+    aud_usd,2009-05-01 00:25:00,0.729
+    aud_usd,2009-05-01 00:30:00,0.729
+    aud_usd,2009-05-01 00:35:00,0.7294
+    aud_usd,2009-05-01 00:40:00,0.7293
+    aud_usd,2009-05-01 00:45:00,0.7289
+
+%br/
+%br/
+
+I use a nested loop to do this.
+
+%br/
+%br/
+
+The outer loop divides the data by pair name.
+
+%br/
+%br/
+
+The 6 pair names are:
+%br/
+
+%ul
+  %li aud_usd
+  %li eur_usd
+  %li gbp_usd
+  %li nzd_usd
+  %li usd_cad
+  %li usd_jpy
+%br/
+
+The outer loop divides the data by a timestamp string.
+%br/
+%br/
+
+The 12 string values are listed below:
+%br/
+
+%ul
+  %li :00:00,
+  %li :05:00,
+  %li :10:00,
+  %li :15:00,
+  %li :20:00,
+  %li :25:00,
+  %li :30:00,
+  %li :35:00,
+  %li :40:00,
+  %li :45:00,
+  %li :50:00,
+  %li :55:00,
+
+%br/
+
+I started off by using 'echo' to help me craft the loop syntax:
+
+%pre
+  =render 'bash_loop_strings1'
+
+
