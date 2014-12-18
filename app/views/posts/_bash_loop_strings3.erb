@@ -1,0 +1,200 @@
+<code class='bash'>#!/bin/bash
+
+# ~/fx/script/split2x.bash
+
+# This script should take a large Forex CSV file as input.
+# Then it should divide up the file into 6 pieces.
+# Each piece contains data for 1 pair aud_usd for example.
+# Each of the 6 pieces should be divided into 12 pieces.
+# Each piece contains data for a 5 minute interval.
+# I have 12 pieces because 1 hour contains 12 intervals.
+# When done, this script should give me 6x12 == 72 files.
+
+fxpairs='aud_usd eur_usd gbp_usd nzd_usd usd_cad usd_jpy'
+strvals='
+:00:00, 
+:05:00,
+:10:00,
+:15:00,
+:20:00,
+:25:00,
+:30:00,
+:35:00,
+:40:00,
+:45:00,
+:50:00,
+:55:00,
+'
+
+# cd to the right place:
+cd ~/fx/db/
+bigcsv=ibf5min.csv
+
+for fxpair in $fxpairs
+do
+  for strval in $strvals
+  do
+    minn=`echo $strval|cut -c 2,3`
+    file_out=${fxpair}_${minn}.csv
+    grep $strval $bigcsv|grep $fxpair > $file_out
+    head -1 $file_out
+  done
+done
+
+exit
+</code>
+<code class='bash'>
+dan@hp ~/fx/db $ 
+dan@hp ~/fx/db $ 
+dan@hp ~/fx/db $ ./split2x.bash 
+aud_usd,2009-05-01 00:00:00,0.729
+aud_usd,2009-05-01 00:05:00,0.7288
+aud_usd,2009-05-01 00:10:00,0.729
+aud_usd,2009-05-01 00:15:00,0.7287
+aud_usd,2009-05-01 00:20:00,0.7287
+aud_usd,2009-05-01 00:25:00,0.729
+aud_usd,2009-05-01 00:30:00,0.729
+aud_usd,2009-05-01 00:35:00,0.7294
+aud_usd,2009-05-01 00:40:00,0.7293
+aud_usd,2009-05-01 00:45:00,0.7289
+aud_usd,2009-05-01 00:50:00,0.7288
+aud_usd,2009-05-01 00:55:00,0.7282
+eur_usd,2009-05-01 00:00:00,1.3245
+eur_usd,2009-05-01 00:05:00,1.3251
+eur_usd,2009-05-01 00:10:00,1.3255
+eur_usd,2009-05-01 00:15:00,1.325
+eur_usd,2009-05-01 00:20:00,1.3245
+eur_usd,2009-05-01 00:25:00,1.3251
+eur_usd,2009-05-01 00:30:00,1.325
+eur_usd,2009-05-01 00:35:00,1.3254
+eur_usd,2009-05-01 00:40:00,1.3258
+eur_usd,2009-05-01 00:45:00,1.3256
+eur_usd,2009-05-01 00:50:00,1.3255
+eur_usd,2009-05-01 00:55:00,1.3256
+gbp_usd,2009-05-01 00:00:00,1.4804
+gbp_usd,2009-05-01 00:05:00,1.4806
+gbp_usd,2009-05-01 00:10:00,1.4814
+gbp_usd,2009-05-01 00:15:00,1.4805
+gbp_usd,2009-05-01 00:20:00,1.4803
+gbp_usd,2009-05-01 00:25:00,1.4804
+gbp_usd,2009-05-01 00:30:00,1.4805
+gbp_usd,2009-05-01 00:35:00,1.4813
+gbp_usd,2009-05-01 00:40:00,1.4814
+gbp_usd,2009-05-01 00:45:00,1.4812
+gbp_usd,2009-05-01 00:50:00,1.4804
+gbp_usd,2009-05-01 00:55:00,1.4781
+nzd_usd,2009-05-01 00:00:00,0.5664
+nzd_usd,2009-05-01 00:05:00,0.5666
+nzd_usd,2009-05-01 00:10:00,0.5672
+nzd_usd,2009-05-01 00:15:00,0.5666
+nzd_usd,2009-05-01 00:20:00,0.5664
+nzd_usd,2009-05-01 00:25:00,0.5663
+nzd_usd,2009-05-01 00:30:00,0.5662
+nzd_usd,2009-05-01 00:35:00,0.5666
+nzd_usd,2009-05-01 00:40:00,0.5664
+nzd_usd,2009-05-01 00:45:00,0.566
+nzd_usd,2009-05-01 00:50:00,0.5658
+nzd_usd,2009-05-01 00:55:00,0.5643
+usd_cad,2009-05-01 00:00:00,1.1934
+usd_cad,2009-05-01 00:05:00,1.1929
+usd_cad,2009-05-01 00:10:00,1.1925
+usd_cad,2009-05-01 00:15:00,1.1923
+usd_cad,2009-05-01 00:20:00,1.1925
+usd_cad,2009-05-01 00:25:00,1.1922
+usd_cad,2009-05-01 00:30:00,1.1916
+usd_cad,2009-05-01 00:35:00,1.1912
+usd_cad,2009-05-01 00:40:00,1.1911
+usd_cad,2009-05-01 00:45:00,1.1914
+usd_cad,2009-05-01 00:50:00,1.1918
+usd_cad,2009-05-01 00:55:00,1.1928
+usd_jpy,2009-05-01 00:00:00,98.8906
+usd_jpy,2009-05-01 00:05:00,98.9281
+usd_jpy,2009-05-01 00:10:00,99.0619
+usd_jpy,2009-05-01 00:15:00,99.0413
+usd_jpy,2009-05-01 00:20:00,98.9877
+usd_jpy,2009-05-01 00:25:00,99.0232
+usd_jpy,2009-05-01 00:30:00,99.0192
+usd_jpy,2009-05-01 00:35:00,99.082
+usd_jpy,2009-05-01 00:40:00,99.149
+usd_jpy,2009-05-01 00:45:00,99.1364
+usd_jpy,2009-05-01 00:50:00,99.0845
+usd_jpy,2009-05-01 00:55:00,99.0352
+dan@hp ~/fx/db $ 
+dan@hp ~/fx/db $ 
+dan@hp ~/fx/db $ 
+dan@hp ~/fx/db $ ll *usd*csv
+-rw-rw-r-- 1 dan dan 1178789 Dec 18 01:31 aud_usd_00.csv
+-rw-rw-r-- 1 dan dan 1169868 Dec 18 01:31 aud_usd_05.csv
+-rw-rw-r-- 1 dan dan 1170607 Dec 18 01:31 aud_usd_10.csv
+-rw-rw-r-- 1 dan dan 1173666 Dec 18 01:31 aud_usd_15.csv
+-rw-rw-r-- 1 dan dan 1173965 Dec 18 01:31 aud_usd_20.csv
+-rw-rw-r-- 1 dan dan 1174099 Dec 18 01:31 aud_usd_25.csv
+-rw-rw-r-- 1 dan dan 1175620 Dec 18 01:31 aud_usd_30.csv
+-rw-rw-r-- 1 dan dan 1175535 Dec 18 01:31 aud_usd_35.csv
+-rw-rw-r-- 1 dan dan 1175401 Dec 18 01:31 aud_usd_40.csv
+-rw-rw-r-- 1 dan dan 1175870 Dec 18 01:31 aud_usd_45.csv
+-rw-rw-r-- 1 dan dan 1175917 Dec 18 01:31 aud_usd_50.csv
+-rw-rw-r-- 1 dan dan 1176145 Dec 18 01:31 aud_usd_55.csv
+-rw-rw-r-- 1 dan dan 1180690 Dec 18 01:31 eur_usd_00.csv
+-rw-rw-r-- 1 dan dan 1170542 Dec 18 01:31 eur_usd_05.csv
+-rw-rw-r-- 1 dan dan 1172417 Dec 18 01:31 eur_usd_10.csv
+-rw-rw-r-- 1 dan dan 1175666 Dec 18 01:31 eur_usd_15.csv
+-rw-rw-r-- 1 dan dan 1175777 Dec 18 01:31 eur_usd_20.csv
+-rw-rw-r-- 1 dan dan 1176139 Dec 18 01:31 eur_usd_25.csv
+-rw-rw-r-- 1 dan dan 1177315 Dec 18 01:31 eur_usd_30.csv
+-rw-rw-r-- 1 dan dan 1177552 Dec 18 01:31 eur_usd_35.csv
+-rw-rw-r-- 1 dan dan 1177314 Dec 18 01:31 eur_usd_40.csv
+-rw-rw-r-- 1 dan dan 1177759 Dec 18 01:31 eur_usd_45.csv
+-rw-rw-r-- 1 dan dan 1178004 Dec 18 01:31 eur_usd_50.csv
+-rw-rw-r-- 1 dan dan 1178021 Dec 18 01:31 eur_usd_55.csv
+-rw-rw-r-- 1 dan dan 1176332 Dec 18 01:31 gbp_usd_00.csv
+-rw-rw-r-- 1 dan dan 1166157 Dec 18 01:31 gbp_usd_05.csv
+-rw-rw-r-- 1 dan dan 1167898 Dec 18 01:31 gbp_usd_10.csv
+-rw-rw-r-- 1 dan dan 1171013 Dec 18 01:31 gbp_usd_15.csv
+-rw-rw-r-- 1 dan dan 1171292 Dec 18 01:31 gbp_usd_20.csv
+-rw-rw-r-- 1 dan dan 1171604 Dec 18 01:31 gbp_usd_25.csv
+-rw-rw-r-- 1 dan dan 1172670 Dec 18 01:31 gbp_usd_30.csv
+-rw-rw-r-- 1 dan dan 1173124 Dec 18 01:31 gbp_usd_35.csv
+-rw-rw-r-- 1 dan dan 1173215 Dec 18 01:31 gbp_usd_40.csv
+-rw-rw-r-- 1 dan dan 1173086 Dec 18 01:31 gbp_usd_45.csv
+-rw-rw-r-- 1 dan dan 1173586 Dec 18 01:31 gbp_usd_50.csv
+-rw-rw-r-- 1 dan dan 1173575 Dec 18 01:31 gbp_usd_55.csv
+-rw-rw-r-- 1 dan dan 1155887 Dec 18 01:31 nzd_usd_00.csv
+-rw-rw-r-- 1 dan dan 1146084 Dec 18 01:31 nzd_usd_05.csv
+-rw-rw-r-- 1 dan dan 1147154 Dec 18 01:31 nzd_usd_10.csv
+-rw-rw-r-- 1 dan dan 1149554 Dec 18 01:31 nzd_usd_15.csv
+-rw-rw-r-- 1 dan dan 1149830 Dec 18 01:31 nzd_usd_20.csv
+-rw-rw-r-- 1 dan dan 1149874 Dec 18 01:31 nzd_usd_25.csv
+-rw-rw-r-- 1 dan dan 1151152 Dec 18 01:31 nzd_usd_30.csv
+-rw-rw-r-- 1 dan dan 1151396 Dec 18 01:31 nzd_usd_35.csv
+-rw-rw-r-- 1 dan dan 1151339 Dec 18 01:31 nzd_usd_40.csv
+-rw-rw-r-- 1 dan dan 1151271 Dec 18 01:31 nzd_usd_45.csv
+-rw-rw-r-- 1 dan dan 1151584 Dec 18 01:31 nzd_usd_50.csv
+-rw-rw-r-- 1 dan dan 1152044 Dec 18 01:31 nzd_usd_55.csv
+-rw-rw-r-- 1 dan dan 1153815 Dec 18 01:31 usd_cad_00.csv
+-rw-rw-r-- 1 dan dan 1143034 Dec 18 01:31 usd_cad_05.csv
+-rw-rw-r-- 1 dan dan 1144921 Dec 18 01:31 usd_cad_10.csv
+-rw-rw-r-- 1 dan dan 1147973 Dec 18 01:31 usd_cad_15.csv
+-rw-rw-r-- 1 dan dan 1147970 Dec 18 01:31 usd_cad_20.csv
+-rw-rw-r-- 1 dan dan 1148857 Dec 18 01:31 usd_cad_25.csv
+-rw-rw-r-- 1 dan dan 1149833 Dec 18 01:31 usd_cad_30.csv
+-rw-rw-r-- 1 dan dan 1149945 Dec 18 01:31 usd_cad_35.csv
+-rw-rw-r-- 1 dan dan 1150062 Dec 18 01:31 usd_cad_40.csv
+-rw-rw-r-- 1 dan dan 1149525 Dec 18 01:31 usd_cad_45.csv
+-rw-rw-r-- 1 dan dan 1150104 Dec 18 01:31 usd_cad_50.csv
+-rw-rw-r-- 1 dan dan 1150500 Dec 18 01:31 usd_cad_55.csv
+-rw-rw-r-- 1 dan dan 1216347 Dec 18 01:31 usd_jpy_00.csv
+-rw-rw-r-- 1 dan dan 1206645 Dec 18 01:31 usd_jpy_05.csv
+-rw-rw-r-- 1 dan dan 1207785 Dec 18 01:31 usd_jpy_10.csv
+-rw-rw-r-- 1 dan dan 1211214 Dec 18 01:31 usd_jpy_15.csv
+-rw-rw-r-- 1 dan dan 1211341 Dec 18 01:31 usd_jpy_20.csv
+-rw-rw-r-- 1 dan dan 1211563 Dec 18 01:31 usd_jpy_25.csv
+-rw-rw-r-- 1 dan dan 1212745 Dec 18 01:31 usd_jpy_30.csv
+-rw-rw-r-- 1 dan dan 1213038 Dec 18 01:31 usd_jpy_35.csv
+-rw-rw-r-- 1 dan dan 1212989 Dec 18 01:31 usd_jpy_40.csv
+-rw-rw-r-- 1 dan dan 1213046 Dec 18 01:31 usd_jpy_45.csv
+-rw-rw-r-- 1 dan dan 1213461 Dec 18 01:31 usd_jpy_50.csv
+-rw-rw-r-- 1 dan dan 1213455 Dec 18 01:31 usd_jpy_55.csv
+dan@hp ~/fx/db $ 
+dan@hp ~/fx/db $ 
+</code>

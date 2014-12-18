@@ -55,7 +55,7 @@ The 6 pair names are:
   %li usd_jpy
 %br/
 
-The outer loop divides the data by a timestamp string.
+The inner loop divides the data by a timestamp string.
 %br/
 %br/
 
@@ -86,4 +86,10 @@ I started off by using 'echo' to help me craft the loop syntax:
 Then, I worked with echo a bit more to help me create some file names:
 %pre
   =render 'bash_loop_strings2'
+
+Next, I used grep to finish the script:
+%pre
+  =render 'bash_loop_strings3'
+
+I can see in the above outpt that the script gave me exactly what I wanted and it ran in under 1 minute.  Yay!
 
