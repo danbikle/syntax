@@ -1,0 +1,119 @@
+<code class='bash'>#!/bin/bash
+
+# ~/fx/script/split2x.bash
+
+# This script should take a large Forex CSV file as input.
+# Then it should divide up the file into 6 pieces.
+# Each piece contains data for 1 pair aud_usd for example.
+# Each of the 6 pieces should be divided into 12 pieces.
+# Each piece contains data for a 5 minute interval.
+# I have 12 pieces because 1 hour contains 12 intervals.
+# When done, this script should give me 6x12 == 72 files.
+
+fxpairs='aud_usd eur_usd gbp_usd nzd_usd usd_cad usd_jpy'
+strvals='
+:00:00, 
+:05:00,
+:10:00,
+:15:00,
+:20:00,
+:25:00,
+:30:00,
+:35:00,
+:40:00,
+:45:00,
+:50:00,
+:55:00,
+'
+
+for fxpair in $fxpairs
+do
+  for strval in $strvals
+  do
+    minn=`echo $strval|cut -c 2,3`
+    file_out=${fxpair}_${minn}.csv
+    echo $file_out
+  done
+done
+
+exit
+</code>
+<code class='bash'>
+dan@hp ~/fx/db $ 
+dan@hp ~/fx/db $ 
+dan@hp ~/fx/db $ ./split2x.bash 
+aud_usd_00.csv
+aud_usd_05.csv
+aud_usd_10.csv
+aud_usd_15.csv
+aud_usd_20.csv
+aud_usd_25.csv
+aud_usd_30.csv
+aud_usd_35.csv
+aud_usd_40.csv
+aud_usd_45.csv
+aud_usd_50.csv
+aud_usd_55.csv
+eur_usd_00.csv
+eur_usd_05.csv
+eur_usd_10.csv
+eur_usd_15.csv
+eur_usd_20.csv
+eur_usd_25.csv
+eur_usd_30.csv
+eur_usd_35.csv
+eur_usd_40.csv
+eur_usd_45.csv
+eur_usd_50.csv
+eur_usd_55.csv
+gbp_usd_00.csv
+gbp_usd_05.csv
+gbp_usd_10.csv
+gbp_usd_15.csv
+gbp_usd_20.csv
+gbp_usd_25.csv
+gbp_usd_30.csv
+gbp_usd_35.csv
+gbp_usd_40.csv
+gbp_usd_45.csv
+gbp_usd_50.csv
+gbp_usd_55.csv
+nzd_usd_00.csv
+nzd_usd_05.csv
+nzd_usd_10.csv
+nzd_usd_15.csv
+nzd_usd_20.csv
+nzd_usd_25.csv
+nzd_usd_30.csv
+nzd_usd_35.csv
+nzd_usd_40.csv
+nzd_usd_45.csv
+nzd_usd_50.csv
+nzd_usd_55.csv
+usd_cad_00.csv
+usd_cad_05.csv
+usd_cad_10.csv
+usd_cad_15.csv
+usd_cad_20.csv
+usd_cad_25.csv
+usd_cad_30.csv
+usd_cad_35.csv
+usd_cad_40.csv
+usd_cad_45.csv
+usd_cad_50.csv
+usd_cad_55.csv
+usd_jpy_00.csv
+usd_jpy_05.csv
+usd_jpy_10.csv
+usd_jpy_15.csv
+usd_jpy_20.csv
+usd_jpy_25.csv
+usd_jpy_30.csv
+usd_jpy_35.csv
+usd_jpy_40.csv
+usd_jpy_45.csv
+usd_jpy_50.csv
+usd_jpy_55.csv
+dan@hp ~/fx/db $ 
+dan@hp ~/fx/db $ 
+</code>

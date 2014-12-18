@@ -10,6 +10,7 @@
   %a.xtag(href='/tags/fxpair') fxpair
   %a.xtag(href='/tags/forex') forex
   %a.xtag(href='/tags/eur_usd') eur_usd
+  %a.xtag(href='/tags/cut') cut
 %br/
 
 A use-case I encountered recently asks me to split a large CSV file full of Forex data into 72 smaller files.
@@ -30,8 +31,6 @@ The data looks like this:
     aud_usd,2009-05-01 00:35:00,0.7294
     aud_usd,2009-05-01 00:40:00,0.7293
     aud_usd,2009-05-01 00:45:00,0.7289
-
-%br/
 %br/
 
 I use a nested loop to do this.
@@ -84,4 +83,7 @@ I started off by using 'echo' to help me craft the loop syntax:
 %pre
   =render 'bash_loop_strings1'
 
+Then, I worked with echo a bit more to help me create some file names:
+%pre
+  =render 'bash_loop_strings2'
 
