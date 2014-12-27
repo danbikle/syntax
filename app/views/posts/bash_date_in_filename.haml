@@ -1,0 +1,22 @@
+.q1 Question:
+.q2 In Bash how do I place date-string in filename?
+.tags
+  .tag date
+  .tag bash
+  .tag back_quote
+  .tag filename
+  .tag shell
+%br/
+I often write Bash scripts requiring me to create a log file which has a date-string in the filename.
+%br/
+%br/
+I offer a Bash syntax demo below:
+%pre
+  %code.bash
+    myts=`date --utc +'%Y%m%d_%H_%M_%S'`
+    echo The UTC time is now $myts > /tmp/timenow_${myts}.txt
+%br/
+
+
+
+
