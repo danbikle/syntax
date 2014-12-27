@@ -1,0 +1,23 @@
+<code class='python'># /a/ks/b/python/matplotlib_use_agg.py
+
+# In Python Matplotlib how do I plot to image with no pop-up window?
+
+import matplotlib
+# The next line prevents pop-up from halting the script after first plot:
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+xvals = [1.1, 1.2, 2.2]
+yvals = [1.4, 1.2, 2.2]
+plt.plot(xvals, yvals)
+plt.savefig('/tmp/myplot1')
+plt.close
+
+plt.plot(xvals, yvals)
+plt.savefig('/tmp/myplot2')
+plt.close
+
+plt.plot(xvals, yvals)
+plt.savefig('/tmp/myplot3')
+plt.close
+</code>

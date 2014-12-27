@@ -12,3 +12,21 @@ I recently encountered a use-case asking me to plot data to several images from 
 %br/
 %br/
 The default behavior of Matplotlib is to display a pop-up window when ask the API for a plot.
+%br/
+%br/
+Then the script stops.
+%br/
+%br/
+This behavior is inconvenient if I want to plot data to several images from a single script.
+
+%br/
+%br/
+
+The line of syntax I use to work-around this behavior usually resides early in the script:
+
+%pre
+  =render 'matplotlib_no_popup_window1'
+
+%br/
+%br/
+
