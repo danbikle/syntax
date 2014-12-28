@@ -83,10 +83,10 @@ mkdir -p /tmp/wget_scrape4_us
 cd       /tmp/wget_scrape4_us
 
 wget www.scrape4.us
-https://scrape4us.herokuapp.com/blog
-https://scrape4us.herokuapp.com/adv
-https://scrape4us.herokuapp.com/contact
-https://scrape4us.herokuapp.com/users/signup
+wget https://scrape4us.herokuapp.com/blog
+wget https://scrape4us.herokuapp.com/adv
+wget https://scrape4us.herokuapp.com/contact
+wget https://scrape4us.herokuapp.com/users/signup
 
 mkdir -p /tmp/wget_noko4_us
 cd       /tmp/wget_noko4_us
@@ -96,10 +96,9 @@ wget https://noko4us.herokuapp.com/blog
 wget https://noko4us.herokuapp.com/demos
 wget https://noko4us.herokuapp.com/contact
 
-wget https://www.noko4.us/blog
-wget https://www.noko4.us/links
-wget https://www.noko4.us/demos
-wget https://www.noko4.us/contact
-
+wget www.noko4.us/blog
+wget www.noko4.us/links
+wget www.noko4.us/demos
+wget www.noko4.us/contact
 
 exit
