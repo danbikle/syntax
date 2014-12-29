@@ -1,0 +1,8 @@
+<code class='haml'>%h1 Chart
+:ruby
+  myjson=''
+  jsonf = "#{Rails.root}/app/views/pred_lr/chart.json"
+  File.open(jsonf,'r'){|cj|cj.each_line{|aline| myjson &lt;&lt;aline}}
+:javascript
+  var jsjson = #{myjson}
+</code>
