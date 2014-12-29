@@ -101,4 +101,36 @@ wget www.noko4.us/links
 wget www.noko4.us/demos
 wget www.noko4.us/contact
 
+mkdir -p /tmp/wget_task4_us
+cd       /tmp/wget_task4_us
+
+wget www.task4.us
+wget https://task4us.herokuapp.com/
+wget https://task4us.herokuapp.com/users/sign_up
+wget https://task4us.herokuapp.com/users/sign_in
+wget https://task4us.herokuapp.com/tags
+wget https://task4us.herokuapp.com/ads/1
+
+mkdir -p /tmp/wget_hpricot_com
+cd       /tmp/wget_hpricot_com
+
+wget www.hpricot.com
+wget www.hpricot.com/contact
+wget www.hpricot.com/demos
+wget www.hpricot.com/blog
+wget www.hpricot.com/alt
+
+mkdir -p /tmp/wget_hackternoon_com
+cd       /tmp/wget_hackternoon_com
+
+wget www.hackternoon.com
+wget www.hackternoon.com/contact
+wget www.hackternoon.com/blog
+
+wget https://hackternoon.herokuapp.com/
+wget https://hackternoon.herokuapp.com/projects
+wget https://hackternoon.herokuapp.com/users/sign_up
+wget https://hackternoon.herokuapp.com/users/sign_in
+
+
 exit

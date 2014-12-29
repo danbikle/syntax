@@ -1,0 +1,58 @@
+<code class='sql'>dan@hp ~/x611/app/views/posts $ 
+dan@hp ~/x611/app/views/posts $ 
+dan@hp ~/x611/app/views/posts $ cat postgres_json1.sql 
+DROP   TABLE  json1;
+CREATE TABLE  json1 (xval FLOAT, yval FLOAT);
+INSERT INTO   json1 VALUES (1.1, 2.2);
+INSERT INTO   json1 VALUES (3.3, -4.4);
+SELECT * FROM json1 ORDER BY xval;
+
+-- Demo ROW_TO_JSON()
+SELECT
+ROW_TO_JSON(subq) AS myjson
+FROM(SELECT * FROM json1) subq
+;
+
+-- Demo ARRAY_AGG()
+SELECT
+ARRAY_AGG(ROW_TO_JSON(subq)) AS myjson
+FROM(SELECT * FROM json1) subq
+;
+
+-- Demo ARRAY_TO_JSON()
+SELECT
+ARRAY_TO_JSON(ARRAY_AGG(ROW_TO_JSON(subq))) AS myjson
+FROM(SELECT * FROM json1) subq
+;
+dan@hp ~/x611/app/views/posts $ 
+dan@hp ~/x611/app/views/posts $ 
+dan@hp ~/x611/app/views/posts $ psql -f postgres_json1.sql -P pager=no
+DROP TABLE
+CREATE TABLE
+INSERT 0 1
+INSERT 0 1
+ xval | yval 
+------+------
+  1.1 |  2.2
+  3.3 | -4.4
+(2 rows)
+
+          myjson          
+--------------------------
+ {"xval":1.1,"yval":2.2}
+ {"xval":3.3,"yval":-4.4}
+(2 rows)
+
+                             myjson                             
+----------------------------------------------------------------
+ {"{\"xval\":1.1,\"yval\":2.2}","{\"xval\":3.3,\"yval\":-4.4}"}
+(1 row)
+
+                       myjson                       
+----------------------------------------------------
+ [{"xval":1.1,"yval":2.2},{"xval":3.3,"yval":-4.4}]
+(1 row)
+
+dan@hp ~/x611/app/views/posts $ 
+dan@hp ~/x611/app/views/posts $ 
+</code>
