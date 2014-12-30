@@ -1,0 +1,19 @@
+.q1 Question:
+.q2 In Ruby how do I sort an array of hashes?
+.tags
+  %a.xtag(href='/tags/ruby') ruby
+  %a.xtag(href='/tags/array') array
+  %a.xtag(href='/tags/hash') hash
+  %a.xtag(href='/tags/sort') sort
+  %a.xtag(href='/tags/sort_by') sort_by
+  %a.xtag(href='/tags/enumerable') enumerable
+%br/
+Let Ruby do the talking:
+%pre
+  %code.ruby
+    hash1 = {:k1 => 1.19, :k2 => 2.2}
+    hash2 = {:k1 => 1.11, :k2 => -2.2}
+    hash3 = {:k1 => 11.1, :k2 => 0.1}
+    myarray = [hash1,hash2,hash3]
+    sorted_array1 = myarray.sort_by{|hsh| hsh[:k1]}
+    sorted_array2 = myarray.sort_by{|hsh| hsh[:k2]}
