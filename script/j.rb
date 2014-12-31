@@ -14,13 +14,11 @@
   sdf = "#{Rails.root}/public/spy611.csv"
   pjson = []
   myrows = []
-  morows = []
-  CSV.read(sdf).each{|row| myrows << row if row[1]=~/2014-12/}
-  myrows.each{|row| morows << row if (row[0] == 'lr')}
+  CSV.read(sdf).each{|row| myrows << row if (row[1]=~/2014-12/)and(row[0]=='lr')}
 
 # I should loop through dec and calculate each day gain
 cp = cp1
-morows.each{|row|
+myrows.each{|row|
   # fields: algo,close_price_date,prediction,pct_gain
   cpdate     = row[1]
   prediction = row[2].to_f
@@ -38,13 +36,22 @@ morows.each{|row|
 
 }
 
-pjson[0] = [morows[0][1],cp1]
-for pj in (1..(morows.length)-1) do
-byebug
-  pjson[pj] = [morows[pj][1],morows[pj-1][4]]
+pjson[0] = [myrows[0][1],cp1]
+for pj in (1..(myrows.length)-1) do
+  pjson[pj] = [myrows[pj][1],myrows[pj-1][4]]
 end
 
+pjson = pjson.map{|row| [DateTime.strptime(row[0],'%Y-%m-%d'),row[1]]}
+pjson = pjson.map{|row| {:x=>row[0].strftime('%s').to_i, :y=>row[1]}}
+pjson = pjson.sort_by{|hsh| hsh[:x]}
 
-  
+byebug
 
+ally = [pjson.map{|row| row[:y]},miny,maxy].flatten.sort
+miny = ally.min
+maxy = ally.max
 
+pjson.length
+myrows.length
+
+pjson_s = pjson.to_s.gsub(/:x/,'x').gsub(/:y/,'y').gsub(/=>/,':')
