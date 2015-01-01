@@ -1,0 +1,33 @@
+<code class='bash'>dan@hp ~/x611 $ 
+dan@hp ~/x611 $ 
+dan@hp ~/x611 $ cd /tmp
+dan@hp /tmp $ echo ydate,opn,hgh,lo,cp,vol,adjc > spydata.csv
+dan@hp /tmp $ wget --output-document=spy.csv  http://ichart.finance.yahoo.com/table.csv?s=SPY
+--2015-01-01 02:01:37--  http://ichart.finance.yahoo.com/table.csv?s=SPY
+Resolving ichart.finance.yahoo.com (ichart.finance.yahoo.com)... 206.190.61.106, 206.190.61.107, 216.115.107.206, ...
+Connecting to ichart.finance.yahoo.com (ichart.finance.yahoo.com)|206.190.61.106|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/csv]
+Saving to: ‘spy.csv’
+
+    [ &lt;=>                                   ] 292,247     --.-K/s   in 0.1s    
+
+2015-01-01 02:01:37 (2.35 MB/s) - ‘spy.csv’ saved [292247]
+
+dan@hp /tmp $ 
+dan@hp /tmp $ grep -v Date spy.csv >>  spydata.csv
+dan@hp /tmp $ 
+dan@hp /tmp $ head spydata.csv
+ydate,opn,hgh,lo,cp,vol,adjc
+2014-12-31,207.99,208.19,205.39,205.54,123713700,205.54
+2014-12-30,208.21,208.37,207.51,207.60,73540800,207.60
+2014-12-29,208.22,208.97,208.14,208.72,79643900,208.72
+2014-12-26,208.31,208.85,208.25,208.44,57326700,208.44
+2014-12-24,208.02,208.34,207.72,207.77,42963400,207.77
+2014-12-23,208.17,208.23,207.40,207.75,122167900,207.75
+2014-12-22,206.75,207.47,206.46,207.47,148318900,207.47
+2014-12-19,206.43,207.33,205.61,206.52,245084600,206.52
+2014-12-18,204.74,212.97,203.92,206.78,247780600,205.64
+dan@hp /tmp $ 
+dan@hp /tmp $ 
+</code>

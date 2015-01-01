@@ -1,0 +1,25 @@
+<code class='python'>dan@hp /tmp $ 
+dan@hp /tmp $ python
+Python 2.7.9 |Anaconda 2.1.0 (64-bit)| (default, Dec 12 2014, 14:52:24) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+>>> import pandas as pd
+>>> csv1 = pd.read_csv('/tmp/spydata.csv')
+>>> csv1.head()
+        ydate     opn     hgh      lo      cp        vol    adjc
+0  2014-12-31  207.99  208.19  205.39  205.54  123713700  205.54
+1  2014-12-30  208.21  208.37  207.51  207.60   73540800  207.60
+2  2014-12-29  208.22  208.97  208.14  208.72   79643900  208.72
+3  2014-12-26  208.31  208.85  208.25  208.44   57326700  208.44
+4  2014-12-24  208.02  208.34  207.72  207.77   42963400  207.77
+>>> csv1.tail()
+           ydate    opn    hgh     lo     cp      vol   adjc
+5517  1993-02-04  44.97  45.09  44.47  45.00   531500  29.90
+5518  1993-02-03  44.41  44.84  44.38  44.81   529400  29.77
+5519  1993-02-02  44.22  44.38  44.12  44.34   201300  29.46
+5520  1993-02-01  43.97  44.25  43.97  44.25   480500  29.40
+5521  1993-01-29  43.97  43.97  43.75  43.94  1003200  29.19
+>>> 
+>>> </code>
