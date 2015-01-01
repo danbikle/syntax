@@ -1,8 +1,12 @@
 <code class='bash'>dan@hp ~/x611 $ 
 dan@hp ~/x611 $ 
 dan@hp ~/x611 $ cd /tmp
+dan@hp /tmp $ 
+dan@hp /tmp $ echo Pandas likes a header line in my CSV file > jnk.txt
+dan@hp /tmp $ 
 dan@hp /tmp $ echo ydate,opn,hgh,lo,cp,vol,adjc > spydata.csv
-dan@hp /tmp $ wget --output-document=spy.csv  http://ichart.finance.yahoo.com/table.csv?s=SPY
+dan@hp /tmp $ 
+dan@hp /tmp $ wget --output-document=spy.csv http://ichart.finance.yahoo.com/table.csv?s=SPY
 --2015-01-01 02:01:37--  http://ichart.finance.yahoo.com/table.csv?s=SPY
 Resolving ichart.finance.yahoo.com (ichart.finance.yahoo.com)... 206.190.61.106, 206.190.61.107, 216.115.107.206, ...
 Connecting to ichart.finance.yahoo.com (ichart.finance.yahoo.com)|206.190.61.106|:80... connected.
@@ -14,6 +18,9 @@ Saving to: ‘spy.csv’
 
 2015-01-01 02:01:37 (2.35 MB/s) - ‘spy.csv’ saved [292247]
 
+dan@hp /tmp $ 
+dan@hp /tmp $ echo I dont like the header which Yahoo gives me > jnk.txt
+dan@hp /tmp $ echo so I remove it with grep > jnk.txt
 dan@hp /tmp $ 
 dan@hp /tmp $ grep -v Date spy.csv >>  spydata.csv
 dan@hp /tmp $ 
