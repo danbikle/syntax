@@ -1,0 +1,32 @@
+.q1 Question:
+.q2 In Python how do I create a list from Pandas?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/python') python
+  %a.xtag(href='/tags/pandas') pandas
+  %a.xtag(href='/tags/dataframe') dataframe
+  %a.xtag(href='/tags/numpy') numpy
+  %a.xtag(href='/tags/array') array
+  %a.xtag(href='/tags/list') list
+  %a.xtag(href='/tags/comprehension') comprehension
+%br/
+
+I am currently working with some data which requires that
+I copy data from a column in a Pandas DataFrame into a plain Python List.
+
+%br/
+%br/
+
+We have several ways to do this copy.
+
+%br/
+%br/
+
+I prefer to copy the column into a Numpy Array and then 
+use a python-comprehension to build the list from array elements:
+
+%pre
+  =render 'python_pandas_list'
+
+%br/
+
