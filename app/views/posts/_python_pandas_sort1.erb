@@ -1,0 +1,33 @@
+<code class='python'># mysort.py
+import pandas as pd
+import pdb
+csv1 = pd.read_csv('/tmp/spydata.csv')
+pdb.set_trace()
+csv1.head()
+csv2 = csv1.sort(['ydate'])
+csv2.head()
+</code>
+
+Screen dump:
+
+<code class='python'>dan@hp ~/x611/app/views/posts $ 
+dan@hp ~/x611/app/views/posts $ python mysort.py 
+> /home/dan/syntax611/app/views/posts/mysort.py(6)<module>()
+-> csv1.head()
+(Pdb) csv1.head()
+        ydate     opn     hgh      lo      cp        vol    adjc
+0  2014-12-31  207.99  208.19  205.39  205.54  123713700  205.54
+1  2014-12-30  208.21  208.37  207.51  207.60   73540800  207.60
+2  2014-12-29  208.22  208.97  208.14  208.72   79643900  208.72
+3  2014-12-26  208.31  208.85  208.25  208.44   57326700  208.44
+4  2014-12-24  208.02  208.34  207.72  207.77   42963400  207.77
+(Pdb) csv2 = csv1.sort(['ydate'])
+(Pdb) csv2.head()
+           ydate    opn    hgh     lo     cp      vol   adjc
+5521  1993-01-29  43.97  43.97  43.75  43.94  1003200  29.19
+5520  1993-02-01  43.97  44.25  43.97  44.25   480500  29.40
+5519  1993-02-02  44.22  44.38  44.12  44.34   201300  29.46
+5518  1993-02-03  44.41  44.84  44.38  44.81   529400  29.77
+5517  1993-02-04  44.97  45.09  44.47  45.00   531500  29.90
+(Pdb) 
+</code>

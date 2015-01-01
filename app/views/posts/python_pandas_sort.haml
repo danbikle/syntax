@@ -1,0 +1,29 @@
+.q1 Question:
+.q2 In Python Pandas how do I sort?
+.tags
+  .tag python
+  %a.xtag(href='/tags/pandas') pandas
+  %a.xtag(href='/tags/dataframe') dataframe
+  .tag sort
+
+
+%br/
+
+After I wrote this post:
+%br/
+
+%a(href='/posts/python_pandas_read_csv' )
+  /posts/python_pandas_read_csv
+%br/
+%br/
+
+I notice that my DataFrame object was ordered by ydate in descending order.
+%br/
+%br/
+How do I sort it by ydate in ascending order?
+%br/
+%br/
+The answer is to use the sort() method available to DataFrame objects:
+%pre
+  =render 'python_pandas_sort1'
+
