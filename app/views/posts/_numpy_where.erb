@@ -79,6 +79,21 @@ array([False,  True,  True,  True,  True], dtype=bool)
 When I look at the above Array, I visualize it as a column rotated clockwise.
 <br/>
 <br/>
+Also, note that the colon is a NumPy expression which represents all rows.
+<br/>
+<br/>
+And, note that the zero is a NumPy expression which represents the 0th column which in this case is a column full of dates.
+<br/>
+<br/>
+When working with NumPy I quickly memorized that row-expressions belong on the left of the comma and column-expressions belong on the right.
+<br/>
+<br/>
+If you work with R it will seem familiar.
+<br/>
+<br/>
+If you work with Pandas a lot, it may add cognitive load to your thoughts.
+<br/>
+<br/>
 Now that I have my predicate, and from that I have my column full of Booleans,
 I can apply it to my NumPy Array:
 
@@ -103,17 +118,17 @@ If I match a False to a row in the table, I get nothing.
 <br/>
 <br/>
 
-The way I do this in NumPy is to place the Booleans on the left hand side.
+The way I do this in NumPy is to place the Booleans on the left hand side of the comma which is also left of the column-expression (in this example the column-expression is just a single colon which represents 'all-columns' which is easy to type but sometimes easy to miss).
 <br/>
 <br/>
-In Pandas I place the Booleans on the right hand side.
+In Pandas I place the Booleans on the right hand side of the columns.
 <br/>
 <br/>
 
-In SQL, like Pandas, predicates also go on the right hand side.
+In SQL, like Pandas, predicates also go on the right hand side of the columns.
 <br/>
 <br/>
-Remember: In NumPy we place the Booleans on the LEFT HAND SIDE.
+Remember: In NumPy we place the Booleans LEFT of the columns.
 <br/>
 <br/>
 
