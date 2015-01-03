@@ -1,7 +1,6 @@
 I have a Python Pandas DataFrame which looks like this:
 <pre>
-<code class='python'>
-(Pdb) csv1[['ydates','cp']].tail()
+<code class='python'>(Pdb) csv1[['ydates','cp']].tail()
            ydates       cp
 10095  2014-12-24  2081.88
 10096  2014-12-26  2088.77
@@ -14,14 +13,7 @@ I have a Python Pandas DataFrame which looks like this:
 I turned it into a NumPy Array:
 
 <pre>
-<code class='python'>
-(Pdb) csv1[['ydates','cp']].tail().values
-array([['2014-12-24', 2081.88],
-       ['2014-12-26', 2088.77],
-       ['2014-12-29', 2090.57],
-       ['2014-12-30', 2080.35],
-       ['2014-12-31', 2058.9]], dtype=object)
-(Pdb) np1 = csv1[['ydates','cp']].tail().values
+<code class='python'>(Pdb) np1 = csv1[['ydates','cp']].tail().values
 (Pdb) 
 (Pdb) np1
 array([['2014-12-24', 2081.88],
