@@ -1,0 +1,105 @@
+.q1 Question:
+.q2 In Pandas how do I apply WHERE?
+.tags
+  %span.tagtag Tags:
+  .tag python
+  .tag pandas
+  .tag csv
+  .tag where
+  .tag tail
+  .tag predicate
+  .tag sql
+  .tag sqlite
+
+%br/
+
+I have a Python Pandas DataFrame which looks like this:
+
+
+(Pdb) csv1[['ydates','cp']].tail()
+           ydates       cp
+10095  2014-12-24  2081.88
+10096  2014-12-26  2088.77
+10097  2014-12-29  2090.57
+10098  2014-12-30  2080.35
+10099  2014-12-31  2058.90
+
+If these rows were in Sqlite I could do this SELECT:
+
+SELECT ydates,cp FROM csv1 WHERE ydates > '2014-12-24';
+
+Then, Sqlite would return the last 4 rows.
+
+How do I return the last 4 rows using Pandas?
+
+When I use Pandas for this type of task,
+I first focus my mind on what I call the 'predicate'.
+
+In this example the predicate is this:
+
+ydates > '2014-12-24'
+
+A proper predicate returns a boolean.
+
+The above predicate works well in SQL.
+
+How do I write it in Pandas?
+
+Answer: 
+
+['ydates'] > '2014-12-24'
+
+Now that I have my predicate, I can apply it to my Pandas DataFrame:
+
+csv1['ydates'] > '2014-12-24'
+
+And then I can see something like this:
+
+(Pdb) csv1[['ydates','cp']].tail()
+           ydates       cp
+10095  2014-12-24  2081.88
+10096  2014-12-26  2088.77
+10097  2014-12-29  2090.57
+10098  2014-12-30  2080.35
+10099  2014-12-31  2058.90
+
+(Pdb) pred = csv1['ydates'] > '2014-12-24'
+
+(Pdb) pred.tail()
+10095    False
+10096     True
+10097     True
+10098     True
+10099     True
+Name: ydates, dtype: bool
+
+So now I have a column full of Booleans.
+
+A common idea in Pandas, NumPy, and R is to apply a column full of Booleans
+to data shaped like a table.
+
+If I match a True to a row in the table, I get that row.
+
+If I match a False to a row in the table, I get nothing.
+
+The way I do this Pandas is to place the Booleans on the right hand side.
+
+This is easy (for me) to remember because in SQL, predicates also go on the right hand side.
+
+Let the syntax do the talking:
+
+(Pdb) csv1[['ydates','cp']][pred]
+           ydates       cp
+10096  2014-12-26  2088.77
+10097  2014-12-29  2090.57
+10098  2014-12-30  2080.35
+10099  2014-12-31  2058.90
+
+
+(Pdb) pred2 = csv1['ydates'] == '2014-12-24'
+
+
+(Pdb) csv1[['ydates','cp']][pred2]
+           ydates       cp
+10095  2014-12-24  2081.88
+
