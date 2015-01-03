@@ -70,17 +70,7 @@ csv1['ydates'] > '2014-12-24'
 And then I can see something like this:
 
 <pre>
-<code class='python'>
-
-(Pdb) csv1[['ydates','cp']].tail()
-           ydates       cp
-10095  2014-12-24  2081.88
-10096  2014-12-26  2088.77
-10097  2014-12-29  2090.57
-10098  2014-12-30  2080.35
-10099  2014-12-31  2058.90
-
-(Pdb) pred = csv1['ydates'] > '2014-12-24'
+<code class='python'>(Pdb) pred = csv1['ydates'] > '2014-12-24'
 
 (Pdb) pred.tail()
 10095    False
@@ -109,7 +99,7 @@ If I match a False to a row in the table, I get nothing.
 <br/>
 <br/>
 
-The way I do this Pandas is to place the Booleans on the right hand side.
+The way I do this in Pandas is to place the Booleans on the right hand side.
 <br/>
 <br/>
 

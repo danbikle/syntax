@@ -1,0 +1,158 @@
+I have a Python Pandas DataFrame which looks like this:
+<pre>
+<code class='python'>
+(Pdb) csv1[['ydates','cp']].tail()
+           ydates       cp
+10095  2014-12-24  2081.88
+10096  2014-12-26  2088.77
+10097  2014-12-29  2090.57
+10098  2014-12-30  2080.35
+10099  2014-12-31  2058.90
+</code>
+</pre>
+
+I turned it into a NumPy Array:
+
+<pre>
+<code class='python'>
+(Pdb) csv1[['ydates','cp']].tail().values
+array([['2014-12-24', 2081.88],
+       ['2014-12-26', 2088.77],
+       ['2014-12-29', 2090.57],
+       ['2014-12-30', 2080.35],
+       ['2014-12-31', 2058.9]], dtype=object)
+(Pdb) np1 = csv1[['ydates','cp']].tail().values
+(Pdb) 
+(Pdb) np1
+array([['2014-12-24', 2081.88],
+       ['2014-12-26', 2088.77],
+       ['2014-12-29', 2090.57],
+       ['2014-12-30', 2080.35],
+       ['2014-12-31', 2058.9]], dtype=object)
+(Pdb) 
+</code>
+</pre>
+If these rows were in Sqlite I could do this SELECT:
+
+<pre>
+<code class='sql'>SELECT ydates,cp FROM csv1 WHERE ydates > '2014-12-24';
+</code>
+</pre>
+
+Then, Sqlite would return the last 4 rows.
+<br/>
+<br/>
+How do I return the last 4 rows using NumPy?
+<br/>
+<br/>
+
+When I use NumPy for this type of task,
+I first focus my mind on what I call the 'predicate'.
+<br/>
+<br/>
+
+In this example the predicate is this:
+
+<pre>
+<code class='sql'>
+ydates > '2014-12-24';
+</code>
+</pre>
+
+A proper predicate returns a Boolean.
+<br/>
+<br/>
+
+The above predicate works well in SQL.
+<br/>
+<br/>
+
+How do I write it in NumPy?
+<br/>
+<br/>
+
+Answer: 
+
+<pre>
+<code class='python'>np1[:,0] > '2014-12-24'
+</code>
+</pre>
+
+The above expression returns an Array of Booleans:
+<pre>
+<code class='python'>(Pdb) nppred = np1[:,0] > '2014-12-24'
+(Pdb) nppred
+array([False,  True,  True,  True,  True], dtype=bool)
+</code>
+</pre>
+When I look at the above Array, I visualize it as a column rotated clockwise.
+<br/>
+<br/>
+Now that I have my predicate, and from that I have my column full of Booleans,
+I can apply it to my NumPy Array:
+
+<pre>
+<code class='python'>(Pdb) np1[nppred,:]
+array([['2014-12-26', 2088.77],
+       ['2014-12-29', 2090.57],
+       ['2014-12-30', 2080.35],
+       ['2014-12-31', 2058.9]], dtype=object)
+</code>
+</pre>
+I just demonstrated a common idea in Pandas, NumPy, and R.
+That is, to apply a column full of Booleans to data shaped like a table.
+<br/>
+<br/>
+
+If I match a True to a row in the table, I get that row.
+<br/>
+<br/>
+
+If I match a False to a row in the table, I get nothing.
+<br/>
+<br/>
+
+The way I do this in NumPy is to place the Booleans on the left hand side.
+<br/>
+<br/>
+In Pandas I place the Booleans on the right hand side.
+<br/>
+<br/>
+
+In SQL, like Pandas, predicates also go on the right hand side.
+<br/>
+<br/>
+In NumPy we place the Booleans on the left hand side.
+<br/>
+<br/>
+
+Let the syntax do the talking:
+
+<pre>
+<code class='python'>(Pdb) nppred
+array([False,  True,  True,  True,  True], dtype=bool)
+
+(Pdb) np1[nppred,:]
+array([['2014-12-26', 2088.77],
+       ['2014-12-29', 2090.57],
+       ['2014-12-30', 2080.35],
+       ['2014-12-31', 2058.9]], dtype=object)
+</code>
+</pre>
+
+How do I apply this predicate?
+<pre>
+<code class='sql'>WHERE ydates == '2014-12-24'
+</code>
+</pre>
+
+Answer:
+
+<pre>
+<code class='python'>(Pdb) nppred2 = np1[:,0] == '2014-12-24'
+(Pdb) 
+(Pdb) np1[nppred2,:]
+array([['2014-12-24', 2081.88]], dtype=object)
+(Pdb) 
+</code>
+</pre>
