@@ -1,7 +1,6 @@
 I have a Python Pandas DataFrame which looks like this:
 <pre>
-<code class='python'>
-(Pdb) csv1[['ydates','cp']].tail()
+<code class='python'>(Pdb) csv1[['ydates','cp']].tail()
            ydates       cp
 10095  2014-12-24  2081.88
 10096  2014-12-26  2088.77
@@ -14,8 +13,7 @@ I have a Python Pandas DataFrame which looks like this:
 If these rows were in Sqlite I could do this SELECT:
 
 <pre>
-<code class='sql'>
-SELECT ydates,cp FROM csv1 WHERE ydates > '2014-12-24';
+<code class='sql'>SELECT ydates,cp FROM csv1 WHERE ydates > '2014-12-24';
 </code>
 </pre>
 
@@ -34,8 +32,7 @@ I first focus my mind on what I call the 'predicate'.
 In this example the predicate is this:
 
 <pre>
-<code class='sql'>
-ydates > '2014-12-24';
+<code class='sql'>ydates > '2014-12-24';
 </code>
 </pre>
 
@@ -54,16 +51,14 @@ How do I write it in Pandas?
 Answer: 
 
 <pre>
-<code class='python'>
-['ydates'] > '2014-12-24'
+<code class='python'>['ydates'] > '2014-12-24'
 </code>
 </pre>
 
 Now that I have my predicate, I can apply it to my Pandas DataFrame:
 
 <pre>
-<code class='python'>
-csv1['ydates'] > '2014-12-24'
+<code class='python'>csv1['ydates'] > '2014-12-24'
 </code>
 </pre>
 
@@ -110,9 +105,7 @@ This is easy (for me) to remember because in SQL, predicates also go on the righ
 Let the syntax do the talking:
 
 <pre>
-<code class='python'>
-
-(Pdb) csv1[['ydates','cp']][pred]
+<code class='python'>(Pdb) csv1[['ydates','cp']][pred]
            ydates       cp
 10096  2014-12-26  2088.77
 10097  2014-12-29  2090.57
@@ -126,6 +119,5 @@ Let the syntax do the talking:
 (Pdb) csv1[['ydates','cp']][pred2]
            ydates       cp
 10095  2014-12-24  2081.88
-
 </code>
 </pre>
