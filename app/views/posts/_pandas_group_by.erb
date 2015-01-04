@@ -1,0 +1,51 @@
+I have a Python Pandas DataFrame which looks like this:
+<pre>
+<code class='python'>(Pdb) csv1[['ydates','cp']].head()
+       ydates     cp
+0  1974-12-19  67.65
+1  1974-12-20  66.91
+2  1974-12-23  65.96
+3  1974-12-24  66.88
+4  1974-12-26  67.44
+(Pdb) csv1[['ydates','cp']].tail()
+           ydates       cp
+10095  2014-12-24  2081.88
+10096  2014-12-26  2088.77
+10097  2014-12-29  2090.57
+10098  2014-12-30  2080.35
+10099  2014-12-31  2058.90
+(Pdb) 
+</code>
+</pre>
+
+I want to create a column I call 'yr' which has values like '1974'.
+
+Adding a column to a DataFrame is easy if the data is in a List object.
+
+So now I want to create a List I call 'yr'.
+
+I can do that with two lines of syntax:
+
+ydates = [ ydate[0] for ydate in csv1[['ydates']].values]
+
+yr = [ydate[0:4] for ydate in ydates]
+
+Now I can add the column:
+
+csv1['yr'] = yr
+
+I check the data:
+
+(Pdb) csv1[['ydates','cp','yr']].tail()
+           ydates       cp    yr
+10095  2014-12-24  2081.88  2014
+10096  2014-12-26  2088.77  2014
+10097  2014-12-29  2090.57  2014
+10098  2014-12-30  2080.35  2014
+10099  2014-12-31  2058.90  2014
+(Pdb) 
+
+According to the docs I should be able to GROUP BY yr.
+
+I tried this:
+
