@@ -15,28 +15,33 @@ I have a Python Pandas DataFrame which looks like this:
 10098  2014-12-30  2080.35
 10099  2014-12-31  2058.90
 (Pdb) 
-</code>
-</pre>
+</code></pre>
 
 I want to create a column I call 'yr' which has values like '1974'.
-
+<br />
+<br />
 Adding a column to a DataFrame is easy if the data is in a List object.
+<br />
+<br />
 
 So now I want to create a List I call 'yr'.
+<br />
+<br />
 
 I can do that with two lines of syntax:
-
-ydates = [ ydate[0] for ydate in csv1[['ydates']].values]
-
+<pre>
+<code class='python'>ydates = [ ydate[0] for ydate in csv1[['ydates']].values]
 yr = [ydate[0:4] for ydate in ydates]
+</code></pre>
 
 Now I can add the column:
-
-csv1['yr'] = yr
+<pre>
+<code class='python'>csv1['yr'] = yr
+</code></pre>
 
 I check the data:
-
-(Pdb) csv1[['ydates','cp','yr']].tail()
+<pre>
+<code class='python'>(Pdb) csv1[['ydates','cp','yr']].tail()
            ydates       cp    yr
 10095  2014-12-24  2081.88  2014
 10096  2014-12-26  2088.77  2014
@@ -44,8 +49,57 @@ I check the data:
 10098  2014-12-30  2080.35  2014
 10099  2014-12-31  2058.90  2014
 (Pdb) 
+</code></pre>
 
 According to the docs I should be able to GROUP BY yr.
+<br />
+<br />
 
-I tried this:
-
+I tried and it worked:
+<pre>
+<code class='python'>(Pdb) csv1[['cp','yr']].groupby(['yr']).mean()
+               cp
+yr               
+1974    67.212500
+1975    86.181225
+1976   102.035296
+1977    98.181865
+1978    96.113968
+1979   102.999051
+1980   118.710119
+1981   128.037905
+1982   119.705731
+1983   160.473123
+1984   160.463557
+1985   186.828175
+1986   236.390474
+1987   286.998024
+1988   265.880158
+1989   323.051429
+1990   334.632055
+1991   376.186324
+1992   415.747008
+1993   451.614822
+1994   460.416508
+1995   541.719087
+1996   670.494843
+1997   873.427787
+1998  1085.503254
+1999  1327.329563
+2000  1427.221071
+2001  1194.178992
+2002   993.934802
+2003   965.227540
+2004  1130.649444
+2005  1207.229444
+2006  1310.461235
+2007  1477.184343
+2008  1220.042055
+2009   948.046389
+2010  1139.965516
+2011  1267.638810
+2012  1379.354160
+2013  1643.798968
+2014  1931.376111
+(Pdb) 
+</code></pre>
