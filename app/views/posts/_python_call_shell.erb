@@ -1,0 +1,36 @@
+<code class='python'>dan@hp ~/x611 $ 
+dan@hp ~/x611 $ 
+dan@hp ~/x611 $ python
+Python 2.7.9 |Anaconda 2.1.0 (64-bit)| (default, Dec 12 2014, 14:52:24) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+>>> 
+>>> 
+>>> from subprocess import call
+>>> 
+>>> call(['/bin/date'])
+Mon Jan  5 14:34:45 UTC 2015
+0
+>>> call(['/bin/df -h /home'])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/dan/anaconda/lib/python2.7/subprocess.py", line 522, in call
+    return Popen(*popenargs, **kwargs).wait()
+  File "/home/dan/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/home/dan/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+>>> 
+>>> call(['/bin/df', '-h', '/home'])
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2       910G  600G  264G  70% /
+0
+>>> 
+>>> 
+dan@hp ~/x611 $ 
+dan@hp ~/x611 $ 
+dan@hp ~/x611 $ 
+</code>
