@@ -1,0 +1,11 @@
+<code class='sql'>COPY
+(
+SELECT
+tkr,ydate,closing_price,closing_price_orig
+FROM ydata 
+WHERE tkr = 'IBM'
+order by tkr,ydate
+)
+TO '/tmp/knnydata.csv' CSV HEADER 
+;
+</code>
