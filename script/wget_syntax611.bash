@@ -138,7 +138,6 @@ wget www.knn4.us
 wget www.knn4.us/predictions
 wget knn4us.herokuapp.com
 
-set -x
 mkdir -p /tmp/forex611_com
 cd       /tmp/forex611_com
 wget www.forex611.com
@@ -149,5 +148,12 @@ wget www.forex611.com/software
 wget www.forex611.com/backtests
 wget www.forex611.com/predictions
 wget www.forex611.com/csv
+
+mkdir -p /tmp/ml4us
+cd       /tmp/ml4us
+wget     www.ml4.us
+wget     www.ml4.us/contact
+wget     www.ml4.us/syllabus
+wget     www.ml4.us/posts/linux101
 
 exit
