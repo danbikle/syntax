@@ -1,0 +1,67 @@
+<code class='bash'>dan@hp ~/tmp $ 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ wget  http://www.aerospike.com/artifacts/aerospike-server-community/3.4.0/aerospike-server-community-3.4.0.tar.gz
+--2015-01-14 21:45:07--  http://www.aerospike.com/artifacts/aerospike-server-community/3.4.0/aerospike-server-community-3.4.0.tar.gz
+Resolving www.aerospike.com (www.aerospike.com)... 64.62.160.21
+Connecting to www.aerospike.com (www.aerospike.com)|64.62.160.21|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 5748229 (5.5M) [application/x-gzip]
+Saving to: ‘aerospike-server-community-3.4.0.tar.gz’
+
+100%[======================================>] 5,748,229   5.88MB/s   in 0.9s   
+
+2015-01-14 21:45:08 (5.88 MB/s) - ‘aerospike-server-community-3.4.0.tar.gz’ saved [5748229/5748229]
+
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ tar zxf aerospike-server-community-3.4.0.tar.gz 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ ls -la aerospike-server/
+total 32
+drwxr-xr-x 4 dan dan 4096 Dec  9 02:48 .
+drwxrwxr-x 5 dan dan 4096 Jan 14 21:45 ..
+drwxr-xr-x 2 dan dan 4096 Dec  9 02:48 bin
+-rw-r--r-- 1 dan dan 8241 Dec  5 20:23 LICENSE
+-rw-r--r-- 1 dan dan 3246 Jun  3  2014 README
+drwxr-xr-x 8 dan dan 4096 Dec  9 02:48 share
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ id
+uid=1000(dan) gid=1000(dan) groups=1000(dan),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lpadmin),124(sambashare)
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ cd aerospike-server/
+dan@hp ~/tmp/aerospike-server $ 
+dan@hp ~/tmp/aerospike-server $ ./bin/aerospike init --home ~/aero1 --user dan --group dan
+dan@hp ~/tmp/aerospike-server $ 
+dan@hp ~/tmp/aerospike-server $ cd
+dan@hp ~ $ cd aero1
+dan@hp ~/aero1 $ 
+dan@hp ~/aero1 $ ./bin/aerospike start
+error: super-user priveledges required for this operation. Try the command using sudo.
+dan@hp ~/aero1 $ 
+dan@hp ~/aero1 $ su
+Password: 
+root@hp:/home/dan/aero1# 
+root@hp:/home/dan/aero1# ./bin/aerospike start
+info: started
+root@hp:/home/dan/aero1# 
+root@hp:/home/dan/aero1# ps -ef | grep aero
+dan       1486  1961 11 21:52 ?        00:00:01 /home/dan/aero1/bin/asd --instance 1 --config /home/dan/aero1/etc/aerospike.conf
+root      1684  1465  0 21:52 pts/31   00:00:00 grep --color=auto aero
+root@hp:/home/dan/aero1# 
+root@hp:/home/dan/aero1# ./bin/aerospike status
+info: process running
+root@hp:/home/dan/aero1# 
+root@hp:/home/dan/aero1# ./bin/aerospike stop
+info: stopped
+root@hp:/home/dan/aero1# 
+root@hp:/home/dan/aero1# ps -ef | grep aero
+root      1715  1465  0 21:53 pts/31   00:00:00 grep --color=auto aero
+root@hp:/home/dan/aero1# 
+root@hp:/home/dan/aero1# exit
+exit
+dan@hp ~/aero1 $ 
+dan@hp ~/aero1 $ 
+</code>
