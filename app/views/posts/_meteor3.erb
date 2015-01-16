@@ -1,0 +1,177 @@
+<code class='bash'>dan@hp ~/tmp $ 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ grep RELEASE meteor.sh 
+RELEASE="1.0.2.1"
+TARBALL_URL="https://d3sqy0vbqsdhku.cloudfront.net/packages-bootstrap/${RELEASE}/meteor-bootstrap-${PLATFORM}.tar.gz"
+echo "Meteor ${RELEASE} has been installed in your home directory (~/.meteor)."
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ grep PLATFORM meteor.sh 
+  PLATFORM="os.osx.x86_64"
+    PLATFORM="os.linux.x86_32"
+    PLATFORM="os.linux.x86_64"
+TARBALL_URL="https://d3sqy0vbqsdhku.cloudfront.net/packages-bootstrap/${RELEASE}/meteor-bootstrap-${PLATFORM}.tar.gz"
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ export RELEASE="1.0.2.1"
+dan@hp ~/tmp $ export PLATFORM="os.linux.x86_64"
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ wget http://d3sqy0vbqsdhku.cloudfront.net/packages-bootstrap/${RELEASE}/meteor-bootstrap-${PLATFORM}.tar.gz
+--2015-01-16 00:42:42--  http://d3sqy0vbqsdhku.cloudfront.net/packages-bootstrap/1.0.2.1/meteor-bootstrap-os.linux.x86_64.tar.gz
+Resolving d3sqy0vbqsdhku.cloudfront.net (d3sqy0vbqsdhku.cloudfront.net)... 54.192.144.132, 54.192.145.207, 54.192.144.233, ...
+Connecting to d3sqy0vbqsdhku.cloudfront.net (d3sqy0vbqsdhku.cloudfront.net)|54.192.144.132|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 71690872 (68M) [application/x-tar]
+Saving to: ‘meteor-bootstrap-os.linux.x86_64.tar.gz’
+
+100%[======================================>] 71,690,872   147KB/s   in 10m 47s
+
+2015-01-16 00:53:29 (108 KB/s) - ‘meteor-bootstrap-os.linux.x86_64.tar.gz’ saved [71690872/71690872]
+
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ 
+
+
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ tar zxf meteor-bootstrap-os.linux.x86_64.tar.gz 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ ll .meteor/
+total 20
+drwxr-xr-x   4 dan dan 4096 Dec 23 01:12 ./
+drwxrwxr-x   6 dan dan 4096 Jan 16 00:56 ../
+lrwxrwxrwx   1 dan dan   62 Dec 23 01:12 meteor -> packages/meteor-tool/1.0.38/meteor-tool-os.linux.x86_64/meteor*
+drwxr-xr-x   3 dan dan 4096 Dec 23 01:12 package-metadata/
+drwxr-xr-x 124 dan dan 4096 Dec 23 01:12 packages/
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ mv .meteor ~/
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ cd
+dan@hp ~ $ 
+dan@hp ~ $ cd .meteor
+dan@hp ~/.meteor $ 
+dan@hp ~/.meteor $ find . -name launch-meteor -print
+./packages/meteor-tool/.1.0.38.ieqxkv++os.linux.x86_64+web.browser+web.cordova/meteor-tool-os.linux.x86_64/scripts/admin/launch-meteor
+dan@hp ~/.meteor $ 
+dan@hp ~/.meteor $ ln -s ./packages/meteor-tool/.1.0.38.ieqxkv++os.linux.x86_64+web.browser+web.cordova/meteor-tool-os.linux.x86_64/scripts/admin/launch-meteor .
+dan@hp ~/.meteor $ 
+dan@hp ~/.meteor $ mkdir -p ~/bin/
+dan@hp ~/.meteor $ cd ~/bin/
+dan@hp ~/bin $ 
+dan@hp ~/bin $ ln -s ~/.meteor/launch-meteor .
+dan@hp ~/bin $ 
+dan@hp ~/bin $ cd
+dan@hp ~ $ 
+dan@hp ~ $ which launch-meteor
+dan@hp ~ $ 
+dan@hp ~ $ bash
+dan@hp ~ $ 
+dan@hp ~ $ which launch-meteor
+/home/dan/bin/launch-meteor
+dan@hp ~ $ 
+dan@hp ~ $ cd bin
+dan@hp ~/bin $ 
+dan@hp ~/bin $ ln -s launch-meteor meteor 
+dan@hp ~/bin $ 
+dan@hp ~/bin $ cd
+dan@hp ~ $ 
+dan@hp ~ $ which meteor
+/home/dan/bin/meteor
+dan@hp ~ $ 
+dan@hp ~ $ cd tmp/
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ meteor create meteor1
+meteor1: created.
+
+To run your new app:
+  cd meteor1
+  meteor
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ cd meteor1
+dan@hp ~/tmp/meteor1 $ 
+dan@hp ~/tmp/meteor1 $ 
+dan@hp ~/tmp/meteor1 $ which meteor
+/home/dan/bin/meteor
+dan@hp ~/tmp/meteor1 $ 
+dan@hp ~/tmp/meteor1 $ 
+dan@hp ~/tmp/meteor1 $ meteor
+[[[[[ ~/tmp/meteor1 ]]]]]
+
+=> Started proxy.
+=> Started MongoDB.
+=> Started your app.
+
+=> App running at: http://localhost:3000/
+
+</code>
+
+Other window:
+
+<code class='html'>dan@hp ~ $ 
+dan@hp ~ $ 
+dan@hp ~ $ curl localhost:3000
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;link rel="stylesheet" type="text/css" class="__meteor-css__" href="/20ae2c8d51b2507244e598844414ecdec2615ce3.css">
+
+
+&lt;script type="text/javascript">__meteor_runtime_config__ = {"meteorRelease":"METEOR@1.0.2.1","ROOT_URL":"http://localhost:3000/","ROOT_URL_PATH_PREFIX":"","appId":"qb67hh1drf7ia1co28q2","autoupdateVersion":"f7c139a66554f167d16e00ca4615f4ea0cef7a85","autoupdateVersionRefreshable":"552dc4572cdc1c616aae686a9e6473b7f7cd2fcf","autoupdateVersionCordova":"none"};&lt;/script>
+
+  &lt;script type="text/javascript" src="/packages/underscore.js?0a80a8623e1b40b5df5a05582f288ddd586eaa18">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/meteor.js?81e2f06cff198adaa81b3bc09fc4f3728b7370ec">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/json.js?e22856eae714c681199eabc5c0710b904b125554">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/base64.js?1a63019243b73298e2964e6d4680f25bca657726">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/ejson.js?71047b64b5196348bdbe5fd5eea9ac97a5a9eb14">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/logging.js?07e201b648f16be8435a4f666156995eeda0c750">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/reload.js?da8974b7231dd8c0caccb5f322dcf97329d486d1">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/tracker.js?7f0c5481709a504dd2254ba2a71c1cee78adc280">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/random.js?fe7b46080c91ce482acf6fc326afbc5b176f0502">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/retry.js?1f1dd2c35d300110fdaba51ce4473583bc3bf031">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/check.js?6a833c91fc716468839ed932ff4762828cda2dc8">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/id-map.js?9ea6eaae8d74693ce2505a858d9a5e60cf191298">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/ordered-dict.js?bf8af2f26c8d96bf8b2e6b407d3ed69f23c2cd37">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/geojson-utils.js?81b79d5cf96d00b4b7a28987debcffb665c17526">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/minimongo.js?e8806aa7782b729b2517ebc0cd10b321667f1427">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/ddp.js?41b62dcceb3ce0de6ca79c6aed088cccde6a44d8">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/follower-livedata.js?74156c6baa89da861fc4ddb58ef158eac71e58e0">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/application-configuration.js?dcbf1f0774460fccf098a4c9e8fad4c3a0f2952f">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/insecure.js?3dc9d4a2dad55999b5b15a447d57f3d5fb66b290">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/mongo.js?052f30e968644b2b39a96605ffee73a7684ff37b">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/autoupdate.js?c823646e93561d86e6bcb3cbd2457a8540e519c1">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/meteor-platform.js?499a2f8522e25820b1153c69a92751ccaae507b3">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/autopublish.js?c3059a78bb200b171099fc4fa1a9345101790ddb">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/webapp.js?e1be090051b82f046484dccc2de7d747e50c7328">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/deps.js?504589e1e9585dec8f9f6094e5a87b22de3783a1">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/reactive-dict.js?6b25309b1f0dcf775b44984324878d6f8ad1abc2">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/session.js?e436deefadc999c21b6fd16e8e1ecce55c3c3a55">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/livedata.js?718526445deb4d9baacb6d92c551adea1d36c1e1">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/jquery.js?265926494aaa3929cd2e30da265211c5929f37a4">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/htmljs.js?567eb96d5d22631c03d6aca6afa4c42f0d1295f2">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/observe-sequence.js?2fd807ea171ead273b9e6458607cb226012d9240">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/reactive-var.js?20335b7b37165980ddd9f23943b2e5b00aae1cc2">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/blaze.js?efa68f65e67544b5a05509804bf97e2c91ce75eb">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/ui.js?5a663333fd30f8fd913f110e0ef779e84f67c4b8">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/templating.js?599ba307216da826d8b335332ebcc9a497a369a0">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/spacebars.js?3c496d2950151d744a8574297b46d2763a123bdf">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/launch-screen.js?13e1092ebecdb7208762500188f1dc2dea5603e9">&lt;/script>
+  &lt;script type="text/javascript" src="/packages/global-imports.js?ddfcd9be6cef3c8bb0263139937a05092e4a3fe9">&lt;/script>
+  &lt;script type="text/javascript" src="/template.meteor1.js?e119ff8df948cfe8167f49eb28794995a594841c">&lt;/script>
+  &lt;script type="text/javascript" src="/meteor1.js?a4ef596255404350be2cc45303caea02f934cd17">&lt;/script>
+
+
+
+&lt;title>meteor1&lt;/title>
+&lt;/head>
+&lt;body>
+
+&lt;/body>
+&lt;/html>
+dan@hp ~ $ 
+dan@hp ~ $ 
+dan@hp ~ $ 
+
+</code>
