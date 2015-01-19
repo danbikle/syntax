@@ -1,0 +1,165 @@
+.q1 Question:
+.q2 In Aerospike how I do CRUD with Python?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/aerospike') aerospike
+  .tag python
+  .tag crud
+%br/
+
+The acronym CRUD describes the verbs: Create, Retrieve, Update, and Delete. 
+%br/
+%br/
+
+Many systems allow me to do CRUD.
+%br/
+%br/
+
+For this demo I install Aerospike on my laptop:
+%br/
+%br/
+
+%a(href='http://www.syntax.us/posts/aerospike' target='x')
+  http://www.syntax.us/posts/aerospike
+
+%br/
+%br/
+
+I check that Aerospike is up:
+%br/
+%br/
+
+%pre
+  %code.bash
+dan@hp /tmp $ 
+dan@hp /tmp $ cd
+dan@hp ~ $ cd aero1
+dan@hp ~/aero1 $ 
+dan@hp ~/aero1 $ bin/aerospike status
+info: process running
+dan@hp ~/aero1 $ 
+dan@hp ~/aero1 $ 
+
+I ensure that I have Aerospike Python Client:
+
+%pre
+  =render 'aerospike_python_crud1'
+
+
+I check that I can python-import aerospike:
+
+%pre
+  %code.bash
+    dan@hp ~ $ 
+    dan@hp ~ $ 
+    dan@hp ~ $ python
+    Python 2.7.9 |Anaconda 2.1.0 (64-bit)| (default, Dec 12 2014, 14:52:24) 
+    [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+    Type "help", "copyright", "credits" or "license" for more information.
+    Anaconda is brought to you by Continuum Analytics.
+    Please check out: http://continuum.io/thanks and https://binstar.org
+    >>> 
+    >>> import aerospike
+    >>> 
+    >>> 
+
+I connect to asd daemon:
+
+%pre
+  =render 'aerospike_python_crud2'
+dan@hp ~ $ 
+dan@hp ~ $ 
+dan@hp ~ $ python
+Python 2.7.9 |Anaconda 2.1.0 (64-bit)| (default, Dec 12 2014, 14:52:24) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+>>> 
+>>> import aerospike
+>>> import sys
+>>> import os.path
+>>> 
+>>> mypath = os.path.dirname('__file__')
+>>> 
+>>> config = {'hosts': [('127.0.0.1',3000)],'lua': {'user_path': mypath }}
+>>> 
+>>> client = aerospike.client(config).connect()
+>>> 
+>>> 
+
+
+The C in CRUD means Create.
+I try to create a bin inside a record inside a set which is inside 'test' namespace.
+
+Remember: 
+Aerospike has Namespaces has Sets has Records has bins.
+Namespace > Set > Record > bin
+
+>>> mynamspace = 'test'
+>>> myset      = 'dogs'
+>>> myrecname  = 'Fred'
+>>> myrecpk    = 100
+>>> foodbin    = 'Fred likes catfood'
+>>> agebin     = 4
+>>> 
+>>> myrecord   = {'myrecname': myrecname, 'myrecpk': myrecpk, 'foodbin': foodbin, 'agebin': agebin}
+>>> 
+>>> keytuple     = (mynamspace,myset,myrecpk)
+>>> 
+>>> client.put(keytuple, myrecord)
+0L
+>>> 
+>>> 
+
+The R in CRUD means Retrieve.
+
+Just do it:
+
+>>> 
+>>> (apk, metadata, arecord) = client.get(keytuple)
+>>> 
+>>> apk
+('test', 'dogs', 100, bytearray(b'\xd7\xd6\xdd\xb1}\xfd\xc4\xd7\xfd\xbfs\xae\xc2\xce\xc8y\x08\xa9\x1aH'))
+>>> 
+>>> metadata
+{'gen': 1, 'ttl': 2591654}
+>>> 
+>>> arecord
+{'myrecpk': 100, 'foodbin': u'Fred likes catfood', 'myrecname': u'Fred', 'agebin': 4}
+>>> 
+>>> 
+
+The U in CRUD means Update:
+
+>>> 
+>>> arecord['foodbin'] = 'Fred likes canned food'
+>>> 
+>>> client.put(keytuple, arecord)
+0L
+>>> 
+>>> (apk, metadata, arecord2) = client.get(keytuple)
+>>> 
+>>> arecord2
+{'myrecpk': 100, 'foodbin': u'Fred likes canned food', 'myrecname': u'Fred', 'agebin': 4}
+>>> 
+>>> 
+
+The D in CRUD means Delete:
+
+>>> 
+>>> client.remove(keytuple)
+0L
+>>> 
+>>> client.exists(keytuple)
+(('test', 'dogs', 100, bytearray(b'\xd7\xd6\xdd\xb1}\xfd\xc4\xd7\xfd\xbfs\xae\xc2\xce\xc8y\x08\xa9\x1aH')), None)
+>>> 
+>>> (apk, metadata, arecord3) = client.get(keytuple)
+>>> 
+>>> apk
+('test', 'dogs', 100, bytearray(b'\xd7\xd6\xdd\xb1}\xfd\xc4\xd7\xfd\xbfs\xae\xc2\xce\xc8y\x08\xa9\x1aH'))
+>>> 
+>>> metadata
+>>> 
+>>> arecord3
+>>> 
