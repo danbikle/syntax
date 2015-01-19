@@ -1,0 +1,68 @@
+<code class='bash'>Visit this URL:
+
+http://aerospike.com/download/server/latest/artifact/ubuntu12
+
+Download ubuntu12 software using browser.
+
+cd ~/tmp/
+
+tar zxf ~/Downloads/aerospike-server-community-3.4.1-ubuntu12.04.tgz
+
+cd aerospike-server-community-3.4.1-ubuntu12.04/
+
+ll *tools*deb
+
+sudo dpkg -i aerospike-tools-3.4.1.ubuntu12.04.x86_64.deb
+
+cd /opt/aerospike/
+
+ls -la
+
+ls -ltr /usr/bin|tail
+
+dan@hp /opt/aerospike $ 
+dan@hp /opt/aerospike $ 
+dan@hp /opt/aerospike $ /usr/bin/ascli
+
+Usage: /usr/bin/ascli [options] <command> [args]
+
+Command Line Utility for Aerospike Database
+
+Options:
+  -h <host>
+     The server hostname or IP address. Default: 127.0.0.1
+  -p <port>
+     The server port number. Default: 3000
+  -U <user name>
+     User name used to authenticate with cluster.
+  -P[<password>]
+     Password used to authenticate with cluster.
+     User will be prompted on command line if -P specified and no password is given.
+  -t <timeout>
+     Transaction timeout in milliseconds.
+  --list
+     List the commands.
+  --help
+     Show this help message and exit.
+
+Commands:
+  eval
+  exists
+  get
+  put
+  remove
+  udf-get
+  udf-list
+  udf-put
+  udf-remove
+  udf-record-apply
+  scan-list
+  scan-kill
+  query-list
+  query-kill
+
+Help/Usage on commands:
+  /usr/bin/ascli <command> -u
+dan@hp /opt/aerospike $ 
+dan@hp /opt/aerospike $ 
+</code>
