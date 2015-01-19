@@ -1,1 +1,20 @@
-<code class='python'></code>
+<code class='python'>dan@hp ~ $ 
+dan@hp ~ $ python
+Python 2.7.9 |Anaconda 2.1.0 (64-bit)| (default, Dec 12 2014, 14:52:24) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+>>> 
+>>> import aerospike
+>>> import sys
+>>> import os.path
+>>> 
+>>> mypath = os.path.dirname('__file__')
+>>> 
+>>> config = {'hosts': [('127.0.0.1',3000)],'lua': {'user_path': mypath }}
+>>> 
+>>> client = aerospike.client(config).connect()
+>>> 
+>>> 
+</code>
