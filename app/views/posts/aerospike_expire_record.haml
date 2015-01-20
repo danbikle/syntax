@@ -1,4 +1,33 @@
+.q1 Question:
 .q2 In Aerospike how do I expire a record after 1 hour?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/aerospike') aerospike
+  .tag python
+  .tag meta
+  .tag ttl
+
 
 Aerospike offers the useful feature of allowing me to create temporary records in a set.
 %br/
+
+%pre
+  %code.python
+
+import aerospike
+config = {'hosts': [('127.0.0.1',3000)]}
+client = aerospike.client(config).connect()
+
+mynamspace = 'test'
+myset      = 'secrets'
+myrecname  = 'msg100'
+myrecpk    = 100
+foodbin    = 'Lasagna is for dinner'
+
+myrecord   = {'myrecname': myrecname, 'foodbin': foodbin}
+
+keytuple   = (mynamspace,myset,myrecpk)
+
+client.put(keytuple, myrecord)
+
+
