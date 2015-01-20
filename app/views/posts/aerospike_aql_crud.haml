@@ -1,0 +1,142 @@
+.q1 Question:
+.q2 In Aerospike how I do CRUD with aql?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/aerospike') aerospike
+  .tag aql
+  %a.xtag(href='/tags/crud') crud
+  .tag create
+  .tag retrieve
+  .tag update
+  .tag delete
+  .tag insert
+  .tag select
+
+%br/
+
+The acronym CRUD describes the verbs: Create, Retrieve, Update, and Delete.
+%br/
+%br/
+
+Aerospike is is divided into two pieces: client and server.
+%br/
+%br/
+
+The client software contains a CLI called aql.
+%br/
+%br/
+
+To install the client software, on Ubuntu, I need to use the package manager: 
+%br/
+%br/
+
+Visit this URL:
+%br/
+%br/
+
+%a(href='http://aerospike.com/download/server/latest/artifact/ubuntu12' target='x')
+  http://aerospike.com/download/server/latest/artifact/ubuntu12
+
+%br/
+%br/
+
+Download ubuntu12 software using browser.
+%br/
+%br/
+
+Then do this:
+%pre
+  %code.bash
+    cd ~/tmp/
+
+    tar zxf ~/Downloads/aerospike-server-community-3.4.1-ubuntu12.04.tgz
+
+    cd aerospike-server-community-3.4.1-ubuntu12.04/
+
+    ll *tools*deb
+
+    sudo dpkg -i aerospike-tools-3.4.1.ubuntu12.04.x86_64.deb
+
+    which aql
+
+When I start aql, it looks like this:
+%pre
+  =render 'aerospike_aql_crud1'
+
+The above output should be enough information to do CRUD operations.
+%br/
+%br/
+
+The C in CRUD is the Create operation.
+%br/
+%br/
+
+To create a record I need to attach three pieces of information to the record:
+%br/
+%br/
+
+Namespace
+%br/
+Set
+%br/
+Record Primary Key (PK)
+%br/
+%br/
+
+Also I need to attach some data to the record.
+%br/
+%br/
+
+The data resides in 'bins'.
+%br/
+%br/
+
+Here is the diagram I use to remember the structure:
+%br/
+%br/
+
+Namespace > Set > Record > Bin
+%br/
+\                    ^
+%br/
+PK -----------------|
+%br/
+%br/
+
+A fresh install of Aerospike should have a namespace called 'test' so I will use that.
+%br/
+%br/
+
+Here is a screen dump of me creating a set called cats which contains a record of a cat named 'Chester':
+
+%pre
+  =render 'aerospike_aql_crud2'
+
+That demonstrates the C in CRUD.
+
+Next is R which is the Retrieve operation:
+
+%pre
+  =render 'aerospike_aql_crud3'
+
+Next is U which is the Update operation.
+
+If you know SQL, you know SQL supports Update with the UPDATE command.
+
+Aerospike, however, supports Update with the INSERT command.
+
+The obvious way to do this is to remember the value of PK.
+
+Then I use that PK in an INSERT:
+
+%pre
+  =render 'aerospike_aql_crud4'
+
+Finally in CRUD I see D which means Delete:
+
+%pre
+  =render 'aerospike_aql_crud5'
+
+So, aql is an easy way to do CRUD operations with Aerospike.
+
+%br/

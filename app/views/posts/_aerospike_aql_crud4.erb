@@ -1,0 +1,16 @@
+<code class='sql'>aql> 
+aql> INSERT INTO test.cats(PK, name, age) VALUES (100, 'Sir Chester', 5)
+OK, 1 record affected.
+
+aql> 
+aql> SELECT * FROM test.cats WHERE PK = 100
++---------------+-----+
+| name          | age |
++---------------+-----+
+| "Sir Chester" | 5   |
++---------------+-----+
+1 row in set (0.000 secs)
+
+aql> 
+aql> 
+</code>

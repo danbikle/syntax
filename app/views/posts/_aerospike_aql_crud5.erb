@@ -1,0 +1,15 @@
+<code class='sql'>aql> 
+aql> 
+aql> DELETE FROM test.cats WHERE PK = 100
+OK, 1 record affected.
+
+aql> 
+aql> 
+
+aql> 
+aql> SELECT * FROM test.cats WHERE PK = 100
+Error: (2) AEROSPIKE_ERR_RECORD_NOT_FOUND
+
+aql> 
+aql> 
+</code>

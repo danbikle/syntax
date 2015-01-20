@@ -1,0 +1,151 @@
+<code class='bash'>dan@hp ~/acp $ 
+dan@hp ~/acp $ 
+dan@hp ~/acp $ aql
+Aerospike Query
+Copyright 2013 Aerospike. All rights reserved.
+
+aql> 
+aql> 
+aql> help
+COMMANDS
+    
+    DDL
+        CREATE INDEX <index> ON <ns>[.<set>] (<bin>) NUMERIC|STRING
+        DROP INDEX <ns>[.<set>] <index>
+        REPAIR INDEX <index> ON <ns>[.<set>]
+        
+            <ns> is the namespace for the index.
+            <set> is the set name for the index.
+            <index> is the name of the index.
+        
+        Examples:
+        
+            CREATE INDEX idx_foo ON test.demo (foo) NUMERIC
+            DROP INDEX test.demo idx_foo
+            REPAIR INDEX idx_foo ON test.demo
+        
+    DML
+        INSERT INTO <ns>[.<set>] (PK, <bins>) VALUES (<key>, <values>)
+        DELETE FROM <ns>[.<set>] WHERE PK = <key>
+        
+            <ns> is the namespace for the record.
+            <set> is the set name for the record.
+            <key> is the record's primary key.
+            <key> is the record's primary key.
+            <bins> is a comma-separated list of bin names.
+            <values> is comma-separated list of bin values. Keep it NULL (case insensitive & w/o quotes) to delete the bin
+        
+        Examples:
+        
+            INSERT INTO test.demo (PK, foo, bar) VALUES ('key1', 123, 'abc')
+            DELETE FROM test.demo WHERE PK = 'key1'
+        
+    QUERY
+        SELECT <bins> FROM <ns>[.<set>]
+        SELECT <bins> FROM <ns>[.<set>] WHERE <bin> = <value>
+        SELECT <bins> FROM <ns>[.<set>] WHERE <bin> BETWEEN <lower> AND <upper>
+        SELECT <bins> FROM <ns>[.<set>] WHERE PK = <key>
+        
+            <ns> is the namespace for the records to be queried.
+            <set> is the set name for the record to be queried.
+            <key> is the record's primary key.
+            <bin> is the name of a bin.
+            <value> is the value of a bin.
+            <bins> can be either a wildcard (*) or a comma-separated list of bin names.
+            <lower> is the lower bound for a numeric range query.
+            <upper> is the lower bound for a numeric range query.
+        
+        Examples:
+        
+            SELECT * FROM test.demo
+            SELECT * FROM test.demo WHERE PK = 'key1'
+            SELECT foo, bar FROM test.demo WHERE PK = 'key1'
+            SELECT foo, bar FROM test.demo WHERE foo = 123
+            SELECT foo, bar FROM test.demo WHERE foo BETWEEN 0 AND 999
+        
+    MANAGE UDFS
+        REGISTER MODULE '<filepath>'
+        SHOW MODULES
+        REMOVE MODULE <filename>
+        DESC MODULE <filename>
+        
+            <filepath> is file path to the UDF module(in single quotes).
+            <filename> is file name of the UDF module.
+        
+        Examples:
+        
+            REGISTER MODULE '~/test.lua' 
+            SHOW MODULES
+            DESC MODULE test.lua
+            REMOVE MODULE test.lua
+        
+    INVOKING UDFS
+        EXECUTE <module>.<function>(<args>) ON <ns>[.<set>]
+        EXECUTE <module>.<function>(<args>) ON <ns>[.<set>] WHERE PK = <key>
+        AGGREGATE <module>.<function>(<args>) ON <ns>[.<set>] WHERE <bin> = <value>
+        AGGREGATE <module>.<function>(<args>) ON <ns>[.<set>] WHERE <bin> BETWEEN <lower> AND <upper>
+        
+            <module> is UDF module containing the function to invoke.
+            <function> is UDF to invoke.
+            <args> is a comma-separated list of argument values for the UDF.
+            <ns> is the namespace for the records to be queried.
+            <set> is the set name for the record to be queried.
+            <key> is the record's primary key.
+            <bin> is the name of a bin.
+            <value> is the value of a bin.
+            <lower> is the lower bound for a numeric range query.
+            <upper> is the lower bound for a numeric range query.
+        
+        Examples:
+        
+            EXECUTE myudfs.udf1(2) ON test.demo
+            EXECUTE myudfs.udf1(2) ON test.demo WHERE PK = 'key1'
+            AGGREGATE myudfs.udf2(2) ON test.demo WHERE foo = 123
+            AGGREGATE myudfs.udf2(2) ON test.demo WHERE foo BETWEEN 0 AND 999
+        
+    INFO
+        SHOW NAMESPACES | SETS | BINS | INDEXES
+        SHOW SCANS | QUERIES
+        STAT NAMESPACE <ns> | INDEX <ns> <indexname>
+        STAT SYSTEM
+        
+    JOB MANAGEMENT
+        KILL_QUERY <transaction_id>
+        KILL_SCAN <scan_id>
+        
+    USER ADMINISTRATION
+        CREATE USER <user> PASSWORD <password> ROLE[S] <role1>,<role2>...
+            roles: read|read-write|sys-admin|user-admin
+        DROP USER <user>
+        SET PASSWORD <password> [FOR <user>]
+        GRANT ROLE[S] <role1>,<role2>... TO <user>]
+        REVOKE ROLE[S] <role1>,<role2>... FROM <user>]
+        SHOW USER [<user>]
+        SHOW USERS
+        
+    SETTINGS
+        TIMEOUT                       (time in ms, default: 1000 ms) 
+        RECORD_TTL                    (time in ms, default: 0 ms) 
+        VERBOSE                       (true | false, default false) 
+        ECHO                          (true | false, default false) 
+        FAIL_ON_CLUSTER_CHANGE        (true | false, default true, policy applies to scans) 
+        OUTPUT                        (table | json, default table) 
+        LUA_USERPATH                  <path>, default : /opt/aerospike/usr/udf/lua 
+        LUA_SYSPATH                   <path>, default : /opt/aerospike/sys/udf/lua 
+        
+        To get the value of a setting, run:
+        	
+            aql> GET <setting>
+        	
+        To set the value of a setting, run:
+        	
+            aql> SET <setting> <value>
+        	
+    OTHER
+        RUN <filepath>
+        HELP
+        QUIT|EXIT|Q
+aql> 
+aql> 
+aql> 
+</code>
