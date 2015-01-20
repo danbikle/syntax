@@ -10,13 +10,13 @@ aql> help
 COMMANDS
     
     DDL
-        CREATE INDEX <index> ON <ns>[.<set>] (<bin>) NUMERIC|STRING
-        DROP INDEX <ns>[.<set>] <index>
-        REPAIR INDEX <index> ON <ns>[.<set>]
+        CREATE INDEX &lt;index> ON &lt;ns>[.&lt;set>] (&lt;bin>) NUMERIC|STRING
+        DROP INDEX &lt;ns>[.&lt;set>] &lt;index>
+        REPAIR INDEX &lt;index> ON &lt;ns>[.&lt;set>]
         
-            <ns> is the namespace for the index.
-            <set> is the set name for the index.
-            <index> is the name of the index.
+            &lt;ns> is the namespace for the index.
+            &lt;set> is the set name for the index.
+            &lt;index> is the name of the index.
         
         Examples:
         
@@ -25,15 +25,15 @@ COMMANDS
             REPAIR INDEX idx_foo ON test.demo
         
     DML
-        INSERT INTO <ns>[.<set>] (PK, <bins>) VALUES (<key>, <values>)
-        DELETE FROM <ns>[.<set>] WHERE PK = <key>
+        INSERT INTO &lt;ns>[.&lt;set>] (PK, &lt;bins>) VALUES (&lt;key>, &lt;values>)
+        DELETE FROM &lt;ns>[.&lt;set>] WHERE PK = &lt;key>
         
-            <ns> is the namespace for the record.
-            <set> is the set name for the record.
-            <key> is the record's primary key.
-            <key> is the record's primary key.
-            <bins> is a comma-separated list of bin names.
-            <values> is comma-separated list of bin values. Keep it NULL (case insensitive & w/o quotes) to delete the bin
+            &lt;ns> is the namespace for the record.
+            &lt;set> is the set name for the record.
+            &lt;key> is the record's primary key.
+            &lt;key> is the record's primary key.
+            &lt;bins> is a comma-separated list of bin names.
+            &lt;values> is comma-separated list of bin values. Keep it NULL (case insensitive & w/o quotes) to delete the bin
         
         Examples:
         
@@ -41,19 +41,19 @@ COMMANDS
             DELETE FROM test.demo WHERE PK = 'key1'
         
     QUERY
-        SELECT <bins> FROM <ns>[.<set>]
-        SELECT <bins> FROM <ns>[.<set>] WHERE <bin> = <value>
-        SELECT <bins> FROM <ns>[.<set>] WHERE <bin> BETWEEN <lower> AND <upper>
-        SELECT <bins> FROM <ns>[.<set>] WHERE PK = <key>
+        SELECT &lt;bins> FROM &lt;ns>[.&lt;set>]
+        SELECT &lt;bins> FROM &lt;ns>[.&lt;set>] WHERE &lt;bin> = &lt;value>
+        SELECT &lt;bins> FROM &lt;ns>[.&lt;set>] WHERE &lt;bin> BETWEEN &lt;lower> AND &lt;upper>
+        SELECT &lt;bins> FROM &lt;ns>[.&lt;set>] WHERE PK = &lt;key>
         
-            <ns> is the namespace for the records to be queried.
-            <set> is the set name for the record to be queried.
-            <key> is the record's primary key.
-            <bin> is the name of a bin.
-            <value> is the value of a bin.
-            <bins> can be either a wildcard (*) or a comma-separated list of bin names.
-            <lower> is the lower bound for a numeric range query.
-            <upper> is the lower bound for a numeric range query.
+            &lt;ns> is the namespace for the records to be queried.
+            &lt;set> is the set name for the record to be queried.
+            &lt;key> is the record's primary key.
+            &lt;bin> is the name of a bin.
+            &lt;value> is the value of a bin.
+            &lt;bins> can be either a wildcard (*) or a comma-separated list of bin names.
+            &lt;lower> is the lower bound for a numeric range query.
+            &lt;upper> is the lower bound for a numeric range query.
         
         Examples:
         
@@ -64,13 +64,13 @@ COMMANDS
             SELECT foo, bar FROM test.demo WHERE foo BETWEEN 0 AND 999
         
     MANAGE UDFS
-        REGISTER MODULE '<filepath>'
+        REGISTER MODULE '&lt;filepath>'
         SHOW MODULES
-        REMOVE MODULE <filename>
-        DESC MODULE <filename>
+        REMOVE MODULE &lt;filename>
+        DESC MODULE &lt;filename>
         
-            <filepath> is file path to the UDF module(in single quotes).
-            <filename> is file name of the UDF module.
+            &lt;filepath> is file path to the UDF module(in single quotes).
+            &lt;filename> is file name of the UDF module.
         
         Examples:
         
@@ -80,21 +80,21 @@ COMMANDS
             REMOVE MODULE test.lua
         
     INVOKING UDFS
-        EXECUTE <module>.<function>(<args>) ON <ns>[.<set>]
-        EXECUTE <module>.<function>(<args>) ON <ns>[.<set>] WHERE PK = <key>
-        AGGREGATE <module>.<function>(<args>) ON <ns>[.<set>] WHERE <bin> = <value>
-        AGGREGATE <module>.<function>(<args>) ON <ns>[.<set>] WHERE <bin> BETWEEN <lower> AND <upper>
+        EXECUTE &lt;module>.&lt;function>(&lt;args>) ON &lt;ns>[.&lt;set>]
+        EXECUTE &lt;module>.&lt;function>(&lt;args>) ON &lt;ns>[.&lt;set>] WHERE PK = &lt;key>
+        AGGREGATE &lt;module>.&lt;function>(&lt;args>) ON &lt;ns>[.&lt;set>] WHERE &lt;bin> = &lt;value>
+        AGGREGATE &lt;module>.&lt;function>(&lt;args>) ON &lt;ns>[.&lt;set>] WHERE &lt;bin> BETWEEN &lt;lower> AND &lt;upper>
         
-            <module> is UDF module containing the function to invoke.
-            <function> is UDF to invoke.
-            <args> is a comma-separated list of argument values for the UDF.
-            <ns> is the namespace for the records to be queried.
-            <set> is the set name for the record to be queried.
-            <key> is the record's primary key.
-            <bin> is the name of a bin.
-            <value> is the value of a bin.
-            <lower> is the lower bound for a numeric range query.
-            <upper> is the lower bound for a numeric range query.
+            &lt;module> is UDF module containing the function to invoke.
+            &lt;function> is UDF to invoke.
+            &lt;args> is a comma-separated list of argument values for the UDF.
+            &lt;ns> is the namespace for the records to be queried.
+            &lt;set> is the set name for the record to be queried.
+            &lt;key> is the record's primary key.
+            &lt;bin> is the name of a bin.
+            &lt;value> is the value of a bin.
+            &lt;lower> is the lower bound for a numeric range query.
+            &lt;upper> is the lower bound for a numeric range query.
         
         Examples:
         
@@ -106,21 +106,21 @@ COMMANDS
     INFO
         SHOW NAMESPACES | SETS | BINS | INDEXES
         SHOW SCANS | QUERIES
-        STAT NAMESPACE <ns> | INDEX <ns> <indexname>
+        STAT NAMESPACE &lt;ns> | INDEX &lt;ns> &lt;indexname>
         STAT SYSTEM
         
     JOB MANAGEMENT
-        KILL_QUERY <transaction_id>
-        KILL_SCAN <scan_id>
+        KILL_QUERY &lt;transaction_id>
+        KILL_SCAN &lt;scan_id>
         
     USER ADMINISTRATION
-        CREATE USER <user> PASSWORD <password> ROLE[S] <role1>,<role2>...
+        CREATE USER &lt;user> PASSWORD &lt;password> ROLE[S] &lt;role1>,&lt;role2>...
             roles: read|read-write|sys-admin|user-admin
-        DROP USER <user>
-        SET PASSWORD <password> [FOR <user>]
-        GRANT ROLE[S] <role1>,<role2>... TO <user>]
-        REVOKE ROLE[S] <role1>,<role2>... FROM <user>]
-        SHOW USER [<user>]
+        DROP USER &lt;user>
+        SET PASSWORD &lt;password> [FOR &lt;user>]
+        GRANT ROLE[S] &lt;role1>,&lt;role2>... TO &lt;user>]
+        REVOKE ROLE[S] &lt;role1>,&lt;role2>... FROM &lt;user>]
+        SHOW USER [&lt;user>]
         SHOW USERS
         
     SETTINGS
@@ -130,19 +130,19 @@ COMMANDS
         ECHO                          (true | false, default false) 
         FAIL_ON_CLUSTER_CHANGE        (true | false, default true, policy applies to scans) 
         OUTPUT                        (table | json, default table) 
-        LUA_USERPATH                  <path>, default : /opt/aerospike/usr/udf/lua 
-        LUA_SYSPATH                   <path>, default : /opt/aerospike/sys/udf/lua 
+        LUA_USERPATH                  &lt;path>, default : /opt/aerospike/usr/udf/lua 
+        LUA_SYSPATH                   &lt;path>, default : /opt/aerospike/sys/udf/lua 
         
         To get the value of a setting, run:
         	
-            aql> GET <setting>
+            aql> GET &lt;setting>
         	
         To set the value of a setting, run:
         	
-            aql> SET <setting> <value>
+            aql> SET &lt;setting> &lt;value>
         	
     OTHER
-        RUN <filepath>
+        RUN &lt;filepath>
         HELP
         QUIT|EXIT|Q
 aql> 
