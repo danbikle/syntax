@@ -118,6 +118,23 @@ Just do it:
     >>> 
     >>> 
 
+So, that was the easy way to do a retrieve operation.
+%br/
+%br/
+If the record is really large though, I might want a more granular operation.
+%br/
+%br/
+For that, Aerospike offers 'select':
+%pre
+  %code.python
+    client.select(keytuple, ('foodbin', 'agebin'))
+Also if I check that a record exists, that operation could be considered a 
+retrieval call:
+
+%pre
+  %code.python
+    client.exists(keytuple)
+
 The U in CRUD means Update:
 
 %pre
