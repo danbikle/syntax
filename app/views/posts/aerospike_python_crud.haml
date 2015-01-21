@@ -163,8 +163,8 @@ operations which are more granular:
     client.prepend(keytuple, 'foodbin', 'Mr. ')
     client.append(keytuple, 'foodbin', ' usually.')
     client.increment(keytuple, 'agebin', 2)
-    client.get(keytuple)[2]
-    {'myrecpk': 100, 'foodbin': u'Mr. Fred likes canned food usually.', 'myrecname': u'Fred', 'agebin': 6}
+    client.select(keytuple, ('foodbin','agebin'))[2]
+    {'foodbin': u'Mr. Fred likes canned food usually.', 'agebin': 6}
 
 The D in CRUD means Delete:
 
