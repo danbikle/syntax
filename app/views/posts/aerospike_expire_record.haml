@@ -18,11 +18,11 @@ Aerospike offers the useful feature of allowing me to create temporary records i
     
     mynamspace  = 'test'
     myset       = 'secrets'
-    myrecname   = 'msg100'
     myrecpk     = 100
+    namebin     = 'msg100'
     foodbin     = 'Lasagna is for dinner'
     
-    myrecord    = {'myrecname': myrecname, 'foodbin': foodbin}
+    myrecord    = {'namebin': namebin, 'foodbin': foodbin}
     
     keytuple    = (mynamspace,myset,myrecpk)
     
