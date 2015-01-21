@@ -135,6 +135,18 @@ The U in CRUD means Update:
     >>> 
     >>> 
 
+So that was the easy way to update, just do another put.
+%br/
+%br/
+If the record is really large though, Aerospike offers 3 types of update 
+operations which are more granular:
+
+%pre
+  %code.python
+    client.prepend(keytuple, 'foodbin', 'Mr. ')
+    client.append(keytuple, 'foodbin', ' usually.')
+    client.increment(keytuple, 'agebin', 2)
+
 The D in CRUD means Delete:
 
 %pre
