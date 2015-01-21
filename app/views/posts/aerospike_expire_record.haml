@@ -8,26 +8,28 @@
   .tag ttl
 
 
-Aerospike offers the useful feature of allowing me to create temporary records in a set.
-%br/
+Aerospike offers the useful feature of allowing me to create temporary records in a set:
 
 %pre
   %code.python
+    import aerospike
+    config = {'hosts': [('127.0.0.1',3000)]}
+    client = aerospike.client(config).connect()
+    
+    mynamspace  = 'test'
+    myset       = 'secrets'
+    myrecname   = 'msg100'
+    myrecpk     = 100
+    foodbin     = 'Lasagna is for dinner'
+    
+    myrecord    = {'myrecname': myrecname, 'foodbin': foodbin}
+    
+    keytuple    = (mynamspace,myset,myrecpk)
+    
+    exp_in_meta = {'ttl': 60*60} # seconds
+    
+    client.put(keytuple, myrecord, exp_in_meta)
 
-import aerospike
-config = {'hosts': [('127.0.0.1',3000)]}
-client = aerospike.client(config).connect()
+After 60*60 seconds, record msg100 should disappear from test.secrets.
 
-mynamspace = 'test'
-myset      = 'secrets'
-myrecname  = 'msg100'
-myrecpk    = 100
-foodbin    = 'Lasagna is for dinner'
-
-myrecord   = {'myrecname': myrecname, 'foodbin': foodbin}
-
-keytuple   = (mynamspace,myset,myrecpk)
-
-client.put(keytuple, myrecord)
-
-
+%br/
