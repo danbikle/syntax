@@ -14,6 +14,17 @@ end
 for i,line in ipairs(mytable) do
   print(i)
 end
+
+-- Above syntax silently fails if I use strings as keys:
+
+yourtable = {}
+yourtable['key1']    = 'hello'
+yourtable['key7']    = 'hola'
+yourtable['imakey2'] = 'bonjour'
+
+for i,line in ipairs(yourtable) do
+  print(line)
+end
 </code>
 
 Screen-dump:
