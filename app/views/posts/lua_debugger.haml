@@ -1,0 +1,29 @@
+.q1 Question:
+.q2 How to attache debugger to Lua script?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/aerospike') aerospike
+  %a.xtag(href='/tags/debugger') debugger
+%br/
+When I use an interpreted language I learn early on how to attach a debugger to a running script.
+%br/
+%br/
+
+In Lua, a quick way to access something similar is to run a Lua script
+but then ask Lua to keep the interpreter active rather than return
+control to the shell.
+%br/
+%br/
+I do this by supplying a -i command line option when I run the script.
+%br/
+%br/
+Here is a screendump-demo of me running a script which sets 3 variables.
+%br/
+%br/
+
+I use -i to keep the variables around when the script is finished so I
+can then interact with them:
+
+%pre
+  =render 'lua_debugger1'
