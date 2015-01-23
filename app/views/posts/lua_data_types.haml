@@ -42,4 +42,31 @@ In Lua what is the thread type?
 %br/
 In Lua what is the userdata type?
 %br/
+%br/
+Since we have a type named function, it seems natural to set a variable to the
+name of a function and then see if that variable can then act as a function:
+%pre
+  %code.lua
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ lua
+    Lua 5.3.0  Copyright (C) 1994-2015 Lua.org, PUC-Rio
+    > myprint = print
+    > type(myprint)
+    function
+    > myprint(44)
+    44
+    > 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+
+Yay! it looks like that idea works well.
+
+%br/
+%br/
+This ability to have a variable act as a function leads to meta-programming
+opportunities.
+
+%br/
 
