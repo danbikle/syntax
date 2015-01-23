@@ -1,0 +1,37 @@
+.q1 Question:
+.q2 From Bash how to run 1 Lua command?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/bash') bash
+  %a.xtag(href='/tags/ruby') ruby
+  %a.xtag(href='/tags/python') python
+
+%br/
+An obvious way to do this is to put the Lua command in a my.lua and then run 
+the shell command: lua my.lua
+%br/
+%br/
+
+Another way is to use the dash-e option with lua:
+%pre
+  %code.lua lua -e "print(7/8)"
+
+This might be useful if I want to use Bash as glue between Lua and others:
+
+%pre
+  %code.bash
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ lua_output=`lua -e 'print(7/8)'`
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ ruby_output=`ruby -e 'p(8.0/7)'`
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ python_output=`python -c "print($lua_output + $ruby_output)"`
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ echo $python_output
+    2.01785714286
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+
+%br/
