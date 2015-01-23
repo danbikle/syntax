@@ -1,0 +1,58 @@
+.q1 Question:
+.q2 How does Lua store packages?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/type') type
+  %a.xtag(href='/tags/datatype') datatype
+  %a.xtag(href='/tags/table') table
+
+%br/
+The docs explain that Lua stores packages in Lua tables.
+%br/
+%br/
+I know about a package called io and that it has a function named read().
+%br/
+%br/
+I created a variable called mytable and set it equal to keyword: 'io'.
+%pre
+  %code.lua mytable = io
+
+Next, I looked for an element in that table named: 'read'
+%pre
+  %code.lua elmnt = mytable['read']
+
+Lua did not issue an error so that was a good sign.
+%br/
+%br/
+Then I asked Lua to tell me what type of object is at mytable['read']
+
+
+%pre
+  %code.lua type(elmnt)
+
+Here is a screen-dump:
+%pre
+  %code.lua
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ lua
+    Lua 5.3.0  Copyright (C) 1994-2015 Lua.org, PUC-Rio
+    > mytable = io
+    > elmnt = mytable['read']
+    > type(elmnt)
+    function
+    > 
+    > os.exit()
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+
+%br/
+So, it is possible to interact with a Lua package as if it is a table.
+%br/
+%br/
+Why?
+%br/
+%br/
+Because it actually is a table.
+%br/
