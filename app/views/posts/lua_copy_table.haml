@@ -1,0 +1,53 @@
+.q1 Question:
+.q2 In Lua how to copy table?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/copy') copy
+  %a.xtag(href='/tags/table') table
+%br/
+To copy a table in Lua, I need to create a new second table and then copy
+elements from the first table into the second table.
+%br/
+%br/
+If I try to do the natural act of doing this:
+
+%pre
+  %code.lua table2 = table1
+
+I will have two variables pointing to the same table.
+%br/
+%br/
+I can see this by issuing print statements:
+
+%pre
+  %code.lua 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ lua
+    Lua 5.3.0  Copyright (C) 1994-2015 Lua.org, PUC-Rio
+    > 
+    > table1 = {}
+    > table1[0] = 'hi'
+    > table2 = table1
+    > print(table1)
+    table: 0xbcacb0
+    > print(table2)
+    table: 0xbcacb0
+    > table1[1] = 'hola'
+    > print(table2[1])
+    hola
+    > 
+    > table3 = {}
+    > table3[0] = table1[0]
+    > table3[1] = table1[1]
+    > table1[2] = 'bonjour'
+    > print(table2[2])
+    bonjour
+    > print(table3[2])
+    nil
+    > 
+    > os.exit()
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+
+
