@@ -1,0 +1,38 @@
+.q1 Question:
+.q2 Can Lua conditionals branch on non-booleans?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/type') type
+  %a.xtag(href='/tags/datatype') datatype
+  %a.xtag(href='/tags/number') number
+  %a.xtag(href='/tags/string') string
+  %a.xtag(href='/tags/nil') nil
+  %a.xtag(href='/tags/boolean') boolean
+
+%br/
+Lua allows me to use variables of different types in if-then conditionals
+where a boolean might be expected.
+%br/
+%br/
+I usually use this behavior to check for the existence of a variable:
+%pre
+  %code.lua
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ lua
+    Lua 5.3.0  Copyright (C) 1994-2015 Lua.org, PUC-Rio
+    > myvar = 2
+    > if myvar then print('myvar is here') end
+    myvar is here
+    > 
+    > if yourvar then print('yourvar is here') else print('yourvar is nil') end
+    yourvar is nil
+    > 
+    > os.exit()
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+
+%br/
+
