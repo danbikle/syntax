@@ -1,0 +1,34 @@
+.q1 Question:
+.q2 In Lua how to access command line args?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/arg') arg
+  %a.xtag(href='/tags/args') args
+  %a.xtag(href='/tags/command') command
+%br/
+Lua passes command line arguments to me in a 'table' called arg.
+%pre
+  %code.lua
+    \-- args.lua
+    print('first arg is:')
+    print(arg[1])
+    print('This script is:')
+    print(arg[0])
+
+Screen-dump:
+
+%pre
+  %code.bash
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ lua args.lua hello
+    first arg is:
+    hello
+    This script is:
+    args.lua
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+
+%br/
