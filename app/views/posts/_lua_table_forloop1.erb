@@ -1,0 +1,35 @@
+<code class='lua'>-- table_for.lua
+
+mytable = {}
+
+mytable[1] = 1.1
+mytable[2] = 2.2
+mytable[3] = 3.3
+mytable[4] = 4.4
+
+for i,line in ipairs(mytable) do
+  print(line)
+end
+
+for i,line in ipairs(mytable) do
+  print(i)
+end
+</code>
+
+Screen-dump:
+
+<code class='bash'>dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ lua table_for.lua 
+1.1
+2.2
+3.3
+4.4
+1
+2
+3
+4
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+</code>
