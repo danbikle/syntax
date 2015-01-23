@@ -1,0 +1,28 @@
+.q1 Question:
+.q2 How do I install Lua on Linux?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/aerospike_') aerospike_
+%br/
+Let the syntax do the talking:
+%pre
+  %code.bash
+    cd ~
+    curl -R -O http://www.lua.org/ftp/lua-5.3.0.tar.gz
+    tar zxf lua-5.3.0.tar.gz
+    cd lua-5.3.0
+    make linux test
+    cd ~/bin/
+    ln -s ~/lua-5.3.0/src/lua .
+    bash
+    lua -i
+
+I found a Lua tutorial here:
+%br/
+%br/
+%a(href='http://www.lua.org/pil/contents.html' target='x')
+  http://www.lua.org/pil/contents.html
+%br/
+
