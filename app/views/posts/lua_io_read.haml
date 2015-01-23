@@ -1,0 +1,18 @@
+.q1 Question:
+.q2 In Lua how to read keyboard input?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/aerospike') aerospike
+  %a.xtag(href='/tags/read') read
+%br/
+Let the Lua syntax do the talking:
+%pre
+  %code.lua
+    print("Enter a number but not a string:")
+    mynum = io.read("*number")
+    print(mynum)
+    print("Enter anything and then control-d:")
+    mystr = io.read("*a")
+    print(mystr)
