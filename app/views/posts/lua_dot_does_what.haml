@@ -1,0 +1,41 @@
+.q1 Question:
+.q2 In Lua what does dot do?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/dot') dot
+  %a.xtag(href='/tags/table') table
+  %a.xtag(href='/tags/index') index
+  %a.xtag(href='/tags/reference') reference
+%br/
+In Lua the dot means I use less syntax when I work with tables:
+%pre
+  %code.lua
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ lua
+    Lua 5.3.0  Copyright (C) 1994-2015 Lua.org, PUC-Rio
+    > 
+    > mytable = {}
+    > mytable['hello'] = 'English greeting'
+    > mytable.hello
+    English greeting
+    > 
+    > mytable.hola = 'Espanol hello'
+    > mytable['hola']
+    Espanol hello
+    > 
+    > mytable[1] = 'I belong to 1'
+    > mytable[1]
+    I belong to 1
+    > mytable.1
+    stdin:1: syntax error near '.1'
+    > 
+    > print('Use the dot to refer to a string-key, not number-key')
+    Use the dot to refer to a string-key, not number-key
+    > 
+    > os.exit()
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+%br/
