@@ -1,0 +1,45 @@
+.q1 Question:
+.q2 In Lua how to initialize table?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/table') table
+  %a.xtag(href='/tags/initialize') initialize
+  %a.xtag(href='/tags/constructor') constructor
+%br/
+I usually rely on one of three ways to initialize a table:
+%pre
+  %code.lua
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ lua
+    Lua 5.3.0  Copyright (C) 1994-2015 Lua.org, PUC-Rio
+    > 
+    > table1 = {}
+    > table1['k1'] = 'hello'
+    > 
+    > table1
+    table: 0x20b5cb0
+    > 
+    > table1.k1
+    hello
+    > 
+    > table2 = {k2 = 'hola'}
+    > 
+    > table2.k2
+    hola
+    > 
+    > table2['k2']
+    hola
+    > 
+    > table3 = {'gooten-tag', 'bonjour', 'ni-how'}
+    > 
+    > table3[1]
+    gooten-tag
+    > 
+    > 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+
+%br/
