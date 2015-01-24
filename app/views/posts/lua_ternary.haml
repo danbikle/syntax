@@ -1,0 +1,72 @@
+.q1 Question:
+.q2 In Lua how to do ternary expression?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/equal') equal
+  %a.xtag(href='/tags/notequal') notequal
+  %a.xtag(href='/tags/conditional') conditional
+  %a.xtag(href='/tags/not') not
+  %a.xtag(href='/tags/ternary') ternary
+%br/
+Most interpreted languages have a ternary expression syntax.
+%br/
+%br/
+The intent behind ternary expression syntax is to pack if-then-else logic
+into one line of code.
+%br/
+%br/
+First I show the logic I want:
+%pre
+  %code.lua
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ lua
+    Lua 5.3.0  Copyright (C) 1994-2015 Lua.org, PUC-Rio
+    > a = 1
+    > b = 2
+    > x = 3
+    > y = 4
+    > if a == b then
+    >> return x
+    >> else
+    >> return y
+    >> end
+    4
+    > 
+    > b = 1
+    > if a == b then
+    >> return x
+    >> else
+    >> return y
+    >> end
+    3
+    > 
+    > 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+
+I can pack the above if-then-else chunk into one line of syntax:
+
+%pre
+  %code.lua
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ lua
+    Lua 5.3.0  Copyright (C) 1994-2015 Lua.org, PUC-Rio
+    > 
+    > a = 1
+    > b = 2
+    > x = 3
+    > y = 4
+    > 
+    > ((a == b ) and x or y)
+    4
+    > 
+    > b = 1
+    > 
+    > ((a == b ) and x or y)
+    3
+    > 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+
+%br/
