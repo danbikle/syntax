@@ -25,6 +25,17 @@ yourtable['imakey2'] = 'bonjour'
 for i,line in ipairs(yourtable) do
   print(line)
 end
+
+-- So, use pairs() instead of ipairs()
+
+atable = {k1 = 'v1'}
+atable['key1']    = 'hello'
+atable['key7']    = 'hola'
+
+for k,v in pairs(atable) do
+  print(k)
+  print(v)
+end
 </code>
 
 Screen-dump:
@@ -40,6 +51,12 @@ dan@hp ~/ks/b/lua $ lua table_for.lua
 2
 3
 4
+key7
+hola
+k1
+v1
+key1
+hello
 dan@hp ~/ks/b/lua $ 
 dan@hp ~/ks/b/lua $ 
 dan@hp ~/ks/b/lua $ 
