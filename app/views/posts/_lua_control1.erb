@@ -1,0 +1,61 @@
+<code class='bash'>dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ cat control.lua 
+-- control.lua
+
+a = 1
+if a == 1 then
+  print('a is 1')
+else
+  print('a is not 1')
+end
+
+n = 4
+repeat
+  print(n)
+  n = n - 1
+until n < 1
+
+n = 4
+while n > 0 do
+  print(n)
+  n = n - 1
+end
+
+-- Generally, I can use pairs():
+for x,y in pairs({k1 = 1.1, k2 = 2.2, k3 = 3.3}) do
+  print(x)
+end
+
+-- If the keys are integers, I can use ipairs():
+for x,y in ipairs({1.1, 2.2, 3.3}) do
+  print(x)
+end
+
+for x,y in ipairs({1.1, 2.2, 3.3}) do
+  print(y)
+end
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ lua control.lua 
+a is 1
+4
+3
+2
+1
+4
+3
+2
+1
+k2
+k3
+k1
+1
+2
+3
+1.1
+2.2
+3.3
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ </code>
