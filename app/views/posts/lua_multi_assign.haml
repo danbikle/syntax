@@ -1,0 +1,52 @@
+.q1 Question:
+.q2 In Lua how to multi assign?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/multiple') multiple
+  %a.xtag(href='/tags/assignment') assignment
+%br/
+Both Ruby and Python allow multiple assignment of variables.
+%br/
+%br/
+So does Lua.
+%br/
+%br/
+If I need to switch values between variables, multiple assignment allows me
+to collapse three lines of code into one:
+%pre
+  %code.lua
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ lua
+    Lua 5.3.0  Copyright (C) 1994-2015 Lua.org, PUC-Rio
+    > 
+    > a = 1
+    > b = 2
+    > print(a,b)
+    1	2
+    > 
+    > c = a
+    > a = b
+    > b = c
+    > 
+    > print(a,b)
+    2	1
+    > 
+    > a,b = b,a
+    > print(a,b)
+    1	2
+    > 
+    > 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+
+In the above demo I want to switch the values of a and b.
+The first way I use intermediate variable c.
+That forces me to use three lines of code.
+
+%br/
+%br/
+The second way uses Lua multiple assignment feature which allows me to switch
+the values with one line of code.
+%br/
