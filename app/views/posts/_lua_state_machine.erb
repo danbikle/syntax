@@ -1,0 +1,33 @@
+<code class='lua'>-- ~/ks/b/lua/state_machine.lua
+
+function state1()
+  print('I am in Calif')
+  if 1 > 2 then
+    return state2()
+  else
+    return state3()
+  end
+end
+
+function state2()
+  print('I am in Oregon')
+  if 1 > 2 then
+    return state1()
+  else
+    print('I am in Oregon... FOREVER.')
+    return state2()
+  end
+end
+
+function state3()
+  print('I am in Wash')
+  if 1 > 2 then
+    return state1()
+  else
+    print('Stay here until winter')
+    return 0
+  end
+end
+
+state1()
+</code>
