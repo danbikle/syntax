@@ -15,7 +15,7 @@ So does Lua.
 If I need to switch values between variables, multiple assignment allows me
 to collapse three lines of code into one:
 %pre
-  %code.lua
+  %code.bash
     dan@hp ~/ks/b/lua $ 
     dan@hp ~/ks/b/lua $ 
     dan@hp ~/ks/b/lua $ lua
@@ -49,4 +49,22 @@ That forces me to use three lines of code.
 %br/
 The second way uses Lua multiple assignment feature which allows me to switch
 the values with one line of code.
+%br/
+%br/
+Another place I see multiple assignment is when I need to respond
+to a function which returns more than 1 value:
+
+%pre
+  %code.bash
+    > function hello_world()
+    >> return 'hello', 'world'
+    >> end
+    > 
+    > a,b = hello_world()
+    > a
+    hello
+    > b
+    world
+    > 
+
 %br/
