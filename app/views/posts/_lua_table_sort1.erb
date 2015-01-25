@@ -1,0 +1,60 @@
+<code class='lua'>-- table_sort_demo.lua
+nmbrs = {34,43,12,99}
+
+-- I should see 1,2,3,4 and
+-- I should see 34,43,12,99:
+for i,n in ipairs(nmbrs) do
+  print(i)
+  print(n)
+end
+
+
+table.sort(nmbrs)
+
+-- I should see 1,2,3,4 and
+-- I should see 12,34,43,99:
+for i,n in ipairs(nmbrs) do
+  print(i)
+  print(n)
+end
+
+
+
+dogs = {
+  {name = "Greg", tag = 34},
+  {name = "Aria", tag = 23},
+  {name = "Lucy", tag = 12},
+  {name = "Derk", tag = 20},
+}
+
+-- I should see 1,2,3,4 and
+-- I should see Greg,Aria,Lucy,Derk
+for i,dog in ipairs(dogs) do
+  print(i)
+  print(dog.name)
+end
+
+
+
+-- Sort by name with help from anonymous function:
+table.sort(dogs, function (a,b) return (a.name < b.name) end)
+
+-- I should see 1,2,3,4 and
+-- I should see Aria,Derk,Greg,Lucy,Derk
+for i,dog in ipairs(dogs) do
+  print(i)
+  print(dog.name)
+end
+
+
+
+-- Sort by tag with help from anonymous function:
+table.sort(dogs, function (a,b) return (a.tag < b.tag) end)
+
+-- I should see 12,20,23,34 and
+-- I should see Lucy,Derk,Aria,Greg
+for i,dog in ipairs(dogs) do
+  print(dog.tag)
+  print(dog.name)
+end
+</code>

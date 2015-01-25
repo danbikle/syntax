@@ -1,0 +1,41 @@
+.q1 Question:
+.q2 In Lua how to sort table?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/table') table
+  %a.xtag(href='/tags/sort') sort
+
+
+%br/
+In Lua I sort a table like this:
+%pre
+  %code.lua table.sort(mytable)
+Lua then sorts mytable.
+%br/
+%br/
+This is different than how I sort collections of objects in Ruby where it returns a sorted copy of my collection.
+
+%br/
+%br/
+Like Ruby, if the table contains easily comparable objects then I can easily sort.
+
+%br/
+%br/
+
+If the table contains tables then I need to communicate to Lua (I need to do this
+in Ruby also) how to compare the objects.
+
+%br/
+%br/
+The way I do this in Lua is to supply an anonymous function to sort() like this:
+%pre
+  %code.lua table.sort(mytable, function(a,b) comparison-logic-here end)
+
+Here is a demo of sorting a simle table full of numbers and then a demo of
+sorting a table full of dog-tables:
+
+%pre
+  =render 'lua_table_sort1'
+
+%br/

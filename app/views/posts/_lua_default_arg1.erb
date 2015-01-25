@@ -4,6 +4,7 @@ dan@hp ~/ks/b/lua $ cat default_arg.lua
 -- ~/ks/b/lua/default_arg.lua
 
 function hello(arg)
+  -- Default value of arg is 'world':
   arg = arg or 'world'
   return 'hello '..arg
 end
