@@ -1,0 +1,26 @@
+<code class='lua'>-- ~/ks/b/lua/upvalue.lua
+
+-- An upvalue is a variable.
+
+-- First I create the variable.
+
+-- Then I use the variable inside an anonymous function.
+
+function print_this()
+  upv = 'I am upvalue value'
+  return function(str)
+    str = 'Yes, '
+    return str..upv
+  end
+end
+
+-- To see upv,
+-- I cannot just call print_this()
+print(print_this())
+
+-- I need to point to it:
+print_that = print_this()
+
+-- Then I can call it:
+print(print_that())
+</code>
