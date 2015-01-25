@@ -1,0 +1,75 @@
+.q1 Question:
+.q2 In Lua why use do-end?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/do') do
+  %a.xtag(href='/tags/end') end
+  %a.xtag(href='/tags/block') block
+  %a.xtag(href='/tags/chunk') chunk
+  %a.xtag(href='/tags/local') local
+%br/
+Sometimes when I work with other peoples code I worry about using a variable
+name which might clash with another variable name.
+%br/
+%br/
+Often I tempted to create variables with names like 'name' or 'state'.
+%br/
+%br/
+If I create a variable named 'state', I might create a bug in the code
+because another developer already created the 'state' variable and the
+code is using it.
+%br/
+%br/
+I can use a local variable inside a do-end block to minimize this problem.
+%br/
+%br/
+The syntax is simple.  Just start the block with 'do' and end it with 'end'.
+%br/
+%br/
+Inside the block add the 'local' keyword before my variable:
+%pre
+  %code.bash
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ cat do_end.lua
+    -- do_end.lua
+    
+    state = 'Calif'
+    name  = 'Dan'
+    print('state and name are global')
+    print(state, name)
+    
+    do
+      local state = 'ready'
+      local name  = 'computer'
+      print('state and name are local')
+      print(state, name)
+      print('state and name are still local?')
+      state = 'notready'
+      name  = 'router'
+      print(state, name)
+      print('yes, state and name are local')
+    end
+    
+    print('local state and name now gone')
+    print('state and name are global')
+    print(state, name)
+    
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ lua do_end.lua
+    state and name are global
+    Calif	Dan
+    state and name are local
+    ready	computer
+    state and name are still local?
+    notready	router
+    yes, state and name are local
+    local state and name now gone
+    state and name are global
+    Calif	Dan
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+    dan@hp ~/ks/b/lua $ 
+%br/
