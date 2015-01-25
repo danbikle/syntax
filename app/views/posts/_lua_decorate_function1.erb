@@ -1,0 +1,22 @@
+<code class='lua'>-- ~/ks/b/lua/decorate_f.lua
+
+function vehicle_topspeed(horsepower)
+  return horsepower/3
+end
+
+mycar_topspeed = vehicle_topspeed(400)
+print(mycar_topspeed)
+
+-- For boats
+-- Key idea here, point to function with local variable:
+local vehicle_topspeed_land = vehicle_topspeed
+
+-- Now use the old variable name:
+vehicle_topspeed = function(horsepower)
+  -- Use the local name to access the old function:
+  return (vehicle_topspeed_land(horsepower) / 4)
+end
+
+myboat_topspeed = vehicle_topspeed(400)
+print(myboat_topspeed)
+</code>

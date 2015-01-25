@@ -1,0 +1,24 @@
+.q1 Question:
+.q2 In Lua how to decorate a function?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/function') function
+  %a.xtag(href='/tags/decorate') decorate
+  %a.xtag(href='/tags/local') local
+  %a.xtag(href='/tags/variable') variable
+
+%br/
+In Lua how do I decorate a function to widen its abilities?
+
+%pre
+  =render 'lua_decorate_function1'
+The above example is a bit weak but it is a step in the right direction.
+%br/
+%br/
+The next step would be to enhance the decorated vehicle_topspeed() so it
+takes an optional vehicle-type variable.
+%br/
+%br/
+If vehicle-type is nil, branch to logic which calls vehicle_topspeed_land().
+%br/
