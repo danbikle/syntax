@@ -1,0 +1,53 @@
+<code class='lua'>-- ~/ks/b/lua/namespace_fnc.lua
+
+-- A namespaced function is less likely to collide with other functions.
+
+-- The syntax is simple; just prepend the namespace to the function name.
+
+function not_namespaced()
+  return 'I am not namespaced'
+end
+
+-- Actually I need to create a table named 'dan'.
+dan = {}
+function dan.hello()
+  return 'I am in the dan space'
+end
+
+function dan.metoo()
+  return 'metoo, I am in the dan space'
+end
+
+-- What is in the dan space?
+-- Better question:
+print("What is in the table named 'dan'?")
+print(table.unpack(dan)) -- does not work well.
+-- This works:
+for k,v in pairs(dan) do print(k,v) end
+
+-- So, Lua created the dan space by creating a table named: 'dan'.
+-- Then Lua put functions in the 'dan' table.
+
+-- Call em Dano:
+print(not_namespaced())
+print(dan.hello())
+print(dan.metoo())
+</code>
+
+Screen-dump:
+
+<code class='bash'>dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ lua namespace_fnc.lua
+Lua 5.3.0  Copyright (C) 1994-2015 Lua.org, PUC-Rio
+What is in the table named 'dan'?
+
+hello	function: 0x13d9190
+metoo	function: 0x13d9960
+I am not namespaced
+I am in the dan space
+metoo, I am in the dan space
+
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+</code>
