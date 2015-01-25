@@ -1,0 +1,33 @@
+.q1 Question:
+.q2 In Lua what is a forward declared function?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/forward') forward
+  %a.xtag(href='/tags/declared') declared
+  %a.xtag(href='/tags/function') function
+  %a.xtag(href='/tags/variable') variable
+  %a.xtag(href='/tags/scope') scope
+
+%br/
+In Lua a function is a chunk of code pointed to by a variable.
+%br/
+%br/
+If I use that variable before I set it to the code-chunk, I get an error.
+%br/
+%br/
+Lua allows me to forward declare the variable before I set it.
+%br/
+%br/
+Sometimes you will see a forward declared function in other's code.  The author
+of that code may have wanted to deal with this situation.
+
+%br/
+%br/
+Here is a demo of what forward declared functions look like:
+
+%pre
+  =render 'lua_forward_declare'
+%br/
+
+

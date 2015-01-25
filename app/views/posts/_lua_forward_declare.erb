@@ -1,0 +1,16 @@
+<code class='lua'>-- ~/ks/b/lua/forward_declare.lua
+
+-- Sometimes I will see forward declared functions.
+
+local fnc1, fnc2 -- These now forwarded
+
+function fnc1()
+  return 1
+end
+
+function fnc2()
+  return fnc1()
+end
+
+print(fnc2())
+</code>
