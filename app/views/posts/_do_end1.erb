@@ -1,0 +1,43 @@
+<code class='bash'>dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ cat do_end.lua
+-- do_end.lua
+
+state = 'Calif'
+name  = 'Dan'
+print('state and name are global')
+print(state, name)
+
+do
+  local state = 'ready'
+  local name  = 'computer'
+  print('state and name are local')
+  print(state, name)
+  print('state and name are still local?')
+  state = 'notready'
+  name  = 'router'
+  print(state, name)
+  print('yes, state and name are local')
+end
+
+print('local state and name now gone')
+print('state and name are global')
+print(state, name)
+
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ lua do_end.lua
+state and name are global
+Calif	Dan
+state and name are local
+ready	computer
+state and name are still local?
+notready	router
+yes, state and name are local
+local state and name now gone
+state and name are global
+Calif	Dan
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+</code>
