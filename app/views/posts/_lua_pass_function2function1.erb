@@ -1,0 +1,20 @@
+<code class='lua'>-- f1f2.lua
+
+function f1()
+  return 'world'
+end
+
+function f2(f)
+  str = f()
+  return 'hello '..str
+end
+-- This fails:
+-- print(f2(f1()))
+
+f3 = function() return 'world' end
+-- This fails:
+-- print(f2(f3()))
+
+-- This works:
+print(f2(function() return 'world' end))
+</code>
