@@ -1,0 +1,19 @@
+<code class='bash'>
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ cat default_arg.lua
+-- ~/ks/b/lua/default_arg.lua
+
+function hello(arg)
+  arg = arg or 'world'
+  return 'hello '..arg
+end
+
+print(hello())
+print(hello('Dan'))
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ lua default_arg.lua
+hello world
+hello Dan
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+</code>
