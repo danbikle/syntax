@@ -1,0 +1,17 @@
+<code class='bash'>dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ cat io_lines.lua 
+-- ~/ks/b/lua/io_lines.lua
+
+for line in io.lines('/etc/lsb-release') do
+  print(line)
+end
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ lua io_lines.lua 
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=14.04
+DISTRIB_CODENAME=trusty
+DISTRIB_DESCRIPTION="Ubuntu 14.04.1 LTS"
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+dan@hp ~/ks/b/lua $ 
+</code>
