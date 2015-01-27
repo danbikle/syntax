@@ -1,0 +1,23 @@
+<code class='lua'># ~/ks/b/lua/table_getn.lua
+
+tab1 = {1,2,3,4}
+
+-- n = table.getn(tab1)
+
+-- getn() does not work in lua 5.3
+
+-- this works, it returns number of elements:
+print(#tab1)
+-- We refer to # as the '# operator'
+
+-- this fails:
+tab2 = {k1 = 1, k2 = 2, k3 = 3}
+print(#tab2)
+
+-- this works:
+ii = 0
+for k,v in pairs(tab2) do
+  ii = ii+1
+end
+print(ii)
+</code>

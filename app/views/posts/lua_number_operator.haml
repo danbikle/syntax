@@ -1,0 +1,33 @@
+.q1 Question:
+.q2 In Lua how to count table elements?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/table') table
+  %a.xtag(href='/tags/count') count
+  %a.xtag(href='/tags/getn') getn
+  %a.xtag(href='/tags/for') for
+  %a.xtag(href='/tags/loop') loop
+  %a.xtag(href='/tags/pairs') pairs
+
+
+%br/
+In old versions of Lua I counted number of elements in a table with table.getn(mytable).
+%br/
+%br/
+Now, getn() has been replaced by the '# operator':
+
+%pre
+  %code.lua print(#mytable)
+
+This operator works well on integer indexed tables.
+%br/
+%br/
+For a key-indexed table, I need to count using a for-loop:
+
+%pre
+  =render 'lua_number_operator1'
+
+%br/
+
+
