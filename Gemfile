@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby "2.1.5"
 
+gem 'therubyracer','0.12.1', group: [:development, :test]
 gem 'haml',          '4.0.5'
 gem 'haml-rails',    '0.5.3'
 gem 'thin',          '1.6.3'
