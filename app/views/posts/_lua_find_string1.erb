@@ -1,0 +1,41 @@
+<code class='lua'>-- ~/ks/b/lua/str1str2.lua
+
+str1 = 'hello world'
+str2 = 'world'
+sf1  = string.find(str1,str2)
+-- sf1 should == 7
+print(sf1)
+
+str3 = 'hello'
+sf2  = string.find(str1,str3)
+-- sf2 should == 1 not 0
+print(sf2)
+
+str4 = 'calif'
+sf3  = string.find(str1,str4)
+-- sf3 should == nil because str4 not in str1
+print(sf3)
+
+starthere = 4 -- location in str1 where I start find()
+str3 = 'hello'
+sf4  = string.find(str1,str3,starthere)
+-- sf4 should == nil not 1
+print(sf4)
+
+starthere = 7 -- location in str1 where I start find()
+str2 = 'world'
+sf5  = string.find(str1,str2,starthere)
+-- sf5 should == 7 not 1
+print(sf5)
+
+str5 = '%w+' -- This is like a regular expr
+sf6  = string.find(str1,str5)
+-- sf6 should == 1
+print(sf6)
+
+starthere = 3
+str5 = '%w+' -- This is like a regular expr
+sf7  = string.find(str1,str5,starthere)
+-- sf7 should == 3
+print(sf7)
+</code>
