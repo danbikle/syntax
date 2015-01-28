@@ -1,0 +1,30 @@
+<code class='lua'>-- ~/ks/b/lua/val2key.lua
+
+-- This script should create tab2 from tab1.
+-- tab2 has keys made from tab1 values.
+-- This works if tab1 values are unique.
+
+tab1 = {t1k1 = 't1v1',t1k2 = 't1v2',t1k3 = 't1v3'}
+tab2 = {}
+for k,v in pairs(tab1) do
+  tab2[v] = k
+end
+
+print('tab2:')
+for k,v in pairs(tab2) do
+  print(k,v)
+end
+</code>
+
+Screen Dump:
+
+<code class='bash'>dan@feb ~/ks/b/lua $ 
+dan@feb ~/ks/b/lua $ lua val2key.lua
+tab2:
+t1v3	t1k3
+t1v2	t1k2
+t1v1	t1k1
+dan@feb ~/ks/b/lua $ 
+dan@feb ~/ks/b/lua $ 
+dan@feb ~/ks/b/lua $ 
+</code>
