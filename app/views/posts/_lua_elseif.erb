@@ -1,0 +1,26 @@
+<code class='lua'>-- ~/ks/b/lua/elseif.lua
+
+-- Lua does not offer a case-switch syntax.
+-- Instead I should use if then, elseif, else, end
+
+if 1>2 then
+  print('1>2')
+elseif 1>3 then
+  print('1>3')
+elseif 1>0 then
+  print('1>0')
+elseif 1>-1 then
+  print('1>-1')
+else
+  print('1 == 1')
+end
+</code>
+
+Screen Dump:
+
+<code class='bash'>dan@feb ~/ks/b/lua $ 
+dan@feb ~/ks/b/lua $ 
+dan@feb ~/ks/b/lua $ lua elseif.lua
+1>0
+dan@feb ~/ks/b/lua $ 
+dan@feb ~/ks/b/lua $ </code>
