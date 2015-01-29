@@ -1,0 +1,81 @@
+.q1 Question:
+.q2 SparkPi example, what happens?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/spark') spark
+  %a.xtag(href='/tags/install') install
+  %a.xtag(href='/tags/apache') apache
+  %a.xtag(href='/tags/scala') scala
+  %a.xtag(href='/tags/java') java
+  %a.xtag(href='/tags/cdh4') cdh4
+  %a.xtag(href='/tags/cloudera') cloudera
+  %a.xtag(href='/tags/hadoop') hadoop
+  %a.xtag(href='/tags/sparkpi') sparkpi
+  %a.xtag(href='/tags/demo') demo
+
+
+%br/
+I installed spark:
+%br/
+%a(href='/posts/spark_howto_install') spark_howto_install
+
+%br/
+%br/
+
+The
+%a(href='https://github.com/apache/spark/blob/v1.2.0/README.md#example-programs' target='x')
+  README.md
+suggested this demo to run the Pi example locally:
+
+%pre
+  %code.bash ./bin/run-example SparkPi
+I understand 'locally' to mean run on my laptop in a simple way rather than on a cluster.
+
+%br/
+%br/
+When I saw the above command line, I asked, What happens? What does it do? What kind of software language is run?
+%br/
+%br/
+According to Wikipedia, Spark is written in Scala, Java, and Python.
+%br/
+%br/
+Scala according to Wikipedia, is intended to run inside a Java VM.
+
+%br/
+%br/
+Based on those two pieces of information I deduce that, under the hood, Spark is mostly Java.
+%br/
+%br/
+I found the run-example script on Github:
+%br/
+%br/
+%a(href='https://github.com/apache/spark/blob/v1.2.0/bin/run-example' target='x')
+  https://github.com/apache/spark/blob/v1.2.0/bin/run-example
+%br/
+%br/
+Although syntax in the above script is all Bash, I see clues that the technology
+which lies at the core of Spark is Java.
+%br/
+%br/
+At the end it calls a script named spark-submit.
+%br/
+%br/
+The name 'spark-submit' suggests to me that Spark has a queuing mechanism that accepts tasks.
+%br/
+%br/
+spark-submit is listed on Github:
+%br/
+%br/
+%a(href='https://github.com/apache/spark/blob/v1.2.0/bin/run-example' target='x')
+  https://github.com/apache/spark/blob/v1.2.0/bin/run-example
+%br/
+%br/
+
+
+%pre
+  =render 'sparkpi_what_happens'
+
+%br/
+
+
+
