@@ -66,10 +66,35 @@ The name 'spark-submit' suggests to me that Spark has a queuing mechanism that a
 spark-submit is listed on Github:
 %br/
 %br/
-%a(href='https://github.com/apache/spark/blob/v1.2.0/bin/run-example' target='x')
-  https://github.com/apache/spark/blob/v1.2.0/bin/run-example
+
+%a(href='https://github.com/apache/spark/blob/v1.2.0/bin/spark-submit' target='x')
+  https://github.com/apache/spark/blob/v1.2.0/bin/spark-submit
+
 %br/
 %br/
+spark-submit runs a page of Bash syntax and then calls this script:
+%br/
+%br/
+%a(href='https://github.com/apache/spark/blob/v1.2.0/bin/spark-class' target='x')
+  https://github.com/apache/spark/blob/v1.2.0/bin/spark-class
+%br/
+%br/
+About halfway into the above script I see the beginnings of a Java command line:
+%br/
+%br/
+%a(href='https://github.com/apache/spark/blob/v1.2.0/bin/spark-class#L101' target='x')
+  https://github.com/apache/spark/blob/v1.2.0/bin/spark-class#L101
+%br/
+%br/
+Then near the end, Java is called:
+%br/
+%br/
+%a(href='https://github.com/apache/spark/blob/v1.2.0/bin/spark-class#L187' target='x')
+  https://github.com/apache/spark/blob/v1.2.0/bin/spark-class#L187
+
+%br/
+%br/
+
 
 
 %pre
