@@ -1,0 +1,413 @@
+<code class='bash'>dan@feb ~ $ 
+dan@feb ~ $ 
+dan@feb ~ $ cd /tmp
+dan@feb /tmp $ 
+dan@feb /tmp $ wget http://mirrors.sonic.net/apache/spark/spark-1.2.0/spark-1.2.0-bin-cdh4.tgz
+--2015-01-29 20:03:52--  http://mirrors.sonic.net/apache/spark/spark-1.2.0/spark-1.2.0-bin-cdh4.tgz
+Resolving mirrors.sonic.net (mirrors.sonic.net)... 69.12.162.27
+Connecting to mirrors.sonic.net (mirrors.sonic.net)|69.12.162.27|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 209820821 (200M) [application/x-gzip]
+Saving to: ‘spark-1.2.0-bin-cdh4.tgz’
+
+100%[======================================>] 209,820,821 7.16MB/s   in 28s    
+
+2015-01-29 20:04:20 (7.10 MB/s) - ‘spark-1.2.0-bin-cdh4.tgz’ saved [209820821/209820821]
+
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ tar zxf spark-1.2.0-bin-cdh4.tgz 
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ ln -s spark-1.2.0-bin-cdh4 spark
+dan@feb /tmp $ 
+dan@feb /tmp $ cd /tmp/spark
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ which java
+/home/dan/jdk/bin/java
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ env|grep JAVA
+JAVA_HOME=/home/dan/jdk
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ java -showversion
+java version "1.7.0_60-ea"
+Java(TM) SE Runtime Environment (build 1.7.0_60-ea-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 24.60-b09, mixed mode)
+
+Usage: java [-options] class [args...]
+           (to execute a class)
+   or  java [-options] -jar jarfile [args...]
+           (to execute a jar file)
+where options include:
+    -d32	  use a 32-bit data model if available
+    -d64	  use a 64-bit data model if available
+    -server	  to select the "server" VM
+                  The default VM is server,
+                  because you are running on a server-class machine.
+
+
+    -cp &lt;class search path of directories and zip/jar files>
+    -classpath &lt;class search path of directories and zip/jar files>
+                  A : separated list of directories, JAR archives,
+                  and ZIP archives to search for class files.
+    -D&lt;name>=&lt;value>
+                  set a system property
+    -verbose:[class|gc|jni]
+                  enable verbose output
+    -version      print product version and exit
+    -version:&lt;value>
+                  require the specified version to run
+    -showversion  print product version and continue
+    -jre-restrict-search | -no-jre-restrict-search
+                  include/exclude user private JREs in the version search
+    -? -help      print this help message
+    -X            print help on non-standard options
+    -ea[:&lt;packagename>...|:&lt;classname>]
+    -enableassertions[:&lt;packagename>...|:&lt;classname>]
+                  enable assertions with specified granularity
+    -da[:&lt;packagename>...|:&lt;classname>]
+    -disableassertions[:&lt;packagename>...|:&lt;classname>]
+                  disable assertions with specified granularity
+    -esa | -enablesystemassertions
+                  enable system assertions
+    -dsa | -disablesystemassertions
+                  disable system assertions
+    -agentlib:&lt;libname>[=&lt;options>]
+                  load native agent library &lt;libname>, e.g. -agentlib:hprof
+                  see also, -agentlib:jdwp=help and -agentlib:hprof=help
+    -agentpath:&lt;pathname>[=&lt;options>]
+                  load native agent library by full pathname
+    -javaagent:&lt;jarpath>[=&lt;options>]
+                  load Java programming language agent, see java.lang.instrument
+    -splash:&lt;imagepath>
+                  show splash screen with specified image
+See http://www.oracle.com/technetwork/java/javase/documentation/index.html for more details.
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ which python
+/home/dan/anaconda/bin/python
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ python
+Python 2.7.8 |Anaconda 2.1.0 (64-bit)| (default, Aug 21 2014, 18:22:21) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+>>> 
+>>> 
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ /tmp/spark/bin/pyspark
+Python 2.7.8 |Anaconda 2.1.0 (64-bit)| (default, Aug 21 2014, 18:22:21) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+Spark assembly has been built with Hive, including Datanucleus jars on classpath
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+15/01/29 20:07:06 WARN Utils: Your hostname, feb resolves to a loopback address: 127.0.1.1; using 10.0.2.15 instead (on interface eth0)
+15/01/29 20:07:06 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+15/01/29 20:07:06 INFO SecurityManager: Changing view acls to: dan
+15/01/29 20:07:06 INFO SecurityManager: Changing modify acls to: dan
+15/01/29 20:07:06 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(dan); users with modify permissions: Set(dan)
+15/01/29 20:07:07 INFO Slf4jLogger: Slf4jLogger started
+15/01/29 20:07:07 INFO Remoting: Starting remoting
+15/01/29 20:07:07 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriver@10.0.2.15:49701]
+15/01/29 20:07:07 INFO Utils: Successfully started service 'sparkDriver' on port 49701.
+15/01/29 20:07:07 INFO SparkEnv: Registering MapOutputTracker
+15/01/29 20:07:07 INFO SparkEnv: Registering BlockManagerMaster
+15/01/29 20:07:07 INFO DiskBlockManager: Created local directory at /tmp/spark-local-20150129200707-58fe
+15/01/29 20:07:07 INFO MemoryStore: MemoryStore started with capacity 265.4 MB
+15/01/29 20:07:08 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+15/01/29 20:07:08 INFO HttpFileServer: HTTP File server directory is /tmp/spark-e1b8e539-e9d7-4052-906c-44819afdc00c
+15/01/29 20:07:08 INFO HttpServer: Starting HTTP Server
+15/01/29 20:07:08 INFO Utils: Successfully started service 'HTTP file server' on port 33394.
+15/01/29 20:07:08 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+15/01/29 20:07:08 INFO SparkUI: Started SparkUI at http://10.0.2.15:4040
+15/01/29 20:07:09 INFO AkkaUtils: Connecting to HeartbeatReceiver: akka.tcp://sparkDriver@10.0.2.15:49701/user/HeartbeatReceiver
+15/01/29 20:07:09 INFO NettyBlockTransferService: Server created on 57083
+15/01/29 20:07:09 INFO BlockManagerMaster: Trying to register BlockManager
+15/01/29 20:07:09 INFO BlockManagerMasterActor: Registering block manager localhost:57083 with 265.4 MB RAM, BlockManagerId(&lt;driver>, localhost, 57083)
+15/01/29 20:07:09 INFO BlockManagerMaster: Registered BlockManager
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 1.2.0
+      /_/
+
+Using Python version 2.7.8 (default, Aug 21 2014 18:22:21)
+SparkContext available as sc.
+>>> 
+>>> 
+>>> 
+</code>
+
+The docs suggested I look at Python examples in 
+/tmp/spark/examples/src/main/python/
+
+<code class='bash'>
+>>> 
+>>> 
+>>> execfile('/tmp/spark/examples/src/main/python/pi.py')
+Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+  File "/tmp/spark/examples/src/main/python/pi.py", line 29, in &lt;module>
+    sc = SparkContext(appName="PythonPi")
+  File "/tmp/spark/python/pyspark/context.py", line 102, in __init__
+    SparkContext._ensure_initialized(self, gateway=gateway)
+  File "/tmp/spark/python/pyspark/context.py", line 228, in _ensure_initialized
+    callsite.function, callsite.file, callsite.linenum))
+ValueError: Cannot run multiple SparkContexts at once; existing SparkContext(app=PySparkShell, master=local[*]) 
+created by &lt;module> at /tmp/spark/python/pyspark/shell.py:45 
+
+</code>
+
+It appears that Spark has hearing problems when I talk to it.
+So, I bounced Spark.
+Notice I used a different syntax to start it.
+
+<code class='bash'>
+>>> quit()
+15/01/29 20:10:48 INFO SparkUI: Stopped Spark web UI at http://10.0.2.15:4040
+15/01/29 20:10:48 INFO DAGScheduler: Stopping DAGScheduler
+15/01/29 20:10:49 INFO MapOutputTrackerMasterActor: MapOutputTrackerActor stopped!
+15/01/29 20:10:49 INFO MemoryStore: MemoryStore cleared
+15/01/29 20:10:49 INFO BlockManager: BlockManager stopped
+15/01/29 20:10:49 INFO BlockManagerMaster: BlockManagerMaster stopped
+15/01/29 20:10:49 INFO SparkContext: Successfully stopped SparkContext
+15/01/29 20:10:49 INFO RemoteActorRefProvider$RemotingTerminator: Shutting down remote daemon.
+15/01/29 20:10:49 INFO RemoteActorRefProvider$RemotingTerminator: Remote daemon shut down; proceeding with flushing remote transports.
+dan@feb /tmp/spark $ 15/01/29 20:10:49 INFO RemoteActorRefProvider$RemotingTerminator: Remoting shut down.
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ 
+
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ /tmp/spark/bin/pyspark --master local[2]
+Python 2.7.8 |Anaconda 2.1.0 (64-bit)| (default, Aug 21 2014, 18:22:21) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+Spark assembly has been built with Hive, including Datanucleus jars on classpath
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+15/01/29 20:12:21 WARN Utils: Your hostname, feb resolves to a loopback address: 127.0.1.1; using 10.0.2.15 instead (on interface eth0)
+15/01/29 20:12:21 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+15/01/29 20:12:22 INFO SecurityManager: Changing view acls to: dan
+15/01/29 20:12:22 INFO SecurityManager: Changing modify acls to: dan
+15/01/29 20:12:22 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(dan); users with modify permissions: Set(dan)
+15/01/29 20:12:22 INFO Slf4jLogger: Slf4jLogger started
+15/01/29 20:12:22 INFO Remoting: Starting remoting
+15/01/29 20:12:22 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriver@10.0.2.15:45780]
+15/01/29 20:12:22 INFO Utils: Successfully started service 'sparkDriver' on port 45780.
+15/01/29 20:12:22 INFO SparkEnv: Registering MapOutputTracker
+15/01/29 20:12:22 INFO SparkEnv: Registering BlockManagerMaster
+15/01/29 20:12:22 INFO DiskBlockManager: Created local directory at /tmp/spark-local-20150129201222-85b5
+15/01/29 20:12:22 INFO MemoryStore: MemoryStore started with capacity 265.4 MB
+15/01/29 20:12:23 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+15/01/29 20:12:23 INFO HttpFileServer: HTTP File server directory is /tmp/spark-d703945f-011c-4024-8e59-4ba84e032d88
+15/01/29 20:12:23 INFO HttpServer: Starting HTTP Server
+15/01/29 20:12:23 INFO Utils: Successfully started service 'HTTP file server' on port 44630.
+15/01/29 20:12:23 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+15/01/29 20:12:23 INFO SparkUI: Started SparkUI at http://10.0.2.15:4040
+15/01/29 20:12:23 INFO AkkaUtils: Connecting to HeartbeatReceiver: akka.tcp://sparkDriver@10.0.2.15:45780/user/HeartbeatReceiver
+15/01/29 20:12:24 INFO NettyBlockTransferService: Server created on 44460
+15/01/29 20:12:24 INFO BlockManagerMaster: Trying to register BlockManager
+15/01/29 20:12:24 INFO BlockManagerMasterActor: Registering block manager localhost:44460 with 265.4 MB RAM, BlockManagerId(&lt;driver>, localhost, 44460)
+15/01/29 20:12:24 INFO BlockManagerMaster: Registered BlockManager
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 1.2.0
+      /_/
+
+Using Python version 2.7.8 (default, Aug 21 2014 18:22:21)
+SparkContext available as sc.
+>>> 
+>>> 
+</code>
+
+I was curious why did the example fail?
+I looked at the Python example.
+<code class='python'>#
+# pi.py
+#
+
+# A simple demo of using Spark to compute value of Pi.
+
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+import sys
+from random import random
+from operator import add
+
+from pyspark import SparkContext
+
+
+if __name__ == "__main__":
+    """
+        Usage: pi [partitions]
+    """
+    sc = SparkContext(appName="PythonPi")
+    partitions = int(sys.argv[1]) if len(sys.argv) > 1 else 2
+    n = 100000 * partitions
+
+    def f(_):
+        x = random() * 2 - 1
+        y = random() * 2 - 1
+        return 1 if x ** 2 + y ** 2 < 1 else 0
+
+    count = sc.parallelize(xrange(1, n + 1), partitions).map(f).reduce(add)
+    print "Pi is roughly %f" % (4.0 * count / n)
+
+    sc.stop()
+</code>
+
+I kept pyspark running in shell-1.
+
+I went to shell-2 and tried the Python example there:
+
+<code class='bash'>
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ /tmp/spark/bin/spark-submit examples/src/main/python/pi.py 10
+Spark assembly has been built with Hive, including Datanucleus jars on classpath
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+15/01/29 20:51:22 WARN Utils: Your hostname, feb resolves to a loopback address: 127.0.1.1; using 10.0.2.15 instead (on interface eth0)
+15/01/29 20:51:22 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+15/01/29 20:51:22 INFO SecurityManager: Changing view acls to: dan
+15/01/29 20:51:22 INFO SecurityManager: Changing modify acls to: dan
+15/01/29 20:51:22 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(dan); users with modify permissions: Set(dan)
+15/01/29 20:51:23 INFO Slf4jLogger: Slf4jLogger started
+15/01/29 20:51:23 INFO Remoting: Starting remoting
+15/01/29 20:51:23 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriver@10.0.2.15:36295]
+15/01/29 20:51:23 INFO Utils: Successfully started service 'sparkDriver' on port 36295.
+15/01/29 20:51:23 INFO SparkEnv: Registering MapOutputTracker
+15/01/29 20:51:23 INFO SparkEnv: Registering BlockManagerMaster
+15/01/29 20:51:23 INFO DiskBlockManager: Created local directory at /tmp/spark-local-20150129205123-2b30
+15/01/29 20:51:23 INFO MemoryStore: MemoryStore started with capacity 265.4 MB
+15/01/29 20:51:24 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+15/01/29 20:51:24 INFO HttpFileServer: HTTP File server directory is /tmp/spark-625446f8-b2e0-4b7a-af70-f8b707ea6927
+15/01/29 20:51:24 INFO HttpServer: Starting HTTP Server
+15/01/29 20:51:24 INFO Utils: Successfully started service 'HTTP file server' on port 39160.
+15/01/29 20:51:24 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+15/01/29 20:51:24 INFO SparkUI: Started SparkUI at http://10.0.2.15:4040
+15/01/29 20:51:24 INFO Utils: Copying /tmp/spark-1.2.0-bin-cdh4/examples/src/main/python/pi.py to /tmp/spark-04e68c32-01d9-431e-ac80-0356645e8c27/pi.py
+15/01/29 20:51:24 INFO SparkContext: Added file file:/tmp/spark-1.2.0-bin-cdh4/examples/src/main/python/pi.py at http://10.0.2.15:39160/files/pi.py with timestamp 1422564684742
+15/01/29 20:51:24 INFO AkkaUtils: Connecting to HeartbeatReceiver: akka.tcp://sparkDriver@10.0.2.15:36295/user/HeartbeatReceiver
+15/01/29 20:51:25 INFO NettyBlockTransferService: Server created on 36324
+15/01/29 20:51:25 INFO BlockManagerMaster: Trying to register BlockManager
+15/01/29 20:51:25 INFO BlockManagerMasterActor: Registering block manager localhost:36324 with 265.4 MB RAM, BlockManagerId(<driver>, localhost, 36324)
+15/01/29 20:51:25 INFO BlockManagerMaster: Registered BlockManager
+15/01/29 20:51:25 INFO SparkContext: Starting job: reduce at /tmp/spark-1.2.0-bin-cdh4/examples/src/main/python/pi.py:38
+15/01/29 20:51:25 INFO DAGScheduler: Got job 0 (reduce at /tmp/spark-1.2.0-bin-cdh4/examples/src/main/python/pi.py:38) with 10 output partitions (allowLocal=false)
+15/01/29 20:51:25 INFO DAGScheduler: Final stage: Stage 0(reduce at /tmp/spark-1.2.0-bin-cdh4/examples/src/main/python/pi.py:38)
+15/01/29 20:51:25 INFO DAGScheduler: Parents of final stage: List()
+15/01/29 20:51:25 INFO DAGScheduler: Missing parents: List()
+15/01/29 20:51:25 INFO DAGScheduler: Submitting Stage 0 (PythonRDD[1] at reduce at /tmp/spark-1.2.0-bin-cdh4/examples/src/main/python/pi.py:38), which has no missing parents
+15/01/29 20:51:25 INFO MemoryStore: ensureFreeSpace(4512) called with curMem=0, maxMem=278302556
+15/01/29 20:51:25 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 4.4 KB, free 265.4 MB)
+15/01/29 20:51:25 INFO MemoryStore: ensureFreeSpace(3468) called with curMem=4512, maxMem=278302556
+15/01/29 20:51:25 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 3.4 KB, free 265.4 MB)
+15/01/29 20:51:25 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on localhost:36324 (size: 3.4 KB, free: 265.4 MB)
+15/01/29 20:51:25 INFO BlockManagerMaster: Updated info of block broadcast_0_piece0
+15/01/29 20:51:25 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:838
+15/01/29 20:51:25 INFO DAGScheduler: Submitting 10 missing tasks from Stage 0 (PythonRDD[1] at reduce at /tmp/spark-1.2.0-bin-cdh4/examples/src/main/python/pi.py:38)
+15/01/29 20:51:25 INFO TaskSchedulerImpl: Adding task set 0.0 with 10 tasks
+15/01/29 20:51:25 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, PROCESS_LOCAL, 1290 bytes)
+15/01/29 20:51:25 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, PROCESS_LOCAL, 1290 bytes)
+15/01/29 20:51:25 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, localhost, PROCESS_LOCAL, 1290 bytes)
+15/01/29 20:51:25 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+15/01/29 20:51:25 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
+15/01/29 20:51:25 INFO Executor: Running task 2.0 in stage 0.0 (TID 2)
+15/01/29 20:51:25 INFO Executor: Fetching http://10.0.2.15:39160/files/pi.py with timestamp 1422564684742
+15/01/29 20:51:25 INFO Utils: Fetching http://10.0.2.15:39160/files/pi.py to /tmp/fetchFileTemp7647809962813384597.tmp
+15/01/29 20:51:26 INFO PythonRDD: Times: total = 437, boot = 336, init = 27, finish = 74
+15/01/29 20:51:26 INFO PythonRDD: Times: total = 445, boot = 330, init = 33, finish = 82
+15/01/29 20:51:26 INFO PythonRDD: Times: total = 459, boot = 350, init = 35, finish = 74
+15/01/29 20:51:26 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 692 bytes result sent to driver
+15/01/29 20:51:26 INFO Executor: Finished task 2.0 in stage 0.0 (TID 2). 692 bytes result sent to driver
+15/01/29 20:51:26 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 692 bytes result sent to driver
+15/01/29 20:51:26 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, localhost, PROCESS_LOCAL, 1290 bytes)
+15/01/29 20:51:26 INFO Executor: Running task 3.0 in stage 0.0 (TID 3)
+15/01/29 20:51:26 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, localhost, PROCESS_LOCAL, 1290 bytes)
+15/01/29 20:51:26 INFO Executor: Running task 4.0 in stage 0.0 (TID 4)
+15/01/29 20:51:26 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5, localhost, PROCESS_LOCAL, 1290 bytes)
+15/01/29 20:51:26 INFO Executor: Running task 5.0 in stage 0.0 (TID 5)
+15/01/29 20:51:26 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 742 ms on localhost (1/10)
+15/01/29 20:51:26 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 773 ms on localhost (2/10)
+15/01/29 20:51:26 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 753 ms on localhost (3/10)
+15/01/29 20:51:26 INFO PythonRDD: Times: total = 142, boot = 35, init = 12, finish = 95
+15/01/29 20:51:26 INFO Executor: Finished task 5.0 in stage 0.0 (TID 5). 692 bytes result sent to driver
+15/01/29 20:51:26 INFO TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6, localhost, PROCESS_LOCAL, 1290 bytes)
+15/01/29 20:51:26 INFO Executor: Running task 6.0 in stage 0.0 (TID 6)
+15/01/29 20:51:26 INFO TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 169 ms on localhost (4/10)
+15/01/29 20:51:26 INFO PythonRDD: Times: total = 173, boot = 24, init = 23, finish = 126
+15/01/29 20:51:26 INFO Executor: Finished task 3.0 in stage 0.0 (TID 3). 692 bytes result sent to driver
+15/01/29 20:51:26 INFO TaskSetManager: Starting task 7.0 in stage 0.0 (TID 7, localhost, PROCESS_LOCAL, 1290 bytes)
+15/01/29 20:51:26 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 210 ms on localhost (5/10)
+15/01/29 20:51:26 INFO Executor: Running task 7.0 in stage 0.0 (TID 7)
+15/01/29 20:51:26 INFO PythonRDD: Times: total = 219, boot = 8, init = 37, finish = 174
+15/01/29 20:51:26 INFO Executor: Finished task 4.0 in stage 0.0 (TID 4). 692 bytes result sent to driver
+15/01/29 20:51:26 INFO TaskSetManager: Starting task 8.0 in stage 0.0 (TID 8, localhost, PROCESS_LOCAL, 1290 bytes)
+15/01/29 20:51:26 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 252 ms on localhost (6/10)
+15/01/29 20:51:26 INFO Executor: Running task 8.0 in stage 0.0 (TID 8)
+15/01/29 20:51:26 INFO PythonRDD: Times: total = 152, boot = 20, init = 13, finish = 119
+15/01/29 20:51:26 INFO Executor: Finished task 7.0 in stage 0.0 (TID 7). 692 bytes result sent to driver
+15/01/29 20:51:26 INFO TaskSetManager: Starting task 9.0 in stage 0.0 (TID 9, localhost, PROCESS_LOCAL, 1290 bytes)
+15/01/29 20:51:26 INFO PythonRDD: Times: total = 174, boot = 15, init = 7, finish = 152
+15/01/29 20:51:26 INFO Executor: Finished task 6.0 in stage 0.0 (TID 6). 692 bytes result sent to driver
+15/01/29 20:51:26 INFO Executor: Running task 9.0 in stage 0.0 (TID 9)
+15/01/29 20:51:26 INFO PythonRDD: Times: total = 121, boot = 3, init = 2, finish = 116
+15/01/29 20:51:26 INFO Executor: Finished task 8.0 in stage 0.0 (TID 8). 692 bytes result sent to driver
+15/01/29 20:51:26 INFO TaskSetManager: Finished task 7.0 in stage 0.0 (TID 7) in 185 ms on localhost (7/10)
+15/01/29 20:51:26 INFO TaskSetManager: Finished task 6.0 in stage 0.0 (TID 6) in 261 ms on localhost (8/10)
+15/01/29 20:51:26 INFO TaskSetManager: Finished task 8.0 in stage 0.0 (TID 8) in 195 ms on localhost (9/10)
+15/01/29 20:51:27 INFO PythonRDD: Times: total = 128, boot = 23, init = 6, finish = 99
+15/01/29 20:51:27 INFO Executor: Finished task 9.0 in stage 0.0 (TID 9). 692 bytes result sent to driver
+15/01/29 20:51:27 INFO TaskSetManager: Finished task 9.0 in stage 0.0 (TID 9) in 164 ms on localhost (10/10)
+15/01/29 20:51:27 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+15/01/29 20:51:27 INFO DAGScheduler: Stage 0 (reduce at /tmp/spark-1.2.0-bin-cdh4/examples/src/main/python/pi.py:38) finished in 1.294 s
+15/01/29 20:51:27 INFO DAGScheduler: Job 0 finished: reduce at /tmp/spark-1.2.0-bin-cdh4/examples/src/main/python/pi.py:38, took 1.632379 s
+Pi is roughly 3.139240
+15/01/29 20:51:27 INFO SparkUI: Stopped Spark web UI at http://10.0.2.15:4040
+15/01/29 20:51:27 INFO DAGScheduler: Stopping DAGScheduler
+15/01/29 20:51:28 INFO MapOutputTrackerMasterActor: MapOutputTrackerActor stopped!
+15/01/29 20:51:28 INFO MemoryStore: MemoryStore cleared
+15/01/29 20:51:28 INFO BlockManager: BlockManager stopped
+15/01/29 20:51:28 INFO BlockManagerMaster: BlockManagerMaster stopped
+15/01/29 20:51:28 INFO SparkContext: Successfully stopped SparkContext
+15/01/29 20:51:28 INFO RemoteActorRefProvider$RemotingTerminator: Shutting down remote daemon.
+15/01/29 20:51:28 INFO RemoteActorRefProvider$RemotingTerminator: Remote daemon shut down; proceeding with flushing remote transports.
+15/01/29 20:51:28 INFO RemoteActorRefProvider$RemotingTerminator: Remoting shut down.
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ 
+</code>
+
+I think the example worked okay.
+It is not totally obvious though; Spark used 108 lines of output to tell me that it ran about 
+20 lines of Python and that:
+<br />
+<br />
+
+Pi is roughly 3.139240
+

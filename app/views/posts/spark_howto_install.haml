@@ -1,0 +1,62 @@
+.q1 Question:
+.q2 Spark, how to install it?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/spark') spark
+  %a.xtag(href='/tags/install') install
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/python') python
+
+%br/
+Note that these instructions are for Linux.
+%br/
+%br/
+Google sent me here:
+
+%br/
+%br/
+
+%a(href='http://spark.apache.org/downloads.html' target='x')
+  http://spark.apache.org/downloads.html
+
+%br/
+%br/
+I filled out the form there with values obvious to me:
+
+%br/
+
+%ul
+  %li Spark release 1.2.0
+  %li Package type: Pre-Built for CDH4
+  %li Download type: Apache Mirror
+
+%br/
+%br/
+The above form concerned me a bit.  I was in no mood to install CDH4 (Cloudera 4) on my laptop.
+I want to run Spark on my laptop as a standalone service.
+%br/
+%br/
+Anyway,
+that form served me a link which I followed to this URL:
+%br/
+%br/
+
+%a(href='http://www.apache.org/dyn/closer.cgi/spark/spark-1.2.0/spark-1.2.0-bin-cdh4.tgz' target='x')
+  http://www.apache.org/dyn/closer.cgi/spark/spark-1.2.0/spark-1.2.0-bin-cdh4.tgz
+
+
+%br/
+%br/
+
+The above URL is not a link to a tgz-file; it is actually a page of tgz-files.
+%br/
+%br/
+I went to my Linux shell and did this:
+
+%pre
+  =render 'spark_howto_install'
+
+%br/
+
+
+
