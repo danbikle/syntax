@@ -1,0 +1,59 @@
+<code class='lua'>-- In Lua I can name a table after my cat, Bob:
+
+Bobcat = { bobstate = 'noisy' , meows = 0 }
+
+-- I can add a function to the table:
+
+function Bobcat.speak(self) 
+  self.meows = self.meows + 1
+  if self.meows > 10 then
+    self.bobstate = 'quiet'
+  end
+  return "meow" 
+end
+
+-- On Monday Bobcat wakes up and thinks he is a new cat:
+
+monday_bobcat = Bobcat
+
+-- He is hungry:
+
+for mcount=1,100 do
+  monday_bobcat.speak(monday_bobcat)
+end
+
+print(monday_bobcat.meows, monday_bobcat.bobstate)
+
+-- He also hunts houseflies:
+
+Bobcat.houseflies = 10
+
+function Bobcat.huntfly(self)
+  self.bobstate   = 'quiet'
+  self.houseflies = self.houseflies - 1
+  return "shredded curtains" 
+end
+-- Above definition can be simplified with a ':'
+
+monday_bobcat.huntfly(monday_bobcat)
+-- Above call can be simplified with a ':'
+
+-- I can use colon to simplify function definition of huntfly().
+-- Compare syntax below to syntax above.
+-- The syntax below is simpler due to the colon:
+
+function Bobcat:huntfly()
+  self.bobstate   = 'quiet'
+  self.houseflies = self.houseflies - 1
+  return "shredded curtains" 
+end
+
+-- Also, I can use colon to simplify call of huntfly():
+
+monday_bobcat:huntfly()
+
+print(monday_bobcat.bobstate, monday_bobcat.houseflies)
+
+-- So, in Lua, the colon is used to simplfy two types of syntax:
+-- function definition and function call.
+</code>

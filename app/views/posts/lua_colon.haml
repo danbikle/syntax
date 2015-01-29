@@ -1,0 +1,37 @@
+.q1 Question:
+.q2 In Lua what does the colon do?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lua') lua
+  %a.xtag(href='/tags/colon') colon
+  %a.xtag(href='/tags/function') function
+  %a.xtag(href='/tags/oo') oo
+  %a.xtag(href='/tags/self') self
+
+%br/
+I noticed this Aerospike syntax:
+
+%pre
+  %code.lua status = aerospike:create(rec)
+
+What does the colon do and why is it there and is it used frequently by Lua programmers? 
+
+%br/
+%br/
+The colon is used to simplfy two types of syntax, function definition and function call.
+
+%br/
+%br/
+According to the Lua docs, the above call could be written without the colon:
+
+%pre
+  %code.lua status = aerospike.create(aerospike.rec)
+
+I offer more discussion below to describe how I can use the colon to require less syntax for 
+function definitions:
+%pre
+  =render 'lua_colon'
+%br/
+
+
+
