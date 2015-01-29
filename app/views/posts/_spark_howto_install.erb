@@ -23,6 +23,16 @@ dan@feb /tmp $ ln -s spark-1.2.0-bin-cdh4 spark
 dan@feb /tmp $ 
 dan@feb /tmp $ cd /tmp/spark
 dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ 
+</code>
+At this point I think I have Spark installed on my laptop.
+But, what next?
+
+Well, I do know that Spark wants me to have Java.
+Do I have Java?
+<code class='bash'>
+dan@feb /tmp/spark $ 
+dan@feb /tmp/spark $ 
 dan@feb /tmp/spark $ which java
 /home/dan/jdk/bin/java
 dan@feb /tmp/spark $ 
@@ -85,6 +95,14 @@ where options include:
 See http://www.oracle.com/technetwork/java/javase/documentation/index.html for more details.
 dan@feb /tmp/spark $ 
 dan@feb /tmp/spark $ 
+</code>
+Yay!
+I have Java.
+
+The Spark docs say I can talke to Spark using Python.
+Do I have Python?
+<code class='bash'>
+dan@feb /tmp/spark $ 
 dan@feb /tmp/spark $ which python
 /home/dan/anaconda/bin/python
 dan@feb /tmp/spark $ 
@@ -97,6 +115,12 @@ Anaconda is brought to you by Continuum Analytics.
 Please check out: http://continuum.io/thanks and https://binstar.org
 >>> 
 >>> 
+</code>
+Yay!
+I have Python.
+
+Next, the docs suggested I try this:
+<code class='bash'>
 dan@feb /tmp/spark $ 
 dan@feb /tmp/spark $ 
 dan@feb /tmp/spark $ /tmp/spark/bin/pyspark
@@ -144,6 +168,7 @@ SparkContext available as sc.
 >>> 
 >>> 
 </code>
+That looks like good news. I have my copy of Python talking to my copy of Spark.
 
 The docs suggested I look at Python examples in 
 /tmp/spark/examples/src/main/python/
@@ -164,12 +189,12 @@ ValueError: Cannot run multiple SparkContexts at once; existing SparkContext(app
 created by &lt;module> at /tmp/spark/python/pyspark/shell.py:45 
 
 </code>
+I am talking to Spark (with Python) and Spark cannot hear me.
 
-It appears that Spark has hearing problems when I talk to it.
 So, I bounced Spark.
-Notice I used a different syntax to start it.
-
+Notice I used a different syntax to start it so that it has two threads running locally (rather than in a cluster):
 <code class='bash'>
+>>> 
 >>> quit()
 15/01/29 20:10:48 INFO SparkUI: Stopped Spark web UI at http://10.0.2.15:4040
 15/01/29 20:10:48 INFO DAGScheduler: Stopping DAGScheduler
@@ -280,11 +305,9 @@ if __name__ == "__main__":
 
     sc.stop()
 </code>
-
 I kept pyspark running in shell-1.
 
 I went to shell-2 and tried the Python example there:
-
 <code class='bash'>
 dan@feb /tmp/spark $ 
 dan@feb /tmp/spark $ 
