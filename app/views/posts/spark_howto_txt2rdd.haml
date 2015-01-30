@@ -39,4 +39,21 @@ with Spark:
 %pre
   =render 'spark_howto_txt2rdd'
 
+Next, I use wget to get a copy of a CSV file from Yahoo:
+
+%pre
+  =render 'spark_howto_txt2rdd2'
+
+Then, I use one line of code to create a Spark RDD from the CSV file:
+
+%pre
+  =render 'spark_howto_txt2rdd3'
+%br/
+
+According to quick-start.html I can make calls to my new RDD:
+
+%pre
+  =render 'spark_howto_txt2rdd4'
+
+So, creating a Spark RDD from a CSV file is easy.
 

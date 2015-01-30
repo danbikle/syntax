@@ -1,0 +1,32 @@
+<code class='bash'>dan@feb ~ $ 
+dan@feb ~ $ cd /tmp
+dan@feb /tmp $ 
+dan@feb /tmp $ wget --output-document=/tmp/spy.csv http://ichart.finance.yahoo.com/table.csv?s=SPY
+--2015-01-30 09:38:04--  http://ichart.finance.yahoo.com/table.csv?s=SPY
+Resolving ichart.finance.yahoo.com (ichart.finance.yahoo.com)... 
+206.190.61.107, 216.115.107.207, 206.190.61.106, ...
+Connecting to ichart.finance.yahoo.com 
+(ichart.finance.yahoo.com)|206.190.61.107|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/csv]
+Saving to: ‘/tmp/spy.csv’
+
+    [  &lt;=>                                  ] 293,310     1.22MB/s   in 0.2s   
+
+2015-01-30 09:38:05 (1.22 MB/s) - ‘/tmp/spy.csv’ saved [293310]
+
+dan@feb /tmp $ 
+dan@feb /tmp $ head spy.csv
+Date,Open,High,Low,Close,Volume,Adj Close
+2015-01-29,200.38,202.30,198.68,201.99,151627700,201.99
+2015-01-28,204.17,204.29,199.91,200.14,168514300,200.14
+2015-01-27,202.97,204.12,201.74,202.74,134044600,202.74
+2015-01-26,204.71,205.56,203.85,205.45,92009700,205.45
+2015-01-23,205.79,206.10,204.81,204.97,117516800,204.97
+2015-01-22,203.99,206.26,202.33,206.10,174356000,206.10
+2015-01-21,201.50,203.66,200.94,203.08,122942700,203.08
+2015-01-20,202.40,202.72,200.17,202.06,130991100,202.06
+2015-01-16,198.77,201.82,198.55,201.63,211879600,201.63
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+</code>

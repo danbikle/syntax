@@ -1,0 +1,19 @@
+<code class='bash'>>>> 
+>>> 
+>>> spy_rdd = sc.textFile("/tmp/spy.csv")
+15/01/30 09:42:29 INFO MemoryStore: ensureFreeSpace(79457) 
+called with curMem=0, maxMem=278302556
+15/01/30 09:42:29 INFO MemoryStore: Block broadcast_0 stored as values in memory 
+(estimated size 77.6 KB, free 265.3 MB)
+15/01/30 09:42:30 INFO MemoryStore: ensureFreeSpace(11054) called with 
+curMem=79457, maxMem=278302556
+15/01/30 09:42:30 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory 
+(estimated size 10.8 KB, free 265.3 MB)
+15/01/30 09:42:30 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 
+localhost:45308 (size: 10.8 KB, free: 265.4 MB)
+15/01/30 09:42:30 INFO BlockManagerMaster: Updated info of block broadcast_0_piece0
+15/01/30 09:42:30 INFO SparkContext: 
+Created broadcast 0 from textFile at NativeMethodAccessorImpl.java:-2
+>>> 
+>>> 
+</code>
