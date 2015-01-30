@@ -3,14 +3,17 @@ dan@feb ~/spark $
 dan@feb ~/spark $ ./bin/run-example SparkPi 10
 Spark assembly has been built with Hive, including Datanucleus jars on classpath
 Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
-15/01/29 22:41:47 WARN Utils: Your hostname, feb resolves to a loopback address: 127.0.1.1; using 10.0.2.15 instead (on interface eth0)
+15/01/29 22:41:47 WARN Utils: Your hostname, feb resolves to a loopback address: 
+127.0.1.1; using 10.0.2.15 instead (on interface eth0)
 15/01/29 22:41:47 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
 15/01/29 22:41:47 INFO SecurityManager: Changing view acls to: dan
 15/01/29 22:41:47 INFO SecurityManager: Changing modify acls to: dan
-15/01/29 22:41:47 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(dan); users with modify permissions: Set(dan)
+15/01/29 22:41:47 INFO SecurityManager: SecurityManager: authentication disabled; 
+ui acls disabled; users with view permissions: Set(dan); users with modify permissions: Set(dan)
 15/01/29 22:41:48 INFO Slf4jLogger: Slf4jLogger started
 15/01/29 22:41:48 INFO Remoting: Starting remoting
-15/01/29 22:41:49 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriver@10.0.2.15:35518]
+15/01/29 22:41:49 INFO Remoting: Remoting started; listening on addresses :
+[akka.tcp://sparkDriver@10.0.2.15:35518]
 15/01/29 22:41:49 INFO Utils: Successfully started service 'sparkDriver' on port 35518.
 </code>
 It just started a web service, I wonder what it does?
@@ -18,18 +21,21 @@ It just started a web service, I wonder what it does?
 <code class='bash'>
 15/01/29 22:41:49 INFO SparkEnv: Registering MapOutputTracker
 15/01/29 22:41:49 INFO SparkEnv: Registering BlockManagerMaster
-15/01/29 22:41:49 INFO DiskBlockManager: Created local directory at /tmp/spark-local-20150129224149-a168
+15/01/29 22:41:49 INFO DiskBlockManager: Created local directory at 
+/tmp/spark-local-20150129224149-a168
 15/01/29 22:41:49 INFO MemoryStore: MemoryStore started with capacity 265.4 MB
 </code>
 Perhaps the MemoryStore is the main place that Spark wrestles with data?
 
 <code class='bash'>
-15/01/29 22:41:49 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+15/01/29 22:41:49 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... 
+using builtin-java classes where applicable
 </code>
 I like the look of that.  Spark is aware that I do not want to run hadoop on my laptop.
 
 <code class='bash'>
-15/01/29 22:41:49 INFO HttpFileServer: HTTP File server directory is /tmp/spark-6c57b02e-3759-4844-860e-01b6dd556be5
+15/01/29 22:41:49 INFO HttpFileServer: HTTP File server directory is 
+/tmp/spark-6c57b02e-3759-4844-860e-01b6dd556be5
 15/01/29 22:41:49 INFO HttpServer: Starting HTTP Server
 15/01/29 22:41:50 INFO Utils: Successfully started service 'HTTP file server' on port 48636.
 </code>
@@ -46,7 +52,10 @@ I have seen this one before though when I walked through the Python demo.
 It serves me HTML pages which I use to understand what is going on.
 
 <code class='bash'>
-15/01/29 22:41:52 INFO SparkContext: Added JAR file:/home/dan/spark/lib/spark-examples-1.2.0-hadoop2.0.0-mr1-cdh4.2.0.jar at http://10.0.2.15:48636/jars/spark-examples-1.2.0-hadoop2.0.0-mr1-cdh4.2.0.jar with timestamp 1422571312528
+15/01/29 22:41:52 INFO SparkContext: 
+Added JAR file:/home/dan/spark/lib/spark-examples-1.2.0-hadoop2.0.0-mr1-cdh4.2.0.jar 
+at http://10.0.2.15:48636/jars/spark-examples-1.2.0-hadoop2.0.0-mr1-cdh4.2.0.jar 
+with timestamp 1422571312528
 </code>
 It just added a jar-file to a directory where the file server can serve it.
 Since it is a jar-file, some Java process will use it later.
@@ -54,10 +63,12 @@ The name suggests it has something to do with Hadoop and Cloudera 4.
 Since I am not running Cloudera on my laptop, maybe this jar-file will never get used?
 
 <code class='bash'>
-15/01/29 22:41:52 INFO AkkaUtils: Connecting to HeartbeatReceiver: akka.tcp://sparkDriver@10.0.2.15:35518/user/HeartbeatReceiver
+15/01/29 22:41:52 INFO AkkaUtils: Connecting to HeartbeatReceiver: 
+akka.tcp://sparkDriver@10.0.2.15:35518/user/HeartbeatReceiver
 15/01/29 22:41:53 INFO NettyBlockTransferService: Server created on 43346
 15/01/29 22:41:53 INFO BlockManagerMaster: Trying to register BlockManager
-15/01/29 22:41:53 INFO BlockManagerMasterActor: Registering block manager localhost:43346 with 265.4 MB RAM, BlockManagerId(&lt;driver>, localhost, 43346)
+15/01/29 22:41:53 INFO BlockManagerMasterActor: Registering block manager localhost:43346 
+with 265.4 MB RAM, BlockManagerId(&lt;driver>, localhost, 43346)
 15/01/29 22:41:53 INFO BlockManagerMaster: Registered BlockManager
 </code>
 I have no idea what a BlockManager is or does.
@@ -98,9 +109,13 @@ Next I see a lot of activity related to job scheduling, memory management, and t
 15/01/29 22:41:54 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
 15/01/29 22:41:54 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
 15/01/29 22:41:54 INFO Executor: Running task 2.0 in stage 0.0 (TID 2)
-15/01/29 22:41:54 INFO Executor: Fetching http://10.0.2.15:48636/jars/spark-examples-1.2.0-hadoop2.0.0-mr1-cdh4.2.0.jar with timestamp 1422571312528
-15/01/29 22:41:54 INFO Utils: Fetching http://10.0.2.15:48636/jars/spark-examples-1.2.0-hadoop2.0.0-mr1-cdh4.2.0.jar to /tmp/fetchFileTemp5448896679607347823.tmp
-15/01/29 22:41:56 INFO Executor: Adding file:/tmp/spark-4dee4c88-9225-4a41-b1a9-a7661660b4c9/spark-examples-1.2.0-hadoop2.0.0-mr1-cdh4.2.0.jar to class loader
+15/01/29 22:41:54 INFO Executor: 
+Fetching http://10.0.2.15:48636/jars/spark-examples-1.2.0-hadoop2.0.0-mr1-cdh4.2.0.jar with timestamp 1422571312528
+15/01/29 22:41:54 INFO Utils: 
+Fetching http://10.0.2.15:48636/jars/spark-examples-1.2.0-hadoop2.0.0-mr1-cdh4.2.0.jar 
+to /tmp/fetchFileTemp5448896679607347823.tmp
+15/01/29 22:41:56 INFO Executor: Adding file:
+/tmp/spark-4dee4c88-9225-4a41-b1a9-a7661660b4c9/spark-examples-1.2.0-hadoop2.0.0-mr1-cdh4.2.0.jar to class loader
 15/01/29 22:41:56 INFO Executor: Finished task 2.0 in stage 0.0 (TID 2). 727 bytes result sent to driver
 15/01/29 22:41:56 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 727 bytes result sent to driver
 15/01/29 22:41:56 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 727 bytes result sent to driver
@@ -158,8 +173,10 @@ Next, Spark needs to shut itself down:
 15/01/29 22:41:57 INFO BlockManager: BlockManager stopped
 15/01/29 22:41:57 INFO BlockManagerMaster: BlockManagerMaster stopped
 15/01/29 22:41:57 INFO SparkContext: Successfully stopped SparkContext
-15/01/29 22:41:57 INFO RemoteActorRefProvider$RemotingTerminator: Shutting down remote daemon.
-15/01/29 22:41:57 INFO RemoteActorRefProvider$RemotingTerminator: Remote daemon shut down; proceeding with flushing remote transports.
+15/01/29 22:41:57 INFO RemoteActorRefProvider$RemotingTerminator: 
+Shutting down remote daemon.
+15/01/29 22:41:57 INFO RemoteActorRefProvider$RemotingTerminator: 
+Remote daemon shut down; proceeding with flushing remote transports.
 dan@feb ~/spark $ 
 dan@feb ~/spark $ 
 dan@feb ~/spark $ 

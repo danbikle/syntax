@@ -1,0 +1,56 @@
+<code class='bash'>
+dan@feb ~ $ 
+dan@feb ~ $ cd spark
+dan@feb ~/spark $ 
+dan@feb ~/spark $ ~/spark/bin/pyspark
+Python 2.7.8 |Anaconda 2.1.0 (64-bit)| (default, Aug 21 2014, 18:22:21) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+Spark assembly has been built with Hive, including Datanucleus jars on classpath
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+15/01/30 09:27:37 WARN Utils: Your hostname, feb resolves to a loopback address: 
+127.0.1.1; using 10.0.2.15 instead (on interface eth0)
+15/01/30 09:27:37 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+15/01/30 09:27:37 INFO SecurityManager: Changing view acls to: dan
+15/01/30 09:27:37 INFO SecurityManager: Changing modify acls to: dan
+15/01/30 09:27:37 INFO SecurityManager: SecurityManager: authentication disabled; 
+ui acls disabled; users with view permissions: Set(dan); users with modify permissions: Set(dan)
+15/01/30 09:27:39 INFO Slf4jLogger: Slf4jLogger started
+15/01/30 09:27:39 INFO Remoting: Starting remoting
+15/01/30 09:27:39 INFO Remoting: Remoting started; listening on addresses :
+[akka.tcp://sparkDriver@10.0.2.15:46828]
+15/01/30 09:27:39 INFO Utils: Successfully started service 'sparkDriver' on port 46828.
+15/01/30 09:27:39 INFO SparkEnv: Registering MapOutputTracker
+15/01/30 09:27:40 INFO SparkEnv: Registering BlockManagerMaster
+15/01/30 09:27:40 INFO DiskBlockManager: Created local directory at /tmp/spark-local-20150130092740-23e5
+15/01/30 09:27:40 INFO MemoryStore: MemoryStore started with capacity 265.4 MB
+15/01/30 09:27:40 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... 
+using builtin-java classes where applicable
+15/01/30 09:27:41 INFO HttpFileServer: HTTP File server directory is 
+/tmp/spark-d765a3ce-ed61-49f8-8b98-21283bb97586
+15/01/30 09:27:41 INFO HttpServer: Starting HTTP Server
+15/01/30 09:27:41 INFO Utils: Successfully started service 'HTTP file server' on port 35125.
+15/01/30 09:27:41 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+15/01/30 09:27:41 INFO SparkUI: Started SparkUI at http://10.0.2.15:4040
+15/01/30 09:27:42 INFO AkkaUtils: Connecting to HeartbeatReceiver: 
+akka.tcp://sparkDriver@10.0.2.15:46828/user/HeartbeatReceiver
+15/01/30 09:27:42 INFO NettyBlockTransferService: Server created on 45308
+15/01/30 09:27:42 INFO BlockManagerMaster: Trying to register BlockManager
+15/01/30 09:27:42 INFO BlockManagerMasterActor: Registering block manager 
+localhost:45308 with 265.4 MB RAM, BlockManagerId(<driver>, localhost, 45308)
+15/01/30 09:27:42 INFO BlockManagerMaster: Registered BlockManager
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 1.2.0
+      /_/
+
+Using Python version 2.7.8 (default, Aug 21 2014 18:22:21)
+SparkContext available as sc.
+>>> 
+>>> 
+>>> 
+</code>
