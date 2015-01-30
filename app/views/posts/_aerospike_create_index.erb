@@ -1,0 +1,11 @@
+<code class='bash'>-- ~/ks/b/asp/create_index.aql
+
+-- Create cats:
+INSERT INTO test.cats(PK, name, age) VALUES (100, 'Chester', 4)
+
+-- CREATE INDEX:
+CREATE INDEX cats_n1 ON test.cats (age) NUMERIC
+
+-- This should work now:
+SELECT * FROM test.cats WHERE age BETWEEN 1 AND 10 
+</code>
