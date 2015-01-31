@@ -1,0 +1,49 @@
+<code class='bash'>root@cen115.dan / # 
+root@cen115.dan / # 
+root@cen115.dan / # cd /etc/sysconfig
+root@cen115.dan /etc/sysconfig # 
+root@cen115.dan /etc/sysconfig # cat network
+NETWORKING=yes
+HOSTNAME=cen115.dan
+NTPSERVERARGS=iburst
+root@cen115.dan /etc/sysconfig # 
+root@cen115.dan /etc/sysconfig # 
+root@cen115.dan /etc/sysconfig # sed -i '2s/cen115/cen114/' network
+root@cen115.dan /etc/sysconfig # 
+root@cen115.dan /etc/sysconfig # cat network
+NETWORKING=yes
+HOSTNAME=cen114.dan
+NTPSERVERARGS=iburst
+root@cen115.dan /etc/sysconfig # 
+root@cen115.dan /etc/sysconfig # hostname
+cen115.dan
+root@cen115.dan /etc/sysconfig # 
+root@cen115.dan /etc/sysconfig # shutdown -r now
+
+Broadcast message from dan@cen115.dan
+	(/dev/pts/0) at 22:16 ...
+
+The system is going down for reboot NOW!
+root@cen115.dan /etc/sysconfig # 
+Connection to i114 closed by remote host.
+Connection to i114 closed.
+dan@feb ~ $ 
+dan@feb ~ $ 
+
+I wait a bit.
+
+I reconnect using the same IP-address which should remain unchanged:
+
+
+dan@feb ~ $ 
+dan@feb ~ $ 
+dan@feb ~ $ ssh i114
+Last login: Sat Jan 31 21:47:09 2015 from i117
+dan@cen114.dan ~ $ 
+dan@cen114.dan ~ $ 
+dan@cen114.dan ~ $ hostname
+cen114.dan
+dan@cen114.dan ~ $ 
+dan@cen114.dan ~ $ 
+dan@cen114.dan ~ $ 
+</code>

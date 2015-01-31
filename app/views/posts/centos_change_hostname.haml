@@ -1,0 +1,65 @@
+.q1 Question:
+.q2 How to change hostname on Centos Linux?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/centos') centos
+  %a.xtag(href='/tags/centos6') centos6
+  %a.xtag(href='/tags/sysconfig') sysconfig
+  %a.xtag(href='/tags/network') network
+  %a.xtag(href='/tags/sed') sed
+  %a.xtag(href='/tags/shutdown') shutdown
+  %a.xtag(href='/tags/reboot') reboot
+
+%br/
+
+I often work with VirtualBox.
+
+%br/
+%br/
+
+%a(href='http://en.wikipedia.org/wiki/VirtualBox' target='x')
+  http://en.wikipedia.org/wiki/VirtualBox
+
+%br/
+%br/
+
+If I install VirtualBox on a laptop and then install Linux inside VirtualBox,
+the laptop is called the Host-OS and Linux is called the Guest-OS or the Guest.
+
+%br/
+%br/
+
+After I install Linux as a Guest, I often want to change the hostname of the Guest.
+
+%br/
+%br/
+
+It is easy, just edit /etc/sysconfig/network and then reboot:
+
+%pre
+  =render 'centos_change_hostname'
+
+%br/
+%br/
+
+Often I also want to change the IP-address.
+
+%br/
+%br/
+
+For that task I usually right click on the network indicator of the Guest desktop
+and then click 'Edit Connections...'.
+
+%br/
+%br/
+
+Linux then serves me an simple form which I use to change the IP-address.
+
+%br/
+%br/
+
+After I change the IP-address I usually reboot to get the best behavior from the Guest.
+
+%br/
+
