@@ -1,0 +1,24 @@
+<code class='python'>>>> 
+>>> mylam0 = lambda line : line.replace(' ','')
+>>> mylam1 = lambda line : mylam0(line).split(',')
+>>> mylam2 = lambda line : mylam1(line)[4]
+>>> mylam3 = lambda line : float(mylam2(line))
+>>> 
+>>> closing_prices = noheader_rdd.map(mylam3)
+>>> 
+>>> maxlam = lambda n1, n2 : n1 if (n1>n2) else n2
+>>> max_closing_price = closing_prices.reduce(maxlam)
+15/01/31 09:55:27 INFO SparkContext: Starting job: reduce at &lt;stdin>:1
+15/01/31 09:55:27 INFO DAGScheduler: ...
+
+snip
+
+15/01/31 09:55:27 INFO DAGScheduler: Stage 24 (reduce at &lt;stdin>:1) finished in 0.166 s
+15/01/31 09:55:27 INFO DAGScheduler: Job 24 finished: reduce at &lt;stdin>:1, took 0.194535 s
+>>> 
+>>> 
+>>> max_closing_price
+2090.57
+>>> 
+>>> 
+</code>

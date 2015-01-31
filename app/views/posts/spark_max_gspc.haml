@@ -49,9 +49,23 @@ Then, I use some code to create a Spark RDD from the CSV file:
   =render 'spark_max_gspc3'
 %br/
 
+Next, I use filter() to create a collection of closing-prices.
+All it does is remove the header by giving me only lines which have a '0':
 
 %pre
-  =render 'spark_max_gspc3'
+  =render 'spark_max_gspc4'
+
+Then I wrote a series of chained-lambdas which replace whitespace,
+split each line at the commas, pick the [4]th field, and finally
+convert that field to a float.
+
+I stuff the result of that into a 'closing_prices' variable.
+
+The last step is to feed closing_prices to reduce() which picks the max price:
+
+%pre
+  =render 'spark_max_gspc5'
+
 
 
 
