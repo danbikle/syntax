@@ -1,0 +1,57 @@
+.q1 Question:
+.q2 In Apache Spark how to find max GSPC price?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/apache') apache
+  %a.xtag(href='/tags/spark') spark
+  %a.xtag(href='/tags/rdd') rdd
+  %a.xtag(href='/tags/python') python
+  %a.xtag(href='/tags/sparkcontext') sparkcontext
+  %a.xtag(href='/tags/sc') sc
+  %a.xtag(href='/tags/resilient') resilient
+  %a.xtag(href='/tags/distributed') distributed
+  %a.xtag(href='/tags/dataset') dataset
+
+%br/
+When I learn Spark an early step is to get an RDD.
+%br/
+%br/
+First, the acronym: 'RDD' comes from 'Resilient Distributed Dataset'.
+%br/
+%br/
+I think of it as data in a form which Spark understands.
+%br/
+%br/
+Assuming I have Spark installed in my home directory here:
+
+%pre
+  %code.bash ~/spark/
+
+I should see a script here:
+
+%pre
+  %code.bash ~/spark/bin/pyspark
+
+I can run it and it and Spark should give me a Python prompt which I can use to interact
+with Spark:
+
+%pre
+  =render 'spark_max_gspc'
+
+Next, I use wget to get a copy of a CSV file from Yahoo:
+
+%pre
+  =render 'spark_max_gspc2'
+
+Then, I use some code to create a Spark RDD from the CSV file:
+
+%pre
+  =render 'spark_max_gspc3'
+%br/
+
+
+%pre
+  =render 'spark_max_gspc3'
+
+
+
