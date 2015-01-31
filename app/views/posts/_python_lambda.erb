@@ -23,6 +23,10 @@ Python just told me that my unnamed (anonymous) lambda is a funtion.
 >>> 
 >>> mylam = lambda aline: 'hello'
 >>> 
+
+I just gave it a name. Does it act like a function now?
+
+>>> 
 >>> mylam(1.1)
 'hello'
 >>> 
@@ -31,6 +35,20 @@ Python just told me that my unnamed (anonymous) lambda is a funtion.
 >>> 
 >>> mylam('hey')
 'hello'
+>>> 
+>>> 
+
+Yes, mylam acts like a function.
+
+>>> 
+>>> 
+
+A lambda by itself is not interesting.
+But when I combine it with a Python method named map(),
+I can use that combo to operate on a Python list
+without my dependence on a loop:
+
+>>> 
 >>> 
 >>> mylist = [1,2,3]
 >>> 
@@ -45,6 +63,12 @@ Python just told me that my unnamed (anonymous) lambda is a funtion.
 >>> map(urlam, mylist)
 [1, 4, 9]
 >>> 
+>>> 
+
+I noticed that if-then syntax I need inside a lambda is different than what I normally write:
+
+>>> 
+>>> 
 >>> theirlam = lambda nmbr: (nmbr * nmbr) if (nmbr == 1 or nmbr == 2) else nmbr
 >>> 
 >>> theirlam(2)
@@ -56,10 +80,21 @@ Python just told me that my unnamed (anonymous) lambda is a funtion.
 >>> map(theirlam, mylist)
 [1, 4, 3]
 >>> 
+>>> 
+
+Writing a lambda which accepts two varibales is easy:
+
+>>> 
 >>> twovar_lam = lambda v1,v2: v1 + v2
 >>> 
 >>> twovar_lam(2,3)
 5
+>>> 
+>>> 
+
+I was not able to use it inside of map though:
+
+>>> 
 >>> 
 >>> listo2vars = [1,1,2,2,3,3]
 >>> 
@@ -68,11 +103,6 @@ Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
 TypeError: &lt;lambda>() takes exactly 2 arguments (1 given)
 >>> 
->>> map(twovar_lam, [a,b for a,b in liso2vars])
-  File "&lt;stdin>", line 1
-    map(twovar_lam, [a,b for a,b in liso2vars])
-                           ^
-SyntaxError: invalid syntax
 >>> 
 >>> map(twovar_lam, [a,b for a,b in listo2vars])
   File "&lt;stdin>", line 1
@@ -80,8 +110,34 @@ SyntaxError: invalid syntax
                            ^
 SyntaxError: invalid syntax
 >>> 
+>>> 
+
+Next I looked at a Python method named reduce().
+
+This method takes a collection, which is usually a Python list,
+and reduces it down to one value.
+
+To use reduce() I need to supply two objects.
+
+First the obvious object is the list I want to reduce; that is the easy part.
+
+Second, I need to supply the reduction logic.
+
+Python asks that I supply the logic in the form of a lambda.
+
+The lambda needs to accept two values and return one value.
+
+Here is a demo of me calling reduce:
+
+>>> 
+>>> 
 >>> reduce(twovar_lam, listo2vars)
 12
+>>> 
+>>> 
+
+Next, I demonstrate an idea called map-reduce with two lines of code:
+
 >>> 
 >>> mymap = map(theirlam, mylist)
 >>> mymap
