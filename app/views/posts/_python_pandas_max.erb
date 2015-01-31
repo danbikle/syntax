@@ -1,0 +1,55 @@
+<code class='python'>
+
+dan@feb ~/x611 $ 
+dan@feb ~/x611 $ 
+dan@feb ~/x611 $ wget --output-document=/tmp/gspc.csv http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC
+--2015-01-31 06:20:55--  http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC
+Resolving ichart.finance.yahoo.com (ichart.finance.yahoo.com)... 206.190.61.107, 216.115.107.206, 216.115.107.207, ...
+Connecting to ichart.finance.yahoo.com (ichart.finance.yahoo.com)|206.190.61.107|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/csv]
+Saving to: ‘/tmp/gspc.csv’
+
+    [  &lt;=>                                  ] 894,753     2.45MB/s   in 0.3s   
+
+2015-01-31 06:20:56 (2.45 MB/s) - ‘/tmp/gspc.csv’ saved [894753]
+
+dan@feb ~/x611 $ 
+dan@feb ~/x611 $ head /tmp/gspc.csv 
+Date,Open,High,Low,Close,Volume,Adj Close
+2015-01-30,2019.35,2023.32,1993.38,1994.99,4538650000,1994.99
+2015-01-29,2002.45,2024.64,1989.18,2021.25,4127140000,2021.25
+2015-01-28,2032.34,2042.49,2001.49,2002.16,4067530000,2002.16
+2015-01-27,2047.86,2047.86,2019.91,2029.55,3329810000,2029.55
+2015-01-26,2050.42,2057.62,2040.97,2057.09,3465760000,2057.09
+2015-01-23,2062.98,2062.98,2050.54,2051.82,3573560000,2051.82
+2015-01-22,2034.30,2064.62,2026.38,2063.15,4176050000,2063.15
+2015-01-21,2020.19,2038.29,2012.04,2032.12,3730070000,2032.12
+2015-01-20,2020.76,2028.94,2004.49,2022.55,3944340000,2022.55
+dan@feb ~/x611 $ 
+dan@feb ~/x611 $ 
+dan@feb ~/x611 $ 
+dan@feb ~/x611 $ python
+Python 2.7.8 |Anaconda 2.1.0 (64-bit)| (default, Aug 21 2014, 18:22:21) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+>>> 
+>>> import pandas as pd
+>>> import numpy  as np
+>>> 
+>>> gspc_df = pd.read_csv('/tmp/gspc.csv')
+>>> 
+>>> gspc_df.head()
+         Date     Open     High      Low    Close      Volume  Adj Close
+0  2015-01-30  2019.35  2023.32  1993.38  1994.99  4538650000    1994.99
+1  2015-01-29  2002.45  2024.64  1989.18  2021.25  4127140000    2021.25
+2  2015-01-28  2032.34  2042.49  2001.49  2002.16  4067530000    2002.16
+3  2015-01-27  2047.86  2047.86  2019.91  2029.55  3329810000    2029.55
+4  2015-01-26  2050.42  2057.62  2040.97  2057.09  3465760000    2057.09
+>>> 
+>>> 
+
+
+</code>
