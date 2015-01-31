@@ -24,21 +24,29 @@ The distribution is called Anaconda:
 %br/
 %br/
 
-Anaconda contains a useful package named Pandas.
+Anaconda contains many useful packages. Two are Pandas and NumPy.
 
 %br/
 %br/
 
-After I installed Anaconda on my laptop, I used wget to download a CSV file full of S &amp; P 500 prices from Yahoo:
-
-%pre
-  %code wget --output-document=/tmp/gspc.csv http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC
+After I installed Anaconda on my laptop, I used wget to download a CSV file full of S &amp; P 500 prices from Yahoo.
 
 %br/
 %br/
 
-Next, I used Pandas to read the file and locate the maximum closing price between 1950 and 2015:
+Next, I used Pandas to read the file into an object called gspc_df which is a Pandas 'DataFrame'.
+%br/
+%br/
+
+Then, I used NumPy to read a column from gspc_df and locate the maximum closing price between 1950 and 2015:
 
 %pre
   =render 'python_pandas_max'
 
+As a Spark learning exercise, I searched for that max-price using Spark:
+
+%br/
+%br/
+%a(href='/posts/spark_max_gspc') spark_max_gspc
+
+%br/
