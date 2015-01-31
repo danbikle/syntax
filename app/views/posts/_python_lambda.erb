@@ -1,0 +1,96 @@
+<code class='bash'>dan@feb ~/spark $ 
+dan@feb ~/spark $ 
+dan@feb ~/spark $ python
+Python 2.7.8 |Anaconda 2.1.0 (64-bit)| (default, Aug 21 2014, 18:22:21) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+>>> 
+>>> 
+
+I start by creating a lambda with no name:
+
+>>> 
+>>> 
+>>> lambda aline: 'hello'
+&lt;function &lt;lambda> at 0x7f3185a71d70>
+>>> 
+>>> 
+
+Python just told me that my unnamed (anonymous) lambda is a funtion.
+
+>>> 
+>>> mylam = lambda aline: 'hello'
+>>> 
+>>> mylam(1.1)
+'hello'
+>>> 
+>>> mylam([1,2,3])
+'hello'
+>>> 
+>>> mylam('hey')
+'hello'
+>>> 
+>>> mylist = [1,2,3]
+>>> 
+>>> map(mylam, mylist)
+['hello', 'hello', 'hello']
+>>> 
+>>> urlam = lambda nmbr: nmbr * nmbr
+>>> 
+>>> urlam(4)
+16
+>>> 
+>>> map(urlam, mylist)
+[1, 4, 9]
+>>> 
+>>> theirlam = lambda nmbr: (nmbr * nmbr) if (nmbr == 1 or nmbr == 2) else nmbr
+>>> 
+>>> theirlam(2)
+4
+>>> 
+>>> theirlam(3)
+3
+>>> 
+>>> map(theirlam, mylist)
+[1, 4, 3]
+>>> 
+>>> twovar_lam = lambda v1,v2: v1 + v2
+>>> 
+>>> twovar_lam(2,3)
+5
+>>> 
+>>> listo2vars = [1,1,2,2,3,3]
+>>> 
+>>> map(twovar_lam, listo2vars)
+Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+TypeError: &lt;lambda>() takes exactly 2 arguments (1 given)
+>>> 
+>>> map(twovar_lam, [a,b for a,b in liso2vars])
+  File "&lt;stdin>", line 1
+    map(twovar_lam, [a,b for a,b in liso2vars])
+                           ^
+SyntaxError: invalid syntax
+>>> 
+>>> map(twovar_lam, [a,b for a,b in listo2vars])
+  File "&lt;stdin>", line 1
+    map(twovar_lam, [a,b for a,b in listo2vars])
+                           ^
+SyntaxError: invalid syntax
+>>> 
+>>> reduce(twovar_lam, listo2vars)
+12
+>>> 
+>>> mymap = map(theirlam, mylist)
+>>> mymap
+[1, 4, 3]
+>>> 
+>>> reduce(twovar_lam, mymap)
+8
+>>> 
+>>> quit()
+dan@feb ~/spark $ 
+dan@feb ~/spark $ 
+</code>
