@@ -55,7 +55,7 @@ All it does is remove the header by giving me only lines which have a '0':
 %pre
   =render 'spark_max_gspc4'
 
-Then I wrote a series of chained-lambdas which replace whitespace,
+Then I write a series of chained-lambdas which replace whitespace,
 split each line at the commas, pick the [4]th field, and finally
 convert that field to a float.
 
@@ -66,6 +66,4 @@ The last step is to feed closing_prices to reduce() which picks the max price:
 %pre
   =render 'spark_max_gspc5'
 
-
-
-
+%br/
