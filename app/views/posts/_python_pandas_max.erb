@@ -1,6 +1,4 @@
-<code class='python'>
-
-dan@feb ~/x611 $ 
+<code class='python'>dan@feb ~/x611 $ 
 dan@feb ~/x611 $ 
 dan@feb ~/x611 $ wget --output-document=/tmp/gspc.csv http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC
 --2015-01-31 06:20:55--  http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC
@@ -28,6 +26,9 @@ Date,Open,High,Low,Close,Volume,Adj Close
 2015-01-20,2020.76,2028.94,2004.49,2022.55,3944340000,2022.55
 dan@feb ~/x611 $ 
 dan@feb ~/x611 $ 
+
+
+dan@feb ~/x611 $ 
 dan@feb ~/x611 $ 
 dan@feb ~/x611 $ python
 Python 2.7.8 |Anaconda 2.1.0 (64-bit)| (default, Aug 21 2014, 18:22:21) 
@@ -38,6 +39,9 @@ Please check out: http://continuum.io/thanks and https://binstar.org
 >>> 
 >>> import pandas as pd
 >>> import numpy  as np
+>>> 
+
+
 >>> 
 >>> gspc_df = pd.read_csv('/tmp/gspc.csv')
 >>> 
@@ -51,5 +55,45 @@ Please check out: http://continuum.io/thanks and https://binstar.org
 >>> 
 >>> 
 
+>>> 
+>>> closing_prices = gspc_df[['Close']]
+>>> 
+>>> closing_prices.head()
+     Close
+0  1994.99
+1  2021.25
+2  2002.16
+3  2029.55
+4  2057.09
+>>> 
+>>> max_closing_price = np.max(closing_prices)
+>>> 
+>>> max_closing_price
+Close    2090.57
+dtype: float64
+>>> 
+>>> 
+
+
+>>> 
+>>> predicate = gspc_df['Close'] == 2090.57
+>>> 
+>>> gspc_df[['Date','Open','High','Low','Close']][predicate]
+          Date     Open     High      Low    Close
+22  2014-12-29  2087.63  2093.55  2085.75  2090.57
+>>> 
+>>> 
+>>> quit()
+
+
+
+dan@feb ~/x611 $ 
+dan@feb ~/x611 $ head -1 /tmp/gspc.csv 
+Date,Open,High,Low,Close,Volume,Adj Close
+dan@feb ~/x611 $ 
+dan@feb ~/x611 $ grep 2090.57 /tmp/gspc.csv
+2014-12-29,2087.63,2093.55,2085.75,2090.57,2452360000,2090.57
+dan@feb ~/x611 $ 
+dan@feb ~/x611 $ 
 
 </code>
