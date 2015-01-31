@@ -18,7 +18,7 @@ I start by creating a lambda with no name:
 >>> 
 >>> 
 
-Python just told me that my unnamed (anonymous) lambda is a funtion.
+Python just told me that my unnamed (anonymous) lambda is a function.
 
 >>> 
 >>> mylam = lambda aline: 'hello'
@@ -117,36 +117,92 @@ Next I looked at a Python method named reduce().
 This method takes a collection, which is usually a Python list,
 and reduces it down to one value.
 
-To use reduce() I need to supply two objects.
+How do I call reduce()?
 
-First the obvious object is the list I want to reduce; that is the easy part.
+Here is the signature:
 
-Second, I need to supply the reduction logic.
+my1value = reduce(reduction_logic, python_list)
 
-Python asks that I supply the logic in the form of a lambda.
+Obviously I need to supply python_list.
+It might look like this: python_list = [1,2,3]
+That is the easy part.
 
-The lambda needs to accept two values and return one value.
+Second, I need to supply reduction_logic.
+
+Python asks that I supply reduction_logic in the form of a lambda.
+
+Also Python asks that the lambda accept two values and return one value:
+
+reduction_logic = lambda a,b: do_logic_here_which_returns c
+
+Here is an example of a (useless) lambda which accepts two floats and returns one float:
+
+reduction_logic = lambda a,b: (a + b) / 2
+
+Here is a lambda which is useful:
+
+reduction_logic = lambda a,b: (a + b)
+
+So that works great if my collection has only two objects.
+
+Suppose though, that I have a collection of 7 objects.
+
+The author of reduce() responds this way:
+
+Do not worry, I will handle any number of objects.
+You only need to supply enough logic to reduce two objects into one object.
+
+Why can he/she say this?
+
+My assumption is that reduce() uses a loop.
+
+The loop reads the first two objects in the collection and reduces them to one object
+(using my two-value-lambda).
+
+Then it reduces that one object with the third object into one object.
+
+Then it reduces that one object with the fourth object into one object.
+
+Eventually we reduce the collection into one object, two objects at a time.
 
 Here is a demo of me calling reduce:
 
 >>> 
+>>> reduction_logic = lambda a,b: (a + b)
+>>> python_list = [1,2,3]
 >>> 
->>> reduce(twovar_lam, listo2vars)
-12
+>>> 
+>>> reduce(reduction_logic, python_list)
+6
 >>> 
 >>> 
 
-Next, I demonstrate an idea called map-reduce with two lines of code:
+Next, I demonstrate an idea called map-reduce:
 
 >>> 
->>> mymap = map(theirlam, mylist)
->>> mymap
-[1, 4, 3]
+>>> map_logic   = lambda input: (input * input)
+>>> python_list = [1,2,3]
+>>> list_from_map = map(map_logic, python_list)
+>>> list_from_map
+[1, 4, 9]
 >>> 
->>> reduce(twovar_lam, mymap)
-8
+>>> reduce(reduction_logic, list_from_map)
+14
+>>> 
+>>> 
+
+In English, I used map() to square each number in python_list.
+Then I used reduce() to sum the squares.
+
+>>> 
 >>> 
 >>> quit()
 dan@feb ~/spark $ 
 dan@feb ~/spark $ 
+
+
+Map-Reduce is an important idea when dealing with big data calculations.
+
+We can use Python-lambda to understand how to use the idea.
+
 </code>
