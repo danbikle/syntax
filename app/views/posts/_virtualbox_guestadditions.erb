@@ -1,0 +1,72 @@
+<code class='bash'>dan@cen115.dan ~ $ 
+dan@cen115.dan ~ $ 
+dan@cen115.dan ~ $ cd Downloads/
+dan@cen115.dan ~/Downloads $ 
+dan@cen115.dan ~/Downloads $ ls -la VB*iso
+-rw-rw-r--. 1 dan dan 58343424 Jan 26 20:13 VBoxGuestAdditions_4.3.20.iso
+dan@cen115.dan ~/Downloads $ 
+dan@cen115.dan ~/Downloads $ mkdir g
+dan@cen115.dan ~/Downloads $ 
+dan@cen115.dan ~/Downloads $ sudo mount -o loop VB*iso g
+[sudo] password for dan: 
+dan is not in the sudoers file.  This incident will be reported.
+dan@cen115.dan ~/Downloads $ 
+dan@cen115.dan ~/Downloads $ su
+Password: 
+root@cen115.dan /home/dan/Downloads # 
+root@cen115.dan /home/dan/Downloads # sudo mount -o loop VB*iso g
+root@cen115.dan /home/dan/Downloads # 
+root@cen115.dan /home/dan/Downloads # cd g
+root@cen115.dan /home/dan/Downloads/g # 
+root@cen115.dan /home/dan/Downloads/g # ls -la 
+total 50814
+dr-xr-xr-x. 6 root root     2048 Nov 21 14:01 .
+drwxr-xr-x. 3 dan  dan      4096 Jan 31 21:36 ..
+dr-xr-xr-x. 2 root root     2048 Nov 21 14:01 32Bit
+dr-xr-xr-x. 2 root root     2048 Nov 21 14:01 64Bit
+-r-xr-xr-x. 1 root root      647 Sep 12 12:10 AUTORUN.INF
+-r-xr-xr-x. 1 root root     6966 Nov 21 14:57 autorun.sh
+dr-xr-xr-x. 2 root root     2048 Nov 21 14:01 cert
+dr-xr-xr-x. 2 root root     2048 Nov 21 14:01 OS2
+-r-xr-xr-x. 1 root root     5523 Nov 21 14:57 runasroot.sh
+-r-xr-xr-x. 1 root root  7146957 Nov 21 14:58 VBoxLinuxAdditions.run
+-r-xr-xr-x. 1 root root 16434176 Nov 21 14:59 VBoxSolarisAdditions.pkg
+-r-xr-xr-x. 1 root root 17356976 Nov 21 15:00 VBoxWindowsAdditions-amd64.exe
+-r-xr-xr-x. 1 root root   312384 Nov 21 14:56 VBoxWindowsAdditions.exe
+-r-xr-xr-x. 1 root root 10754048 Nov 21 14:57 VBoxWindowsAdditions-x86.exe
+root@cen115.dan /home/dan/Downloads/g # 
+root@cen115.dan /home/dan/Downloads/g # ./VBoxLinuxAdditions.run
+Verifying archive integrity... All good.
+Uncompressing VirtualBox 4.3.20 Guest Additions for Linux............
+VirtualBox Guest Additions installer
+Removing installed version 4.3.20 of VirtualBox Guest Additions...
+Copying additional installer modules ...
+Installing additional modules ...
+Removing existing VirtualBox non-DKMS kernel modules[ OK ]
+Building the VirtualBox Guest Additions kernel modules
+Building the main Guest Additions module[ OK ]
+Building the shared folder support module[ OK ]
+Building the OpenGL support module[ OK ]
+Doing non-kernel setup of the Guest Additions[ OK ]
+You should restart your guest to make sure the new modules are actually used
+
+Installing the Window System drivers
+Installing X.Org Server 1.15 modules[ OK ]
+Setting up the Window System to use the Guest Additions[ OK ]
+You may need to restart the hal service and the Window System (or just restart
+the guest system) to enable the Guest Additions.
+
+Installing graphics libraries and desktop services components[ OK ]
+root@cen115.dan /home/dan/Downloads/g # 
+root@cen115.dan /home/dan/Downloads/g # 
+root@cen115.dan /home/dan/Downloads/g # shutdown -r now
+
+Broadcast message from dan@cen115.dan
+	(/dev/pts/0) at 21:40 ...
+
+The system is going down for reboot NOW!
+root@cen115.dan /home/dan/Downloads/g # Connection to i114 closed by remote host.
+Connection to i114 closed.
+dan@feb ~ $ 
+dan@feb ~ $ 
+</code>

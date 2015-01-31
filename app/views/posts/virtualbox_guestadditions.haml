@@ -1,0 +1,73 @@
+.q1 Question:
+.q2 How to install Guest Additions on Linux?
+.tags
+  %span.tagtag Tags:
+  .tag linux
+  .tag virtualbox
+  .tag guestadditions
+  .tag guest
+  .tag additions
+  .tag host
+  .tag hostos
+  .tag guestos
+  .tag iso
+  .tag mount
+  .tag loop
+
+%br/
+
+I often work with VirtualBox.
+
+%br/
+%br/
+
+%a(href='http://en.wikipedia.org/wiki/VirtualBox' target='x')
+  http://en.wikipedia.org/wiki/VirtualBox
+
+%br/
+%br/
+
+If I install VirtualBox on a laptop and then install Linux inside VirtualBox,
+the laptop is called the Host-OS and Linux is called the Guest-OS or the Guest.
+
+%br/
+%br/
+
+After I install Linux as a Guest, I usually install Guest Additions inside the Guest.
+
+%br/
+%br/
+
+To do this, I login to the Guest and start Firefox and Google-search for 'VirtualBox Guest Additions download'
+%br/
+%br/
+
+%a(href='http://www.google.com/search?q=VirtualBox+Guest+Additions+download' target='x')
+  http://www.google.com/search?q=VirtualBox+Guest+Additions+download
+
+%br/
+%br/
+
+I did that inside my Guest and captured a screen dump of me installing VirtualBox Guest Additions.
+
+%pre
+  =render 'virtualbox_guestadditions'
+
+After VirtualBox Guest Additions are installed the GUI desktop usually behaves much better than before.
+
+%br/
+%br/
+
+Also I noticed that Guest Additions often get clobbered by Linux software updates.
+
+%br/
+%br/
+
+The easy way to deal with that is to just run the file:
+
+%pre
+  %code.bash root@cen115.dan /home/dan/Downloads/g # ./VBoxLinuxAdditions.run
+
+again.
+
+%br/
