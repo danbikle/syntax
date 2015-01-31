@@ -45,7 +45,7 @@ with Spark:
 %pre
   =render 'spark_max_gspc'
 
-Next, I use wget to get a copy of a CSV file from Yahoo:
+Next in another shell, I use wget to get a copy of a CSV file from Yahoo:
 
 %pre
   =render 'spark_max_gspc2'
@@ -65,8 +65,12 @@ All it does is remove the header by giving me only lines which have a '0':
 Then I write a series of chained-lambdas which replace whitespace,
 split each line at the commas, pick the [4]th field, and finally
 convert that field to a float.
+%br/
+%br/
 
 I stuff the result of that into a 'closing_prices' variable.
+%br/
+%br/
 
 The last step is to feed closing_prices to reduce() which picks the max price:
 
