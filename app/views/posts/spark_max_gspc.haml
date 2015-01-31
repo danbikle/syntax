@@ -11,6 +11,13 @@
   %a.xtag(href='/tags/resilient') resilient
   %a.xtag(href='/tags/distributed') distributed
   %a.xtag(href='/tags/dataset') dataset
+  %a.xtag(href='/tags/gspc') gspc
+  %a.xtag(href='/tags/map') map
+  %a.xtag(href='/tags/reduce') reduce
+  %a.xtag(href='/tags/filter') filter
+  %a.xtag(href='/tags/mapreduce') mapreduce
+  %a.xtag(href='/tags/lambda') lambda
+  %a.xtag(href='/tags/max') max
 
 %br/
 When I learn Spark an early step is to get an RDD.
@@ -66,4 +73,11 @@ The last step is to feed closing_prices to reduce() which picks the max price:
 %pre
   =render 'spark_max_gspc5'
 
+The above value is the same value I found in the data using Pandas:
+%br/
+%br/
+
+%a(href='/posts/python_pandas_max') python_pandas_max
+
+%br/
 %br/
