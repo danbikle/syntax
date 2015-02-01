@@ -1,0 +1,85 @@
+<code class='python'>dan@feb ~/spark $ 
+dan@feb ~/spark $ 
+dan@feb ~/spark $ bin/pyspark 
+Python 2.7.8 |Anaconda 2.1.0 (64-bit)|
+
+snip
+
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 1.2.0
+      /_/
+
+Using Python version 2.7.8 (default, Aug 21 2014 18:22:21)
+SparkContext available as sc.
+>>> 
+>>> 
+
+
+>>> 
+>>> mylist = ['hello','world',['hi','calif']]
+>>> 
+>>> myrdd = sc.parallelize(mylist)
+>>> 
+>>> myrdd.take(3)
+
+['hello', 'world', ['hi', 'calif']]
+>>> 
+>>> 
+
+
+
+It looks like Spark likes myrdd.
+
+
+>>> 
+>>> myrdd.flatMap(lambda line: line).take(3)
+
+['h', 'e', 'l']
+>>> 
+>>> 
+
+
+I saw this and thought a-ha, it reminds me of the flatten() method in Ruby.
+
+I kept poking at it to learn more.
+
+
+>>> myrdd.flatMap(lambda line: line).count()
+
+12
+>>> 
+>>> 
+
+>>> myrdd.flatMap(lambda line: line).take(11)
+
+['h', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd', 'hi']
+>>> 
+>>> 
+
+It is a bit different that Ruby-flatten().
+
+It is less aggressive; it gave me 'hi' instead of 'h', 'i'.
+
+I called it twice to see if I can make myrdd as flat as a pancake:
+
+>>> 
+>>> 
+>>> myrdd.flatMap(lambda line: line).flatMap(lambda line: line).count()
+
+17
+
+
+>>> 
+>>> 
+>>> myrdd.flatMap(lambda line: line).flatMap(lambda line: line).take(17)
+['h', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd', 'h', 'i', 'c', 'a', 'l', 'i', 'f']
+
+It worked.
+
+It might be nice to have a method called reallyFlatMap() which flattens
+any nested RDD into its smallest parts.
+
+</code>
