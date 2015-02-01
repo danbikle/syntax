@@ -8,11 +8,11 @@
   %a.xtag(href='/tags/rdd') rdd
   %a.xtag(href='/tags/take') take
   %a.xtag(href='/tags/parallelize') parallelize
-  .tag dictionary
-  .tag reducebykey
-  .tag reduce
-  .tag key
-  .tag groupby
+  %a.xtag(href='/tags/dictionary') dictionary
+  %a.xtag(href='/tags/reducebykey') reducebykey
+  %a.xtag(href='/tags/reduce') reduce
+  %a.xtag(href='/tags/key') key
+  %a.xtag(href='/tags/groupby') groupby
 
 %br/
 Spark-reduceByKey() reminds me of the GROUP BY feature in SQL.
@@ -36,10 +36,21 @@ I started Spark on my laptop and studied the behavior of reduceByKey():
 %pre
   =render 'spark_reducebykey'
 
+It worked. Yay!
 %br/
+%br/
+But it seems strange that Spark forced me to build my RDD from a list of tuples.
+%br/
+%br/
+If reduceByKey() is intended to work with a collection of key-value pairs,
+it seems obvious to me that each pair should reside in the type of Python object
+intended for key-value pairs, a dictionary not a tuple.
 
 %br/
 %br/
+Fortunately, though, I now know how to interact with Spark-reduceByKey().
+%br/
+
 
 
 
