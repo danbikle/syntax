@@ -1,0 +1,46 @@
+.q1 Question:
+.q2 In Spark what does reduceByKey() do?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/spark') spark
+  %a.xtag(href='/tags/sc') sc
+  %a.xtag(href='/tags/list') list
+  %a.xtag(href='/tags/rdd') rdd
+  %a.xtag(href='/tags/take') take
+  %a.xtag(href='/tags/parallelize') parallelize
+  .tag dictionary
+  .tag reducebykey
+  .tag reduce
+  .tag key
+  .tag groupby
+
+%br/
+Spark-reduceByKey() reminds me of the GROUP BY feature in SQL.
+%br/
+%br/
+
+I might have have collection which looks like this:
+%pre
+  %code mylist = [ {'k1': 1}, {'k2': 2}, {'k1': -2}, {'k3': 4}, {'k2': -5}, {'k1': 4} ]
+Question: What is the sum of values for the 'k1' pairs?
+%br/
+Answer: 1 + -2 + 4 is 3
+%br/
+%br/
+So if I use reduceByKey() to get the answer for all the pairs, I should get this result:
+%pre
+  %code mylist = [ {'k1': 3}, {'k2': -3}, {'k3': 4} ]
+
+I started Spark on my laptop and studied the behavior of reduceByKey():
+
+%pre
+  =render 'spark_reducebykey'
+
+%br/
+
+%br/
+%br/
+
+
+
+
