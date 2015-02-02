@@ -72,31 +72,50 @@ This means that I keep my laptop-Linux as simple as possible.
 %br/
 
 A2: If the instance is inside VirtualBox, 
-I can easily copy it to a large file on the laptop.
+I can easily copy it to a large file.
 Then I can copy that large file to DVD(s), USB-stick, or other laptop.
 
 %br/
 %br/
-I can copy using the GUI or I can issue a command like this on the host-os:
+The copy-feature is available from both the GUI or I can issue a command like this on the host-os:
 
 %pre
   %code.bash /usr/bin/vboxmanage export my_ubuntu_virtualbox -o ~/Documents/my_ubuntu_virtualbox.ova
 
 
-A3: If the instance is inside a cloud provider they always offer a way to backup your Linux-instances.
+A3: If the instance is inside a cloud provider they always offer a way to copy your Linux-instances.
 
 %br/
 %br/
 
+Q: How to Retrieve (List) a Linux instance?
 
+%br/
+
+A1: If the instance is in VirtualBox, I just look at the GUI.
+%br/
+A2: If the VirtualBox GUI is unavailable, I can issue a shell command:
+
+%pre
+  %code.bash
+    dan@tiny ~ $ 
+    dan@tiny ~ $ /usr/bin/vboxmanage list vms
+    "cen115_2015_02" {3f36383a-0483-45d0-9ff8-67ebf5e4b17e}
+    "ub14dan117_0126" {3f9d613c-5775-4f6e-9d1f-51ba4e09ea73}
+    "cen114_2015_0201" {558f1a89-0f23-4858-ba07-9395bf54386b}
+    dan@tiny ~ $ 
+    dan@tiny ~ $ 
+
+%br/
+
+A1: If the instance is in the cloud, the provider will have a list of instances in the web-UI
+somewhere.  Also, you will see instances listed in your bill.  Note that Amazon has different
+geographic regions.  You need to check each region to see all your instances.
 
 %br/
 %br/
 
-
-%br/
-%br/
-
+Q: How to update a Linux instance?
 
 %br/
 
