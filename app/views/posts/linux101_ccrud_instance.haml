@@ -23,29 +23,67 @@ A: A Linux instance is a running copy of Linux.
 %br/
 
 Q: How to Create a Linux instance?
-%br/
-A1: Install off a DVD or USB stick onto my laptop.
 
 %br/
-A2: Install off a DVD, ISO, or USB stick into a VirtualBox running on my laptop.
-%br/
 
-
+A1: Install or restore are the two general choices, I prefer restore.
 
 %br/
+
+A2: Install off a DVD or USB stick onto my laptop.
+
 %br/
+
+A3: Install off a DVD, ISO, or USB stick into a VirtualBox running on my laptop.
+
+%br/
+
+A4: Inside cloud provider, Install off CMI.
+
+%br/
+
+A5: Inside cloud provider, restore from Copy of other Linux instance.
+
+%br/
+
+A4: This is my favorite, inside VirtualBox, restore from Copy of other Linux instance.
 
 
 %br/
 %br/
 
+Q: How to Copy a Linux instance?
+
+%br/
+
+Usually the answer to this question is, 'That depends', but one certainty is that I need to 
+shut it down before I copy it (login as root and type: shutdown -h now).
+
+%br/
+
+A1: If the instance is the host-OS on my laptop, I don't know how to copy it.
+Obviously I know how to copy files in it to something like a USB-stick or blank DVD.
 
 %br/
 %br/
 
+This means that I keep my laptop-Linux as simple as possible.  
 %br/
 %br/
 
+A2: If the instance is inside VirtualBox, 
+I can easily copy it to a large file on the laptop.
+Then I can copy that large file to DVD(s), USB-stick, or other laptop.
+
+%br/
+%br/
+I can copy using the GUI or I can issue a command like this on the host-os:
+
+%pre
+  %code.bash /usr/bin/vboxmanage export my_ubuntu_virtualbox -o ~/Documents/my_ubuntu_virtualbox.ova
+
+
+A3: If the instance is inside a cloud provider they always offer a way to backup your Linux-instances.
 
 %br/
 %br/
