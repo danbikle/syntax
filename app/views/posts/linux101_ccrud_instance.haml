@@ -136,10 +136,26 @@ enough in their own right to deserve separate CCRUD discussion.  I offer that la
 
 %br/
 %br/
-
+Q: How to CCRUD hostname?
 
 %br/
+A: On Linux it only makes sense to either list or update hostname.
 %br/
+On Centos I either inspect or edit this file to list or update hostname:
+%pre
+  %code.bash /etc/sysconfig/network
+
+On Ubuntu I either inspect or edit this file to list or update hostname:
+%pre
+  %code.bash /etc/hostname
+
+If I update the hostname, I should reboot the Linux instance:
+
+%pre
+  %code.bash shutdown -r now
+
+
+
 %br/
 %br/
 
