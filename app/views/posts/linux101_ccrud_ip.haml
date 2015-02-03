@@ -23,9 +23,9 @@ You are here:
 Q: Which CCRUD verbs apply to IP address?
 A: I can only think of one which is Retrieve (AKA List).
 %br/
-I cannot create a new IP address because they have all been created by the internet gods.
+I only want to know which IP addresses are available for me to use, and which ones I'm using.
 %br/
-Since I don't control them I cannot copy, update, or delete IP addresses.
+Also I want to know which interfaces my IP addresses are attached to.
 %br/
 %br/
 
@@ -79,7 +79,7 @@ A: 127.0.0.1
 
 Q: For an interface, which are the most interesting CCRUD verbs?
 %br/
-A: Only Retrieve (AKA List) and Update.
+A: Retrieve (AKA List) and Update.
 
 %br/
 %br/
@@ -91,8 +91,11 @@ I right click on the network indicator in the upper right and then I click edit 
 From there I pick an interface I want to use.
 On a laptop that is usually the WIFI interface or the cable interface.
 %br/
+Finally, I choose an unused IP address and attach it to the interface and then the address switches state to 'in-use'.
 %br/
+For most users this process is a bit much to ask.
 %br/
+So, we have a technology named DHCP which automates the task of attaching an unused IP address to the interface(s) of your Linux instance(s).
 %br/
 
 CCRUD of Linux Disk Space is the next topic of Linux101:
