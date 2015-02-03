@@ -20,10 +20,13 @@ dan@tiny ~/Documents $ /usr/bin/vboxmanage import ubu_temp.ova --dry-run
 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
 Interpreting /home/dan/Documents/ubu_temp.ova...
 OK.
-Disks:  vmdisk1	8589934592	-1	http://www.vmware.com/interfaces/specifications/vmdk.html#streamOptimized	ubu_temp-disk1.vmdk	-1	-1	
+Disks:  vmdisk1	8589934592	-1	
+http://www.vmware.com/interfaces/specifications/vmdk.html#streamOptimized	
+ubu_temp-disk1.vmdk	-1	-1	
 Virtual system 0:
  0: Suggested OS type: "Ubuntu_64"
-    (change with "--vsys 0 --ostype &lt;type>"; use "list ostypes" to list all possible values)
+    
+(change with "--vsys 0 --ostype &lt;type>"; use "list ostypes" to list all possible values)
  1: Suggested VM name "ubu_temp"
     (change with "--vsys 0 --vmname &lt;name>")
  2: Number of CPUs: 1
@@ -43,7 +46,9 @@ Virtual system 0:
     (disable with "--vsys 0 --unit 9 --ignore")
 10: SATA controller, type AHCI
     (disable with "--vsys 0 --unit 10 --ignore")
-11: Hard disk image: source image=ubu_temp-disk1.vmdk, target path=/home/dan/VirtualBox VMs/ubu_temp/ubu_temp-disk1.vmdk, controller=10;channel=0
+11: Hard disk image: source image=ubu_temp-disk1.vmdk, 
+target path=/home/dan/VirtualBox VMs/ubu_temp/ubu_temp-disk1.vmdk, 
+controller=10;channel=0
     (change target path with "--vsys 0 --unit 11 --disk path";
     disable with "--vsys 0 --unit 11 --ignore")
 dan@tiny ~/Documents $ 
@@ -52,10 +57,13 @@ dan@tiny ~/Documents $ /usr/bin/vboxmanage import ubu_temp.ova
 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
 Interpreting /home/dan/Documents/ubu_temp.ova...
 OK.
-Disks:  vmdisk1	8589934592	-1	http://www.vmware.com/interfaces/specifications/vmdk.html#streamOptimized	ubu_temp-disk1.vmdk	-1	-1	
+Disks:  vmdisk1	8589934592	-1	
+http://www.vmware.com/interfaces/specifications/vmdk.html#streamOptimized	
+ubu_temp-disk1.vmdk	-1	-1	
 Virtual system 0:
  0: Suggested OS type: "Ubuntu_64"
-    (change with "--vsys 0 --ostype &lt;type>"; use "list ostypes" to list all possible values)
+    
+(change with "--vsys 0 --ostype &lt;type>"; use "list ostypes" to list all possible values)
  1: Suggested VM name "ubu_temp"
     (change with "--vsys 0 --vmname &lt;name>")
  2: Number of CPUs: 1
@@ -75,7 +83,8 @@ Virtual system 0:
     (disable with "--vsys 0 --unit 9 --ignore")
 10: SATA controller, type AHCI
     (disable with "--vsys 0 --unit 10 --ignore")
-11: Hard disk image: source image=ubu_temp-disk1.vmdk, target path=/home/dan/VirtualBox VMs/ubu_temp/ubu_temp-disk1.vmdk, controller=10;channel=0
+11: Hard disk image: source image=ubu_temp-disk1.vmdk, 
+target path=/home/dan/VirtualBox VMs/ubu_temp/ubu_temp-disk1.vmdk, controller=10;channel=0
     (change target path with "--vsys 0 --unit 11 --disk path";
     disable with "--vsys 0 --unit 11 --ignore")
 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
