@@ -86,7 +86,7 @@ A: Retrieve (AKA List) and Update.
 
 Q: How to update an interface so it has an IP address?
 %br/
-A: On any Linux which gives me access to the 'desktop',
+A1: On any Linux which gives me access to the 'desktop',
 I right click on the network indicator in the upper right and then I click edit connections.
 From there I pick an interface I want to use.
 On a laptop that is usually the WIFI interface or the cable interface.
@@ -97,6 +97,35 @@ For most users this process is a bit much to ask.
 %br/
 So, we have a technology named DHCP which automates the task of attaching an unused IP address to the interface(s) of your Linux instance(s).
 %br/
+
+A2: Another way to deal with this chore is to use a command line utility called ifconfig.
+%br/
+If I type in the one word command it gives me useful information about my Linux instance:
+%pre
+  =render 'linux101_ccrud_ip1'
+%br/
+
+
+%br/
+%br/
+
+
+A3: On any Linux running on the cloud IP address administration is simplified by the cloud provider.
+%br/
+On the cloud your instance will usually have two interfaces.
+%br/
+One interface will connect to the internet.  If that interface is turned on and if it has an IP address, anyone can connect to it.
+%br/
+The second interface usually connects to an internal network.
+%br/
+The purpose of the second interface is to help you build a cluster of Linux instances which communicate over the internal network.
+%br/
+Also you might use this second interface to connect to services supplied by the cloud provider like network storage.
+%br/
+For both these types of interfaces, the cloud provider handles the chore of assigning IP addresses.
+%br/
+%br/
+
 
 CCRUD of Linux Disk Space is the next topic of Linux101:
 %br/

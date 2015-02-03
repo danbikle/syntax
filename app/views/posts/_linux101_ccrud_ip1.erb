@@ -1,0 +1,42 @@
+<code class='bash'>dan@feb ~/x611 $ 
+dan@feb ~/x611 $ 
+dan@feb ~/x611 $ ifconfig
+eth0      Link encap:Ethernet  HWaddr 08:00:27:9f:03:0b  
+          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fe9f:30b/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:927345 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:568568 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:552790807 (552.7 MB)  TX bytes:64899031 (64.8 MB)
+
+eth1      Link encap:Ethernet  HWaddr 08:00:27:cf:cc:a0  
+          inet addr:192.168.1.117  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fecf:cca0/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:577196 errors:0 dropped:63 overruns:0 frame:0
+          TX packets:623504 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:153700631 (153.7 MB)  TX bytes:294769204 (294.7 MB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:178589 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:178589 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:147463689 (147.4 MB)  TX bytes:147463689 (147.4 MB)
+
+dan@feb ~/x611 $ 
+dan@feb ~/x611 $ 
+</code>
+
+ifconfig tells me that I have 3 interfaces: eth0, eth1, and lo.
+
+Also I see that each interface has an IP address:
+
+eth0 has 10.0.2.15
+eth1 has 192.168.1.117
+lo   has 127.0.0.1
+
