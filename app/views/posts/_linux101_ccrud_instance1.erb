@@ -16,6 +16,10 @@ dan@tiny ~/Documents $ /usr/bin/vboxmanage list vms
 "cen114_2015_0201" {558f1a89-0f23-4858-ba07-9395bf54386b}
 dan@tiny ~/Documents $ 
 dan@tiny ~/Documents $ 
+
+
+
+dan@tiny ~/Documents $ 
 dan@tiny ~/Documents $ /usr/bin/vboxmanage import ubu_temp.ova --dry-run
 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
 Interpreting /home/dan/Documents/ubu_temp.ova...
@@ -52,6 +56,14 @@ controller=10;channel=0
     (change target path with "--vsys 0 --unit 11 --disk path";
     disable with "--vsys 0 --unit 11 --ignore")
 dan@tiny ~/Documents $ 
+dan@tiny ~/Documents $ 
+
+
+That dry-run looked good.
+
+
+Now I do it for real:
+
 dan@tiny ~/Documents $ 
 dan@tiny ~/Documents $ /usr/bin/vboxmanage import ubu_temp.ova
 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
@@ -90,6 +102,11 @@ target path=/home/dan/VirtualBox VMs/ubu_temp/ubu_temp-disk1.vmdk, controller=10
 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
 Successfully imported the appliance.
 dan@tiny ~/Documents $ 
+dan@tiny ~/Documents $ 
+
+
+I should see the new instance now:
+
 dan@tiny ~/Documents $ 
 dan@tiny ~/Documents $ /usr/bin/vboxmanage list vms
 "cen115_2015_02" {3f36383a-0483-45d0-9ff8-67ebf5e4b17e}
