@@ -20,10 +20,22 @@ You are here:
 
 %br/
 
-Q: How to Create a Linux IP address?
+Q: Which CCRUD verbs apply to IP address?
+A: I can only think of one which is Retrieve (AKA List).
 %br/
-A1: I have asked the question too soon.
-Before I discuss IP addresses, I should talk about 'interfaces'.
+I cannot create a new IP address because they have all been created by the internet gods.
+%br/
+Since I don't control them I cannot copy, update, or delete IP addresses.
+%br/
+%br/
+
+Now, I should talk about 'interfaces' which are tangible objects I can
+CCRUD and are closely related to IP addresses.
+
+%br/
+%br/
+
+An example of an interface is a port on the side of my laptop which takes a CAT5 cable.
 
 %br/
 %br/
@@ -55,10 +67,6 @@ Based on this analogy it is now easy to understand some simple mistakes:
   %li Assign wrong IP address to wrong interface
 %br/
 
-Q: Can I CCRUD an interface?
-%br/
-A: Yes
-%br/
 Q: What is the loopback interface?
 %br/
 A: Linux uses it to talk to itself.
@@ -67,9 +75,16 @@ Q: What is the IP address of loopback interface?
 %br/
 A: 127.0.0.1
 %br/
-Now that we know about interfaces we can ask about IP addresses:
 %br/
-Q: How to Create a Linux IP address?
+
+Q: For an interface, which are the most interesting CCRUD verbs?
+%br/
+A: Only Retrieve (AKA List) and Update.
+
+%br/
+%br/
+
+Q: How to update an interface so it has an IP address?
 %br/
 A: On any Linux which gives me access to the 'desktop',
 I right click on the network indicator in the upper right and then I click edit connections.
