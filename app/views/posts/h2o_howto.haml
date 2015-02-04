@@ -1,0 +1,127 @@
+.q1 Question:
+.q2 How to run H2O?
+.tags
+  %span.tagtag Tags:
+  .tag linux
+  .tag ubuntu
+  .tag h2o
+  .tag 0xdata
+  .tag java
+  .tag git
+  .tag github
+  .tag jar
+
+
+%br/
+When I started working with H2O in 2013,
+The main idea to remember about running H2O on my laptop is a simple command line:
+
+%pre
+  %code.bash java -jar h2o.jar
+
+Now it is 2015 and the company behind H2O is h2o.ai instead of 0xdata.com.
+
+And they have 5 active github-projects instead of one:
+
+%ul
+  %li
+    %a(href='https://github.com/h2oai/h2o' target='x')
+      https://github.com/h2oai/h2o
+
+  %li
+    %a(href='https://github.com/h2oai/h2o-dev' target='x')
+      https://github.com/h2oai/h2o-dev
+
+  %li
+    %a(href='https://github.com/h2oai/sparkling-water' target='x')
+      https://github.com/h2oai/sparkling-water
+
+  %li
+    %a(href='https://github.com/h2oai/h2o-flow' target='x')
+      https://github.com/h2oai/h2o-flow
+
+  %li
+    %a(href='https://github.com/h2oai/h2o-droplets' target='x')
+      https://github.com/h2oai/h2o-droplets
+
+
+%br/
+%br/
+
+If I want to see their software from a product perspective I can see it here:
+
+%br/
+%br/
+%a(href='http://h2o.ai/product/' target='x')
+  http://h2o.ai/product/
+
+%br/
+%br/
+
+Today, I see several amazon-downloads at the URL below:
+
+%br/
+%br/
+
+%a(href='http://h2o.ai/download/' target='x')
+  http://h2o.ai/download/
+
+
+%br/
+%br/
+
+It is not always clear to me which one I should be using.
+
+%br/
+%br/
+
+The way I deal with that is to make friends with a knowledgeable person who works there and ask via e-mail.
+
+%br/
+%br/
+
+Also I found a URL with useful information about the current status of their software:
+
+%br/
+%br/
+
+%a(href='http://test.0xdata.com/' target='x')
+  http://test.0xdata.com/
+
+%br/
+%br/
+
+And I found a google-group which discusses users experiences and questions about the software.
+
+%br/
+%br/
+I sense that now, as in 2013, the first thing I need to do is get the h2o server up and listening at localhost:54321
+
+%br/
+%br/
+
+Here is a demo of me getting h2o.jar from amazon and then running it.
+
+First I go to github.com and look at the releases:
+
+https://github.com/h2oai/h2o/releases
+
+Then I make note of a release I am interested in.
+
+For example 1685.
+
+Then I use it to build a url like this in my browser:
+
+http://s3.amazonaws.com/h2o-release/h2o/master/1685/h2o-2.9.0.1685.zip
+
+I found the url pattern here:
+
+http://h2o.ai/download/
+
+cd ~/Downloads/
+wget http://s3.amazonaws.com/h2o-release/h2o/master/1685/h2o-2.9.0.1685.zip
+
+%pre
+  =render 'h2o_howto'
+%br/
+

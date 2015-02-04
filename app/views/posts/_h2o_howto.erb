@@ -1,0 +1,116 @@
+<code class='bash'>dan@feb ~ $ 
+dan@feb ~ $ 
+dan@feb ~ $ cd Downloads/
+dan@feb ~/Downloads $ 
+dan@feb ~/Downloads $ wget http://s3.amazonaws.com/h2o-release/h2o/master/1685/h2o-2.9.0.1685.zip
+--2015-02-04 09:19:36--  http://s3.amazonaws.com/h2o-release/h2o/master/1685/h2o-2.9.0.1685.zip
+Resolving s3.amazonaws.com (s3.amazonaws.com)... 54.231.244.8
+Connecting to s3.amazonaws.com (s3.amazonaws.com)|54.231.244.8|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 145568036 (139M) [application/zip]
+Saving to: ‘h2o-2.9.0.1685.zip’
+
+100%[======================================>] 145,568,036 2.43MB/s   in 57s    
+
+2015-02-04 09:20:34 (2.45 MB/s) - ‘h2o-2.9.0.1685.zip’ saved [145568036/145568036]
+
+dan@feb ~/Downloads $ 
+dan@feb ~/Downloads $ 
+dan@feb ~/Downloads $ unzip h2o-2.9.0.1685.zip 
+Archive:  h2o-2.9.0.1685.zip
+   creating: h2o-2.9.0.1685/
+  inflating: h2o-2.9.0.1685/h2o-sources.jar  
+   creating: h2o-2.9.0.1685/hadoop/
+  inflating: h2o-2.9.0.1685/hadoop/h2odriver_hdp2.0.6.jar  
+  inflating: h2o-2.9.0.1685/hadoop/h2odriver_mapr2.1.3.jar  
+  inflating: h2o-2.9.0.1685/hadoop/h2odriver_mapr4.0.1.jar  
+  inflating: h2o-2.9.0.1685/hadoop/h2odriver_cdh4_yarn.jar  
+  inflating: h2o-2.9.0.1685/hadoop/README.txt  
+  inflating: h2o-2.9.0.1685/hadoop/h2odriver_cdh5.jar  
+  inflating: h2o-2.9.0.1685/hadoop/h2odriver_hdp2.1.jar  
+  inflating: h2o-2.9.0.1685/hadoop/h2odriver_cdh3.jar  
+  inflating: h2o-2.9.0.1685/hadoop/h2odriver_hdp1.3.2.jar  
+  inflating: h2o-2.9.0.1685/hadoop/h2odriver_hdp2.2.jar  
+  inflating: h2o-2.9.0.1685/hadoop/h2odriver_cdh4.jar  
+  inflating: h2o-2.9.0.1685/hadoop/h2odriver_mapr3.1.1.jar  
+   creating: h2o-2.9.0.1685/ec2/
+  inflating: h2o-2.9.0.1685/ec2/h2o-cluster-distribute-h2o.sh  
+  inflating: h2o-2.9.0.1685/ec2/h2o-cluster-distribute-flatfile.sh  
+  inflating: h2o-2.9.0.1685/ec2/h2o-cluster-print-info.py  
+  inflating: h2o-2.9.0.1685/ec2/h2o-cluster-launch-instances.py  
+  inflating: h2o-2.9.0.1685/ec2/h2o-cluster-test-ssh.sh  
+  inflating: h2o-2.9.0.1685/ec2/h2o-cluster-distribute-aws-credentials.sh  
+  inflating: h2o-2.9.0.1685/ec2/h2o-cluster-download-h2o.sh  
+  inflating: h2o-2.9.0.1685/ec2/README.txt  
+  inflating: h2o-2.9.0.1685/ec2/h2o-cluster-stop-h2o.sh  
+  inflating: h2o-2.9.0.1685/ec2/h2o-cluster-start-h2o.sh  
+   creating: h2o-2.9.0.1685/tableau/
+  inflating: h2o-2.9.0.1685/tableau/ClaimsTweedieAnalysis_8.2.twb  
+  inflating: h2o-2.9.0.1685/tableau/Demo_Template_8.2.twb  
+   creating: h2o-2.9.0.1685/tableau/meta_data/
+  inflating: h2o-2.9.0.1685/tableau/meta_data/claims_metadata.csv  
+  inflating: h2o-2.9.0.1685/tableau/meta_data/airlines_meta.csv  
+  inflating: h2o-2.9.0.1685/tableau/meta_data/claims_coefficients.csv  
+  inflating: h2o-2.9.0.1685/tableau/Demo_Template_8.1.twb  
+  inflating: h2o-2.9.0.1685/tableau/TableauTutorial.docx  
+   creating: h2o-2.9.0.1685/tableau/data/
+  inflating: h2o-2.9.0.1685/tableau/data/claimsdata.csv.tar.xz  
+  inflating: h2o-2.9.0.1685/README.txt  
+   creating: h2o-2.9.0.1685/spark/
+  inflating: h2o-2.9.0.1685/spark/README.txt  
+   creating: h2o-2.9.0.1685/R/
+  inflating: h2o-2.9.0.1685/R/h2o_2.9.0.1685.tar.gz  
+  inflating: h2o-2.9.0.1685/R/README.txt  
+  inflating: h2o-2.9.0.1685/h2o.jar  
+  inflating: h2o-2.9.0.1685/LICENSE.txt  
+  inflating: h2o-2.9.0.1685/h2o-model.jar  
+dan@feb ~/Downloads $ 
+dan@feb ~/Downloads $ 
+dan@feb ~/Downloads $ ll ~/h2o
+ls: cannot access /home/dan/h2o: No such file or directory
+dan@feb ~/Downloads $ 
+dan@feb ~/Downloads $ 
+dan@feb ~/Downloads $ mv h2o-2.9.0.1685 ~/h2o
+dan@feb ~/Downloads $ 
+dan@feb ~/Downloads $ cd ~
+dan@feb ~ $ 
+dan@feb ~ $ ln -s h2o h2o-2.9.0.1685
+dan@feb ~ $ 
+dan@feb ~ $ cd h2o
+dan@feb ~/h2o $ 
+dan@feb ~/h2o $ java -jar h2o.jar
+09:22:24.963 main      INFO WATER: ----- H2O started -----
+09:22:24.964 main      INFO WATER: Build git branch: master
+09:22:24.965 main      INFO WATER: Build git hash: 485045956a2570108cdce69144d12a349a4bad0d
+09:22:24.965 main      INFO WATER: Build git describe: jenkins-master-1685
+09:22:24.965 main      INFO WATER: Build project version: 2.9.0.1685
+09:22:24.965 main      INFO WATER: Built by: 'jenkins'
+09:22:24.965 main      INFO WATER: Built on: 'Tue Feb  3 23:01:11 PST 2015'
+09:22:24.965 main      INFO WATER: Java availableProcessors: 3
+09:22:24.998 main      INFO WATER: Java heap totalMemory: 0.06 gb
+09:22:24.999 main      INFO WATER: Java heap maxMemory: 0.86 gb
+09:22:25.012 main      INFO WATER: Java version: Java 1.7.0_60-ea (from Oracle Corporation)
+09:22:25.012 main      INFO WATER: OS   version: Linux 3.13.0-45-generic (amd64)
+09:22:25.490 main      INFO WATER: Machine physical memory: 3.86 gb
+09:22:26.380 main      INFO WATER: Chunk size: 4.0 MB
+09:22:26.381 main      INFO WATER: ICE root: '/tmp/h2o-dan'
+09:22:26.410 main      INFO WATER: Possible IP Address: eth1 (eth1), fe80:0:0:0:a00:27ff:fecf:cca0%3
+09:22:26.410 main      INFO WATER: Possible IP Address: eth1 (eth1), 192.168.1.117
+09:22:26.410 main      INFO WATER: Possible IP Address: eth0 (eth0), fe80:0:0:0:a00:27ff:fe9f:30b%2
+09:22:26.411 main      INFO WATER: Possible IP Address: eth0 (eth0), 10.0.2.15
+09:22:26.412 main      INFO WATER: Possible IP Address: lo (lo), 0:0:0:0:0:0:0:1%1
+09:22:26.413 main      INFO WATER: Possible IP Address: lo (lo), 127.0.0.1
+09:22:26.477 main      INFO WATER: Multiple local IPs detected:
++                                    /192.168.1.117  /10.0.2.15
++                                  Attempting to determine correct address...
++                                  Using /10.0.2.15
+09:22:26.623 main      INFO WATER: Internal communication uses port: 54322
++                                  Listening for HTTP and REST traffic on  http://10.0.2.15:54321/
+09:22:26.713 main      INFO WATER: H2O cloud name: 'dan'
+09:22:26.714 main      INFO WATER: (v2.9.0.1685) 'dan' on /10.0.2.15:54321, discovery address /225.1.131.145:57601
+09:22:26.714 main      INFO WATER: If you have trouble connecting, try SSH tunneling from your local machine (e.g., via port 55555):
++                                    1. Open a terminal and run 'ssh -L 55555:localhost:54321 dan@10.0.2.15'
++                                    2. Point your browser to http://localhost:55555
+09:22:26.719 main      INFO WATER: Cloud of size 1 formed [/10.0.2.15:54321 (00:00:00.000)]
+09:22:26.719 main      INFO WATER: Log dir: '/tmp/h2o-dan/h2ologs'
+</code>
