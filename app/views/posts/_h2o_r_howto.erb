@@ -1,0 +1,123 @@
+<code class='bash'>dan@hp ~ $ 
+dan@hp ~ $ su
+Password: 
+root@hp:/home/dan# 
+root@hp:/home/dan# 
+root@hp:/home/dan# apt-get install libcurl4-openssl-dev
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+libcurl4-openssl-dev is already the newest version.
+0 upgraded, 0 newly installed, 0 to remove and 193 not upgraded.
+root@hp:/home/dan# 
+root@hp:/home/dan# 
+root@hp:/home/dan# exit
+
+
+
+dan@hp ~ $ 
+dan@hp ~ $ 
+dan@hp ~ $ cd h2o/R
+dan@hp ~/h2o/R $ 
+dan@hp ~/h2o/R $ 
+dan@hp ~/h2o/R $ ll
+total 40424
+drwxr-xr-x 2 dan dan     4096 Feb  3 23:03 ./
+drwxr-xr-x 7 dan dan     4096 Feb  3 23:03 ../
+-rw-r--r-- 1 dan dan 41377234 Feb  3 23:03 h2o_2.9.0.1685.tar.gz
+-rw-r--r-- 1 dan dan     4761 Feb  3 23:00 README.txt
+dan@hp ~/h2o/R $ 
+dan@hp ~/h2o/R $ 
+
+
+dan@hp ~/h2o/R $ 
+dan@hp ~/h2o/R $ which R
+/home/dan/rdir/bin/R
+dan@hp ~/h2o/R $ 
+dan@hp ~/h2o/R $ 
+
+
+
+dan@hp ~/h2o/R $ R
+R version 3.1.2 (2014-10-31) -- "Pumpkin Helmet"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> 
+> 
+> 
+
+
+> 
+> 
+> install.packages("h2o_2.9.0.1685.tar.gz",repos=NULL,type="source")
+ERROR: dependencies ‘RCurl’, ‘rjson’, ‘statmod’ are not available for package ‘h2o’
+* removing ‘/home/dan/rdir/lib/R/library/h2o’
+Warning message:
+In install.packages("h2o_2.9.0.1685.tar.gz", repos = NULL, type = "source") :
+  installation of package ‘h2o_2.9.0.1685.tar.gz’ had non-zero exit status
+> 
+> 
+
+
+I need to install these before I can install h2o:
+
+RCurl
+rjson
+statmod
+
+I did this:
+
+
+install.packages("RCurl", repos="http://cran.us.r-project.org")
+install.packages("rjson", repos="http://cran.us.r-project.org")
+install.packages("statmod", repos="http://cran.us.r-project.org")
+
+
+Then I did this:
+
+> 
+> install.packages("h2o_2.9.0.1685.tar.gz",repos=NULL,type="source")
+* installing *source* package ‘h2o’ ...
+** R
+** demo
+** inst
+** preparing package for lazy loading
+Creating a generic function for ‘summary’ from package ‘base’ in package ‘h2o’
+Creating a generic function for ‘colnames’ from package ‘base’ in package ‘h2o’
+Creating a generic function for ‘t’ from package ‘base’ in package ‘h2o’
+Creating a generic function for ‘colnames<-’ from package ‘base’ in package ‘h2o’
+Creating a generic function for ‘nrow’ from package ‘base’ in package ‘h2o’
+Creating a generic function for ‘ncol’ from package ‘base’ in package ‘h2o’
+Creating a generic function for ‘sd’ from package ‘stats’ in package ‘h2o’
+Creating a generic function for ‘var’ from package ‘stats’ in package ‘h2o’
+Creating a generic function for ‘as.factor’ from package ‘base’ in package ‘h2o’
+Creating a generic function for ‘is.factor’ from package ‘base’ in package ‘h2o’
+Creating a generic function for ‘which’ from package ‘base’ in package ‘h2o’
+Creating a generic function for ‘levels’ from package ‘base’ in package ‘h2o’
+Creating a generic function for ‘apply’ from package ‘base’ in package ‘h2o’
+Creating a generic function for ‘findInterval’ from package ‘base’ in package ‘h2o’
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (h2o)
+> 
+> 
+
+
+</code>
