@@ -1,0 +1,78 @@
+.q1 Question:
+.q2 How to install R from source?
+.tags
+  %span.tagtag Tags:
+  .tag linux
+  .tag ubuntu
+  .tag r
+  .tag configure
+  .tag prefix
+  .tag make
+  .tag make_install
+  .tag tarball
+
+
+%br/
+I encountered a use-case today which required that I run R version 3.1.x
+%br/
+%br/
+I searched:
+%br/
+%br/
+%a(href='http://www.google.com/search?q=how+to+install+r+on+linux' target='x')
+  http://www.google.com/search?q=how+to+install+r+on+linux
+
+%br/
+%br/
+I found:
+
+%br/
+%br/
+%a(href='http://lib.stat.cmu.edu/R/CRAN/' target='x')
+  http://lib.stat.cmu.edu/R/CRAN/
+
+%br/
+%br/
+I downloaded:
+%br/
+%br/
+%a(href='http://lib.stat.cmu.edu/R/CRAN/src/base/R-3/R-3.1.2.tar.gz' target='x')
+  http://lib.stat.cmu.edu/R/CRAN/src/base/R-3/R-3.1.2.tar.gz
+
+%br/
+%br/
+I did untar:
+
+%pre
+  %code.bash cd ~/Downloads; tar zxf R-3.1.2.tar.gz
+
+I did configure:
+
+%pre
+  %code.bash mkdir /home/dan/rdir; cd R-3.1.2; ./configure --prefix=/home/dan/rdir
+
+I saw:
+
+%pre
+  %code.bash configure: error: --with-x=yes (default) and X11 headers/libs are not available
+
+I did configure again:
+
+%pre
+  %code.bash mkdir /home/dan/rdir; cd R-3.1.2; ./configure --prefix=/home/dan/rdir --with-x=no
+
+I ran 'make' and waited a long time for it to finish:
+
+%pre
+  %code.bash make
+
+
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
