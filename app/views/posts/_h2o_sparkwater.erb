@@ -1,0 +1,31 @@
+<code class='bash'>
+I started by getting a zip file from a Meetup:
+
+-rw-r--r-- 1 dan dan  12931072 Jan 30 14:40 sparkling-water-0.2.6-69.zip
+
+I unzipped it to here:
+
+~/sw/h2osw/
+
+I set some env vars:
+
+export SPARK_HOME="/home/dan/spark"
+export MASTER="local-cluster[3,2,1024]"
+
+I ran a shell command:
+
+bin/sparkling-shell
+
+At that prompt I typed some scala:
+
+import org.apache.spark.h2o._
+import org.apache.spark.examples.h2o._
+val h2oContext = new H2OContext(sc).start()
+import h2oContext._
+
+Next I looked at localhost:54321 with firefox.
+
+In the coffeewindow I typed 
+getCloud
+and I got a nice report of my h2o cluster.
+</code>
