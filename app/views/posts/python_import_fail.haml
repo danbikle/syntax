@@ -1,0 +1,29 @@
+.q1 Question:
+.q2 In Python how to fix ImportError?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/python') python
+  .tag importerror
+  .tag import
+  .tag h2o
+  .tag path
+  .tag sys
+  .tag sys_path
+%br/
+Today I walked through an early demo of the h2o Python API.
+
+%br/
+%br/
+
+The first line in the script was this:
+%pre
+  %code.python import h2o
+
+When I ran it, Python gave me this:
+%pre
+  %code.python ImportError: No module named h2o
+
+I fixed it with three lines of code:
+%pre
+  =render 'python_import_fail'
+%br/

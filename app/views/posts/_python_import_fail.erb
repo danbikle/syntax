@@ -1,0 +1,43 @@
+<code class='python'>dan@hp ~/h2o-dev/h2o-algos/src/test/java/hex/example $ 
+dan@hp ~/h2o-dev/h2o-algos/src/test/java/hex/example $ 
+dan@hp ~/h2o-dev/h2o-algos/src/test/java/hex/example $ which python
+/home/dan/anaconda/bin/python
+dan@hp ~/h2o-dev/h2o-algos/src/test/java/hex/example $ 
+dan@hp ~/h2o-dev/h2o-algos/src/test/java/hex/example $ 
+dan@hp ~/h2o-dev/h2o-algos/src/test/java/hex/example $ python
+Python 2.7.9 |Anaconda 2.1.0 (64-bit)| (default, Dec 12 2014, 14:52:24) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+>>> import h2o
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ImportError: No module named h2o
+>>> 
+>>> sys.path
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'sys' is not defined
+>>> import sys
+>>> sys.path
+
+['', '/home/dan/anaconda/lib/python27.zip',
+'/home/dan/anaconda/lib/python2.7',
+'/home/dan/anaconda/lib/python2.7/plat-linux2',
+'/home/dan/anaconda/lib/python2.7/lib-tk',
+'/home/dan/anaconda/lib/python2.7/lib-old',
+'/home/dan/anaconda/lib/python2.7/lib-dynload',
+'/home/dan/anaconda/lib/python2.7/site-packages',
+'/home/dan/anaconda/lib/python2.7/site-packages/PIL',
+'/home/dan/anaconda/lib/python2.7/site-packages/Sphinx-1.2.3-py2.7.egg',
+'/home/dan/anaconda/lib/python2.7/site-packages/runipy-0.1.1-py2.7.egg',
+'/home/dan/anaconda/lib/python2.7/site-packages/setuptools-7.0-py2.7.egg']
+
+>>> myl = [1,2,3]
+>>> myl.append(9)
+>>> myl
+[1, 2, 3, 9]
+>>> sys.path.append('/home/dan/h2o-dev/h2o-py/h2o')
+>>> import h2o
+>>> </code>
