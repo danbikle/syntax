@@ -248,9 +248,67 @@ export MASTER="local-cluster[3,2,1024]"
 
 bin/run-example.sh CitiBikeSharingDemo
 
-It seemed to do okay for awhile and then I saw this:
+It seemed to do okay for awhile and then I saw many errors
+
+example:
+
+02-06 09:03:35.933 192.168.1.95:54329 9088 #UDP-Recv ERRR: UDP
+Receiver error on port 54330java.lang.ArrayIndexOutOfBoundsException:
+70
+
+and this:
 
 
+Exception in thread "main" java.lang.RuntimeException: Cloud size
+under 3 at water.H2O.waitForCloudSize(H2O.java:874)
 
+It continued spitting out exception messages and then eventually died.
+
+I tried this:
+
+pkill java
+bin/run-example.sh CitiBikeSharingDemo
+
+and it seemed to behave a little better and then issued this:
+
+
+Exception in thread "main"
+org.apache.spark.sql.catalyst.errors.package$TreeNodeException:
+Unresolved attributes: 'start_station_id,'start_station_id, tree:
+'Aggregate [Days#15,'start_station_id],
+[Days#15,'start_station_id,COUNT(1) AS bikes#16L]
+ 
+Subquery brdd
+  
+SparkLogicalPlan (ExistingRdd
+[tripduration#0,starttime#1,stoptime#2,start station id#3,start
+station name#4,start station latitude#5,start station longitude#6,end
+station id#7,end station name#8,end station latitude#9,end station
+longitude#10,bikeid#11,usertype#12,birth year#13,gender#14,Days#15],
+H2OSchemaRDD[6] at H2OSchemaRDD at H2OContext.scala:219)	
+at org.apache.spark.sql.catalyst.analysis.
+  Analyzer$CheckResolution$$anonfun$1.
+  applyOrElse(Analyzer.scala:80)
+
+then it did not die.
+It hung so I killed it with ctrl-c.
+
+If you have any clues on how to debug and run this demo,
+please send them.
+
+I'm on ubuntu 14
+Here is how spark sees my setup:
+Using Scala version 2.10.4 
+(Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_60-ea)
+
+Here is the commit I'm working with:
+
+commit 635547f2245845e03e573b7868f29886e8a49599
+Author: mmalohlava <michal.malohlava@gmail.com>
+Date:   Thu Feb 5 19:23:26 2015 -0800
+
+
+Thanks,
+Dan
 
 </code>
