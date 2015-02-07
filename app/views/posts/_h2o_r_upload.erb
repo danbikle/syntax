@@ -1,0 +1,10 @@
+<code class='bash'>
+# /f/upload.r
+
+library(h2o)
+localH2O = h2o.init(ip = 'localhost', port = 54321, max_mem_size = '1g')
+
+myPath = "/f/spy611.csv"
+my.hex = h2o.uploadFile(localH2O, path = myPath, key = "my.hex")
+summary(my.hex)
+</code>
