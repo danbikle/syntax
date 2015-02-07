@@ -217,6 +217,8 @@ Note:  As started, H2O is limited to the CRAN default of 2 CPUs.
            > h2o.shutdown(localH2O)
            > localH2O = h2o.init(nthreads = -1)
 
+I tried some syntax I found in the README:
+
 > 
 > 
 > irisPath = system.file("extdata", "iris.csv", package="h2o")
@@ -257,5 +259,304 @@ Note:  As started, H2O is limited to the CRAN default of 2 CPUs.
 > 
 > 
 > 
+
+
+I looked here:
+
+http://docs.h2o.ai/Ruser/rtutorial.html
+
+
+dan@hp /tmp $ 
+dan@hp /tmp $ 
+dan@hp /tmp $ wget spy611.com/spy611.csv
+--2015-02-07 10:05:49--  http://spy611.com/spy611.csv
+Resolving spy611.com (spy611.com)... 50.63.202.7
+Connecting to spy611.com (spy611.com)|50.63.202.7|:80... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: /spy611.csv [following]
+--2015-02-07 10:05:49--  http://spy611.com/spy611.csv
+Connecting to spy611.com (spy611.com)|50.63.202.7|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: http://www.spy611.com/spy611.csv [following]
+--2015-02-07 10:05:49--  http://www.spy611.com/spy611.csv
+Resolving www.spy611.com (www.spy611.com)... 54.243.122.132
+Connecting to www.spy611.com (www.spy611.com)|54.243.122.132|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 773103 (755K) [text/csv]
+Saving to: 'spy611.csv'
+
+100%[======================================>] 773,103      620KB/s   in 1.2s   
+
+2015-02-07 10:05:51 (620 KB/s) - 'spy611.csv' saved [773103/773103]
+
+dan@hp /tmp $ 
+dan@hp /tmp $ 
+dan@hp /tmp $ 
+
+
+> 
+> spy611.hex = h2o.importFile(localH2O, path = '/tmp/spy611.csv', key = "spy611.hex")
+  |======================================================================| 100%
+> class(spy611.hex)
+[1] "H2OParsedData"
+attr(,"package")
+[1] "h2o"
+> 
+> 
+> tail(spy611.hex)
+       algo close_price_date prediction pct_gain
+27820 lr2lr    1422489600000     0.5110    -1.30
+27821 lr2lr    1422576000000     0.5315     1.30
+27822 lr2lr    1422835200000     0.5167     1.44
+27823 lr2lr    1422921600000     0.5043    -0.42
+27824 lr2lr    1423008000000     0.5138     1.03
+27825 lr2lr    1423094400000     0.5031       NA
+> 
+> 
+
+
+
+> h2o.anyFactor(iris.hex)
+[1] TRUE
+> 
+> prosPath <- system.file("extdata", "prostate.csv", package="h2o")
+> 
+> prosPath
+[1] "/home/dan/rdir/lib/R/library/h2o/extdata/prostate.csv"
+> 
+> 
+> prostate.hex = h2o.importFile(localH2O, path = prosPath)
+  |======================================================================| 100%
+> 
+> 
+> head(prostate.hex)
+  ID CAPSULE AGE RACE DPROS DCAPS  PSA  VOL GLEASON
+1  1       0  65    1     2     1  1.4  0.0       6
+2  2       0  72    1     3     2  6.7  0.0       7
+3  3       0  70    1     1     2  4.9  0.0       6
+4  4       0  76    2     2     1 51.2 20.0       7
+5  5       0  69    1     1     1 12.3 55.9       6
+6  6       1  71    1     3     2  3.3  0.0       8
+> 
+> summary(prostate.hex)
+ ID               CAPSULE          AGE             RACE           
+ Min.   :  1.00   Min.   :0.0000   Min.   :43.00   Min.   :0.000  
+ 1st Qu.: 95.75   1st Qu.:0.0000   1st Qu.:62.00   1st Qu.:1.000  
+ Median :190.50   Median :0.0000   Median :67.00   Median :1.000  
+ Mean   :190.50   Mean   :0.4026   Mean   :66.04   Mean   :1.087  
+ 3rd Qu.:285.25   3rd Qu.:1.0000   3rd Qu.:71.00   3rd Qu.:1.000  
+ Max.   :380.00   Max.   :1.0000   Max.   :79.00   Max.   :2.000  
+ DPROS           DCAPS           PSA               VOL            
+ Min.   :1.000   Min.   :1.000   Min.   :  0.300   Min.   : 0.00  
+ 1st Qu.:1.000   1st Qu.:1.000   1st Qu.:  5.000   1st Qu.: 0.00  
+ Median :2.000   Median :1.000   Median :  8.725   Median :14.25  
+ Mean   :2.271   Mean   :1.108   Mean   : 15.409   Mean   :15.81  
+ 3rd Qu.:3.000   3rd Qu.:1.000   3rd Qu.: 17.125   3rd Qu.:26.45  
+ Max.   :4.000   Max.   :2.000   Max.   :139.700   Max.   :97.60  
+ GLEASON        
+ Min.   :0.000  
+ 1st Qu.:6.000  
+ Median :6.000  
+ Mean   :6.384  
+ 3rd Qu.:7.000  
+ Max.   :9.000  
+> 
+> 
+> 
+> prostate.data.frame<- as.data.frame(prostate.hex)
+> 
+> 
+> summary(prostate.data.frame)
+       ID            CAPSULE            AGE             RACE      
+ Min.   :  1.00   Min.   :0.0000   Min.   :43.00   Min.   :0.000  
+ 1st Qu.: 95.75   1st Qu.:0.0000   1st Qu.:62.00   1st Qu.:1.000  
+ Median :190.50   Median :0.0000   Median :67.00   Median :1.000  
+ Mean   :190.50   Mean   :0.4026   Mean   :66.04   Mean   :1.087  
+ 3rd Qu.:285.25   3rd Qu.:1.0000   3rd Qu.:71.00   3rd Qu.:1.000  
+ Max.   :380.00   Max.   :1.0000   Max.   :79.00   Max.   :2.000  
+     DPROS           DCAPS            PSA              VOL       
+ Min.   :1.000   Min.   :1.000   Min.   :  0.30   Min.   : 0.00  
+ 1st Qu.:1.000   1st Qu.:1.000   1st Qu.:  5.00   1st Qu.: 0.00  
+ Median :2.000   Median :1.000   Median :  8.75   Median :14.25  
+ Mean   :2.271   Mean   :1.108   Mean   : 15.41   Mean   :15.81  
+ 3rd Qu.:3.000   3rd Qu.:1.000   3rd Qu.: 17.12   3rd Qu.:26.45  
+ Max.   :4.000   Max.   :2.000   Max.   :139.70   Max.   :97.60  
+    GLEASON     
+ Min.   :0.000  
+ 1st Qu.:6.000  
+ Median :6.000  
+ Mean   :6.384  
+ 3rd Qu.:7.000  
+ Max.   :9.000  
+> 
+> 
+> head(prostate.hex[,4])
+  RACE
+1    1
+2    1
+3    1
+4    2
+5    1
+6    1
+> 
+> prostate.hex[1:4,4]
+IP Address: 127.0.0.1 
+Port      : 54321 
+Parsed Data Key: Last.value.5 
+
+  RACE
+1    1
+2    1
+3    1
+4    2
+> 
+> 
+
+
+> 
+> head(iris)
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa
+> 
+> 
+> 
+> class(iris)
+[1] "data.frame"
+> 
+> 
+> iris.h2o = as.h2o(localH2O, iris, key="iris.h2o")
+  |======================================================================| 100%
+> 
+> 
+> class(iris.h2o)
+[1] "H2OParsedData"
+attr(,"package")
+[1] "h2o"
+> 
+> iris.h2o[1:5,]
+IP Address: 127.0.0.1 
+Port      : 54321 
+Parsed Data Key: Last.value.7 
+
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+> 
+> 
+> iris.h2o[0:5,]
+IP Address: 127.0.0.1 
+Port      : 54321 
+Parsed Data Key: Last.value.9 
+
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+> 
+> 
+> prosPath = system.file("extdata", "prostate.csv", package="h2o")
+> 
+> prosPath
+[1] "/home/dan/rdir/lib/R/library/h2o/extdata/prostate.csv"
+> 
+> 
+> prostate.hex = h2o.importFile(localH2O, path = prosPath)
+  |======================================================================| 100%
+> 
+> 
+> prostate.qs = quantile(prostate.hex$PSA)
+> 
+> class(prostate.qs)
+[1] "numeric"
+> 
+> 
+> head(prostate.qs)
+     0%     25%     50%     75%    100% 
+  0.300   5.000   8.750  17.125 139.700 
+> 
+> 
+> head(prostate.hex$PSA)
+   PSA
+1  1.4
+2  6.7
+3  4.9
+4 51.2
+5 12.3
+6  3.3
+> 
+> summary(prostate.hex$PSA)
+ PSA              
+ Min.   :  0.300  
+ 1st Qu.:  5.000  
+ Median :  8.725  
+ Mean   : 15.409  
+ 3rd Qu.: 17.125  
+ Max.   :139.700  
+> 
+> 
+> predicate1 = prostate.hex$PSA <= prostate.qs[2] 
+> 
+> head(predicate1)
+  PSA
+1   1
+2   0
+3   1
+4   0
+5   0
+6   1
+> 
+> 
+> prostate.qs[2]
+25% 
+  5 
+> 
+> head(prostate.hex$PSA)
+   PSA
+1  1.4
+2  6.7
+3  4.9
+4 51.2
+5 12.3
+6  3.3
+> 
+> predicate2 = prostate.hex$PSA >=   prostate.qs[10]
+> 
+> prostate.qs[10]
+<NA> 
+  NA 
+> predicate2 = prostate.hex$PSA >=   prostate.qs[5]
+> 
+> prostate.qs[5]
+ 100% 
+139.7 
+> 
+> predicate3 = predicate1 | predicate2
+> 
+> PSA.outers = prostate.hex[predicate3]
+> 
+> nrow(PSA.outers)
+[1] 98
+> 
+> nrow(prostate.hex)
+[1] 380
+> 
+> 
+> PSA.outers = h2o.assign(PSA.outers,'PSA.outers')
+> 
+> nrow(PSA.outers)
+[1] 98
+> 
+> 
+
 
 </code>
