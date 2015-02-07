@@ -1,0 +1,42 @@
+<code class='bash'>
+helloworld,
+
+I'm working with the Feb4 sparkling-water citibike demo.
+
+I started by getting the data from here:
+
+http://www.civicdata.com/dataset/nyc-bike-share-trip-data
+
+I got the 2013-09 csv and put it here:
+
+/tmp/citi.csv
+
+I inspected it with 
+head /tmp/citi.csv
+
+I cloned the repo:
+
+cd /tmp/
+git clone git@github.com:h2oai/sparkling-water.git
+git log -1
+commit 635547f2245845e03e573b7868f29886e8a49599
+Author: mmalohlava <michal.malohlava@gmail.com>
+Date:   Thu Feb 5 19:23:26 2015 -0800
+
+I did this:
+
+cd examples/src/main/scala/org/apache/spark/examples/h2o/
+
+sed -i '/michal/s:/Users/michal/Devel/projects/h2o/repos/h2o2/bigdata/laptop/citibike-nyc/2013-09.csv:/tmp/citi.csv:' CitiBikeSharingDemo.scala
+
+
+cd /tmp/sparkling-water
+
+export SPARK_HOME="/home/dan/spark"
+export MASTER="local-cluster[3,2,1024]"
+
+./gradlew build -x test
+./gradlew assemble
+
+bin/run-example.sh CitiBikeSharingDemo
+</code>
