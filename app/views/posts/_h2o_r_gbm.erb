@@ -1,0 +1,62 @@
+<code class='bash'>
+I start this demo by referring to this page:
+
+http://docs.h2o.ai/Ruser/rtutorial.html
+
+I tried walking through the gbm section.
+
+First I made note of the h2o version:
+
+> 
+> 
+> h2o.clusterInfo(localH2O)
+R is connected to H2O cluster:
+    H2O cluster uptime:         17 hours 51 minutes 
+    H2O cluster version:        2.9.0.1689 
+    H2O cluster name:           H2O_started_from_R 
+    H2O cluster total nodes:    1 
+    H2O cluster total memory:   1.54 GB 
+    H2O cluster total cores:    4 
+    H2O cluster allowed cores:  2 
+    H2O cluster healthy:        TRUE 
+> 
+> 
+
+The above version was posted to the web on or about 2015-02-06.
+
+Next I tried their system.file() call.
+
+They dont explain what it does but I figured it out by studying the result:
+
+> 
+> 
+> ausPath = system.file("extdata", "australia.csv", package="h2o")
+> 
+> 
+
+
+> 
+> ausPath
+[1] "/home/dan/rdir/lib/R/library/h2o/extdata/australia.csv"
+> 
+> 
+
+It is creating a simple string from the location of a CSV file called:
+
+australia.csv
+
+I'm not sure where the file came from but obviously the author of the 
+R tutorial was confident that the CSV file is now on my laptop.
+
+He/She can do this because the file is part of my R installation.
+
+Next I feed that to h2o.importFile() which is a call I often see in h2o-R scripts:
+
+> 
+> australia.hex = h2o.importFile(localH2O, path = ausPath)
+  |======================================================================| 100%
+> 
+> 
+
+
+</code>
