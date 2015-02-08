@@ -874,4 +874,29 @@ NULL
 Question:
 How do I convert a splitframe-object into a H2OParsedData object?
 
+
+<hr />
+
+At this URL:
+docs.h2o.ai/Ruser/rtutorial.html
+I see some useful syntax at the end of the page:
+
+> mygbm_model = h2o.getModel(key = 'GBM_bb1a4664cbf6f99be853ebbdc2d4df6', h2o = localH2O)
+> 
+> mygbm_model
+IP Address: 127.0.0.1 
+Port      : 54321 
+Parsed Data Key: australia.hex 
+
+GBM Model Key: GBM_bb1a4664cbf6f99be853ebbdc2d4df6 
+
+Overall Mean-squared Error:  31462.59 
+> 
+> 
+
+The above syntax is useful in an interactive context.
+I cannot think of any usecase when my script would have access to the key.
+But I can think of situations when I would see the key in a web-UI and want
+to use the associated model in a script or an R session.
+
 </code>
