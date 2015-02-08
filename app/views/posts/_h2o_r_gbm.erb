@@ -104,5 +104,144 @@ The timestamp column would be useful for sorting but it is not a feature I want 
 The design of the h2o.gbm() API allows me to do that. Yay!
 
 
+Moving along in this discussion, I list below a screen dump of me calling h2o.gbm():
+
+> 
+> 
+> list_of_column_names = c("premax", "salmax","minairtemp", "maxairtemp","maxsst", "maxsoilmoist", "Max_czcs")
+> 
+> 
+> list_of_column_names
+[1] "premax"       "salmax"       "minairtemp"   "maxairtemp"   "maxsst"      
+[6] "maxsoilmoist" "Max_czcs"    
+> 
+> myy = "runoffnew"
+> 
+> myy
+[1] "runoffnew"
+> 
+> 
+> h2o.gbm(y = myy, x = list_of_column_names , data = australia.hex, n.trees = 10, interaction.depth = 3, n.minobsinnode = 2, shrinkage = 0.2, distribution= "gaussian")
+  |======================================================================| 100%
+IP Address: 127.0.0.1 
+Port      : 54321 
+Parsed Data Key: australia.hex 
+
+GBM Model Key: GBM_a410fa049380b1f968c5dd46f3104fa1 
+
+Overall Mean-squared Error:  31462.59 
+> 
+>    
+
+I see that the name of the model key is:
+GBM_a410fa049380b1f968c5dd46f3104fa1
+
+So I can see that with my eyes.
+
+How do I get that value into a variable?
+
+I tried setting a variable = h2o.gbm() :
+
+
+> mygbm_key = h2o.gbm(y = myy, x = list_of_column_names , data = australia.hex, n.trees = 10, interaction.depth = 3, n.minobsinnode = 2, shrinkage = 0.2, distribution= "gaussian")
+  |======================================================================| 100%
+> 
+> mygbm_key
+IP Address: 127.0.0.1 
+Port      : 54321 
+Parsed Data Key: australia.hex 
+
+GBM Model Key: GBM_bb1a4664cbf6f99be853ebbdc2d4df6 
+
+Overall Mean-squared Error:  31462.59 
+> 
+> mygbm_key['GBM Model Key']
+Error in mygbm_key["GBM Model Key"] : 
+  object of type 'S4' is not subsettable
+> 
+> mygbm_key[1]
+Error in mygbm_key[1] : object of type 'S4' is not subsettable
+> 
+> 
+
+So, it appears I got some kind of hash-like structure back:
+
+> 
+> class(mygbm_key)
+[1] "H2OGBMModel"
+attr(,"package")
+[1] "h2o"
+> 
+> 
+
+google: In R how to get value from H2OGBMModel?
+Result: No useful answers.
+
+I read further down in the tutorial and I see that I might not need 'GBM Model Key'.
+
+After I finish building the model, I just need to refer to the whole model-object
+when I call h2o.predict().
+
+Here is a screendump:
+
+
+> 
+> mygbm_model = h2o.gbm(y = myy, x = list_of_column_names , data = australia.hex, n.trees = 10, interaction.depth = 3, n.minobsinnode = 2, shrinkage = 0.2, distribution= "gaussian")
+  |======================================================================| 100%
+> 
+
+
+Now I have a variable which refers to the model.
+I think I only need this variable.
+I may not need the value of 'GBM Model Key'.
+
+I will try to predict just one row:
+
+> 
+> row1 = australia.hex[1,]
+> 
+> row1
+IP Address: 127.0.0.1 
+Port      : 54321 
+Parsed Data Key: Last.value.68 
+
+  premax salmax minairtemp maxairtemp maxsst maxsoilmoist Max_czcs runoffnew
+1    350   3448        287      301.5 302817         6.39     0.51       167
+> 
+> row1[list_of_column_names]
+IP Address: 127.0.0.1 
+Port      : 54321 
+Parsed Data Key: Last.value.70 
+
+  premax salmax minairtemp maxairtemp maxsst maxsoilmoist Max_czcs
+1    350   3448        287      301.5 302817         6.39     0.51
+> 
+> row1x = row1[list_of_column_names]
+> 
+> row1x
+IP Address: 127.0.0.1 
+Port      : 54321 
+Parsed Data Key: Last.value.72 
+
+  premax salmax minairtemp maxairtemp maxsst maxsoilmoist Max_czcs
+1    350   3448        287      301.5 302817         6.39     0.51
+> 
+
+Notice in the call below I do not need the key.
+I only need a variable which I had filled when I called h2o.gbm():
+
+> myprediction = h2o.predict(object = mygbm_model, newdata = row1x)
+> 
+> 
+> myprediction
+IP Address: 127.0.0.1 
+Port      : 54321 
+Parsed Data Key: GBMPredict_f986d47542464833ba3b583b8c4ed1e5 
+
+   predict
+1 171.5543
+> 
+> 
+> 
 
 </code>
