@@ -899,4 +899,98 @@ I cannot think of any usecase when my script would have access to the key.
 But I can think of situations when I would see the key in a web-UI and want
 to use the associated model in a script or an R session.
 
+
+Another call which is useful for an interactive session is h2o.ls(localH2O).
+
+Also it is useful for looking at how objects are distributed in a cluster:
+
+> 
+> 
+> h2o.ls(localH2O)
+                                           Key Bytesize
+1  GBMPredict_f986d47542464833ba3b583b8c4ed1e5       80
+2         GBM_9eab586732156bfd511a36a5015642f7     1474
+3         GBM_a410fa049380b1f968c5dd46f3104fa1     1473
+4          GBM_bb1a4664cbf6f99be853ebbdc2d4df6     1468
+5                                Last.value.11      844
+6                                Last.value.14      108
+7                                Last.value.15      844
+8                                Last.value.17      844
+9                                Last.value.18      844
+10                               Last.value.19      118
+11                               Last.value.21      844
+12                               Last.value.23      844
+13                               Last.value.24       80
+14                               Last.value.25      844
+15                               Last.value.26       76
+16                               Last.value.27      118
+17                               Last.value.28     2881
+18                               Last.value.29      844
+19                                Last.value.3      448
+20                               Last.value.31      844
+21                               Last.value.33      448
+22                               Last.value.36       73
+23                               Last.value.37     1344
+24                               Last.value.38       79
+25                               Last.value.39      152
+26                               Last.value.41       90
+27                               Last.value.42      162
+28                               Last.value.44      112
+29                               Last.value.45      176
+30                               Last.value.47      112
+31                               Last.value.48      176
+32                               Last.value.49      448
+33                                Last.value.5       72
+34                               Last.value.50      200
+35                               Last.value.51      448
+36                               Last.value.52      200
+37                               Last.value.54      448
+38                               Last.value.56      448
+39                               Last.value.57      448
+40                               Last.value.58      448
+41                               Last.value.59      200
+42                               Last.value.60      448
+43                               Last.value.61      200
+44                               Last.value.63     3108
+45                               Last.value.64      118
+46                               Last.value.65     1285
+47                               Last.value.68      640
+48                                Last.value.7      484
+49                               Last.value.70      560
+50                               Last.value.72      560
+51                                Last.value.9      484
+52                               PSA.nonouters     2881
+53                               australia.hex     3919
+54                                    iris.h2o     1154
+55                                    iris.hex     1154
+56                                prostate.hex     4874
+57                               prostate1.hex     4874
+58                               prostate2.hex     4874
+59                         prostate2_part0.hex     3817
+60                         prostate2_part1.hex     1624
+61                                  spy611.hex   362029
+> 
+> 
+> 
+
+h2o.ls() is a simple call; I cannot pass it an object name:
+
+> 
+> h2o.ls(localH2O, keys = 'prostate2_part1.hex')
+Error in h2o.ls(localH2O, keys = "prostate2_part1.hex") : 
+  unused argument (keys = "prostate2_part1.hex")
+> 
+> 
+
+
+On my laptop where my localH2O has only 1GB of memory, I might want to remove large objects:
+
+> 
+> h2o.rm(object= localH2O, keys= "spy611.hex")
+> 
+> 
+
+Currently that is the end of my h2o R demo.
+I may add more syntax demos in the future.
+
 </code>
