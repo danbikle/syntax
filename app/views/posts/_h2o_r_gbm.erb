@@ -75,5 +75,33 @@ In the tutorial, other pairs is this:
 
 n.trees = 10, interaction.depth = 3, n.minobsinnode = 2, shrinkage = 0.2, distribution= "gaussian"
 
+I like the design of the above signature.
+
+I have seen a design in other ML technology which has a shorter signature:
+
+other_ml_gbm(yvector, x_vectors, otherpairs)
+
+The signature looks better but gives higher probability of bugs.
+
+other_ml_gbm() is not telling me that the elements of yvector need to be aligned with row-vectors in x_vectors.
+
+h2o.gbm() does it the right way.
+
+It is telling me that my x-values and y-values should live next to each other in an object named australia.hex; they should be aligned.
+
+But wait, there is more.
+
+h2o.gbm() gives me the option of picking a subset of columns from australia.hex as my x-values.
+
+The columns which do not get named might be useful for certain tasks.
+
+The most common example I can think of is to have a timestamp column.
+
+A timestamp column allows me to sort australia.hex by date which is extremely valuable for 
+dealing with time-series data.
+
+The timestamp column would be useful for sorting but it is not a feature I want to pass to h2o.gbm().
+
+
 
 </code>
