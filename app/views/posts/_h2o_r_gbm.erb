@@ -59,4 +59,21 @@ Next I feed that to h2o.importFile() which is a call I often see in h2o-R script
 > 
 
 
+Next they setup for a call to h2o.gbm().
+This call will look at some rows and columns in the CSV, learn from them, and then
+create an h2o object called a model.
+
+They allow me to refer to model using a variable which they hand me.
+
+They dont call it a variable; they call it a key.
+
+The h2o.gbm() signature can be summarized as this:
+
+h2o.gbm(y = a_column_name, x = list_of_column_names, data = australia.hex, otherpairs)
+
+In the tutorial, other pairs is this:
+
+n.trees = 10, interaction.depth = 3, n.minobsinnode = 2, shrinkage = 0.2, distribution= "gaussian"
+
+
 </code>
