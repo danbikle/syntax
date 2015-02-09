@@ -21,6 +21,9 @@ dan@feb ~/Downloads $ mv index.html meteor_ins.sh
 dan@feb ~/Downloads $ 
 
 
+I like to know what the install script does so I figure out what tar-ball it wants.
+
+
 dan@feb ~/Downloads $ 
 dan@feb ~/Downloads $ grep RELEASE meteor_ins.sh
 RELEASE="1.0.3.1"
@@ -36,6 +39,7 @@ dan@feb ~/Downloads $
 dan@feb ~/Downloads $ 
 
 
+The install script wants this tar-ball:
 
 dan@feb ~/Downloads $ 
 dan@feb ~/Downloads $ wget https://d3sqy0vbqsdhku.cloudfront.net/packages-bootstrap/${RELEASE}/meteor-bootstrap-${PLATFORM}.tar.gz
@@ -60,6 +64,8 @@ dan@feb ~/Downloads $ ll meteor-bootstrap-os.linux.x86_64.tar.gz
 dan@feb ~/Downloads $ 
 
 
+Now I untar the tar-ball:
+
 
 dan@feb ~/Downloads $ 
 dan@feb ~/Downloads $ rm -rf .meteor
@@ -78,6 +84,8 @@ dan@feb ~/Downloads $
 dan@feb ~/Downloads $ 
 
 
+The tar-ball gave me .meteor/
+
 
 dan@feb ~/Downloads $ 
 dan@feb ~/Downloads $ du -sh .meteor/
@@ -85,10 +93,16 @@ dan@feb ~/Downloads $ du -sh .meteor/
 dan@feb ~/Downloads $ 
 
 
+I copy .meteor to my home-folder:
+
+
 dan@feb ~/Downloads $ 
 dan@feb ~/Downloads $ mv .meteor ~
 dan@feb ~/Downloads $ 
 dan@feb ~/Downloads $ cd
+
+
+Now I go looking for an executable named 'node':
 
 
 dan@feb ~ $ cd .meteor
@@ -102,6 +116,9 @@ dan@feb ~/.meteor $ find . -name node -print
 dan@feb ~/.meteor $ 
 
 
+I like this node:
+
+
 dan@feb ~/.meteor $ ln -s ~/.meteor/packages/meteor-tool/.1.0.40.1ef5dzv++os.linux.x86_64+web.browser+web.cordova/meteor-tool-os.linux.x86_64/dev_bundle/bin/node  .
 dan@feb ~/.meteor $ cd
 dan@feb ~ $ cd bin
@@ -111,6 +128,12 @@ dan@feb ~ $ which node
 /home/dan/bin/node
 dan@feb ~ $ 
 dan@feb ~ $ 
+
+Now I have node linked to ~/bin/ where my shell can find it.
+
+Next I want a copy of npm.
+
+I know that npm is just a script which calls npm-cli.js so I look for npm-cli.js:
 
 
 dan@feb ~/.meteor $ 
@@ -122,6 +145,7 @@ dan@feb ~/.meteor $
 dan@feb ~/.meteor $ vi ~/bin/npm
 
 
+I made my own npm script which is just two lines of code:
 
 dan@feb ~ $ 
 dan@feb ~ $ cd bin
@@ -136,6 +160,8 @@ dan@feb ~/bin $
 dan@feb ~/bin $ 
 dan@feb ~/bin $ 
 
+
+Now I test my npm script:
 
 dan@feb ~ $ 
 dan@feb ~ $ npm config list
@@ -153,10 +179,28 @@ dan@feb ~ $
 dan@feb ~ $ 
 
 
+Will my script install some random package?
+
+dan@feb ~ $ 
+dan@feb ~ $ npm install haml-coffee
+haml-coffee@1.14.1 node_modules/haml-coffee
+├── walkdir@0.0.7
+├── coffee-script@1.9.0
+└── optimist@0.6.1 (wordwrap@0.0.2, minimist@0.0.10)
+dan@feb ~ $ 
+dan@feb ~ $ 
+dan@feb ~ $ 
+
+
+I want to study my copy of node now.
+
 dan@feb ~ $ 
 dan@feb ~ $ which node
 /home/dan/bin/node
 dan@feb ~ $ 
+
+
+What version of node do I have?
 
 dan@feb ~ $ 
 dan@feb ~ $ node -v
@@ -164,6 +208,8 @@ v0.10.33
 dan@feb ~ $ 
 dan@feb ~ $ 
 
+
+Does node give help?
 
 dan@feb ~ $ 
 dan@feb ~ $ node -help
@@ -588,6 +634,7 @@ dan@feb ~ $
 dan@feb ~ $ 
 
 
+Can node add two numbers?
 
 dan@feb ~ $ 
 dan@feb ~ $ node
