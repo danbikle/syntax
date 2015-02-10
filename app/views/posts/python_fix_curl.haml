@@ -2,13 +2,12 @@
 .q2 How to fix anaconda curl certificate bug?
 .tags
   %span.tagtag Tags:
-  .tag python
-  .tag anaconda
-  .tag curl
-  .tag certificate
-  .tag cafile
-  .tag capath
-
+  %a.xtag(href='/tags/python') python
+  %a.xtag(href='/tags/anaconda') anaconda
+  %a.xtag(href='/tags/curl') curl
+  %a.xtag(href='/tags/certificate') certificate
+  %a.xtag(href='/tags/cafile') cafile
+  %a.xtag(href='/tags/capath') capath
 
 %br/
 I use Anaconda to supply a big-fat Python distribution.
@@ -16,51 +15,25 @@ I use Anaconda to supply a big-fat Python distribution.
 %br/
 
 The Anaconda distribution gives me a bin folder which appears early in my PATH.
+%br/
+%br/
 
 
 In that folder is a broken copy of curl.
+%br/
+%br/
 
 When I call curl, that broken copy gets called.
+%br/
+%br/
 
 It is an easy problem to fix, just rename the broken curl to curl_anaconda.
+%br/
+%br/
 
 Here is a demo:
-
-
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ curl https://raw.githubusercontent.com/apache/spark/master/data/mllib/sample_movielens_data.txt --create-dirs -o data/sample_movielens_data.txt
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (77) error setting certificate verify locations:
-  CAfile: /etc/pki/tls/certs/ca-bundle.crt
-  CApath: none
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ which curl
-/home/dan/anaconda/bin/curl
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ mv /home/dan/anaconda/bin/curl /home/dan/anaconda/bin/curl_anaconda
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ which curl
-/usr/bin/curl
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ curl https://raw.githubusercontent.com/apache/spark/master/data/mllib/sample_movielens_data.txt --create-dirs -o data/sample_movielens_data.txt
-bash: /home/dan/anaconda/bin/curl: No such file or directory
-dan@hp ~/pio086/MyRecommendation $ bash
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ curl https://raw.githubusercontent.com/apache/spark/master/data/mllib/sample_movielens_data.txt --create-dirs -o data/sample_movielens_data.txt
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100 14351  100 14351    0     0  37639      0 --:--:-- --:--:-- --:--:-- 37666
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ 
-dan@hp ~/pio086/MyRecommendation $ 
-
+%pre
+  =render 'python_fix_curl'
 
 %br/
 
