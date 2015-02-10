@@ -366,6 +366,314 @@ dan@hp ~/pio086/MyRecommendation $
 dan@hp ~/pio086/MyRecommendation $ 
 dan@hp ~/pio086/MyRecommendation $ 
 
+dan@hp ~/pio086/MyRecommendation $ which curl
+/home/dan/anaconda/bin/curl
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ mv /home/dan/anaconda/bin/curl /home/dan/anaconda/bin/curl_anaconda
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ which curl
+/usr/bin/curl
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ curl https://raw.githubusercontent.com/apache/spark/master/data/mllib/sample_movielens_data.txt --create-dirs -o data/sample_movielens_data.txt
+bash: /home/dan/anaconda/bin/curl: No such file or directory
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ bash
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ curl https://raw.githubusercontent.com/apache/spark/master/data/mllib/sample_movielens_data.txt --create-dirs -o data/sample_movielens_data.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 14351  100 14351    0     0  37639      0 --:--:-- --:--:-- --:--:-- 37666
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+
+
+
+
+import the data to Event Server using Python SDK:
+
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ access_key=yhdiWIRK92hw4zyv2y7TlrLgcwVOYKnqd9nsk4ETSJobEwEp4N8oEPrGN530UAzG
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ which python
+/home/dan/anaconda/bin/python
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ python
+Python 2.7.9 |Anaconda 2.1.0 (64-bit)| (default, Dec 12 2014, 14:52:24) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+>>> 
+>>> import predictionio
+>>> 
+>>> 
+>>> 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ python data/import_eventserver.py --access_key $access_key
+Namespace(access_key='yhdiWIRK92hw4zyv2y7TlrLgcwVOYKnqd9nsk4ETSJobEwEp4N8oEPrGN530UAzG', file='./data/sample_movielens_data.txt', url='http://localhost:7070')
+Importing data...
+1501 events are imported.
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+
+
+Now I should run pio build
+
+
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ pio build
+2015-02-10 03:09:00,951 INFO  tools.Console$ - Using command '/home/dan/PredictionIO-0.8.6/sbt/sbt' at the current working directory to build.
+2015-02-10 03:09:00,956 INFO  tools.Console$ - If the path above is incorrect, this process will fail.
+2015-02-10 03:09:00,962 INFO  tools.Console$ - Uber JAR disabled. Making sure lib/pio-assembly-0.8.6.jar is absent.
+2015-02-10 03:09:00,964 INFO  tools.Console$ - Going to run: /home/dan/PredictionIO-0.8.6/sbt/sbt  package assemblyPackageDependency
+2015-02-10 03:17:09,986 INFO  tools.Console$ - Build finished successfully.
+2015-02-10 03:17:09,988 INFO  tools.Console$ - Looking for an engine...
+2015-02-10 03:17:10,015 INFO  tools.Console$ - Found template-scala-parallel-recommendation-assembly-0.1-SNAPSHOT-deps.jar
+2015-02-10 03:17:10,017 INFO  tools.Console$ - Found template-scala-parallel-recommendation_2.10-0.1-SNAPSHOT.jar
+2015-02-10 03:17:10,045 INFO  tools.Console$ - HADOOP_CONF_DIR is not set. Assuming HDFS is unavailable.
+2015-02-10 03:17:14,530 INFO  tools.RegisterEngine$ - Copying file:/home/dan/PredictionIO-0.8.6/MyRecommendation/target/scala-2.10/template-scala-parallel-recommendation-assembly-0.1-SNAPSHOT-deps.jar to file:/home/dan/.pio_store/engines/I1kytkm5Sfj2OCmprIIAaSVggDqr73gL/9ce8a0af84496354976a7adae9f14eabd5b9c8c7/template-scala-parallel-recommendation-assembly-0.1-SNAPSHOT-deps.jar
+2015-02-10 03:17:14,804 INFO  tools.RegisterEngine$ - Copying file:/home/dan/PredictionIO-0.8.6/MyRecommendation/target/scala-2.10/template-scala-parallel-recommendation_2.10-0.1-SNAPSHOT.jar to file:/home/dan/.pio_store/engines/I1kytkm5Sfj2OCmprIIAaSVggDqr73gL/9ce8a0af84496354976a7adae9f14eabd5b9c8c7/template-scala-parallel-recommendation_2.10-0.1-SNAPSHOT.jar
+2015-02-10 03:17:14,829 INFO  tools.RegisterEngine$ - Registering engine I1kytkm5Sfj2OCmprIIAaSVggDqr73gL 9ce8a0af84496354976a7adae9f14eabd5b9c8c7
+2015-02-10 03:17:14,879 INFO  tools.Console$ - Your engine is ready for training.
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+
+
+I should train:
+
+
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ pio train
+2015-02-10 03:34:05,633 INFO  tools.Console$ - Using existing engine manifest JSON at /home/dan/PredictionIO-0.8.6/MyRecommendation/manifest.json
+2015-02-10 03:34:10,280 INFO  tools.RunWorkflow$ - Submission command: /home/dan/spark/bin/spark-submit --class io.prediction.workflow.CreateWorkflow --name PredictionIO Training: I1kytkm5Sfj2OCmprIIAaSVggDqr73gL 9ce8a0af84496354976a7adae9f14eabd5b9c8c7 () --jars file:/home/dan/.pio_store/engines/I1kytkm5Sfj2OCmprIIAaSVggDqr73gL/9ce8a0af84496354976a7adae9f14eabd5b9c8c7/template-scala-parallel-recommendation-assembly-0.1-SNAPSHOT-deps.jar,file:/home/dan/.pio_store/engines/I1kytkm5Sfj2OCmprIIAaSVggDqr73gL/9ce8a0af84496354976a7adae9f14eabd5b9c8c7/template-scala-parallel-recommendation_2.10-0.1-SNAPSHOT.jar,/home/dan/PredictionIO-0.8.6/lib/engines_2.10-0.8.6.jar,/home/dan/PredictionIO-0.8.6/lib/engines-assembly-0.8.6-deps.jar --files /home/dan/pio086/conf/hbase-site.xml --driver-class-path /home/dan/pio086/conf:/home/dan/pio086/conf /home/dan/PredictionIO-0.8.6/lib/pio-assembly-0.8.6.jar --env PIO_STORAGE_SOURCES_HBASE_TYPE=hbase,PIO_ENV_LOADED=1,PIO_STORAGE_SOURCES_HBASE_HOSTS=0,PIO_STORAGE_REPOSITORIES_METADATA_NAME=predictionio_metadata,PIO_FS_BASEDIR=/home/dan/.pio_store,PIO_STORAGE_SOURCES_ELASTICSEARCH_HOSTS=localhost,PIO_HOME=/home/dan/pio086,PIO_FS_ENGINESDIR=/home/dan/.pio_store/engines,PIO_STORAGE_SOURCES_HBASE_PORTS=0,PIO_STORAGE_SOURCES_ELASTICSEARCH_TYPE=elasticsearch,PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=ELASTICSEARCH,PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=LOCALFS,PIO_STORAGE_REPOSITORIES_EVENTDATA_NAME=predictionio_eventdata,PIO_FS_TMPDIR=/home/dan/.pio_store/tmp,PIO_STORAGE_REPOSITORIES_MODELDATA_NAME=pio_,PIO_STORAGE_SOURCES_LOCALFS_HOSTS=/home/dan/.pio_store/models,PIO_STORAGE_REPOSITORIES_EVENTDATA_SOURCE=HBASE,PIO_CONF_DIR=/home/dan/pio086/conf,PIO_STORAGE_SOURCES_LOCALFS_PORTS=0,PIO_STORAGE_SOURCES_ELASTICSEARCH_PORTS=9300,PIO_STORAGE_SOURCES_LOCALFS_TYPE=localfs --log-file pio.log --engineId I1kytkm5Sfj2OCmprIIAaSVggDqr73gL --engineVersion 9ce8a0af84496354976a7adae9f14eabd5b9c8c7 --engineVariant /home/dan/PredictionIO-0.8.6/MyRecommendation/engine.json --verbosity 0 --jsonBasePath params
+Spark assembly has been built with Hive, including Datanucleus jars on classpath
+log4j:WARN No appenders could be found for logger (org.apache.hadoop.metrics2.lib.MutableMetricsFactory).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+2015-02-10 03:34:18,111 INFO  workflow.CreateWorkflow$ - Extracting datasource params...
+2015-02-10 03:34:18,401 INFO  workflow.WorkflowUtils$ - No 'name' is found. Default empty String will be used.
+2015-02-10 03:34:18,453 INFO  workflow.CreateWorkflow$ - datasource: (,DataSourceParams(1))
+2015-02-10 03:34:18,455 INFO  workflow.CreateWorkflow$ - Extracting preparator params...
+2015-02-10 03:34:18,459 INFO  workflow.CreateWorkflow$ - preparator: (,Empty)
+2015-02-10 03:34:19,427 INFO  workflow.CreateWorkflow$ - Extracting serving params...
+2015-02-10 03:34:19,430 INFO  workflow.CreateWorkflow$ - serving: (,Empty)
+2015-02-10 03:34:21,711 INFO  workflow.CoreWorkflow$ - CoreWorkflow.run
+2015-02-10 03:34:21,713 INFO  workflow.CoreWorkflow$ - Start spark context
+2015-02-10 03:34:22,123 WARN  workflow.UpgradeCheckRunner - Update metainfo not found. http://direct.prediction.io/0.8.6/training.json
+2015-02-10 03:34:29,227 INFO  workflow.CoreWorkflow$ - Data sanity checking is on.
+2015-02-10 03:34:29,229 INFO  workflow.CoreWorkflow$ - Data Source
+2015-02-10 03:34:30,096 ERROR hbase.StorageClient - Failed to connect to HBase. Plase check if HBase is running properly.
+2015-02-10 03:34:30,100 ERROR storage.Storage$ - Error initializing storage client for source HBASE
+2015-02-10 03:34:30,102 ERROR storage.Storage$ - java.lang.reflect.InvocationTargetException
+Exception in thread "main" java.util.NoSuchElementException: None.get
+	at scala.None$.get(Option.scala:313)
+	at scala.None$.get(Option.scala:311)
+	at io.prediction.data.storage.Storage$.sourcesToClientMeta(Storage.scala:91)
+	at io.prediction.data.storage.Storage$.getDataObject(Storage.scala:194)
+	at io.prediction.data.storage.Storage$.getPDataObject(Storage.scala:230)
+	at io.prediction.data.storage.Storage$.getPDataObject(Storage.scala:186)
+	at io.prediction.data.storage.Storage$.getPEvents(Storage.scala:281)
+	at com.bikle.DataSource.readTraining(DataSource.scala:26)
+	at com.bikle.DataSource.readTraining(DataSource.scala:18)
+	at io.prediction.controller.PDataSource.read(DataSource.scala:119)
+	at io.prediction.controller.PDataSource.readBase(DataSource.scala:95)
+	at io.prediction.workflow.CoreWorkflow$.runTypelessContext(Workflow.scala:451)
+	at io.prediction.workflow.CoreWorkflow$.runTypeless(Workflow.scala:352)
+	at io.prediction.workflow.CoreWorkflow$.runEngineTypeless(Workflow.scala:305)
+	at io.prediction.workflow.CreateWorkflow$$anonfun$main$1.apply(CreateWorkflow.scala:314)
+	at io.prediction.workflow.CreateWorkflow$$anonfun$main$1.apply(CreateWorkflow.scala:170)
+	at scala.Option.map(Option.scala:145)
+	at io.prediction.workflow.CreateWorkflow$.main(CreateWorkflow.scala:170)
+	at io.prediction.workflow.CreateWorkflow.main(CreateWorkflow.scala)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.spark.deploy.SparkSubmit$.launch(SparkSubmit.scala:358)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:75)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+
+
+
+hello prediction ppl,
+
+I am a new prediction person today.
+
+I installed prediction.io on my ubuntu laptop.
+
+I followed the web content here:
+
+docs.prediction.io/templates/recommendation/quickstart/
+
+I saw this near the end of my install.
+
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ curl https://raw.githubusercontent.com/apache/spark/master/data/mllib/sample_movielens_data.txt --create-dirs -o data/sample_movielens_data.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 14351  100 14351    0     0  37639      0 --:--:-- --:--:-- --:--:-- 37666
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ access_key=yhdiWIRK92hw4zyv2y7TlrLgcwVOYKnqd9nsk4ETSJobEwEp4N8oEPrGN530UAzG
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ which python
+/home/dan/anaconda/bin/python
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ python
+Python 2.7.9 |Anaconda 2.1.0 (64-bit)| (default, Dec 12 2014, 14:52:24) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+>>> 
+>>> import predictionio
+>>> 
+>>> 
+>>> 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ python data/import_eventserver.py --access_key $access_key
+Namespace(access_key='yhdiWIRK92hw4zyv2y7TlrLgcwVOYKnqd9nsk4ETSJobEwEp4N8oEPrGN530UAzG', file='./data/sample_movielens_data.txt', url='http://localhost:7070')
+Importing data...
+1501 events are imported.
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ ll
+total 36
+drwxrwxr-x 6 dan dan 4096 Feb 10 01:53 ./
+drwxr-xr-x 9 dan dan 4096 Feb 10 01:47 ../
+-rw-rw-r-- 1 dan dan  344 Feb 10 01:47 build.sbt
+drwxrwxr-x 2 dan dan 4096 Feb 10 01:54 clients/
+drwxrwxr-x 2 dan dan 4096 Feb 10 02:38 data/
+-rw-rw-r-- 1 dan dan  347 Feb 10 01:47 engine.json
+-rw-rw-r-- 1 dan dan   61 Feb 10 01:47 .gitignore
+drwxrwxr-x 2 dan dan 4096 Feb 10 01:47 project/
+drwxrwxr-x 3 dan dan 4096 Feb 10 01:47 src/
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ cat engine.json 
+{
+  "id": "default",
+  "description": "Default settings",
+  "engineFactory": "com.bikle.RecommendationEngine",
+  "datasource": {
+    "params" : {
+      "appId": 1
+    }
+  },
+  "algorithms": [
+    {
+      "name": "als",
+      "params": {
+        "rank": 10,
+        "numIterations": 20,
+        "lambda": 0.01,
+        "seed": 3
+      }
+    }
+  ]
+}dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ which pio
+/home/dan/pio086/bin/pio
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ pio build
+2015-02-10 03:09:00,951 INFO  tools.Console$ - Using command '/home/dan/PredictionIO-0.8.6/sbt/sbt' at the current working directory to build.
+2015-02-10 03:09:00,956 INFO  tools.Console$ - If the path above is incorrect, this process will fail.
+2015-02-10 03:09:00,962 INFO  tools.Console$ - Uber JAR disabled. Making sure lib/pio-assembly-0.8.6.jar is absent.
+2015-02-10 03:09:00,964 INFO  tools.Console$ - Going to run: /home/dan/PredictionIO-0.8.6/sbt/sbt  package assemblyPackageDependency
+2015-02-10 03:17:09,986 INFO  tools.Console$ - Build finished successfully.
+2015-02-10 03:17:09,988 INFO  tools.Console$ - Looking for an engine...
+2015-02-10 03:17:10,015 INFO  tools.Console$ - Found template-scala-parallel-recommendation-assembly-0.1-SNAPSHOT-deps.jar
+2015-02-10 03:17:10,017 INFO  tools.Console$ - Found template-scala-parallel-recommendation_2.10-0.1-SNAPSHOT.jar
+2015-02-10 03:17:10,045 INFO  tools.Console$ - HADOOP_CONF_DIR is not set. Assuming HDFS is unavailable.
+2015-02-10 03:17:14,530 INFO  tools.RegisterEngine$ - Copying file:/home/dan/PredictionIO-0.8.6/MyRecommendation/target/scala-2.10/template-scala-parallel-recommendation-assembly-0.1-SNAPSHOT-deps.jar to file:/home/dan/.pio_store/engines/I1kytkm5Sfj2OCmprIIAaSVggDqr73gL/9ce8a0af84496354976a7adae9f14eabd5b9c8c7/template-scala-parallel-recommendation-assembly-0.1-SNAPSHOT-deps.jar
+2015-02-10 03:17:14,804 INFO  tools.RegisterEngine$ - Copying file:/home/dan/PredictionIO-0.8.6/MyRecommendation/target/scala-2.10/template-scala-parallel-recommendation_2.10-0.1-SNAPSHOT.jar to file:/home/dan/.pio_store/engines/I1kytkm5Sfj2OCmprIIAaSVggDqr73gL/9ce8a0af84496354976a7adae9f14eabd5b9c8c7/template-scala-parallel-recommendation_2.10-0.1-SNAPSHOT.jar
+2015-02-10 03:17:14,829 INFO  tools.RegisterEngine$ - Registering engine I1kytkm5Sfj2OCmprIIAaSVggDqr73gL 9ce8a0af84496354976a7adae9f14eabd5b9c8c7
+2015-02-10 03:17:14,879 INFO  tools.Console$ - Your engine is ready for training.
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ pio train
+2015-02-10 03:34:05,633 INFO  tools.Console$ - Using existing engine manifest JSON at /home/dan/PredictionIO-0.8.6/MyRecommendation/manifest.json
+2015-02-10 03:34:10,280 INFO  tools.RunWorkflow$ - Submission command: /home/dan/spark/bin/spark-submit --class io.prediction.workflow.CreateWorkflow --name PredictionIO Training: I1kytkm5Sfj2OCmprIIAaSVggDqr73gL 9ce8a0af84496354976a7adae9f14eabd5b9c8c7 () --jars file:/home/dan/.pio_store/engines/I1kytkm5Sfj2OCmprIIAaSVggDqr73gL/9ce8a0af84496354976a7adae9f14eabd5b9c8c7/template-scala-parallel-recommendation-assembly-0.1-SNAPSHOT-deps.jar,file:/home/dan/.pio_store/engines/I1kytkm5Sfj2OCmprIIAaSVggDqr73gL/9ce8a0af84496354976a7adae9f14eabd5b9c8c7/template-scala-parallel-recommendation_2.10-0.1-SNAPSHOT.jar,/home/dan/PredictionIO-0.8.6/lib/engines_2.10-0.8.6.jar,/home/dan/PredictionIO-0.8.6/lib/engines-assembly-0.8.6-deps.jar --files /home/dan/pio086/conf/hbase-site.xml --driver-class-path /home/dan/pio086/conf:/home/dan/pio086/conf /home/dan/PredictionIO-0.8.6/lib/pio-assembly-0.8.6.jar --env PIO_STORAGE_SOURCES_HBASE_TYPE=hbase,PIO_ENV_LOADED=1,PIO_STORAGE_SOURCES_HBASE_HOSTS=0,PIO_STORAGE_REPOSITORIES_METADATA_NAME=predictionio_metadata,PIO_FS_BASEDIR=/home/dan/.pio_store,PIO_STORAGE_SOURCES_ELASTICSEARCH_HOSTS=localhost,PIO_HOME=/home/dan/pio086,PIO_FS_ENGINESDIR=/home/dan/.pio_store/engines,PIO_STORAGE_SOURCES_HBASE_PORTS=0,PIO_STORAGE_SOURCES_ELASTICSEARCH_TYPE=elasticsearch,PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=ELASTICSEARCH,PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=LOCALFS,PIO_STORAGE_REPOSITORIES_EVENTDATA_NAME=predictionio_eventdata,PIO_FS_TMPDIR=/home/dan/.pio_store/tmp,PIO_STORAGE_REPOSITORIES_MODELDATA_NAME=pio_,PIO_STORAGE_SOURCES_LOCALFS_HOSTS=/home/dan/.pio_store/models,PIO_STORAGE_REPOSITORIES_EVENTDATA_SOURCE=HBASE,PIO_CONF_DIR=/home/dan/pio086/conf,PIO_STORAGE_SOURCES_LOCALFS_PORTS=0,PIO_STORAGE_SOURCES_ELASTICSEARCH_PORTS=9300,PIO_STORAGE_SOURCES_LOCALFS_TYPE=localfs --log-file pio.log --engineId I1kytkm5Sfj2OCmprIIAaSVggDqr73gL --engineVersion 9ce8a0af84496354976a7adae9f14eabd5b9c8c7 --engineVariant /home/dan/PredictionIO-0.8.6/MyRecommendation/engine.json --verbosity 0 --jsonBasePath params
+Spark assembly has been built with Hive, including Datanucleus jars on classpath
+log4j:WARN No appenders could be found for logger (org.apache.hadoop.metrics2.lib.MutableMetricsFactory).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+2015-02-10 03:34:18,111 INFO  workflow.CreateWorkflow$ - Extracting datasource params...
+2015-02-10 03:34:18,401 INFO  workflow.WorkflowUtils$ - No 'name' is found. Default empty String will be used.
+2015-02-10 03:34:18,453 INFO  workflow.CreateWorkflow$ - datasource: (,DataSourceParams(1))
+2015-02-10 03:34:18,455 INFO  workflow.CreateWorkflow$ - Extracting preparator params...
+2015-02-10 03:34:18,459 INFO  workflow.CreateWorkflow$ - preparator: (,Empty)
+2015-02-10 03:34:19,427 INFO  workflow.CreateWorkflow$ - Extracting serving params...
+2015-02-10 03:34:19,430 INFO  workflow.CreateWorkflow$ - serving: (,Empty)
+2015-02-10 03:34:21,711 INFO  workflow.CoreWorkflow$ - CoreWorkflow.run
+2015-02-10 03:34:21,713 INFO  workflow.CoreWorkflow$ - Start spark context
+2015-02-10 03:34:22,123 WARN  workflow.UpgradeCheckRunner - Update metainfo not found. http://direct.prediction.io/0.8.6/training.json
+2015-02-10 03:34:29,227 INFO  workflow.CoreWorkflow$ - Data sanity checking is on.
+2015-02-10 03:34:29,229 INFO  workflow.CoreWorkflow$ - Data Source
+2015-02-10 03:34:30,096 ERROR hbase.StorageClient - Failed to connect to HBase. Plase check if HBase is running properly.
+2015-02-10 03:34:30,100 ERROR storage.Storage$ - Error initializing storage client for source HBASE
+2015-02-10 03:34:30,102 ERROR storage.Storage$ - java.lang.reflect.InvocationTargetException
+Exception in thread "main" java.util.NoSuchElementException: None.get
+	at scala.None$.get(Option.scala:313)
+	at scala.None$.get(Option.scala:311)
+	at io.prediction.data.storage.Storage$.sourcesToClientMeta(Storage.scala:91)
+	at io.prediction.data.storage.Storage$.getDataObject(Storage.scala:194)
+	at io.prediction.data.storage.Storage$.getPDataObject(Storage.scala:230)
+	at io.prediction.data.storage.Storage$.getPDataObject(Storage.scala:186)
+	at io.prediction.data.storage.Storage$.getPEvents(Storage.scala:281)
+	at com.bikle.DataSource.readTraining(DataSource.scala:26)
+	at com.bikle.DataSource.readTraining(DataSource.scala:18)
+	at io.prediction.controller.PDataSource.read(DataSource.scala:119)
+	at io.prediction.controller.PDataSource.readBase(DataSource.scala:95)
+	at io.prediction.workflow.CoreWorkflow$.runTypelessContext(Workflow.scala:451)
+	at io.prediction.workflow.CoreWorkflow$.runTypeless(Workflow.scala:352)
+	at io.prediction.workflow.CoreWorkflow$.runEngineTypeless(Workflow.scala:305)
+	at io.prediction.workflow.CreateWorkflow$$anonfun$main$1.apply(CreateWorkflow.scala:314)
+	at io.prediction.workflow.CreateWorkflow$$anonfun$main$1.apply(CreateWorkflow.scala:170)
+	at scala.Option.map(Option.scala:145)
+	at io.prediction.workflow.CreateWorkflow$.main(CreateWorkflow.scala:170)
+	at io.prediction.workflow.CreateWorkflow.main(CreateWorkflow.scala)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.spark.deploy.SparkSubmit$.launch(SparkSubmit.scala:358)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:75)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+
+
+I'd welcome any ideas on how to deal with the above exception.
+
+Dan
 
 
 </code>
