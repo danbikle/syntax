@@ -1,20 +1,20 @@
 
 You are here:
-%a(href='/posts/linux101_ccrud') Linux101
-> linux101_ccrud_instance
+%a(href='/posts/linux101_cclud') Linux101
+> linux101_cclud_instance
 %hr/
 
 .q1 Question:
-.q2 In Linux101 how to CCRUD Linux Instance?
+.q2 In Linux101 how to CCLUD Linux Instance?
 .tags
   %span.tagtag Tags:
   %a.xtag(href='/tags/linux') linux
-  %a.xtag(href='/tags/crud') crud
-  %a.xtag(href='/tags/ccrud') ccrud
+  %a.xtag(href='/tags/clud') clud
+  %a.xtag(href='/tags/cclud') cclud
   %a.xtag(href='/tags/create') create
   %a.xtag(href='/tags/copy') copy
   %a.xtag(href='/tags/clone') clone
-  %a.xtag(href='/tags/retrieve') retrieve
+  %a.xtag(href='/tags/list') list
   %a.xtag(href='/tags/update') update
   %a.xtag(href='/tags/delete') delete
 
@@ -57,7 +57,7 @@ A4: This is my favorite, inside VirtualBox, restore from Copy of other Linux ins
 I offer a screen dump of restoring (importing might be a better verb) a VirtualBox OVA file:
 
 %pre
-  =render 'linux101_ccrud_instance1'
+  =render 'linux101_cclud_instance1'
 So that is an example of using the VirtualBox command line.  Usually I use the VirtualBox GUI and 
 click the file link and then the import link.
 
@@ -100,7 +100,7 @@ A3: If the instance is inside a cloud provider they always offer a way to copy y
 %br/
 %br/
 
-Q: How to Retrieve (List) a Linux instance?
+Q: How to List a Linux instance?
 
 %br/
 
@@ -143,11 +143,11 @@ Here is a short list of loosely coupled objects:
   %li Available CPU, RAM
 
 Other objects like IP-address, diskspace, and software packages are important
-enough in their own right to deserve separate CCRUD discussion.  I discuss them later.
+enough in their own right to deserve separate CCLUD discussion.  I discuss them later.
 
 %br/
 %br/
-Q: How to CCRUD hostname?
+Q: How to CCLUD hostname?
 
 %br/
 A: On Linux it only makes sense to either list or update hostname.
@@ -166,10 +166,10 @@ If I update the hostname, I should reboot the Linux instance:
   %code.bash shutdown -r now
 %br/
 
-Q: How to CCRUD available CPU, RAM?
+Q: How to CCLUD available CPU, RAM?
 
 %br/
-A1: If I talk about the host-Linux running on my laptop, the only CCRUD verb available is Retrieve (aka List).
+A1: If I talk about the host-Linux running on my laptop, the only CCLUD verb available is List.
 A nice GUI tool to List CPU and RAM is 'System Monitor':
 
 %br/
@@ -178,30 +178,30 @@ A nice GUI tool to List CPU and RAM is 'System Monitor':
 
 
 %br/
-A2: If I talk about a Linux-instance inside VirtualBox on my laptop, I can use all CCRUD verbs on CPU and RAM.
+A2: If I talk about a Linux-instance inside VirtualBox on my laptop, I can use all CCLUD verbs on CPU and RAM.
 %br/
-If I have access to the GUI I just pick an instance which has CPU and/or RAM I want to CCRUD.
+If I have access to the GUI I just pick an instance which has CPU and/or RAM I want to CCLUD.
 %br/
 Then I click the yellow gear in upper left:
 %br/
 %a(href='http://www.google.com/search?q=virtualbox+settings' target='x')
   %img(src='/images/vbox_settings.jpeg')
 %br/
-A3: If I talk about a Linux-instance inside a cloud provider, I can use all CCRUD verbs on CPU and RAM.
+A3: If I talk about a Linux-instance inside a cloud provider, I can use all CCLUD verbs on CPU and RAM.
 %br/
 Although it is vendor specific it is usually easily done via their web-UI.
 
 
 %br/
 %br/
-CCRUD of Linux IP address is the next topic of Linux101:
+CCLUD of Linux IP address is the next topic of Linux101:
 %br/
-%a(href='/posts/linux101_ccrud_ip') linux101_ccrud_ip
+%a(href='/posts/linux101_cclud_ip') linux101_cclud_ip
 
 %br/
 %br/
 %hr/
 You are here:
-%a(href='/posts/linux101_ccrud') Linux101
-> linux101_ccrud_instance
+%a(href='/posts/linux101_cclud') Linux101
+> linux101_cclud_instance
 
