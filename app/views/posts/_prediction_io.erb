@@ -1,0 +1,371 @@
+<code class='bash'>
+
+I started with a download:
+
+dan@hp ~ $ ll Downloads/PredictionIO-0.8.6.tar.gz 
+-rw-rw-r-- 1 dan dan 214619529 Feb  3 23:53 Downloads/PredictionIO-0.8.6.tar.gz
+dan@hp ~ $ 
+dan@hp ~ $ 
+
+I studied these pages:
+
+http://docs.prediction.io/
+http://docs.prediction.io/install/install-linux/
+
+
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ mv PredictionIO-0.8.6 ~/
+dan@hp ~/tmp $ cd
+dan@hp ~ $ 
+dan@hp ~ $ ln -s Pre*6 pio086
+dan@hp ~ $ 
+dan@hp ~ $ cd pio086
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ ll
+total 32
+drwxr-xr-x   8 dan dan 4096 Feb  3 23:42 ./
+drwx------ 106 dan dan 4096 Feb  9 19:52 ../
+drwxr-xr-x   2 dan dan 4096 Feb  9 19:51 bin/
+drwxr-xr-x   2 dan dan 4096 Feb  9 19:51 conf/
+drwxr-xr-x   6 dan dan 4096 Feb  9 19:51 examples/
+drwxr-xr-x   2 dan dan 4096 Feb  9 19:51 lib/
+drwxr-xr-x   2 dan dan 4096 Feb  9 19:51 project/
+-rw-r--r--   1 dan dan    0 Feb  3 23:42 RELEASE
+drwxr-xr-x   2 dan dan 4096 Feb  3 23:42 sbt/
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ 
+
+
+vi conf/pio-env.sh
+
+SPARK_HOME=/home/dan/spark
+
+
+PredictionIO uses Elasticsearch at localhost as the data store to store its metadata. Simply install and run Elasticsearch, which looks like this:
+
+$ wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.2.tar.gz
+$ tar zxvf elasticsearch-1.3.2.tar.gz
+$ cd elasticsearch-1.3.2
+$ bin/elasticsearch
+
+If you are using a shared network, change the network.host line in config/elasticsearch.yml to network.host: 127.0.0.1 because by default, Elasticsearch looks for other machines on the network upon setup and you may run into weird errors if there are other machines that is also running Elasticsearch.
+
+If you are not using the default setting at localhost. You may change the following in conf/pio-env.sh to fit your setup.
+
+change the following in conf/pio-env.sh to fit your setup.
+
+PIO_STORAGE_SOURCES_ELASTICSEARCH_TYPE=elasticsearch
+PIO_STORAGE_SOURCES_ELASTICSEARCH_HOSTS=localhost
+PIO_STORAGE_SOURCES_ELASTICSEARCH_PORTS=9300
+
+
+we use HBase at localhost as the data store for event data.
+
+$ wget http://archive.apache.org/dist/hbase/hbase-0.98.6/hbase-0.98.6-hadoop2-bin.tar.gz
+$ tar zxvf hbase-0.98.6-hadoop2-bin.tar.gz
+$ cd hbase-0.98.6-hadoop2
+
+
+dan@hp ~/tmp $ mv hbase-0.98.6-hadoop2 ~/
+dan@hp ~/tmp $ 
+dan@hp ~/tmp $ cd ..
+dan@hp ~ $ 
+dan@hp ~ $ 
+dan@hp ~ $ ln -s hbase-0.98.6-hadoop2 hbase
+dan@hp ~ $ 
+dan@hp ~ $ 
+
+configure
+
+<configuration>
+  <property>
+    <name>hbase.rootdir</name>
+    <value>file:///home/dan/hbase</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.property.dataDir</name>
+    <value>/home/dan/zookeeper</value>
+  </property>
+</configuration>
+
+&lt;configuration>
+  &lt;property>
+    &lt;name>hbase.rootdir&lt;/name>
+    &lt;value>file:///home/dan/hbase&lt;/value>
+  &lt;/property>
+  &lt;property>
+    &lt;name>hbase.zookeeper.property.dataDir&lt;/name>
+    &lt;value>/home/dan/zookeeper&lt;/value>
+  &lt;/property>
+&lt;/configuration>
+
+
+start:
+$ bin/start-hbase.sh
+starting master, logging to /home/abc/hbase-0.98.6-hadoop2/bin/../logs/hbase-abc-master-yourhost.local.out
+
+
+hello hbase ppl,
+
+today I am installing prediction.io
+
+It uses hbase.
+
+I did this:
+
+cd Downloads/
+wget http://archive.apache.org/dist/hbase/hbase-0.98.6/hbase-0.98.6-hadoop2-bin.tar.gz
+tar zxf hbase-0.98.6-hadoop2-bin.tar.gz
+mv hbase-0.98.6-hadoop2 /home/dan/
+cd /home/dan/
+ln -s hbase-0.98.6-hadoop2 hbase
+cd hbase
+vi hbase/conf/hbase-site.xml
+
+<configuration>
+  <property>
+    <name>hbase.rootdir</name>
+    <value>file:///home/dan/hbase</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.property.dataDir</name>
+    <value>/home/dan/zookeeper</value>
+  </property>
+</configuration>
+
+bin/start-hbase.sh
+
+I looked at logs:
+
+
+dan@hp ~/hbase $ 
+dan@hp ~/hbase $ tail logs/hbase-dan-master-hp.log 
+2015-02-09 20:55:57,544 DEBUG [main-EventThread] hbase.ZKNamespaceManager: Updating namespace cache from node default with data: \x0A\x07default
+2015-02-09 20:55:57,588 DEBUG [main-EventThread] hbase.ZKNamespaceManager: Updating namespace cache from node default with data: \x0A\x07default
+2015-02-09 20:55:57,589 DEBUG [main-EventThread] hbase.ZKNamespaceManager: Updating namespace cache from node hbase with data: \x0A\x05hbase
+2015-02-09 20:55:57,606 INFO  [ProcessThread(sid:0 cport:-1):] server.PrepRequestProcessor: Got user-level KeeperException when processing sessionid:0x14b70205dde0000 type:create cxid:0x93 zxid:0x3b txntype:-1 reqpath:n/a Error Path:/hbase/namespace/default Error:KeeperErrorCode = NodeExists for /hbase/namespace/default
+2015-02-09 20:55:57,618 INFO  [M:0;hp:38689] zookeeper.RecoverableZooKeeper: Node /hbase/namespace/default already exists and this is not a retry
+2015-02-09 20:55:57,632 INFO  [ProcessThread(sid:0 cport:-1):] server.PrepRequestProcessor: Got user-level KeeperException when processing sessionid:0x14b70205dde0000 type:create cxid:0x96 zxid:0x3d txntype:-1 reqpath:n/a Error Path:/hbase/namespace/hbase Error:KeeperErrorCode = NodeExists for /hbase/namespace/hbase
+2015-02-09 20:55:57,640 INFO  [M:0;hp:38689] zookeeper.RecoverableZooKeeper: Node /hbase/namespace/hbase already exists and this is not a retry
+2015-02-09 20:55:57,652 INFO  [M:0;hp:38689] master.HMaster: Master has completed initialization
+2015-02-09 21:00:47,528 DEBUG [LruStats #0] hfile.LruBlockCache: Total=407.29 KB, free=386.30 MB, max=386.70 MB, blocks=405484352, accesses=0, hits=0, hitRatio=0, cachingAccesses=0, cachingHits=0, cachingHitsRatio=0,evictions=29, evicted=0, evictedPerRun=0.0
+2015-02-09 21:00:56,808 DEBUG [hp,38689,1423515345937-BalancerChore] balancer.BaseLoadBalancer: Not running balancer because only 1 active regionserver(s)
+dan@hp ~/hbase $ 
+
+
+Questions:
+
+Does the above KeeperException indicate a problem?
+
+How do I wipe my laptop clean of hbase and zookeeper?
+
+Answer: the KeeperException is not a problem.
+
+
+
+
+I looked at this:
+http://docs.prediction.io/templates/recommendation/quickstart/
+
+
+PATH=$PATH:/home/dan/pio086/bin; export PATH
+
+
+
+
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ pio status
+PredictionIO
+  Installed at: /home/dan/pio086
+  Version: 0.8.6
+
+Apache Spark
+  Installed at: /home/dan/spark
+  Version: 1.2.0 (meets minimum requirement of 1.2.0)
+
+Storage Backend Connections
+  Verifying Meta Data Backend
+  Verifying Model Data Backend
+  Verifying Event Data Backend
+  Test write Event Store (App Id 0)
+2015-02-10 01:27:47,001 INFO  hbase.HBLEvents - The namespace predictionio_eventdata doesn't exist yet. Creating now...
+2015-02-10 01:27:47,568 INFO  hbase.HBLEvents - The table predictionio_eventdata:events_0 doesn't exist yet. Creating now...
+2015-02-10 01:27:48,836 INFO  hbase.HBLEvents - Removing table predictionio_eventdata:events_0...
+
+(sleeping 5 seconds for all messages to show up...)
+Your system is all ready to go.
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ 
+
+
+make sure that PredictionIO Event Server, which collects data, is running:
+
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $  pio eventserver
+2015-02-10 01:39:19,683 INFO  tools.Console$ - Creating Event Server at localhost:7070
+2015-02-10 01:39:20,736 INFO  slf4j.Slf4jLogger - Slf4jLogger started
+2015-02-10 01:39:28,386 INFO  server.HttpListener - Bound to localhost/127.0.0.1:7070
+2015-02-10 01:39:28,389 INFO  api.EventServerActor - Bound received. EventServer is ready.
+
+
+
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ pio app new MyApp1
+2015-02-10 01:42:00,562 INFO  hbase.HBLEvents - The table predictionio_eventdata:events_1 doesn't exist yet. Creating now...
+2015-02-10 01:42:01,283 INFO  tools.Console$ - Initialized Event Store for this app ID: 1.
+2015-02-10 01:42:01,360 INFO  tools.Console$ - Created new app:
+2015-02-10 01:42:01,362 INFO  tools.Console$ -       Name: MyApp1
+2015-02-10 01:42:01,363 INFO  tools.Console$ -         ID: 1
+2015-02-10 01:42:01,365 INFO  tools.Console$ - Access Key: yhdiWIRK92hw4zyv2y7TlrLgcwVOYKnqd9nsk4ETSJobEwEp4N8oEPrGN530UAzG
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ 
+
+return a list of names and IDs of apps created in the Event Server.
+
+
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ pio app list
+2015-02-10 01:43:14,575 INFO  tools.Console$ -                 Name |   ID |                                                       Access Key | Allowed Event(s)
+2015-02-10 01:43:14,673 INFO  tools.Console$ -               MyApp1 |    1 | yhdiWIRK92hw4zyv2y7TlrLgcwVOYKnqd9nsk4ETSJobEwEp4N8oEPrGN530UAzG | (all)
+2015-02-10 01:43:14,674 INFO  tools.Console$ - Finished listing 1 app(s).
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ 
+
+
+
+
+create a new engine called MyRecommendation by cloning the Recommendation Engine Template:
+
+
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ pio template get PredictionIO/template-scala-parallel-recommendation MyRecommendation
+Please enter the template's Scala package name (e.g. com.mycompany): com.bikle
+Author's name:         Dan Bikle
+Author's e-mail:       dan.bikle@gmail.com
+Author's organization: com.bikle
+Would you like to be informed about new bug fixes and security updates of this template? (Y/n) y
+Retrieving PredictionIO/template-scala-parallel-recommendation
+There are 2 tags
+Using the most recent tag v0.1.1
+Going to download https://github.com/PredictionIO/template-scala-parallel-recommendation/archive/v0.1.1.zip
+Redirecting to https://codeload.github.com/PredictionIO/template-scala-parallel-recommendation/zip/v0.1.1
+Replacing org.template.recommendation with com.bikle...
+Processing MyRecommendation/build.sbt...
+Processing MyRecommendation/engine.json...
+Processing MyRecommendation/src/main/scala/ALSAlgorithm.scala...
+Processing MyRecommendation/src/main/scala/ALSModel.scala...
+Processing MyRecommendation/src/main/scala/DataSource.scala...
+Processing MyRecommendation/src/main/scala/Engine.scala...
+Processing MyRecommendation/src/main/scala/Preparator.scala...
+Processing MyRecommendation/src/main/scala/Serving.scala...
+Engine template PredictionIO/template-scala-parallel-recommendation is now ready at MyRecommendation
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ 
+dan@hp ~/pio086 $ 
+
+
+
+
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ ll
+total 32
+drwxrwxr-x 5 dan dan 4096 Feb 10 01:47 ./
+drwxr-xr-x 9 dan dan 4096 Feb 10 01:47 ../
+-rw-rw-r-- 1 dan dan  344 Feb 10 01:47 build.sbt
+drwxrwxr-x 2 dan dan 4096 Feb 10 01:47 data/
+-rw-rw-r-- 1 dan dan  347 Feb 10 01:47 engine.json
+-rw-rw-r-- 1 dan dan   61 Feb 10 01:47 .gitignore
+drwxrwxr-x 2 dan dan 4096 Feb 10 01:47 project/
+drwxrwxr-x 3 dan dan 4096 Feb 10 01:47 src/
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+
+
+
+# google:
+# in prediction.io what is the url of the eventserver?
+
+http://127.0.0.1:7070
+
+mkdir clients
+cat   clients/myclient.py
+
+
+# ref:
+# http://docs.prediction.io/templates/recommendation/quickstart/
+# https://github.com/PredictionIO/PredictionIO-Python-SDK
+
+# pip install predictionio
+import predictionio
+
+# google:
+# in prediction.io what is the url of the eventserver?
+
+client = predictionio.EventClient(
+    access_key=yhdiWIRK92hw4zyv2y7TlrLgcwVOYKnqd9nsk4ETSJobEwEp4N8oEPrGN530UAzG,
+    url=http://127.0.0.1:7070,
+    threads=5,
+    qsize=500
+)
+
+# A user rates an item
+client.create_event(
+    event="rate",
+    entity_type="user",
+    entity_id=10,
+    target_entity_type="item",
+    target_entity_id=100,
+    properties= { "rating" : float(1.23) }
+)
+
+# A user buys an item
+client.create_event(
+    event="buy",
+    entity_type="user",
+    entity_id=10,
+    target_entity_type="item",
+    target_entity_id=100
+)
+
+
+
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ pip install predictionio
+Downloading/unpacking predictionio
+  Downloading PredictionIO-0.8.3.tar.gz
+  Running setup.py (path:/tmp/pip_build_dan/predictionio/setup.py) egg_info for package predictionio
+    
+Requirement already satisfied (use --upgrade to upgrade): pytz>=2014.2 in /home/dan/anaconda/lib/python2.7/site-packages (from predictionio)
+Installing collected packages: predictionio
+  Running setup.py install for predictionio
+    
+Successfully installed predictionio
+Cleaning up...
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+
+
+use the sample movie data from MLlib repo for demonstration purpose. Execute the following to get the data set:
+
+$ curl https://raw.githubusercontent.com/apache/spark/master/data/mllib/sample_movielens_data.txt --create-dirs -o data/sample_movielens_data.txt
+
+
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ curl https://raw.githubusercontent.com/apache/spark/master/data/mllib/sample_movielens_data.txt --create-dirs -o data/sample_movielens_data.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (77) error setting certificate verify locations:
+  CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+dan@hp ~/pio086/MyRecommendation $ 
+
+
+
+</code>
