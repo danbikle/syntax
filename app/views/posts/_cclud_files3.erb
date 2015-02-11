@@ -1,0 +1,185 @@
+<code class='bash'>
+
+In addition to creating a file, we can create a folder.
+
+In Linux, a folder is called a directory.
+
+I call it a folder because directory sounds like a complicated thing.
+
+To make a folder do something like this:
+
+mkdir /tmp/folder1
+mkdir /tmp/folder1 /tmp/folder2
+
+Also I can make nested folders:
+
+mkdir -p /tmp/nst1/nst2/nst3
+
+Folders are easy.
+
+About files, we now know these ways to create a file:
+
+caret
+touch
+ed
+vi
+emacs
+
+Ignoring folders for a bit,
+let us now talk about the next verb in CCLUD which is copy.
+
+The most common way to copy a file in Linux is with the cp command:
+
+cp myfile.txt yourfile.txt
+cp /home/dan/yourfile.txt /tmp/
+cp /home/dan/myfile.txt /tmp/yourfile.txt
+
+It is obvious what the first demo does.
+In the second demo I can see that cp can copy a file to another folder.
+The second demo asks Linux to retain the name of the file.
+The third demo is like a combination of the first two demos.
+
+Here is an interesting demo of cp:
+
+cp f1 f2 f3 f4 /tmp/
+
+It will move four files to /tmp/
+
+
+Linux also supports the idea of 'moving' a file:
+
+mv myfile.txt yourfile.txt
+mv /home/dan/yourfile.txt /tmp/
+mv /home/dan/theirfile.txt /tmp/yourfile.txt
+cp f1 f2 f3 f4 /tmp/
+
+I talk about folders again.
+
+How do I copy a folder?
+
+My ability to copy a folder is an important skill.
+
+Here is a demo of doing it the wrong way:
+
+dan@hp ~/ks $ 
+dan@hp ~/ks $ cd /tmp
+dan@hp /tmp $ 
+dan@hp /tmp $ mkdir dates
+dan@hp /tmp $ date > dates/date1.txt
+dan@hp /tmp $ cp dates dates2
+cp: omitting directory ‘dates’
+dan@hp /tmp $ 
+dan@hp /tmp $ ls dates2
+ls: cannot access dates2: No such file or directory
+dan@hp /tmp $ 
+dan@hp /tmp $ 
+
+
+This should work:
+
+dan@hp /tmp $ 
+dan@hp /tmp $ cp -r dates dates2
+dan@hp /tmp $ ls dates2
+date1.txt
+dan@hp /tmp $ 
+dan@hp /tmp $ 
+
+The dash-r method is 'recursive-copy'.
+
+The above way works well on simple folders.
+
+Another command which can copy folders is rsync:
+
+dan@hp /tmp $ 
+dan@hp /tmp $ date > somefiles/date1.txt
+dan@hp /tmp $ date > somefiles/date2.txt
+dan@hp /tmp $ 
+dan@hp /tmp $ rsync -a somefiles ssomefiles
+dan@hp /tmp $ 
+
+Another command allows me to copy many files and folders into a single 'tar' file:
+
+
+dan@hp /tmp $ 
+dan@hp /tmp $ 
+dan@hp /tmp $ tar cf /tmp/mytarfile.tar somefiles ssomefiles dates dates2 dates3 dates4 dates5
+dan@hp /tmp $ 
+dan@hp /tmp $ 
+
+I often encounter tar files when I want to use copies of software written by other people.
+
+I can now use the above tar file to copy several folders and files to /tmp/otherplace/
+
+
+dan@hp /tmp $ 
+dan@hp /tmp $ mkdir /tmp/otherplace/
+dan@hp /tmp $ 
+dan@hp /tmp $ cd /tmp/otherplace/
+dan@hp /tmp/otherplace $ 
+dan@hp /tmp/otherplace $ tar xf /tmp/mytarfile.tar 
+dan@hp /tmp/otherplace $ 
+dan@hp /tmp/otherplace $ ls
+dates  dates2  dates3  dates4  dates5  somefiles  ssomefiles
+dan@hp /tmp/otherplace $ 
+dan@hp /tmp/otherplace $ 
+dan@hp /tmp/otherplace $ 
+
+Another way to copy files, software usually, is to use git:
+
+dan@hp /tmp $ 
+dan@hp /tmp $ mkdir danfiles
+dan@hp /tmp $ 
+dan@hp /tmp $ cd danfiles
+dan@hp /tmp/danfiles $ 
+dan@hp /tmp/danfiles $ echo "print('hello world')" > pythonhello.py
+dan@hp /tmp/danfiles $ 
+dan@hp /tmp/danfiles $ git init
+Initialized empty Git repository in /tmp/danfiles/.git/
+dan@hp /tmp/danfiles $ 
+dan@hp /tmp/danfiles $ git add .
+dan@hp /tmp/danfiles $ 
+dan@hp /tmp/danfiles $ git commit -am 'Dan was here'
+[master (root-commit) 9ee79cf] Dan was here
+ 1 file changed, 1 insertion(+)
+ create mode 100644 pythonhello.py
+dan@hp /tmp/danfiles $ 
+dan@hp /tmp/danfiles $ cd /tmp/
+dan@hp /tmp $ 
+dan@hp /tmp $ mkdir bobfiles
+dan@hp /tmp $ 
+dan@hp /tmp $ cd bobfiles
+dan@hp /tmp/bobfiles $ 
+dan@hp /tmp/bobfiles $ git clone /tmp/danfiles
+Cloning into 'danfiles'...
+done.
+dan@hp /tmp/bobfiles $ 
+dan@hp /tmp/bobfiles $ ls -la
+total 48
+drwxrwxr-x  3 dan  dan   4096 Feb 11 00:12 .
+drwxrwxrwt 14 root root 36864 Feb 11 00:12 ..
+drwxrwxr-x  3 dan  dan   4096 Feb 11 00:12 danfiles
+dan@hp /tmp/bobfiles $ 
+dan@hp /tmp/bobfiles $ cd danfiles/
+dan@hp /tmp/bobfiles/danfiles $ 
+dan@hp /tmp/bobfiles/danfiles $ python pythonhello.py 
+hello world
+dan@hp /tmp/bobfiles/danfiles $ 
+dan@hp /tmp/bobfiles/danfiles $ 
+
+My ability to use git is an important skill.
+
+Another way to copy files, but to another laptop, is scp:
+
+dan@hp /tmp/bobfiles/danfiles $ 
+dan@hp /tmp/bobfiles/danfiles $ scp pythonhello.py dan@192.168.1.10:/tmp/
+pythonhello.py                                100%   21     0.0KB/s   00:00    
+dan@hp /tmp/bobfiles/danfiles $ 
+dan@hp /tmp/bobfiles/danfiles $ 
+
+Above I wrote a demo of rsync; I can use rsync to copy files to another laptop:
+
+dan@hp /tmp $ rsync -a bobfiles dan@192.168.1.10:/tmp/bobfiles_copy
+dan@hp /tmp $ 
+dan@hp /tmp $ 
+
+</code>
