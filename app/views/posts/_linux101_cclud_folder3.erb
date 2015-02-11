@@ -61,4 +61,51 @@ root@feb:/tmp/folderA#
 root@feb:/tmp/folderA# exit
 dan@feb /tmp/folderA $ 
 dan@feb /tmp/folderA $ 
+
+In the above output Linux shows me permission bits on the left side.
+
+I can change those bits using the chmod command.
+
+Notice that the .. folder has these permission bits:
+
+drwxrwxrwt
+
+I use chmod below to update folder3 so it has the same bits:
+
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ chmod 1777 folder3
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ ls -la
+total 28
+drwxrwxr-x  5 dan  dan   4096 Feb 11 20:52 .
+drwxrwxrwt 30 root root 12288 Feb 11 21:26 ..
+drwxrwxr-x  2 fox  fox   4096 Feb 11 20:33 folder1
+drwxrwxr-x  2 dan  dan   4096 Feb 11 20:44 folder2
+drwxrwxrwt  2 dan  dan   4096 Feb 11 20:44 folder3
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ 
+
+
+I use chmod below to update folder2 so it has fewer permission bits:
+
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ chmod 700 folder2
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ ls -la
+total 28
+drwxrwxr-x  5 dan  dan   4096 Feb 11 20:52 .
+drwxrwxrwt 30 root root 12288 Feb 11 21:26 ..
+drwxrwxr-x  2 fox  fox   4096 Feb 11 20:33 folder1
+drwx------  2 dan  dan   4096 Feb 11 20:44 folder2
+drwxrwxrwt  2 dan  dan   4096 Feb 11 20:44 folder3
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ 
+
+Now that folder has fewer permissions.
+For example if I login as fox, I have permission to put a file in folder3
+but I have no permission to put a file in folder2.
+
+Homework: Does dan have permission to put a file in folder1?
+
 </code>
