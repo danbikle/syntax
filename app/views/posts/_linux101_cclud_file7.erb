@@ -1,0 +1,37 @@
+<code class='bash'>dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ cat sedme.txt 
+line 1
+line 2
+sed was here
+sed was here
+line 3
+line 4
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+Now that I know what the file looks like,
+I want to use sed to list the second line in the file:
+
+dan@feb /tmp $ 
+dan@feb /tmp $ sed -n '2p' sedme.txt
+line 2
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+So yes, it did list the second line.
+I hope it did not change the file:
+
+dan@feb /tmp $ 
+dan@feb /tmp $ cat sedme.txt 
+line 1
+line 2
+sed was here
+sed was here
+line 3
+line 4
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+Yay! the file is unchanged.
+</code>

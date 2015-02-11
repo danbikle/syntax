@@ -1,0 +1,34 @@
+<code class='bash'>dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ echo line 1 > sedme.txt
+dan@feb /tmp $ echo line 2 >> sedme.txt
+dan@feb /tmp $ echo line 3 >> sedme.txt
+dan@feb /tmp $ echo line 4 >> sedme.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ cat sedme.txt 
+line 1
+line 2
+line 3
+line 4
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+
+I use sed to create some text at line 3.
+
+dan@feb /tmp $ 
+dan@feb /tmp $ sed -i '3i sed was here' sedme.txt 
+dan@feb /tmp $ 
+dan@feb /tmp $ cat sedme.txt 
+line 1
+line 2
+sed was here
+line 3
+line 4
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+
+</code>

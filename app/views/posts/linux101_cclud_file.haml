@@ -62,12 +62,10 @@ I can use an empty file to signal that my software is busy doing a task.
 
 When the task is done, I remove the file:
 
-%br/
-%br/
-%br/
-%br/
+%pre
+  =render 'linux101_cclud_file1a'
 
-So now we know how to create and list a file which two verbs out of five.
+So now we know how to create and list a file which are two verbs out of five.
 
 %br/
 %br/
@@ -90,21 +88,42 @@ named rm which is short for remove:
 %pre
   =render 'linux101_cclud_file3'
 
-%br/
-%br/
-
 Of the five cclud operations I can do on a file, update is the most complex.
-I have many ways to update file.  The demo below shows some common ways to update a file:
+I have many ways to update file.  The demo below shows two ways to update a file with a caret:
 
 %pre
   =render 'linux101_cclud_file4'
 
+So, a caret is useful for 'clobbering' a file and placing text at the end of a file.
+
 %br/
 %br/
+
+If I want more control an option is a command called sed.
+
 %br/
 %br/
+
+I can use sed to do CCLUD operations on lines inside a file.
+
 %br/
 %br/
+
+First I show how to use sed to create a line of text in the middle of a file:
+
+%pre
+  =render 'linux101_cclud_file5'
+
+Next, I show how to use sed to copy a line of text in the middle of a file:
+
+%pre
+  =render 'linux101_cclud_file6'
+
+Here, I use sed to list the second line of text in a file:
+
+%pre
+  =render 'linux101_cclud_file7'
+
 %br/
 %br/
 %br/

@@ -1,2 +1,64 @@
-<code class='bash'>
+<code class='bash'>dan@feb /tmp $ 
+dan@feb /tmp $ echo update me > updateme.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ ls -l updateme.txt 
+-rw-rw-r-- 1 dan dan 10 Feb 11 09:30 updateme.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ date
+Wed Feb 11 09:31:00 UTC 2015
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+
+I can update the timestamp of a file using the touch command:
+
+dan@feb /tmp $ 
+dan@feb /tmp $ touch updateme.txt 
+dan@feb /tmp $ 
+dan@feb /tmp $ ls -l updateme.txt
+-rw-rw-r-- 1 dan dan 10 Feb 11 09:31 updateme.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+So far I showed how to use a caret to create and copy a file.
+I can also use caret to update a file.
+
+If I use single-caret I overwrite the file which is sometimes a bad thing.
+Be careful with single-caret.
+
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ echo Dan was here > dan.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ cat dan.txt
+Dan was here
+dan@feb /tmp $ 
+dan@feb /tmp $ echo Evil Dan was here > dan.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ cat dan.txt
+Evil Dan was here
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+If I use a double-caret I add text to the end of the file.
+
+dan@feb /tmp $ 
+dan@feb /tmp $ echo Dan was here >> dan.txt
+dan@feb /tmp $ echo Dan was here >> dan.txt
+dan@feb /tmp $ echo Dan was here >> dan.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ cat dan.txt
+Evil Dan was here
+Dan was here
+Dan was here
+Dan was here
+dan@feb /tmp $ 
+dan@feb /tmp $ echo Evil Bob was here > dan.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ cat dan.txt
+Evil Bob was here
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ 
 </code>
