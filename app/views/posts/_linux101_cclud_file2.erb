@@ -1,0 +1,54 @@
+<code class='bash'>dan@feb /tmp $ 
+dan@feb /tmp $ ls -l carrot.txt 
+-rw-rw-r-- 1 dan dan 50 Feb 11 07:37 carrot.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ cat carrot.txt 
+To create a file, a caret is better than a stick.
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+The above commands list carrot.txt.
+I know what it looks like now.
+
+Now, I copy the carrot.txt file:
+
+dan@feb /tmp $ 
+dan@feb /tmp $ cp carrot.txt caret.txt
+dan@feb /tmp $ 
+
+That was easy.
+Are they the same?
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ ls -l carrot.txt caret.txt
+-rw-rw-r-- 1 dan dan 50 Feb 11 07:54 caret.txt
+-rw-rw-r-- 1 dan dan 50 Feb 11 07:37 carrot.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ cat caret.txt 
+To create a file, a caret is better than a stick.
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+Yes, they are the same.
+Here is another way to copy a file.
+I use the cat command and a ... caret!
+
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ cat caret.txt > caret2.txt
+dan@feb /tmp $ 
+
+
+That was easy.
+Are they the same?
+dan@feb /tmp $ 
+dan@feb /tmp $ ls -l carrot.txt caret.txt caret2.txt 
+-rw-rw-r-- 1 dan dan 50 Feb 11 07:55 caret2.txt
+-rw-rw-r-- 1 dan dan 50 Feb 11 07:54 caret.txt
+-rw-rw-r-- 1 dan dan 50 Feb 11 07:37 carrot.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ cat caret2.txt 
+To create a file, a caret is better than a stick.
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+</code>
