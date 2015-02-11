@@ -1,0 +1,32 @@
+<code class='bash'>dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ cat sedme.txt 
+line 1
+line 2
+sed was here, I am actually line 3 now
+sed was here
+line 3
+line 4
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ sed -i '5d' sedme.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ cat sedme.txt
+line 1
+line 2
+sed was here, I am actually line 3 now
+sed was here
+line 4
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ sed -i '5d' sedme.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ cat sedme.txt
+line 1
+line 2
+sed was here, I am actually line 3 now
+sed was here
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+</code>

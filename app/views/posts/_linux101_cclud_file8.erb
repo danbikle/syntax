@@ -1,0 +1,26 @@
+<code class='bash'>dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ cat sedme.txt 
+line 1
+line 2
+sed was here
+sed was here
+line 3
+line 4
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ sed -i '3s/here/here, I am actually line 3 now/' sedme.txt 
+dan@feb /tmp $ 
+dan@feb /tmp $ cat sedme.txt 
+line 1
+line 2
+sed was here, I am actually line 3 now
+sed was here
+line 3
+line 4
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+</code>
