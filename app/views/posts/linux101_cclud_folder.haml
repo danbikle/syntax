@@ -1,0 +1,158 @@
+
+You are here:
+%a(href='/posts/linux101_cclud') Linux101
+> linux101_cclud_folder
+%hr/
+
+.q1 Question:
+.q2 In Linux101 how to CCLUD Linux Folders?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/folder') folder
+  %a.xtag(href='/tags/directory') directory
+  %a.xtag(href='/tags/mkdir') mkdir
+  %a.xtag(href='/tags/cp') cp
+  %a.xtag(href='/tags/chmod') chmod
+  %a.xtag(href='/tags/chown') chown
+  %a.xtag(href='/tags/rmdir') rmdir
+  %a.xtag(href='/tags/rm') rm
+  %a.xtag(href='/tags/rsync') rsync
+  %a.xtag(href='/tags/tar') tar
+  %a.xtag(href='/tags/git') git
+  %a.xtag(href='/tags/ls') ls
+  %a.xtag(href='/tags/cclud') cclud
+  %a.xtag(href='/tags/create') create
+  %a.xtag(href='/tags/copy') copy
+  %a.xtag(href='/tags/list') list
+  %a.xtag(href='/tags/update') update
+  %a.xtag(href='/tags/delete') delete
+
+%br/
+
+To do Machine Learning on Linux I need to be skilled at CCLUD of folders.
+
+%br/
+%br/
+
+To create a folder I use the mkdir command.
+
+%pre
+  =render 'linux101_cclud_folder1'
+
+Another simple way to create a file is the Linux touch command.
+
+%br/
+%br/
+I can use the touch command to create a file which has nothing in it.
+
+%br/
+%br/
+Why would I create a completely empty file?
+I can use an empty file to signal that my software is busy doing a task.
+
+%br/
+%br/
+
+When the task is done, I remove the file:
+
+%pre
+  =render 'linux101_cclud_folder1a'
+
+So now we know how to create and list a file which are two verbs out of five.
+
+%br/
+%br/
+
+I use the cp command to copy a file:
+
+%pre
+  =render 'linux101_cclud_folder2'
+
+%br/
+
+Now we know how to do create, copy, and list a file.
+
+%br/
+%br/
+
+I skip update for now and demo delete.  Linux has no command named delete.  Instead it has a command
+named rm which is short for remove:
+
+%pre
+  =render 'linux101_cclud_folder3'
+
+Of the five cclud operations I can do on a file, update is the most complex.
+I have many ways to update file.  The demo below shows two ways to update a file with a caret:
+
+%pre
+  =render 'linux101_cclud_folder4'
+
+So, a caret is useful for 'clobbering' a file and placing text at the end of a file.
+
+%br/
+%br/
+
+If I want more control, an option is a command called sed.
+
+%br/
+%br/
+
+I can use sed to do CCLUD operations on lines inside a file.
+
+%br/
+%br/
+
+First I show how to use sed to create a line of text in the middle of a file:
+
+%pre
+  =render 'linux101_cclud_folder5'
+
+Next, I show how to use sed to copy a line of text in the middle of a file:
+
+%pre
+  =render 'linux101_cclud_folder6'
+
+Here, I use sed to list the second line of text in a file:
+
+%pre
+  =render 'linux101_cclud_folder7'
+
+Next, I use sed to update the third line in the file.
+
+%pre
+  =render 'linux101_cclud_folder8'
+
+So far I have shown how to create, copy, list, and update lines in sedme.txt using sed.
+%br/
+%br/
+
+Now I show how to delete the fifth line in sedme.txt
+
+%pre
+  =render 'linux101_cclud_folder9'
+
+%br/
+%br/
+
+So those are some fine demos showing how to CCLUD lines inside a file using sed.
+
+%br/
+%br/
+
+Your homework is to create a file with names of weekdays inside.
+Then use sed to do an operation called 'search and replace'.
+I want you to search for a string called Monday and change it to July.
+
+%br/
+%br/
+CCLUD of Directories (Folders) is the next topic of Linux101:
+%br/
+%a(href='/posts/linux101_cclud_folder') linux101_cclud_folder
+
+%br/
+%br/
+%hr/
+You are here:
+%a(href='/posts/linux101_cclud') Linux101
+> linux101_cclud_folder
