@@ -52,7 +52,12 @@ The easy way is to use the GUI so that is your homework.
 %br/
 %br/
 
-I can also create a fox account using shell commands:
+I can also create a fox account using two shell commands (useradd then passwd) from the root account.
+%br/
+%br/
+
+The demo below uses a short-cut to create an account and a home folder with one useradd-shell command.
+Usually I create an account with one shell command then I create the home folder with another command:
 
 %pre
   =render 'linux101_cclud_account1'
@@ -60,14 +65,87 @@ I can also create a fox account using shell commands:
 %br/
 %br/
 
+Q: How do I make a copy of the fox account?
+
 %br/
+A: Just do the above two commands again but on a different computer.
+%br/
+
+%br/
+%br/
+Q: How do I list the accounts on a Linux instance?
+%br/
+A: A list of accounts is kept in a file called /etc/passwd.
 %br/
 
 %br/
 %br/
 
+Q: How do I make an update to an account?
+%br/
+A: I cannot think of a reason to 'update' an account but Linux offers a shell command named usermod which might be useful for entertainment if you are really bored.
+%br/
+Often, though, I change the password of an account.
+If I want to change the password of the fox account, I login as fox and type in the command:
+%pre
+  %code.bash passwd
+%br/
+Another way to change the fox password is to login as root and type the command:
+%pre
+  %code.bash passwd fox
 %br/
 %br/
+Q: How do I delete the fox account?
+%br/
+A: I need to login as root and issue 2 shell commands:
+%pre
+  %code.bash
+    dan@feb ~ $ 
+    dan@feb ~ $ su
+    Password: 
+    root@feb:/home/dan$ 
+    root@feb:/home/dan$ 
+    root@feb:/home/dan$ ls -la /home/
+    total 36
+    drwxr-xr-x  5 root root  4096 Feb 11 04:27 .
+    drwxr-xr-x 23 root root  4096 Feb  2 04:21 ..
+    drwx------ 60 dan  dan  20480 Feb 11 02:52 dan
+    drwxr-xr-x  3 fox  fox   4096 Feb 11 04:28 fox
+    root@feb:/home/dan$ 
+    root@feb:/home/dan$ userdel fox
+    root@feb:/home/dan$ 
+    root@feb:/home/dan$ rm -rf /home/fox/
+    root@feb:/home/dan$ 
+    root@feb:/home/dan$ ls -la /home/
+    total 32
+    drwxr-xr-x  4 root root  4096 Feb 11 06:11 .
+    drwxr-xr-x 23 root root  4096 Feb  2 04:21 ..
+    drwx------ 60 dan  dan  20480 Feb 11 02:52 dan
+    root@feb:/home/dan$ 
+    root@feb:/home/dan$ 
+
+
+%br/
+%br/
+
+The above delete-demo shows a subtle point about Linux accounts.
+
+%br/
+%br/
+
+An account usually has a home folder but an account does not need a home folder.
+
+%br/
+%br/
+
+Also this means that if I delete an account, the home folder still
+exists.  Notice in the above demo that I delete the fox account and
+then I remove the /home/fox/ folder in two separate commands.
+
+%br/
+%br/
+
+The main point to remember is that an account and its home folder are separate Linux objects.
 
 %br/
 %br/
