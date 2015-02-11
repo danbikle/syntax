@@ -65,67 +65,12 @@ Linux gives me several commands to update a folder: chown, chgrp, and chmod
 %pre
   =render 'linux101_cclud_folder3'
 
-Of the five cclud operations I can do on a file, update is the most complex.
-I have many ways to update file.  The demo below shows two ways to update a file with a caret:
+Now we are at the end of the CCLUD verbs for a folder.
+How do I delete a folder?
 
 %pre
   =render 'linux101_cclud_folder4'
 
-So, a caret is useful for 'clobbering' a file and placing text at the end of a file.
-
-%br/
-%br/
-
-If I want more control, an option is a command called sed.
-
-%br/
-%br/
-
-I can use sed to do CCLUD operations on lines inside a file.
-
-%br/
-%br/
-
-First I show how to use sed to create a line of text in the middle of a file:
-
-%pre
-  =render 'linux101_cclud_folder5'
-
-Next, I show how to use sed to copy a line of text in the middle of a file:
-
-%pre
-  =render 'linux101_cclud_folder6'
-
-Here, I use sed to list the second line of text in a file:
-
-%pre
-  =render 'linux101_cclud_folder7'
-
-Next, I use sed to update the third line in the file.
-
-%pre
-  =render 'linux101_cclud_folder8'
-
-So far I have shown how to create, copy, list, and update lines in sedme.txt using sed.
-%br/
-%br/
-
-Now I show how to delete the fifth line in sedme.txt
-
-%pre
-  =render 'linux101_cclud_folder9'
-
-%br/
-%br/
-
-So those are some fine demos showing how to CCLUD lines inside a file using sed.
-
-%br/
-%br/
-
-Your homework is to create a file with names of weekdays inside.
-Then use sed to do an operation called 'search and replace'.
-I want you to search for a string called Monday and change it to July.
 
 %br/
 %br/

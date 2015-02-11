@@ -1,0 +1,47 @@
+<code class='bash'>dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+
+Linux allows me to rmdir a folder if the folder is empty:
+
+dan@feb /tmp $ 
+dan@feb /tmp $ mkdir folder4
+dan@feb /tmp $ 
+dan@feb /tmp $ ls -la folder4
+total 16
+drwxrwxr-x  2 dan  dan   4096 Feb 11 21:41 .
+drwxrwxrwt 31 root root 12288 Feb 11 21:41 ..
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ rmdir folder4
+dan@feb /tmp $ 
+dan@feb /tmp $ ls -la folder4
+ls: cannot access folder4: No such file or directory
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+Yay! rmdir works.
+
+Now I put a file in folder4 and try again:
+
+dan@feb /tmp $ 
+dan@feb /tmp $ mkdir folder4
+dan@feb /tmp $ 
+dan@feb /tmp $ touch folder4/hello.txt
+dan@feb /tmp $ 
+dan@feb /tmp $ rmdir folder4
+rmdir: failed to remove ‘folder4’: Directory not empty
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+To delete folder4 I need to use rm which is the command we used to delete files:
+
+dan@feb /tmp $ 
+dan@feb /tmp $ rm -rf folder4
+dan@feb /tmp $ 
+dan@feb /tmp $ ls -la folder4
+ls: cannot access folder4: No such file or directory
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+</code>
