@@ -1,0 +1,64 @@
+<code class='bash'>
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ ls -la
+total 28
+drwxrwxr-x  5 dan  dan   4096 Feb 11 20:52 .
+drwxrwxrwt 30 root root 12288 Feb 11 20:52 ..
+drwxrwxr-x  2 dan  dan   4096 Feb 11 20:33 folder1
+drwxrwxr-x  2 dan  dan   4096 Feb 11 20:44 folder2
+drwxrwxr-x  2 dan  dan   4096 Feb 11 20:44 folder3
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ 
+
+
+Notice that I have three folders.
+The chown and chgrp commands are usually done from root account:
+
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ su
+Password: 
+root@feb:/tmp/folderA# 
+
+
+I deleted the fox account in a previous demo.
+Now I create the fox account.
+
+root@feb:/tmp/folderA# useradd -m -s /bin/bash fox
+root@feb:/tmp/folderA# 
+
+Now I use chown command to change ownership of folder1 to fox:
+
+root@feb:/tmp/folderA# 
+root@feb:/tmp/folderA# chown fox folder1
+root@feb:/tmp/folderA# 
+root@feb:/tmp/folderA# ls -la
+total 28
+drwxrwxr-x  5 dan  dan   4096 Feb 11 20:52 .
+drwxrwxrwt 31 root root 12288 Feb 11 21:05 ..
+drwxrwxr-x  2 fox  dan   4096 Feb 11 20:33 folder1
+drwxrwxr-x  2 dan  dan   4096 Feb 11 20:44 folder2
+drwxrwxr-x  2 dan  dan   4096 Feb 11 20:44 folder3
+root@feb:/tmp/folderA# 
+root@feb:/tmp/folderA# 
+
+
+Notice above that folder1 is in the dan group.
+I use chgrp to put folder1 in the fox group:
+
+root@feb:/tmp/folderA# 
+root@feb:/tmp/folderA# chgrp fox folder1
+root@feb:/tmp/folderA# 
+root@feb:/tmp/folderA# ls -la
+total 28
+drwxrwxr-x  5 dan  dan   4096 Feb 11 20:52 .
+drwxrwxrwt 31 root root 12288 Feb 11 21:05 ..
+drwxrwxr-x  2 fox  fox   4096 Feb 11 20:33 folder1
+drwxrwxr-x  2 dan  dan   4096 Feb 11 20:44 folder2
+drwxrwxr-x  2 dan  dan   4096 Feb 11 20:44 folder3
+root@feb:/tmp/folderA# 
+root@feb:/tmp/folderA# 
+root@feb:/tmp/folderA# exit
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ 
+</code>

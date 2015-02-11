@@ -40,44 +40,27 @@ To create a folder I use the mkdir command.
 %pre
   =render 'linux101_cclud_folder1'
 
-Another simple way to create a file is the Linux touch command.
+In the above demo I use ls to confirm the folder exists.
+So the ls command is useful; I use it to list both folders and files.
 
-%br/
-%br/
-I can use the touch command to create a file which has nothing in it.
-
-%br/
-%br/
-Why would I create a completely empty file?
-I can use an empty file to signal that my software is busy doing a task.
+So now we know how to create and list a folder which are two verbs out of five.
 
 %br/
 %br/
 
-When the task is done, I remove the file:
-
-%pre
-  =render 'linux101_cclud_folder1a'
-
-So now we know how to create and list a file which are two verbs out of five.
-
-%br/
-%br/
-
-I use the cp command to copy a file:
+Three commands are available to copy a folder: cp, rsync, and tar
 
 %pre
   =render 'linux101_cclud_folder2'
 
 %br/
 
-Now we know how to do create, copy, and list a file.
+Now we know how to create, copy, and list a folder.
 
 %br/
 %br/
 
-I skip update for now and demo delete.  Linux has no command named delete.  Instead it has a command
-named rm which is short for remove:
+Linux gives me several commands to update a folder: chown, chgrp, and chmod
 
 %pre
   =render 'linux101_cclud_folder3'

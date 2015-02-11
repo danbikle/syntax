@@ -1,0 +1,49 @@
+<code class='bash'>dan@feb /tmp $ 
+dan@feb /tmp $ 
+dan@feb /tmp $ cp -r folder1 folder2
+dan@feb /tmp $ 
+dan@feb /tmp $ ls -la folder2
+total 16
+drwxrwxr-x  2 dan  dan   4096 Feb 11 20:44 .
+drwxrwxrwt 28 root root 12288 Feb 11 20:44 ..
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+I can use rsync to copy a folder:
+
+dan@feb /tmp $ 
+dan@feb /tmp $ rsync -a folder2 folder3
+dan@feb /tmp $ 
+dan@feb /tmp $ ls -la folder3
+total 16
+drwxrwxr-x  2 dan  dan   4096 Feb 11 20:44 .
+drwxrwxrwt 29 root root 12288 Feb 11 20:46 ..
+dan@feb /tmp $ 
+dan@feb /tmp $ 
+
+I can use tar to copy a folder into a tar-file:
+
+dan@feb /tmp $ 
+dan@feb /tmp $ tar cf folders.tar folder1 folder2 folder3
+dan@feb /tmp $ 
+dan@feb /tmp $ mkdir folderA
+dan@feb /tmp $ 
+dan@feb /tmp $ cd folderA
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ tar xf ../folders.tar
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ ls -la
+total 28
+drwxrwxr-x  5 dan  dan   4096 Feb 11 20:52 .
+drwxrwxrwt 30 root root 12288 Feb 11 20:52 ..
+drwxrwxr-x  2 dan  dan   4096 Feb 11 20:33 folder1
+drwxrwxr-x  2 dan  dan   4096 Feb 11 20:44 folder2
+drwxrwxr-x  2 dan  dan   4096 Feb 11 20:44 folder3
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ 
+dan@feb /tmp/folderA $ 
+
+I can use tar to backup my work to a single tar-file.
+Then I can put a date in the name of the tar file.
+Then I can copy the tar file to box.com
+</code>
