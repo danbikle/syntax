@@ -62,6 +62,9 @@ I can use an empty file to signal that my software is busy doing a task.
 
 When the task is done, I remove the file:
 
+%pre
+  =render 'linux101_cclud_file1a'
+
 %br/
 %br/
 %br/
