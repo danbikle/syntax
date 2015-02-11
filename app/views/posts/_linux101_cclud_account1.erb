@@ -1,0 +1,59 @@
+<code class='bash'>root@feb:/home/dan# 
+root@feb:/home/dan# 
+root@feb:/home/dan# useradd -m fox -s /bin/bash
+root@feb:/home/dan# 
+root@feb:/home/dan# passwd fox
+Enter new UNIX password: 
+Retype new UNIX password: 
+passwd: password updated successfully
+root@feb:/home/dan# 
+root@feb:/home/dan# exit
+exit
+dan@feb ~ $ 
+dan@feb ~ $ ssh fox@localhost
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is 2e:25:5d:94:2a:eb:49:85:bb:82:c3:85:2d:37:b8:35.
+Are you sure you want to continue connecting (yes/no)? yes
+
+Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.
+fox@localhost's password: 
+Welcome to Ubuntu 14.04.1 LTS (GNU/Linux 3.13.0-45-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+19 packages can be updated.
+8 updates are security updates.
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+fox@feb:~$ 
+fox@feb:~$ 
+fox@feb:~$ ls -la
+total 36
+drwxr-xr-x 3 fox  fox  4096 Feb 11 04:27 .
+drwxr-xr-x 5 root root 4096 Feb 11 04:27 ..
+-rw-r--r-- 1 fox  fox   220 Apr  9  2014 .bash_logout
+-rw-r--r-- 1 fox  fox  3637 Apr  9  2014 .bashrc
+drwx------ 2 fox  fox  4096 Feb 11 04:27 .cache
+-rw-r--r-- 1 fox  fox  8980 Oct  4  2013 examples.desktop
+-rw-r--r-- 1 fox  fox   675 Apr  9  2014 .profile
+fox@feb:~$ 
+fox@feb:~$ 
+fox@feb:~$ ps
+  PID TTY          TIME CMD
+22894 pts/45   00:00:00 bash
+22988 pts/45   00:00:00 ps
+fox@feb:~$ 
+fox@feb:~$ 
+fox@feb:~$ exit
+logout
+Connection to localhost closed.
+dan@feb ~ $ 
+dan@feb ~ $ 
+</code>
