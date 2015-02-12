@@ -8,12 +8,22 @@ You are here:
 .q2 In Linux101 how to CCLUD Linux Packages?
 .tags
   %span.tagtag Tags:
+  %a.xtag(href='/tags/package') package
   %a.xtag(href='/tags/linux') linux
   %a.xtag(href='/tags/create') create
   %a.xtag(href='/tags/copy') copy
   %a.xtag(href='/tags/list') list
   %a.xtag(href='/tags/update') update
   %a.xtag(href='/tags/delete') delete
+  %a.xtag(href='/tags/nano') nano
+  %a.xtag(href='/tags/yum') yum
+  %a.xtag(href='/tags/apt_get') apt_get
+  %a.xtag(href='/tags/aptitude') aptitude
+  %a.xtag(href='/tags/upgrade') upgrade
+  %a.xtag(href='/tags/dpkg') dpkg
+  %a.xtag(href='/tags/rpm') rpm
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/centos') centos
 
 %br/
 
@@ -108,7 +118,9 @@ That concludes the list-part of LUD aptitude.
 %br/
 %br/
 
-How to use aptitude to update a package?
+Q: How to use aptitude to update a package named nano?
+%br/
+A: I use the shell command: aptitude upgrade nano
 
 %pre
   =render 'linux101_cclud_pkg6'
@@ -148,8 +160,7 @@ Then to actually update a package I issue a command like this:
 %pre
   %code.bash aptitude upgrade nano
 
-%br/
-%br/
+
 Here is what I memorize:
 
 %br/
@@ -165,8 +176,25 @@ aptitude upgrade is like yum update
 %br/
 %br/
 
+yum upgrade is like yum update
+
 %br/
 %br/
+
+Now that I know how to use aptitude to update nano, how do I delete the nano package?
+
+%br/
+%br/
+
+Demo:
+
+%pre
+  =render 'linux101_cclud_pkg7'
+
+Now that I have deleted the nano package, how do I install it?
+
+%pre
+  =render 'linux101_cclud_pkg8'
 
 %br/
 %br/
