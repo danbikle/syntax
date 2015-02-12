@@ -1,0 +1,68 @@
+
+You are here:
+%a(href='/posts/linux101_cclud') Linux101
+> linux101_cclud_sshd
+%hr/
+
+.q1 Question:
+.q2 In Linux101 how to CCLUD Services?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/linux') linux
+
+%br/
+
+To do Machine Learning on Linux, the first Service I should learn about is openssh.
+
+%br/
+%br/
+
+Once openssh is installed and running, then I will be able to 'ssh-in' to the machine.
+
+%br/
+%br/
+
+Openssh is running software which waits for work to do.
+
+%br/
+%br/
+
+This behavior defines what a service is.
+
+%br/
+%br/
+
+Other examples of services are the Apache webserver and the PostgreSQL database server.
+
+%br/
+%br/
+
+On Ubuntu, I setup these services using the aptitude utility.
+
+%br/
+%br/
+
+Here is a demo of me installing and then starting the openssh server:
+
+%pre
+  =render 'linux101_cclud_sshd1'
+
+%br/
+%br/
+
+For some services the final installation step is to reboot the machine.
+
+%br/
+%br/
+
+A good way to reboot a machine is to issue this shell command as root:
+
+%pre
+  %code.bash shutdown -r now
+
+%br/
+%br/
+%hr/
+You are here:
+%a(href='/posts/linux101_cclud') Linux101
+> linux101_cclud_sshd
