@@ -1,0 +1,49 @@
+<code class='bash'>root@cen113.dan /home/dan $ 
+root@cen113.dan /home/dan $ yum list rhythmbox
+Loaded plugins: fastestmirror, refresh-packagekit, security
+Loading mirror speeds from cached hostfile
+ * base: centos.arvixe.com
+ * extras: mirror.keystealth.org
+ * updates: mirror.chpc.utah.edu
+Installed Packages
+rhythmbox.x86_64      0.12.8-1.el6      @anaconda-CentOS-201311272149.x86_64/6.5
+root@cen113.dan /home/dan $ 
+root@cen113.dan /home/dan $ 
+root@cen113.dan /home/dan $ yum remove rhythmbox
+Loaded plugins: fastestmirror, refresh-packagekit, security
+Setting up Remove Process
+Resolving Dependencies
+--> Running transaction check
+---> Package rhythmbox.x86_64 0:0.12.8-1.el6 will be erased
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package   Arch   Version        Repository                                Size
+================================================================================
+Removing:
+ rhythmbox x86_64 0.12.8-1.el6   @anaconda-CentOS-201311272149.x86_64/6.5  12 M
+
+Transaction Summary
+================================================================================
+Remove        1 Package(s)
+
+Installed size: 12 M
+Is this ok [y/N]: y
+Downloading Packages:
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Erasing    : rhythmbox-0.12.8-1.el6.x86_64                                1/1 
+  Verifying  : rhythmbox-0.12.8-1.el6.x86_64                                1/1 
+
+Removed:
+  rhythmbox.x86_64 0:0.12.8-1.el6                                               
+
+Complete!
+root@cen113.dan /home/dan $ 
+root@cen113.dan /home/dan $ 
+root@cen113.dan /home/dan $ 
+</code>

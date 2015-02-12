@@ -52,17 +52,109 @@ I can use yum to ask if I have a specific package installed in my Linux instance
 %pre
   =render 'linux101_cclud_pkg2'
 
+After I list my packages, I can update them with the 'yum update' command:
+
+%pre
+  =render 'linux101_cclud_pkg3'
+
+I delete unwanted packages with the yum remove command:
+
+%pre
+  =render 'linux101_cclud_pkg4'
+
+That concludes my discussion of yum which is the package utility for Centos.
+
+%br/
+%br/
+
+Ubunutu has a package utility named apt-get.
+
+%br/
+%br/
+
+I prefer to use a similar utility named aptitude.
+%br/
+%br/
+
+If I encounter an Ubuntu instance which has aptitude not installed, I install it with this command:
+
+%pre
+  %code.bash apt-get install aptitude
+
+%br/
+%br/
+
+How to list packages with aptitude?
+
+%pre
+  =render 'linux101_cclud_pkg5'
+
+In the above demo I show that aptitude has no 'list' option.
+It does, however, have a 'show' option.
+
+%br/
+%br/
+
+So I use the show option to see if I have rythmbox installed.
+
+Next, I look for a package called pico.
+
+I see no pico so I look for nano and I do find that.
+
+%br/
+%br/
+
+That concludes the list-part of LUD aptitude.
+%br/
+%br/
+
+How to use aptitude to update a package?
+
+%pre
+  =render 'linux101_cclud_pkg6'
+
+The above demo, which is kind of lame, shows how to update an editor named nano.
+
+%br/
+%br/
+
+It turns out that nano is the most recent version so it needs no update.
+
+%br/
+%br/
+
+On Ubuntu, aptitude and apt-get have a subtle difference compared to yum on Centos. 
+
+%br/
+%br/
+
+The above demo shows this difference.
+
+%br/
+%br/
+
+The aptitude utility depends on information about all the packages on the net.
+
+%br/
+%br/
+
+This information is updated with the 'aptitude update' command.
+
+%br/
+%br/
+
+Then to actually update a package I issue a command like this: 
+
+%pre
+  %code.bash aptitude upgrade nano
+
+%br/
+%br/
+
+%br/
+%br/
 
 
-
-%br/
-%br/
-
-%br/
-%br/
-
-%br/
-%br/
 
 CCLUD of Services is the next topic of Linux101:
 %br/

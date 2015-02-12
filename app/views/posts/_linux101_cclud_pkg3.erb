@@ -1,0 +1,57 @@
+<code class='bash'>
+root@cen113.dan /home/dan $ 
+root@cen113.dan /home/dan $ 
+root@cen113.dan /home/dan $ yum update
+Loaded plugins: fastestmirror, refresh-packagekit, security
+Loading mirror speeds from cached hostfile
+ * base: centos.arvixe.com
+ * extras: mirror.keystealth.org
+ * updates: mirror.chpc.utah.edu
+Setting up Update Process
+Resolving Dependencies
+--> Running transaction check
+---> Package NetworkManager.x86_64 1:0.8.1-66.el6 will be updated
+---> Package NetworkManager.x86_64 1:0.8.1-75.el6 will be an update
+---> Package NetworkManager-glib.x86_64 1:0.8.1-66.el6 will be updated
+
+snip...
+
+ sssd-ldap                       x86_64 1.11.6-30.el6_6.3         updates 167 k
+ sssd-proxy                      x86_64 1.11.6-30.el6_6.3         updates 117 k
+
+Transaction Summary
+================================================================================
+Install      17 Package(s)
+Upgrade     461 Package(s)
+
+Total download size: 601 M
+Is this ok [y/N]: y
+
+The above update will download 601MB.
+
+That is a lot of software!
+
+
+Total download size: 601 M
+Is this ok [y/N]: y
+Downloading Packages:
+(1/478): NetworkManager-0.8.1-75.el6.x86_64.rpm          | 1.1 MB     00:00     
+(2/478): NetworkManager-glib-0.8.1-75.el6.x86_64.rpm     | 232 kB     00:00     
+(3/478): NetworkManager-gnome-0.8.1-75.el6.x86_64.rpm    | 465 kB     00:00     
+
+snip ...
+
+  xz-lzma-compat.x86_64 0:4.999.9-0.5.beta.20091007git.el6                      
+  yum.noarch 0:3.2.29-60.el6.centos                                             
+  yum-plugin-fastestmirror.noarch 0:1.1.30-30.el6                               
+  yum-plugin-security.noarch 0:1.1.30-30.el6                                    
+  yum-utils.noarch 0:1.1.30-30.el6                                              
+
+Replaced:
+  libsss_autofs.x86_64 0:1.9.2-129.el6_5.4                                      
+
+Complete!
+root@cen113.dan /home/dan $ 
+root@cen113.dan /home/dan $ 
+root@cen113.dan /home/dan $ 
+</code>
