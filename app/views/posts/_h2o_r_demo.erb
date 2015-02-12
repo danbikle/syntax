@@ -135,7 +135,7 @@ Making 'packages.html' ... done
 Creating a generic function for 'summary' from package 'base' in package 'h2o'
 Creating a generic function for 'colnames' from package 'base' in package 'h2o'
 Creating a generic function for 't' from package 'base' in package 'h2o'
-Creating a generic function for 'colnames<-' from package 'base' in package 'h2o'
+Creating a generic function for 'colnames&lt;-' from package 'base' in package 'h2o'
 Creating a generic function for 'nrow' from package 'base' in package 'h2o'
 Creating a generic function for 'ncol' from package 'base' in package 'h2o'
 Creating a generic function for 'sd' from package 'stats' in package 'h2o'
@@ -313,7 +313,7 @@ attr(,"package")
 > h2o.anyFactor(iris.hex)
 [1] TRUE
 > 
-> prosPath <- system.file("extdata", "prostate.csv", package="h2o")
+> prosPath &lt;- system.file("extdata", "prostate.csv", package="h2o")
 > 
 > prosPath
 [1] "/home/dan/rdir/lib/R/library/h2o/extdata/prostate.csv"
@@ -357,7 +357,7 @@ attr(,"package")
 > 
 > 
 > 
-> prostate.data.frame<- as.data.frame(prostate.hex)
+> prostate.data.frame&lt;- as.data.frame(prostate.hex)
 > 
 > 
 > summary(prostate.data.frame)
@@ -498,7 +498,7 @@ Parsed Data Key: Last.value.9
  Max.   :139.700  
 > 
 > 
-> predicate1 = prostate.hex$PSA <= prostate.qs[2] 
+> predicate1 = prostate.hex$PSA &lt;= prostate.qs[2] 
 > 
 > head(predicate1)
   PSA
@@ -526,7 +526,7 @@ Parsed Data Key: Last.value.9
 > predicate2 = prostate.hex$PSA >=   prostate.qs[10]
 > 
 > prostate.qs[10]
-<NA> 
+&lt;NA> 
   NA 
 > predicate2 = prostate.hex$PSA >=   prostate.qs[5]
 > 
@@ -773,7 +773,7 @@ Generate a column of random numbers:
 
 Here is a 5% sample of prostate.hex:
 
-> my5pct = prostate.hex[s <= 5.0/100.0]
+> my5pct = prostate.hex[s &lt;= 5.0/100.0]
 > 
 > nrow(prostate.hex)
 [1] 380
