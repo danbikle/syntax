@@ -1,76 +1,56 @@
+.q1 Question:
+.q2 In R how to load rda file?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/r') r
+  %a.xtag(href='/tags/rda') rda
+  %a.xtag(href='/tags/install') install
+  %a.xtag(href='/tags/packages') packages
+  %a.xtag(href='/tags/mlbench') mlbench
+  %a.xtag(href='/tags/cran') cran
+  %a.xtag(href='/tags/breastcancer') breastcancer
+  %a.xtag(href='/tags/library') library
+  %a.xtag(href='/tags/head') head
 
-
-In R how to load rda file?
+%br/
 
 I just encountered a blog which loaded some Breast Cancer data into R.
+%br/
+%br/
 
 The blogger failed to describe the steps.
+%br/
+%br/
 
 I figured out how to load the data.
+%br/
+%br/
 
 I start R with the R command:
+%br/
+%br/
 
 R
 
 I install the package:
+%pre
+  %code.r install.packages("mlbench", repos="http://cran.us.r-project.org")
 
-install.packages("mlbench", repos="http://cran.us.r-project.org")
+I library the package:
 
-I pull in the package:
+%pre
+  %code.r library(mlbench)
 
-library(mlbench)
+Then I type in 3 lines of syntax:
 
-The I type in 3 lines of syntax:
-
-bPath = system.file("data", "BreastCancer.rda", package="mlbench")
-load(bPath)
-head(BreastCancer)
+%pre
+  %code.r
+    bPath = system.file("data", "BreastCancer.rda", package="mlbench")
+    load(bPath)
+    head(BreastCancer)
 
 I should see this:
+%pre
+  =render 'r_load_rda'
 
-dan@hp /m $ 
-dan@hp /m $ 
-dan@hp /m $ R
-
-R version 3.1.2 (2014-10-31) -- "Pumpkin Helmet"
-Copyright (C) 2014 The R Foundation for Statistical Computing
-Platform: x86_64-unknown-linux-gnu (64-bit)
-
-R is free software and comes with ABSOLUTELY NO WARRANTY.
-You are welcome to redistribute it under certain conditions.
-Type 'license()' or 'licence()' for distribution details.
-
-  Natural language support but running in an English locale
-
-R is a collaborative project with many contributors.
-Type 'contributors()' for more information and
-'citation()' on how to cite R or R packages in publications.
-
-Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for an HTML browser interface to help.
-Type 'q()' to quit R.
-
-> library(mlbench)
-> bPath = system.file("data", "BreastCancer.rda", package="mlbench")
-> load(bPath)
-> head(BreastCancer)
-       Id Cl.thickness Cell.size Cell.shape Marg.adhesion Epith.c.size
-1 1000025            5         1          1             1            2
-2 1002945            5         4          4             5            7
-3 1015425            3         1          1             1            2
-4 1016277            6         8          8             1            3
-5 1017023            4         1          1             3            2
-6 1017122            8        10         10             8            7
-  Bare.nuclei Bl.cromatin Normal.nucleoli Mitoses     Class
-1           1           3               1       1    benign
-2          10           3               2       1    benign
-3           2           3               1       1    benign
-4           4           3               7       1    benign
-5           1           3               1       1    benign
-6          10           9               7       1 malignant
-> 
-Save workspace image? [y/n/c]: n
-dan@hp /m $ 
-dan@hp /m $ 
-dan@hp /m $ 
-
+%br/
