@@ -28,4 +28,268 @@ Next I looked at localhost:54321 with firefox.
 In the coffeewindow I typed 
 getCloud
 and I got a nice report of my h2o cluster.
+
+
+Later I tried it a different way:
+
+cd /tmp/
+git clone git@github.com:h2oai/sparkling-water.git swg
+
+export SPARK_HOME="/home/dan/spark"
+export MASTER="local-cluster[3,2,1024]"
+
+
+dan@hp /tmp $ cd swg
+dan@hp /tmp/swg $ ll
+total 148
+drwxrwxr-x 10 dan  dan   4096 Feb 15 09:25 ./
+drwxrwxrwt 32 root root 36864 Feb 15 09:25 ../
+drwxrwxr-x  2 dan  dan   4096 Feb 15 09:25 assembly/
+drwxrwxr-x  2 dan  dan   4096 Feb 15 09:25 bin/
+-rw-rw-r--  1 dan  dan   3427 Feb 15 09:25 build.gradle
+drwxrwxr-x  3 dan  dan   4096 Feb 15 09:25 core/
+-rw-rw-r--  1 dan  dan  16606 Feb 15 09:25 DEVEL.md
+drwxrwxr-x  2 dan  dan   4096 Feb 15 09:25 dist/
+drwxrwxr-x  4 dan  dan   4096 Feb 15 09:25 docker/
+drwxrwxr-x  5 dan  dan   4096 Feb 15 09:25 examples/
+drwxrwxr-x  8 dan  dan   4096 Feb 15 09:25 .git/
+-rw-rw-r--  1 dan  dan     71 Feb 15 09:25 .gitattributes
+-rw-rw-r--  1 dan  dan    298 Feb 15 09:25 .gitignore
+drwxrwxr-x  4 dan  dan   4096 Feb 15 09:25 gradle/
+-rw-rw-r--  1 dan  dan     38 Feb 15 09:25 gradle.properties
+-rwxrwxr-x  1 dan  dan   5080 Feb 15 09:25 gradlew*
+-rw-rw-r--  1 dan  dan   2404 Feb 15 09:25 gradlew.bat
+-rw-rw-r--  1 dan  dan  11325 Feb 15 09:25 LICENSE
+-rwxrwxr-x  1 dan  dan   2408 Feb 15 09:25 make-dist.sh*
+-rw-rw-r--  1 dan  dan   3181 Feb 15 09:25 README.md
+-rw-rw-r--  1 dan  dan    214 Feb 15 09:25 settings.gradle
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ 
+
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ ./gradlew build -x test
+Download http://h2o-release.s3.amazonaws.com/h2o-dev/master/1056/maven/repo/ai/h2o/h2o-app/0.1.27.1056/h2o-app-0.1.27.1056.pom
+Download http://h2o-release.s3.amazonaws.com/h2o-dev/master/1056/maven/repo/ai/h2o/h2o-scala_2.10/0.1.27.1056/h2o-scala_2.10-0.1.27.1056.pom
+
+snip
+
+:sparkling-water-examples:signArchives SKIPPED
+:sparkling-water-examples:assemble
+:sparkling-water-examples:check
+:sparkling-water-examples:build
+
+BUILD SUCCESSFUL
+
+Total time: 2 mins 54.823 secs
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ 
+
+
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ ./gradlew assemble
+:assemble UP-TO-DATE
+:sparkling-water-core:compileJava UP-TO-DATE
+:sparkling-water-core:compileScala UP-TO-DATE
+:sparkling-water-core:processResources UP-TO-DATE
+:sparkling-water-core:classes UP-TO-DATE
+:sparkling-water-core:jar UP-TO-DATE
+:sparkling-water-examples:compileJava UP-TO-DATE
+:sparkling-water-examples:compileScala UP-TO-DATE
+:sparkling-water-examples:processResources UP-TO-DATE
+:sparkling-water-examples:classes UP-TO-DATE
+:sparkling-water-examples:jar UP-TO-DATE
+:sparkling-water-assembly:compileJava UP-TO-DATE
+:sparkling-water-assembly:compileScala UP-TO-DATE
+:sparkling-water-assembly:processResources UP-TO-DATE
+:sparkling-water-assembly:classes UP-TO-DATE
+:sparkling-water-assembly:jar UP-TO-DATE
+:sparkling-water-assembly:scaladoc UP-TO-DATE
+:sparkling-water-assembly:scaladocJar UP-TO-DATE
+:sparkling-water-assembly:shadowJar UP-TO-DATE
+:sparkling-water-assembly:assemble UP-TO-DATE
+:sparkling-water-core:javadoc UP-TO-DATE
+:sparkling-water-core:javadocJar UP-TO-DATE
+:sparkling-water-core:scaladoc UP-TO-DATE
+:sparkling-water-core:scaladocJar UP-TO-DATE
+:sparkling-water-core:sourcesJar UP-TO-DATE
+:sparkling-water-core:signArchives SKIPPED
+:sparkling-water-core:assemble UP-TO-DATE
+:sparkling-water-examples:javadoc UP-TO-DATE
+:sparkling-water-examples:javadocJar UP-TO-DATE
+:sparkling-water-examples:scaladoc UP-TO-DATE
+:sparkling-water-examples:scaladocJar UP-TO-DATE
+:sparkling-water-examples:sourcesJar UP-TO-DATE
+:sparkling-water-examples:signArchives SKIPPED
+:sparkling-water-examples:assemble UP-TO-DATE
+
+BUILD SUCCESSFUL
+
+Total time: 37.254 secs
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ 
+
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ /tmp/swg/bin/sparkling-shell 
+
+-----
+  Spark master (MASTER)     : local-cluster[3,2,1024]
+  Spark home   (SPARK_HOME) : /home/dan/spark
+----
+
+Spark assembly has been built with Hive, including Datanucleus jars on classpath
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+15/02/15 09:38:31 INFO SecurityManager: Changing view acls to: dan
+15/02/15 09:38:31 INFO SecurityManager: Changing modify acls to: dan
+15/02/15 09:38:31 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(dan); users with modify permissions: Set(dan)
+15/02/15 09:38:31 INFO HttpServer: Starting HTTP Server
+15/02/15 09:38:32 INFO Utils: Successfully started service 'HTTP class server' on port 46537.
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 1.2.0
+      /_/
+
+Using Scala version 2.10.4 (Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_60-ea)
+
+snip
+
+
+scala> 
+scala> 
+scala> import org.apache.spark.h2o._
+scala> import org.apache.spark.examples.h2o._
+scala> val h2oContext = new H2OContext(sc).start()
+15/02/15 09:40:10 WARN H2OContext: Increasing 'spark.locality.wait' to value 30000
+15/02/15 09:40:10 INFO H2OContext: Starting H2O services: Sparkling Water configuration:
+  workers      : -1
+  cloudName    : sparkling-water-dan
+  flatfile     : true
+  basePort     : 54321
+  incrPort     : 2
+  cloudTimeout : 60000
+  h2oNodeLog   : INFO
+  h2oClientLog : WARN
+  nthreads     : -1
+  drddMulFactor: 10
+15/02/15 09:40:10 INFO SparkContext: Starting job: collect at H2OContextUtils.scala:52
+
+snip
+
+
+15/02/15 09:40:23 INFO H2OContext: Sparkling Water started, status of context: 
+Sparkling Water Context:
+ * number of executors: 3
+ * list of used executors:
+  (executorId, host, port)
+  ------------------------
+  (2,i95,54325)
+  (1,i95,54321)
+  (0,i95,54323)
+  ------------------------
+
+  Open H2O Flow in browser: http://192.168.1.95:54327 (CMD + click in Mac OSX)
+    
+h2oContext: org.apache.spark.h2o.H2OContext = 
+
+Sparkling Water Context:
+ * number of executors: 3
+ * list of used executors:
+  (executorId, host, port)
+  ------------------------
+  (2,i95,54325)
+  (1,i95,54321)
+  (0,i95,54323)
+  ------------------------
+
+  Open H2O Flow in browser: http://192.168.1.95:54327 (CMD + click in Mac OSX)
+    
+
+scala> 
+
+Next I tried to shutdown the three executors:
+
+scala> 
+scala> 
+scala> exit
+exit
+warning: there were 1 deprecation warning(s); re-run with -deprecation for details
+15/02/15 09:42:16 INFO ExecutorRunner: Killing process!
+15/02/15 09:42:16 INFO ExecutorRunner: Killing process!
+15/02/15 09:42:16 INFO ExecutorRunner: Killing process!
+
+Then, I tried to start just one executor:
+
+export MASTER="local-cluster[3,2,1024]"
+export MASTER="local-cluster[1,2,1024]"
+
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ export MASTER="local-cluster[1,2,1024]"
+dan@hp /tmp/swg $ 
+dan@hp /tmp/swg $ /tmp/swg/bin/sparkling-shell
+
+-----
+  Spark master (MASTER)     : local-cluster[1,2,1024]
+  Spark home   (SPARK_HOME) : /home/dan/spark
+----
+
+Spark assembly has been built with Hive, including Datanucleus jars on classpath
+
+snip
+
+scala> 
+scala> 
+scala> import org.apache.spark.h2o._
+scala> import org.apache.spark.examples.h2o._
+scala> val h2oContext = new H2OContext(sc).start()
+val h2oContext = new H2OContext(sc).start()
+15/02/15 09:45:33 WARN H2OContext: Increasing 'spark.locality.wait' to value 30000
+15/02/15 09:45:33 INFO H2OContext: Starting H2O services: Sparkling Water configuration:
+  workers      : -1
+  cloudName    : sparkling-water-dan
+  flatfile     : true
+  basePort     : 54321
+  incrPort     : 2
+  cloudTimeout : 60000
+  h2oNodeLog   : INFO
+  h2oClientLog : WARN
+  nthreads     : -1
+  drddMulFactor: 10
+
+snip
+
+15/02/15 09:45:38 INFO H2OContext: Sparkling Water started, status of context: 
+Sparkling Water Context:
+ * number of executors: 1
+ * list of used executors:
+  (executorId, host, port)
+  ------------------------
+  (0,i95,54321)
+  ------------------------
+
+  Open H2O Flow in browser: http://192.168.1.95:54323 (CMD + click in Mac OSX)
+    
+h2oContext: org.apache.spark.h2o.H2OContext = 
+
+Sparkling Water Context:
+ * number of executors: 1
+ * list of used executors:
+  (executorId, host, port)
+  ------------------------
+  (0,i95,54321)
+  ------------------------
+
+  Open H2O Flow in browser: http://192.168.1.95:54323 (CMD + click in Mac OSX)
+
+scala> 
+scala> 
+scala> 
 </code>
