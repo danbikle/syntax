@@ -62,7 +62,54 @@ All it does is remove the header by giving me only lines which have a '0':
 %pre
   =render 'spark_max_gspc4'
 
-Then I write a series of chained-lambdas which replace whitespace,
+I understand a filter to be a mechanism which filters out false values.
+
+%br/
+%br/
+
+It is up to me to generate the false values from the rows of data I want to filter.
+
+%br/
+%br/
+
+Spark allows me to think about this in plain English.
+
+%br/
+%br/
+
+The plain English behind the above filter is this: if a row has no '0', I should tag it as false.
+
+%br/
+%br/
+
+Otherwise I tag it as true.
+
+%br/
+%br/
+
+Once I have the plain English cached in my mind, I should translate it into a Python expression.
+
+%br/
+%br/
+
+In this example that expression is simple:
+
+%pre
+  %code.python '0' in line
+
+Next, I build a lambda from the above expression:
+
+
+%pre
+  %code.python mylam = lambda line: '0' in line
+
+The hard part is over, now I just attach filter(mylam) to the RDD I want to filter.
+
+%br/
+%br/
+
+Now that I have an idea of how a filter works,
+I write a series of chained-lambdas which replace whitespace,
 split each line at the commas, pick the [4]th field, and finally
 convert that field to a float.
 %br/
