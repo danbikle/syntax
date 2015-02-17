@@ -1,0 +1,35 @@
+.q1 Question:
+.q2 In Spark how to control INFO logging?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/spark') spark
+  %a.xtag(href='/tags/log4j') log4j
+  %a.xtag(href='/tags/properties') properties
+  %a.xtag(href='/tags/error') error
+  %a.xtag(href='/tags/info') info
+
+%br/
+When I started working with Spark I noticed the logging level is way too chatty.
+%br/
+%br/
+
+I control the logging level by creating a file here:
+
+%pre
+  %code.bash ~/spark/conf/log4j.properties
+
+I create the file from this file:
+
+%pre
+  %code.bash ~/spark/conf/log4j.properties.template
+
+Now the file looks like this:
+%pre
+  =render 'spark_log4j'
+
+Now I see only interesting output and my Spark scripts run faster. 
+%br/
+
+
+
+
