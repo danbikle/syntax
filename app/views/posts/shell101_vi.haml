@@ -1,0 +1,180 @@
+
+You are here:
+%a(href='/posts/linux101_cclud') Linux101
+>
+%a(href='/posts/shell101') Shell 101
+> shell101_vi
+%hr/
+%h1 Linux Shell 101
+
+.q1 Question:
+.q2 In Linux101 how to use vi editor?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/linux') linux
+  .tag shell
+  .tag bash
+  .tag vi
+
+%br/
+
+All editors want me to do one of two actions:
+
+%ul
+  %li Issue commands
+  %li Type in text
+
+In GUI editors I can usually issue commands via a menu at the top.
+
+%br/
+%br/
+
+In vi I can issue a command after I press the esc-key.
+
+%br/
+%br/
+
+After vi accepts my esc-key, I am in command-mode-1 (CM1).
+
+%br/
+%br/
+
+Here is a list of my favorite commands for CM1:
+
+%ul
+  %li esc
+  %li arrow-keys
+  %li a
+  %li i
+  %li o
+  %li u
+  %li x
+  %li dd
+  %li ZZ
+  %li :
+
+The last command listed is colon and I use it to move from CM1 to CM2.
+
+%br/
+%br/
+
+I like CM2 more that CM1 because vi tells me I am in CM2.
+
+%br/
+%br/
+
+If I am in CM1 vi tells me nothing.  I do not know if I am in CM1 or insert mode (IM).
+
+%br/
+%br/
+
+So my favorite command is esc.  This command works the same in all three modes.  It sends me to CM1.
+If I am in CM1 and I press esc, vi will send me back to CM1.  The esc-key is my favorite key in vi.
+
+%br/
+%br/
+
+I can move from CM1 to IM by pressing a, i, or o.
+Also some others letters can be used.
+The letter a is used to append and i is used to insert so they are subtly different.
+The letter o is a bit like a except I can append after my current line.
+Just experiment with a,i, and o and you will see how they work.  Most of the time I just use i.
+
+%br/
+%br/
+
+The main actions which CM2 offer me are write and quit.
+
+%br/
+%br/
+
+To write, I first move to CM1 by pressing esc.  Then I move to CM2 by pressing :
+
+%br/
+%br/
+
+Once I see the colon I know I am in CM2.
+
+%br/
+%br/
+
+If I press enter, that is a mistake and CM2 will send me back to CM1.
+
+%br/
+%br/
+
+If, however, I press w after the colon and then press enter,
+CM2 will write and then send me back to CM1.
+
+%br/
+%br/
+
+So, this key sequence is very common:
+
+%br/
+%br/
+
+esc, :w, enter
+
+%br/
+%br/
+
+The above sequence is the same as File-Save in a GUI editor.
+
+%br/
+%br/
+
+I can exit vi from CM1 by typing ZZ.
+
+%br/
+%br/
+
+I can exit vi from CM2 by typing :q, enter.
+
+%br/
+%br/
+
+I can exit vi from CM2 by typing :q!, enter.
+
+
+%br/
+%br/
+
+I can exit vi from CM2 by typing :wq, enter.
+This is how I usually exit vi.
+
+%br/
+%br/
+
+Common mistakes:
+%ul
+  %li I am in CM1, but I assume I am in IM.
+  %li Delete characters by mistake while in CM1.
+  %li Open an enormous file.
+  %li Open a binary file.
+  %li Open file, make changes, go to lunch, go home.
+  %li Get dumped into the ed editor by vi.
+
+Experiment with this command:
+
+%pre
+  %code.bash vi /tmp/hello.txt
+
+Now you know enough vi to be really dangerous.
+
+%br/
+%br/
+
+%br/
+%hr/
+You are here:
+%a(href='/posts/linux101_cclud') Linux101
+>
+%a(href='/posts/shell101') Shell 101
+> shell101_vi
+%hr/
+You can ask questions in Dan's Machine Learning Class Forum:
+%br/
+%a(href='https://groups.google.com/forum/#!forum/dan101' target='x')
+  https://groups.google.com/forum/#!forum/dan101
+%br/
