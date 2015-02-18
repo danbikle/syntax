@@ -1,0 +1,57 @@
+.q1 Question:
+.q2 In Apache Spark how to SQL Parquet?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/apache') apache
+  %a.xtag(href='/tags/spark') spark
+  %a.xtag(href='/tags/rdd') rdd
+  %a.xtag(href='/tags/sparkcontext') sparkcontext
+  %a.xtag(href='/tags/sc') sc
+  %a.xtag(href='/tags/resilient') resilient
+  %a.xtag(href='/tags/distributed') distributed
+  %a.xtag(href='/tags/dataset') dataset
+  %a.xtag(href='/tags/schemardd') schemardd
+  %a.xtag(href='/tags/sql') sql
+  %a.xtag(href='/tags/sqlcontext') sqlcontext
+  .tag parquet
+  .tag parquetfile
+  .tag saveasparquetfile
+  .tag registertemptable
+  .tag collect
+  .tag foreach
+
+%br/
+
+I learned about SQL selects against Parquet data at the URL below:
+
+%br/
+%br/
+
+%a(href='http://spark.apache.org/docs/1.2.1/sql-programming-guide.html' target='x')
+  http://spark.apache.org/docs/1.2.1/sql-programming-guide.html
+
+%br/
+%br/
+
+I installed Spark 1.2.1 on my laptop in my home folder:
+
+%pre
+  =render 'spark_schemardd1'
+
+I have not found a way to step through a Scala script with a debugger.
+
+%br/
+%br/
+
+So, I just used my mouse to copy/paste syntax into the bin/spark-shell prompt:
+
+%pre
+  =render 'spark_sql_parquet'
+
+The main idea behind SQL select of Parquet is a three step process:
+%ul
+  %li Create a Parquet file for the demo
+  %li registerTempTable()
+  %li val results = sqlContext.sql("SELECT cols FROM something")
+
+%br/

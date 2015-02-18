@@ -47,17 +47,6 @@ scala> import sqlContext.createSchemaRDD
 scala> 
 
 
-scala> 
-scala> val sqlContext = new org.apache.spark.sql.SQLContext(sc)
-sqlContext: org.apache.spark.sql.SQLContext = org.apache.spark.sql.SQLContext@1d5dcc8c
-scala> 
-
-
-scala> // createSchemaRDD is used to implicitly convert an RDD to a SchemaRDD.
-scala> import sqlContext.createSchemaRDD
-scala> 
-
-
 scala> // Define the schema using a case class.
 scala> // Note: Case classes in Scala 2.10 can support only up to 22 fields. To work around this limit,
 scala> // you can use custom classes that implement the Product interface.
