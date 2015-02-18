@@ -1,0 +1,51 @@
+<code class='bash'>
+
+The first line in the doc is this:
+val sc: SparkContext // An existing SparkContext.
+
+
+When I type the above line into bin/spark-shell
+I get an error which is a bit of a problem:
+
+scala> 
+scala> 
+scala> val sc: SparkContext
+val sc: SparkContext
+&lt;console>:10: error: not found: type SparkContext
+       val sc: SparkContext
+               ^
+scala> 
+scala> 
+
+
+
+I consider this to be a documentation bug.
+
+I do not need the above line; it should not be in the doc.
+
+I see that sc is already defined during startup of the spark-shell:
+
+
+scala> 
+scala> sc
+res0: org.apache.spark.SparkContext = org.apache.spark.SparkContext@4b88807b
+
+scala> 
+scala> 
+
+Next I typed more lines:
+
+scala> 
+scala> val sqlContext = new org.apache.spark.sql.SQLContext(sc)
+sqlContext: org.apache.spark.sql.SQLContext = org.apache.spark.sql.SQLContext@cc98901
+scala> 
+scala> 
+
+scala> 
+scala> // createSchemaRDD is used to implicitly convert an RDD to a SchemaRDD.
+scala> import sqlContext.createSchemaRDD
+scala> 
+
+
+
+</code>

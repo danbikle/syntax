@@ -10,9 +10,9 @@
   %a.xtag(href='/tags/resilient') resilient
   %a.xtag(href='/tags/distributed') distributed
   %a.xtag(href='/tags/dataset') dataset
-  .tag schemardd
-  .tag sql
-  .tag sqlcontext
+  %a.xtag(href='/tags/schemardd') schemardd
+  %a.xtag(href='/tags/sql') sql
+  %a.xtag(href='/tags/sqlcontext') sqlcontext
 
 %br/
 
@@ -31,11 +31,19 @@ I learned about SchemaRDD at the URL below:
 I installed Spark 1.2.1 on my laptop in my home folder:
 
 %pre
-  %code.bash ~/spark/
+  =render 'spark_schemardd1'
 
+I have not found a way to step through a Scala script with a debugger.
 
 %br/
 %br/
+
+So, I just used my mouse to copy/paste syntax into the bin/spark-shell prompt:
+
+%pre
+  =render 'spark_schemardd2'
+
+
 %br/
 %br/
 %br/
