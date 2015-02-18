@@ -24,5 +24,48 @@ scala>
 scala> 
 
 
+scala> 
+scala> people.saveAsParquetFile("people.parquet")
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+scala> 
+scala> 
+
+                                                                                             
+scala> 
+scala> val parquetFile = sqlContext.parquetFile("people.parquet")
+parquetFile: org.apache.spark.sql.SchemaRDD = 
+SchemaRDD[55] at RDD at SchemaRDD.scala:108
+== Query Plan ==
+== Physical Plan ==
+ParquetTableScan [name#8,age#9], (ParquetRelation people.parquet, Some(Configuration: core-default.xml, core-site.xml, mapred-default.xml, mapred-site.xml, hdfs-default.xml, hdfs-site.xml), org.apache.spark.sql.SQLContext@5422a156, []), []
+scala> 
+scala> 
+
+
+scala> 
+scala> parquetFile.registerTempTable("parquetFile")
+scala> 
+
+
+scala> 
+scala> val teenagers = sqlContext.sql("SELECT name FROM parquetFile WHERE age >= 13 AND age <= 19")
+teenagers: org.apache.spark.sql.SchemaRDD = 
+SchemaRDD[56] at RDD at SchemaRDD.scala:108
+== Query Plan ==
+== Physical Plan ==
+Project [name#8]
+ Filter ((age#9 >= 13) && (age#9 <= 19))
+  ParquetTableScan [name#8,age#9], (ParquetRelation people.parquet, Some(Configuration: core-default.xml, core-site.xml, mapred-default.xml, mapred-site.xml, hdfs-default.xml, hdfs-site.xml), org.apache.spark.sql.SQLContext@5422a156, []), []
+scala> 
+scala> 
+
+
+scala> 
+scala> teenagers.take(1)
+res19: Array[org.apache.spark.sql.Row] = Array([Justin])
+scala> 
+scala> 
 
 </code>
