@@ -220,4 +220,153 @@ The method call suggests that I can declare temporary tables.
 
 I do not know if Spark supports the notion of a permanent table.
 
+The next bit of syntax from the doc is this:
+
+scala> 
+scala> val teenagers = sqlContext.sql("SELECT name FROM people WHERE age >= 13 AND age &lt;= 19")
+teenagers: org.apache.spark.sql.SchemaRDD = 
+SchemaRDD[15] at RDD at SchemaRDD.scala:108
+== Query Plan ==
+== Physical Plan ==
+Project [name#0]
+ Filter ((age#1 >= 13) && (age#1 &lt;= 19))
+  PhysicalRDD [name#0,age#1], MapPartitionsRDD[13] at mapPartitions at ExistingRDD.scala:36
+
+scala> 
+scala> 
+
+
+It seems obvious that teenagers would have the same structure as people:
+
+scala> 
+scala> teenagers.take(1)
+res5: Array[org.apache.spark.sql.Row] = Array([Justin])
+scala> 
+
+It appears, though, they are different.
+
+The doc offers this syntax as a way to see teenagers:
+
+scala> 
+scala> teenagers.map(t => "Name: " + t(0)).collect().foreach(println)
+Name: Justin
+scala> 
+
+I think the .collect() converts the RDD from .map() into an Array.
+
+Then I can use .foreach(println) to print each string in the Array.
+
+
+In the above discussion I assumed that the structure of the people table was known before runtime.
+
+If I know the structure of a table only during runtime, I need to add more syntax.
+
+The doc describes a multi step process:
+
+0. Create RDD from text file
+1. Create a StructType object
+2. Create rowRDD from RDD
+3. Call applySchema
+4. registerTempTable
+5. .sql()
+
+
+I walked through the code:
+
+// Create RDD from text file
+
+scala> 
+scala> val people = sc.textFile("examples/src/main/resources/people.txt")
+people: org.apache.spark.rdd.RDD[String] = examples/src/main/resources/people.txt MappedRDD[26] at textFile at &lt;console>:19
+
+scala> 
+scala> 
+
+
+
+// Create a StructType object
+
+
+scala> 
+scala> val schemaString = "name age"
+schemaString: String = name age
+scala> 
+scala> 
+scala> import org.apache.spark.sql._
+scala> 
+
+
+scala> 
+scala> val schema = StructType(schemaString.split(" ").map(fieldName => StructField(fieldName, StringType, true)))
+schema: org.apache.spark.sql.catalyst.types.StructType = StructType(ArraySeq(StructField(name,StringType,true), StructField(age,StringType,true)))
+scala> 
+scala> 
+
+
+// Create rowRDD from RDD
+
+scala> 
+scala> 
+scala> val rowRDD = people.map(_.split(",")).map(p => Row(p(0), p(1).trim))
+rowRDD: org.apache.spark.rdd.RDD[org.apache.spark.sql.catalyst.expressions.Row] = MappedRDD[28] at map at &lt;console>:24
+scala> 
+scala> 
+scala> 
+
+// Call applySchema
+
+
+scala> 
+scala> val sqlContext = new org.apache.spark.sql.SQLContext(sc)
+sqlContext: org.apache.spark.sql.SQLContext = org.apache.spark.sql.SQLContext@2eddcc47
+scala> 
+scala> 
+
+
+scala> 
+scala> val peopleSchemaRDD = sqlContext.applySchema(rowRDD, schema)
+peopleSchemaRDD: org.apache.spark.sql.SchemaRDD = 
+SchemaRDD[29] at RDD at SchemaRDD.scala:108
+== Query Plan ==
+== Physical Plan ==
+PhysicalRDD [name#2,age#3], MappedRDD[28] at map at <console>:24
+scala> 
+scala> 
+
+
+// registerTempTable
+
+scala> 
+scala> peopleSchemaRDD.registerTempTable("people")
+scala> 
+
+
+// .sql()
+
+scala> 
+scala> val results = sqlContext.sql("SELECT name FROM people")
+results: org.apache.spark.sql.SchemaRDD = 
+SchemaRDD[30] at RDD at SchemaRDD.scala:108
+== Query Plan ==
+== Physical Plan ==
+Project [name#2]
+ PhysicalRDD [name#2,age#3], MappedRDD[28] at map at <console>:24
+
+scala> 
+scala> 
+
+
+scala> 
+scala> results.collect()
+res11: Array[org.apache.spark.sql.Row] = Array([Michael], [Andy], [Justin])
+scala> 
+
+scala> 
+scala> results.take(3)
+res12: Array[org.apache.spark.sql.Row] = Array([Michael], [Andy], [Justin])
+scala> 
+
+
 </code>
+
+
