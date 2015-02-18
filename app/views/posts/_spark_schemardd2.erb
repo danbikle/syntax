@@ -47,5 +47,65 @@ scala> import sqlContext.createSchemaRDD
 scala> 
 
 
+scala> 
+scala> val sqlContext = new org.apache.spark.sql.SQLContext(sc)
+sqlContext: org.apache.spark.sql.SQLContext = org.apache.spark.sql.SQLContext@1d5dcc8c
+scala> 
+
+
+scala> // createSchemaRDD is used to implicitly convert an RDD to a SchemaRDD.
+scala> import sqlContext.createSchemaRDD
+scala> 
+
+
+scala> // Define the schema using a case class.
+scala> // Note: Case classes in Scala 2.10 can support only up to 22 fields. To work around this limit,
+scala> // you can use custom classes that implement the Product interface.
+scala> case class Person(name: String, age: Int)
+defined class Person
+scala> 
+scala> 
+
+Next, I typed this:
+scala> 
+scala> // Create an RDD of Person objects and register it as a table.
+scala> val people = sc.textFile("examples/src/main/resources/people.txt").map(_.split(",")).map(p => Person(p(0), p(1).trim.toInt))
+people: org.apache.spark.rdd.RDD[Person] = MappedRDD[3] at map at &lt;console>:21
+
+
+I see from the syntax and the output that I had just used class Person.
+
+I translate the above output to English:
+
+I have a new object named people.
+It is of type org.apache.spark.rdd.RDD[Person]
+Notice the above type makes use of Person.
+Here Person might be acting as a key.
+This people object equals MappedRDD[3]
+
+When I study 
+examples/src/main/resources/people.txt
+I see only three lines:
+
+Michael, 29
+Andy, 30
+Justin, 19
+
+
+The syntax which I used to create people is interesting.
+
+I translate it to English:
+
+val people = sc.textFile()
+
+The val is a token which is often used when I create a new variable.
+
+According to:
+
+https://twitter.github.io/scala_school/basics.html
+
+I cannot change the binding to the people object.
+
+If I want to change the binding, I should use var instead of val.
 
 </code>
