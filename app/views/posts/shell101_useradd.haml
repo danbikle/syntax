@@ -1,0 +1,77 @@
+
+You are here:
+%a(href='/posts/linux101_cclud') Linux101
+>
+%a(href='/posts/shell101') Shell 101
+> shell101_useradd
+%hr/
+%h1 Linux Shell 101
+
+.q1 Question:
+.q2 In Linux101 how to useradd ann?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/linux') linux
+  .tag shell
+  .tag bash
+  .tag root
+  .tag su
+  .tag sudo
+  .tag useradd
+  .tag ann
+  .tag password
+  .tag passwd
+  .tag localhost
+
+%br/
+
+To useradd ann, I should login as root:
+
+%pre
+  %code.bash sudo bash
+
+or
+
+%pre
+  %code.bash su
+
+or
+
+%pre
+  %code.bash ssh root@localhost
+
+Then I issue two shell commands as root:
+
+%pre
+  %code.bash
+    useradd -m -s /bin/bash ann
+    passwd ann
+
+%br/
+%br/
+
+To remember the password I assign to ann, I pick the name of my best friend.
+
+%br/
+%br/
+
+Next, I test if I can login to the new account:
+
+%pre
+  %code.bash ssh ann@localhost
+
+
+
+%br/
+%hr/
+You are here:
+%a(href='/posts/linux101_cclud') Linux101
+>
+%a(href='/posts/shell101') Shell 101
+> shell101_useradd
+%hr/
+You can ask questions in Dan's Machine Learning Class Forum:
+%br/
+%a(href='https://groups.google.com/forum/#!forum/dan101' target='x')
+  https://groups.google.com/forum/#!forum/dan101
+%br/
