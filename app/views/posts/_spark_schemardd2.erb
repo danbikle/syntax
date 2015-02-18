@@ -108,4 +108,42 @@ I cannot change the binding to the people object.
 
 If I want to change the binding, I should use var instead of val.
 
+
+I translate expression below to English:
+
+val people = sc.textFile("examples/src/main/resources/people.txt")
+
+I understand it to mean: 
+SparkContext should try to read this text file.
+
+Google sent me here:
+https://spark.apache.org/docs/1.2.1/api/scala/index.html#org.apache.spark.SparkContext
+
+The above URL says,
+Read this text file and return it as an RDD of Strings.
+
+
+I translate expression below to English:
+
+val people = sc.textFile("examples/src/main/resources/people.txt").map(_.split(","))
+
+I have an RDD of strings which is a collection of strings.  Now operate on it with .map()
+
+When I see .map() I see a mechanism which builds a loop and then feeds elements into the loop.
+
+In this case each element is a string.
+
+Inside the loop each element gets chewed on and then spit out.
+
+In the case, the chewing equates to this expression: 
+_.split(",")
+
+I assume that underscore is a variable which contains an input string.
+
+I assume that .split(",") will split a string into substrings at each comma.
+
+Then once all the elements are processed, I end up with a new RDD.
+
+In this case I end up with an RDD of split up strings.
+
 </code>
