@@ -134,14 +134,13 @@ scala>
 scala> 
 
 
-
 I translate expression below to English:
 
 val people = sc.textFile("examples/src/main/resources/people.txt").map(_.split(","))
 
 I have an RDD of strings which is a collection of strings.  Now operate on it with .map()
 
-When I see .map() I see a mechanism which builds a loop and then feeds elements into the loop.
+When I see .map() I see a mechanism which feeds elements into a loop.
 
 In this case each element is a string.
 
@@ -154,12 +153,11 @@ I assume that underscore is a variable which contains an input string.
 
 I assume that .split(",") will split a string into substrings at each comma.
 
-Then once all the elements are processed, .map() gives me a new RDD.
+Then once all the elements are processed, .map() finishes by giving me a new RDD.
 
 In this case I end up with an RDD of split up strings.
 
-I will try this in my bin/spark-shell
-
+I will try this in my bin/spark-shell:
 
 scala> 
 scala> 
@@ -170,6 +168,44 @@ res2: Array[Array[String]] = Array(Array(Michael, " 29"), Array(Andy, " 30"), Ar
 scala> 
 scala> 
 
+I see some subtle behavior here.
+
+My call to .map() transformed an array of strings into an array of arrays.
+
+I suspect that the newline characters in the people.txt file helped make this happen.
+
+This is convenient; I want each line in the text file to become an Array of strings nested 
+in a parent Array.
+
+
+Next I studied this expression:
+
+val people3 = sc.textFile("examples/src/main/resources/people.txt").map(_.split(",")).map(p => Person(p(0), p(1).trim.toInt))
+
+I visualize it as this:
+
+val people3 = array_of_arrays.map(anarray => Person(anarray(0), anarray(1).trim.toInt))
+
+The signature of .map() reminds me of how I understand .map() in Ruby.
+
+When I look at the above expression I can see that people3 will be an Array of Person objects.
+
+I saw this when I ran it:
+
+scala> 
+scala> val people3 = sc.textFile("examples/src/main/resources/people.txt").map(_.split(",")).map(p => Person(p(0), p(1).trim.toInt))
+people3: org.apache.spark.rdd.RDD[Person] = MappedRDD[12] at map at &lt;console>:21
+scala> 
+scala> 
+
+
+I used take() to visualize it:
+
+scala> 
+scala> people3.take(3)
+res3: Array[Person] = Array(Person(Michael,29), Person(Andy,30), Person(Justin,19))
+scala> 
+scala> 
 
 
 </code>
