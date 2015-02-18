@@ -207,5 +207,17 @@ res3: Array[Person] = Array(Person(Michael,29), Person(Andy,30), Person(Justin,1
 scala> 
 scala> 
 
+Next, I typed another line from the doc:
+
+scala> 
+scala> people.registerTempTable("people")
+scala> 
+
+It is obvious here that if I want to make calls to the SQL API I need to declare which
+tables the API will act on.
+
+The method call suggests that I can declare temporary tables.
+
+I do not know if Spark supports the notion of a permanent table.
 
 </code>
