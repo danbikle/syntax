@@ -42,13 +42,10 @@ So, I just used my mouse to copy/paste syntax into the bin/spark-shell prompt:
 %pre
   =render 'spark_schemardd2'
 
+The main idea behind SchemaRDD is a three step process:
+%ul
+  %li Create a SchemaRDD
+  %li registerTempTable("people")
+  %li val results = sqlContext.sql("SELECT name FROM people")
 
 %br/
-%br/
-%br/
-%br/
-%br/
-%br/
-%br/
-
-

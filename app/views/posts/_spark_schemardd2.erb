@@ -266,7 +266,7 @@ The doc describes a multi step process:
 0. Create RDD from text file
 1. Create a StructType object
 2. Create rowRDD from RDD
-3. Call applySchema
+3. Call applySchema to get SchemaRDD
 4. registerTempTable
 5. .sql()
 
@@ -313,8 +313,7 @@ scala>
 scala> 
 scala> 
 
-// Call applySchema
-
+// Call applySchema to get SchemaRDD
 
 scala> 
 scala> val sqlContext = new org.apache.spark.sql.SQLContext(sc)
@@ -365,8 +364,6 @@ scala>
 scala> results.take(3)
 res12: Array[org.apache.spark.sql.Row] = Array([Michael], [Andy], [Justin])
 scala> 
-
-
 </code>
 
 
