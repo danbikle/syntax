@@ -122,6 +122,18 @@ https://spark.apache.org/docs/1.2.1/api/scala/index.html#org.apache.spark.SparkC
 The above URL says,
 Read this text file and return it as an RDD of Strings.
 
+Since people is an RDD, I should be able to operate on people with take():
+
+scala> 
+scala> 
+scala> val people1 = sc.textFile("examples/src/main/resources/people.txt")
+people1: org.apache.spark.rdd.RDD[String] = examples/src/main/resources/people.txt MappedRDD[5] at textFile at &lt;console>:19
+scala> people1.take(3)
+res1: Array[String] = Array(Michael, 29, Andy, 30, Justin, 19)
+scala> 
+scala> 
+
+
 
 I translate expression below to English:
 
@@ -135,15 +147,29 @@ In this case each element is a string.
 
 Inside the loop each element gets chewed on and then spit out.
 
-In the case, the chewing equates to this expression: 
+In the case, the 'chewing' is this expression: 
 _.split(",")
 
 I assume that underscore is a variable which contains an input string.
 
 I assume that .split(",") will split a string into substrings at each comma.
 
-Then once all the elements are processed, I end up with a new RDD.
+Then once all the elements are processed, .map() gives me a new RDD.
 
 In this case I end up with an RDD of split up strings.
+
+I will try this in my bin/spark-shell
+
+
+scala> 
+scala> 
+scala> val people2 = sc.textFile("examples/src/main/resources/people.txt").map(_.split(","))
+people2: org.apache.spark.rdd.RDD[Array[String]] = MappedRDD[8] at map at &lt;console>:19
+scala> people2.take(3)
+res2: Array[Array[String]] = Array(Array(Michael, " 29"), Array(Andy, " 30"), Array(Justin, " 19"))
+scala> 
+scala> 
+
+
 
 </code>
