@@ -1,2 +1,25 @@
-<code class='bash'>
+<code class='bash'># .bashrc for ann
+
+export PS1="`id -un`@`hostname` \w $ "
+
+# If I have ~/.bash_aliases ]
+# I should dot it.
+if [ -f ~/.bash_aliases ]; then
+    .   ~/.bash_aliases
+fi
+
+# If I have some bin folders,
+# I should add them to my PATH env variable:
+
+if [ -e        ~/bin ]; then
+  export PATH="~/bin:$PATH"
+fi
+
+if [ -e        ${HOME}/anaconda/bin ]; then
+  export PATH="${HOME}/anaconda/bin:$PATH"
+fi
+
+if [ -e        ${HOME}/anaconda3/bin ]; then
+  export PATH="${HOME}/anaconda3/bin:$PATH"
+fi
 </code>
