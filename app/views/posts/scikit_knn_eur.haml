@@ -1,0 +1,204 @@
+.q1 Question:
+.q2 How to run scikit knn demo from forex611.com?
+.tags
+  %span.tagtag Tags:
+  .tag scikit
+  .tag scikit_learn
+  .tag knn
+  .tag forex611
+  .tag machine_learning
+  .tag meetup
+  .tag anaconda
+  .tag python
+  .tag localhost
+  .tag eur_usd
+  .tag useradd
+  .tag continuum
+  .tag download
+  .tag kneighbors
+  .tag ssh
+  .tag numpy
+  .tag matplotlib
+  .tag forex
+  .tag dtype
+  .tag csv
+  .tag strptime
+  .tag array
+  .tag zeros
+  .tag insample
+  .tag insample
+  .tag outofsample
+  .tag is_oos_gap
+
+%br/
+
+On 2015-02-20 I gave a presentation at the Silicon Valley Machine Learning Meetup.
+
+%br/
+%br/
+
+The presentation explained how to operate some of the Machine Learning software I wrote to 
+generate predictions served by:
+
+%br/
+%br/
+
+%a(href='http://www.forex611.com' target='x')
+  http://www.forex611.com
+
+
+%br/
+%br/
+
+The page you see here summarizes that presentation.
+
+%br/
+%br/
+
+I run this software on Ubuntu 14 and I suggest you get a copy of that running on your laptop.
+
+%br/
+%br/
+
+This software might run on a Mac.
+
+%br/
+%br/
+
+On Ubuntu I create an account called 'ann' like this:
+
+%pre
+  %code.bash
+    useradd -m -s /bin/bash ann
+    passwd ann
+
+Then I login to the ann account:
+
+%pre
+  %code.bash ssh -YA ann@localhost
+
+Next I visit:
+
+%br/
+%br/
+
+%a(href='http://continuum.io/downloads' target='x')
+  http://continuum.io/downloads
+
+%br/
+%br/
+
+I download this script: Anaconda-2.1.0-Linux-x86_64.sh
+
+%br/
+%br/
+
+Then I run the Anaconda script:
+
+%pre
+  %code.bash bash Anaconda-2.1.0-Linux-x86_64.sh
+
+I should see something like this:
+
+%pre
+  =render 'scikit_knn_eur1'
+
+%br/
+%br/
+
+Next, I visit this URL:
+
+%br/
+%br/
+
+%a(href='http://www.forex611.com/software#knnws1' target='x')
+  http://www.forex611.com/software#knnws1
+
+
+%br/
+%br/
+
+I copy/paste the python script into a file called knn4ws.py and then I inspect the file using cat:
+
+%pre
+  %code.bash cat ~ann/knn4ws.py
+
+%pre
+  =render 'scikit_knn_eur2'
+
+Next, I get the file full of eur_usd prices:
+
+%pre
+  %code.bash wget http://www.forex611.com/eur_usd_00.csv
+
+I verify its location:
+
+%pre
+  %code.bash head ~/ann/eur_usd_00.csv
+
+Now I can use Python to learn from those prices and then issue predictions:
+
+%pre
+  =render 'scikit_knn_eur3'
+
+%br/
+%br/
+
+Questions for the students?
+
+%br/
+%br/
+
+Describe the use-case(s) behind this script: who would want to run it and why?
+
+%br/
+%br/
+
+This script generated 32,727 predictions. What is an optimal way to visualize those predictions?
+
+%br/
+%br/
+
+This script has a triple nested for-loops. Why?
+
+%br/
+%br/
+
+What are the objects that we iterate over in the for-loops?
+
+%br/
+%br/
+
+What in the data is the Machine learning from?
+
+%br/
+%br/
+
+How do I calculate the accuracy of this script?
+
+%br/
+%br/
+
+How do I calculate the effectiveness of this script?
+
+%br/
+%br/
+
+How do I determine if more observations gives me better accuracy/effectiveness?
+
+%br/
+%br/
+
+This script is dealing with a subset of Forex data. What can I infer about the full set?
+
+%br/
+%br/
+
+How would I determine if the Machine Learning algorithm used here is the better than others?
+
+%br/
+%br/
+
+
+
+

@@ -1,0 +1,172 @@
+<code class='bash'># ~/knn4ws.py
+
+# This script should look at eur_usd_00.csv and issue predictions.
+
+# I should have Anaconda installed.
+
+# I get Anaconda here:
+# http://continuum.io/downloads
+# I want this from there:
+# Anaconda-2.1.0-Linux-x86_64.sh
+# Install is easy:
+# bash Anaconda-2.1.0-Linux-x86_64.sh
+
+# Ref:
+# http://www.forex611.com/software#knnws1
+# wget http://www.forex611.com/eur_usd_00.csv
+
+# Demo:
+# cd ~
+# ls -la eur_usd_00.csv
+# ls -la knn4ws.py
+# python knn4ws.py
+
+import pdb
+import datetime
+import numpy as np
+from sklearn.neighbors import KNeighborsClassifier
+import matplotlib
+# http://matplotlib.org/faq/howto_faq.html#generate-images-without-having-a-window-appear
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+pcount = 100
+pcount = 32727
+print('I should generate this many predictions:')
+print(pcount)
+
+# I need lagn()
+def lagn(myn,myl):
+  myfoot = [myl[0],] * myn
+  return((myfoot + myl)[0:len(myl)])
+
+# I need leadn()
+def leadn(myn,myl):
+  myhead = [myl[len(myl)-1],] * myn
+  return((myl + myhead)[myn:(len(myl)+myn)])
+
+# As I follow predictions I should collect my gains:
+my1g   = {}
+myprob = {}
+
+# I should predict these pairs:
+# for pair in ['aud_usd','eur_usd','gbp_usd','nzd_usd','usd_cad','usd_jpy']:
+for pair in ['eur_usd']:
+  # I should predict 1hr gain starting at these minutes past the hour:
+  #for minn in ['00','05','10','15','20','25','30','35','40','45','50','55']:
+  for minn in ['00']:
+    # I should read data from a file like this:
+    # ~/eur_usd_00.csv
+    csvfile = '/home/ann/eur_usd_00.csv'
+    mydtype = [('pair','S7'),('ydate','S19'),('cp','f8')]
+    fxrows  = np.loadtxt(csvfile, dtype=mydtype, delimiter=',')
+    print('We have this many observations:')
+    print(len(fxrows))
+    if pcount > len(fxrows):
+      print('You asked for too many predictions.')
+      print('We only have this many observations:')
+      print(len(fxrows))
+      print('prediction count + learning observations')
+      print('should be less than all observations.')
+      quit()
+    print('My 1st prediction should start here:')
+    print(fxrows[-pcount])
+    print('My last prediction should end here:')
+    print(fxrows[-1])
+    print('I am busy now, please wait...')
+    # I should get a column of datetimes from the CSV data:
+    mydt = [datetime.datetime.strptime(row[1], "%Y-%m-%d %H:%M:%S") for row in fxrows ]
+    # Later, I should use mydt to help me plot prices and predictions.
+    my1g[pair]   = {}
+    myprob[pair] = {}
+    cp     = [row[2] for row in fxrows]
+    cplead = np.array(leadn(1,cp))
+    cplag1 = np.array(lagn( 1,cp))
+    cplag2 = np.array(lagn( 2,cp))
+    cplag3 = np.array(lagn( 3,cp))
+    cplag4 = np.array(lagn( 4,cp))
+    cplag5 = np.array(lagn( 5,cp))
+    g1     = cp - cplag1
+    g2     = cp - cplag2
+    g3     = cp - cplag3
+    g4     = cp - cplag4
+    g5     = cp - cplag5
+    gg     = cplead - cp
+    allx = np.zeros( (len(g1), 5) )
+    allx[:,0] = g1
+    allx[:,1] = g2
+    allx[:,2] = g3
+    allx[:,3] = g4
+    allx[:,4] = g5
+    ally      = gg > 0
+    pend      = len(ally)
+    pstart    = pend - pcount
+    # I should ensure that is_oos_gap > cplead to avoid leaking oos-data into is-data:
+    is_oos_gap = 2
+    # for is_rowcount in [1000,1500,2000,2500,3000,3500,4000,4500,5000,5500,6000]:
+    for is_rowcount in [1000]:
+      if pcount + is_rowcount >= pend:
+        pstart = is_rowcount + 11
+        pcount = pend - pstart
+        print('You asked for too many predictions.')
+        print('I dont have enough observations to support that many.')
+        print('I will give you this many predictions:')
+        print(pcount)
+      # Initialize my1g, myg, myp:
+      my1g[pair][is_rowcount]   = [-1]  * len(ally)
+      myprob[pair][is_rowcount] = [-1]  * len(ally)
+      myg = my1g[pair][is_rowcount]
+      myp = myprob[pair][is_rowcount]
+      # I should use cp2 to store cumulative gain.
+      cp2 = [-1]  * len(ally)
+      cp2[pstart] = cp[pstart]
+      # Now I should be setup to generate pcount predictions:
+      for oos_start in range(pstart,pend):
+        # Count backwards from oos_start
+        is_start = oos_start - is_rowcount - is_oos_gap
+        is_end   = oos_start - is_oos_gap
+        myx1     = allx[is_start:is_end,:]
+        myy      = ally[is_start:is_end]
+        knn1 = KNeighborsClassifier(n_neighbors=len(myx1), weights='distance')
+        # I should learn from the past:
+        knn1.fit(myx1,myy)
+        # I should predict the future:
+        x_oos  = allx[oos_start,:]
+        upprob = knn1.predict_proba(x_oos)[0,1]
+        myp[oos_start] = upprob
+        # I should be bullish if upprob > 0.5 else I should be bearish.
+        # I should track cumulative gain as I respond to predictions:
+        myg[oos_start] = np.sign(upprob - 0.5) * gg[oos_start]
+        if (upprob >= 0.5):
+          myg[oos_start] = gg[oos_start]
+          if oos_start+1 &lt; pend:
+            cp2[oos_start+1] = cp2[oos_start] + gg[oos_start]
+        else:
+          myg[oos_start] = -gg[oos_start]
+          if oos_start+1 &lt; pend:
+            cp2[oos_start+1] = cp2[oos_start] - gg[oos_start]
+      print('I just finished.')
+      print('For each prediction, I learned from this many observations:')
+      print(str(is_rowcount))
+      print('Results of "Open-long and hold":')
+      print(np.sum(gg[pstart:pend]))
+      print('Results of: "Following the predictions":')
+      print(np.sum(myg[pstart:pend]))
+      print('I should show final positions:')
+      print('Open-long and hold:')
+      print(cp[pend-1])
+      print('Follow the predictions:')
+      print(cp2[pend-1])
+      # I should plot cp and cp2.
+      # cp  should be blue.  cp is open-long and hold.
+      # cp2 should be green. cp2 is follow predictions.
+      plt.plot(mydt[pstart:pend], cp[pstart:pend], 'b-', mydt[pstart:pend], cp2[pstart:pend], 'g-')
+      plt.savefig(pair+str(is_rowcount)+'_'+minn)
+      plt.close()
+      print('Look here: ')
+      print(pair+str(is_rowcount)+'_'+minn+'.png')
+      print('myp[pstart:pstart+4]')
+      print(myp[pstart:pstart+4])
+      #plt.show()
+# bye
+</code>

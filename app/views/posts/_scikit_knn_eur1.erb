@@ -1,0 +1,87 @@
+<code class='bash'>ann@feb ~ $ 
+ann@feb ~ $ 
+ann@feb ~ $ 
+bash Anaconda-2.1.0-Linux-x86_64.sh
+
+snip ...
+
+Do you approve the license terms? [yes|no]
+[no] >>> yes
+
+Anaconda will now be installed into this location:
+/home/ann/anaconda
+
+  - Press ENTER to confirm the location
+  - Press CTRL-C to abort the installation
+  - Or specify an different location below
+
+[/home/ann/anaconda] >>> 
+PREFIX=/home/ann/anaconda
+installing: python-2.7.8-1 ...
+installing: conda-3.7.0-py27_0 ...
+installing: conda-build-1.8.2-py27_0 ...
+
+snip...
+
+installing: zlib-1.2.7-0 ...
+installing: anaconda-2.1.0-np19py27_0 ...
+installing: _cache-0.0-x0 ...
+Python 2.7.8 :: Continuum Analytics, Inc.
+creating default environment...
+installation finished.
+Do you wish the installer to prepend the Anaconda install location
+to PATH in your /home/ann/.bashrc ? [yes|no]
+[no] >>> 
+
+You may wish to edit your .bashrc or prepend the Anaconda install location:
+
+$ export PATH=/home/ann/anaconda/bin:$PATH
+
+Thank you for installing Anaconda!
+ann@feb ~ $ bash
+ann@feb ~ $ which python
+/home/ann/anaconda/bin/python
+ann@feb ~ $ python
+Python 2.7.8 |Anaconda 2.1.0 (64-bit)| (default, Aug 21 2014, 18:22:21) 
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://binstar.org
+>>> 
+ann@feb ~ $ 
+ann@feb ~ $ 
+ann@feb ~ $ 
+
+
+ann@feb ~ $ 
+ann@feb ~ $ cd anaconda/bin
+ann@feb ~/anaconda/bin $ 
+ann@feb ~/anaconda/bin $ ls -la curl
+-rwxr-xr-x 2 ann ann 171632 Sep 11 19:22 curl
+ann@feb ~/anaconda/bin $ 
+ann@feb ~/anaconda/bin $ mv curl curl_ann
+ann@feb ~/anaconda/bin $ 
+ann@feb ~/anaconda/bin $ 
+
+<hr />
+
+recap:
+
+vi knn4ws.py
+copy paste
+
+wget http://www.forex611.com/eur_usd_00.csv
+
+Visit:    http://continuum.io/downloads
+
+Download: Anaconda-2.1.0-Linux-x86_64.sh
+
+bash Anaconda-2.1.0-Linux-x86_64.sh
+
+# Demo:
+# cd ~
+# ls -la eur_usd_00.csv
+# ls -la knn4ws.py
+# python knn4ws.py
+
+</code>
