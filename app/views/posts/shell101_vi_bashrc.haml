@@ -29,18 +29,12 @@ First I login as ann with a command like this:
 %pre
   %code.bash ssh ann@localhost
 
-%br/
-%br/
-
 Then I type these shell commands:
 
 %pre
   %code.bash
     mv .bashrc .bashrc.bak
     vi .bashrc
-
-%br/
-%br/
 
 Inside of vi I press esc which should put me in CM1.
 
@@ -56,6 +50,26 @@ Then I copy paste in this text:
 
 %pre
   =render 'shell101_vi_bashrc1'
+
+I press esc which should put me in CM1.
+
+%br/
+%br/
+
+I press ZZ which writes the file and then exits me from vi.
+
+%br/
+%br/
+
+Congratulations to me.  I just wrote a shell program!
+
+%br/
+%br/
+
+I check my work with this shell command:
+
+%pre
+  %code.bash cat .bashrc
 
 %br/
 %br/
