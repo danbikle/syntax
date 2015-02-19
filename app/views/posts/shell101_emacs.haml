@@ -3,23 +3,23 @@ You are here:
 %a(href='/posts/linux101_cclud') Linux101
 >
 %a(href='/posts/shell101') Shell 101
-> shell101_vi_bashrc
+> shell101_emacs
 %hr/
 %h1 Linux Shell 101
 
 .q1 Question:
-.q2 In Linux101 how to vi ~ann/.bashrc ?
+.q2 In Linux101 how to install and use Emacs ?
 .tags
   %span.tagtag Tags:
   %a.xtag(href='/tags/linux') linux
   .tag shell
   .tag bash
   .tag vi
-  .tag bashrc
+  .tag emacs
 
 %br/
 
-After I create the ann account and then learn vi, how do I vi ~ann/.bashrc ?
+After I create the ann account and then learn vi, how to install and use Emacs editor ?
 
 %br/
 %br/
@@ -27,49 +27,34 @@ After I create the ann account and then learn vi, how do I vi ~ann/.bashrc ?
 First I login as ann with a command like this:
 
 %pre
-  %code.bash ssh ann@localhost
+  %code.bash ssh -YA ann@localhost
 
 Then I type these shell commands:
 
 %pre
   %code.bash
-    mv .bashrc .bashrc.bak
-    vi .bashrc
+    sudo apt-get install emacs
+    emacs hello.txt
 
-Inside of vi I press esc which should put me in CM1.
-
-%br/
-%br/
-
-Then I press i which should put me in IM.
 
 %br/
 %br/
 
-Then I copy paste in this text:
-
-%pre
-  =render 'shell101_vi_bashrc1'
-
-I press esc which should put me in CM1.
 
 %br/
 %br/
 
-I press ZZ which writes the file and then exits me from vi.
 
 %br/
 %br/
 
-Congratulations to me.  I just wrote a shell program!
+%br/
+%br/
+
 
 %br/
 %br/
 
-I check my work with this shell command:
-
-%pre
-  %code.bash cat .bashrc
 
 %br/
 %br/
@@ -80,7 +65,7 @@ You are here:
 %a(href='/posts/linux101_cclud') Linux101
 >
 %a(href='/posts/shell101') Shell 101
-> shell101_vi_bashrc
+> shell101_emacs
 %hr/
 You can ask questions in Dan's Machine Learning Class Forum:
 %br/
