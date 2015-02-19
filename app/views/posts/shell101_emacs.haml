@@ -8,7 +8,7 @@ You are here:
 %h1 Linux Shell 101
 
 .q1 Question:
-.q2 In Linux101 how to install and use Emacs ?
+.q2 In Linux101 how to install and use Emacs?
 .tags
   %span.tagtag Tags:
   %a.xtag(href='/tags/linux') linux
@@ -28,6 +28,8 @@ First I login as ann with a command like this:
 
 %pre
   %code.bash ssh -YA ann@localhost
+
+Or I just login to the ann account at the desktop GUI.
 
 Then I type these shell commands:
 
@@ -68,7 +70,7 @@ In this case the file is hello.txt
 %br/
 %br/
 
-When I am done, I just use my mouse on the top-menu to save and exit.
+When I am done, I just use my mouse on the top-menu to save.
 
 %br/
 %br/
@@ -83,7 +85,7 @@ One thing I notice about people who use Emacs is they leave it open.
 %br/
 %br/
 
-Usually with other editors, I open, edit, save, and then close.
+Usually with vi and other editors, I open, edit, save, and then close.
 
 %br/
 %br/
@@ -93,7 +95,7 @@ With Emacs I open, edit, save, and leave it open.
 %br/
 %br/
 
-Emacs offers two features in addition to file-edit which encourage me to leave it open.
+Emacs offers three features in addition to file-edit which encourage me to leave it open.
 
 %br/
 %br/
@@ -125,7 +127,7 @@ When I move between window types it feels slow and mentally taxing.
 %br/
 
 Emacs offers another feature which speeds development.  I run Emacs in GUI mode on my laptop and
-use it to edit files on Linux running elsewhere.
+use it to edit files on Linux running on Amazon or other remote places.
 
 %br/
 %br/
@@ -135,14 +137,117 @@ This feature frees me from the chore of using vi on remote Linux instances.
 %br/
 %br/
 
-%br/
-%br/
+Usually after I have Emacs up for a week it will contain hundreds of open files, folders, shells, and connections.
 
 %br/
 %br/
 
+It is easy to bounce between any of them with a simple Emacs search mechanism.
+
 %br/
 %br/
+
+If I tried doing the same thing with desktop windows I'd end up with a giant mess.
+
+%br/
+%br/
+
+Sometimes I see a developer get lost and then distracted while searching for a window in a pile of 20 windows.
+
+%br/
+%br/
+
+When I see this I am always tempted to say, 'You need to learn Emacs.'
+
+%br/
+%br/
+
+The best way to learn Emacs is to start using it to write software.
+
+%br/
+%br/
+
+When I want to learn a new Emacs feature, I describe the feature with an English question and then ask Google.
+
+%br/
+%br/
+
+For example, 'How to send a command to Emacs?'
+
+%br/
+%br/
+
+Answer: esc-x
+
+%br/
+%br/
+
+If I know an Emacs command, do I need to type in the full name?
+
+%br/
+%br/
+
+Answer: No, just some of it and then press tab.
+
+%br/
+%br/
+
+How to start a Shell in Emacs?
+
+%br/
+%br/
+
+Answer: esc-x shell
+
+%br/
+%br/
+
+How to see a list of Emacs buffers?
+
+%br/
+%br/
+
+Answer: esc-x buffer-menu
+
+%br/
+%br/
+
+How to pick a buffer?
+
+%br/
+%br/
+
+Answer: Move cursor to it, press return.
+
+%br/
+%br/
+
+How to pick a file in a folder?
+
+%br/
+%br/
+
+Answer: Move cursor to it, press return.
+
+%br/
+%br/
+
+How to name a shell?
+
+%br/
+%br/
+
+Answer: esc-x rename-buffer
+
+%br/
+%br/
+
+Should I ignore most of the menu items?
+
+%br/
+%br/
+
+Answer: Yes!, Just use the obvious items like Save, Undo, Copy, Paste, and Search.
 
 %br/
 %hr/
