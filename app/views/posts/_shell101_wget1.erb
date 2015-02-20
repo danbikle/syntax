@@ -1,2 +1,35 @@
-<code class='bash'>
+<code class='bash'>ann@feb ~ $ 
+ann@feb ~ $ 
+ann@feb ~ $ cat wget_gspc.bash
+#!/bin/bash
+
+# ~ann/wget_gspc.bash
+
+# This script should wget a CSV file from Yahoo.
+
+# I should cd to the right folder:
+
+cd ~ann
+
+# If wget is not in my path, I might need to use apt-get to install wget.
+
+# Here is the syntax to install wget from the root account:
+# apt-get install wget
+
+# If wget is installed and if I can connect to Yahoo,
+# the syntax below should give me a new CSV file:
+
+export TKRH='%5EGSPC'
+export TKR='GSPC'
+rm -f ${TKR}.csv
+wget --output-document=${TKR}.csv  http://ichart.finance.yahoo.com/table.csv?s=${TKRH} 
+
+date
+ls -la ${TKR}.csv
+
+exit
+ann@feb ~ $ 
+ann@feb ~ $ 
+ann@feb ~ $ 
+ann@feb ~ $ 
 </code>
