@@ -1,0 +1,106 @@
+
+You are here:
+%a(href='/posts/linux101_cclud') Linux101
+>
+%a(href='/posts/shell101') Shell 101
+> shell101_vi_bash_aliases
+%hr/
+%h1 Linux Shell 101
+
+.q1 Question:
+.q2 In Shell101 why .bash_aliases ?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/shell') shell
+  %a.xtag(href='/tags/bash') bash
+  %a.xtag(href='/tags/vi') vi
+  .tag bashrc
+  %a.xtag(href='/tags/bash_aliases') bash_aliases
+
+%br/
+
+Earlier, in Shell101, we learned some vi commands while editing ~ann/.bashrc
+
+%br/
+%br/
+
+That exercise was our first demo of shell programming.
+
+%br/
+%br/
+
+Next, I write a file used by the Bash shell called ~ann/.bash_aliases
+
+%br/
+%br/
+
+I can see the above file when I do this:
+
+%pre
+  =render 'shell101_vi_bash_aliases1'
+
+The syntax around .bash_aliases is a good example of this English logic:
+
+%br/
+%br/
+
+If ~/.bash_aliases exists then
+
+%br/
+
+dot ~/.bash_aliases
+
+%br/
+%br/
+
+In Bash, what does it mean to 'dot' a file?
+
+%br/
+%br/
+
+Answer: When I 'dot' a file, I run it. 
+Also any values of env variables touched by the file are retained.
+
+%br/
+%br/
+
+If I run a file instead of dot-ing it, 
+will I retain values of env variables touched by the file?
+
+%br/
+%br/
+
+Answer: No!
+
+%br/
+
+So, if I need to use a script or file to change env variables,
+I need to 'dot' the script.
+
+%br/
+%br/
+
+%br/
+%br/
+
+
+%br/
+%br/
+
+
+
+
+%br/
+%hr/
+You are here:
+%a(href='/posts/linux101_cclud') Linux101
+>
+%a(href='/posts/shell101') Shell 101
+> shell101_vi_bash_aliases
+%hr/
+You can ask questions in Dan's Machine Learning Class Forum:
+%br/
+%a(href='https://groups.google.com/forum/#!forum/dan101' target='x')
+  https://groups.google.com/forum/#!forum/dan101
+%br/
