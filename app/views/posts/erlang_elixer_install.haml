@@ -1,0 +1,75 @@
+
+.q1 Question:
+.q2 On Ubuntu how to install Erlang and Elixir?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/wget') wget
+  .tag erlang
+  .tag elixir
+  .tag meetup
+  .tag otp
+  .tag erl
+  .tag erl_top
+  .tag configure
+  .tag prefix
+  .tag make
+  .tag release_tests
+  .tag test_server
+  .tag install
+  .tag bashrc
+  .tag elixir_lang
+  .tag github
+  .tag git
+  .tag clone
+  .tag clean
+  .tag simonstl
+  .tag introducing_elixir
+  .tag sccl
+  .tag sccl_org
+  .tag iex
+
+
+%br/
+
+I went to the Elixir/Erlang Meetup at Hacker Dojo on 2015-02-19.
+
+%br/
+%br/
+
+I web-searched for 'Install Erlang'.
+
+%br/
+%br/
+
+I typed some shell commands at my Ubuntu box:
+
+%pre
+  %code.bash
+    ssh -YA ann@localhost
+    wget http://www.erlang.org/download/otp_src_17.4.tar.gz
+    tar zxf otp_src_17.4.tar.gz
+    cd otp_src_17.4/
+    export ERL_TOP=`pwd`
+    \./configure --prefix=/home/ann/erl
+    make
+    make release_tests
+    cd release/tests/test_server
+    $ERL_TOP/bin/erl -s ts install -s ts smoke_test batch -s init stop
+
+I visited the html report:
+%br/
+%br/
+
+$ERL_TOP/release/tests/test_server/index.html
+
+%br/
+%br/
+
+
+%pre
+  =render 'erlang_elixer_install'
+
+%br/
+%br/
+

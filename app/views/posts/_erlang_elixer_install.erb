@@ -1,0 +1,55 @@
+<code class='bash'>
+
+I went to the Elixir/Erlang Meetup at Hacker Dojo on 2015-02-19.
+
+I started by installing Erlang:
+
+wget http://www.erlang.org/download/otp_src_17.4.tar.gz
+tar zxf otp_src_17.4.tar.gz
+
+cd otp_src_17.4/
+
+export ERL_TOP=`pwd`
+
+./configure --prefix=/home/dan/erl
+
+make
+
+make release_tests
+
+cd release/tests/test_server
+
+$ERL_TOP/bin/erl -s ts install -s ts smoke_test batch -s init stop
+
+visit $ERL_TOP/release/tests/test_server/index.html
+
+make install
+
+vi .bashrc
+bash
+
+which erl
+
+Next I installed Elixir.
+
+cd ~
+
+git clone git clone https://github.com/elixir-lang/elixir.git
+
+cd elixir 
+
+make clean test
+
+vi .bashrc
+
+bash
+
+iex
+
+1+2.2
+
+
+http://www.sccl.org/
+https://github.com/simonstl/introducing-elixir
+dan@tiny ~/ks $ 
+</code>
