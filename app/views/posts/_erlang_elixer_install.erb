@@ -1,5 +1,286 @@
 <code class='bash'>
 
+Here is a screendump:
+
+dan@feb ~ $ ssh -YA ann@localhost
+ann@localhost's password: 
+Welcome to Ubuntu 14.04.1 LTS (GNU/Linux 3.13.0-45-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+34 packages can be updated.
+15 updates are security updates.
+
+Last login: Thu Feb 19 10:53:31 2015 from localhost
+ann@feb ~ $ 
+ann@feb ~ $ 
+ann@feb ~ $ wget http://www.erlang.org/download/otp_src_17.4.tar.gz
+--2015-02-20 06:12:04--  http://www.erlang.org/download/otp_src_17.4.tar.gz
+Resolving www.erlang.org (www.erlang.org)... 192.121.151.107
+Connecting to www.erlang.org (www.erlang.org)|192.121.151.107|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 67171182 (64M) [text/plain]
+Saving to: ‘otp_src_17.4.tar.gz’
+
+100%[======================================>] 67,171,182   347KB/s   in 3m 11s 
+
+2015-02-20 06:15:16 (344 KB/s) - ‘otp_src_17.4.tar.gz’ saved [67171182/67171182]
+
+ann@feb ~ $ 
+ann@feb ~ $ 
+ann@feb ~ $ 
+
+ann@feb ~ $ 
+ann@feb ~ $ tar zxf otp_src_17.4.tar.gz
+ann@feb ~ $ 
+ann@feb ~ $ 
+ann@feb ~ $ cd otp_src_17.4/
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ export ERL_TOP=`pwd`
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+
+
+ann@feb ~ $ 
+ann@feb ~ $ 
+ann@feb ~ $ javac -version
+javac 1.7.0_80-ea
+ann@feb ~ $ 
+ann@feb ~ $ 
+
+
+ann@feb ~ $ 
+ann@feb ~ $ 
+ann@feb ~/otp_src_17.4 $ ./configure --prefix=/home/ann/erl
+Ignoring the --cache-file argument since it can cause the system to be erroneously configured
+Disabling caching
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for gcc... gcc
+
+snip ...
+
+86_64-unknown-linux-gnu/config.h
+config.status: creating include/internal/x86_64-unknown-linux-gnu/ethread_header_config.h
+config.status: creating include/x86_64-unknown-linux-gnu/erl_int_sizes_config.h
+config.status: creating include/x86_64-unknown-linux-gnu/erl_native_features_config.h
+*********************************************************************
+**********************  APPLICATIONS DISABLED  **********************
+*********************************************************************
+
+odbc           : ODBC library - link check failed
+
+*********************************************************************
+*********************************************************************
+**********************  APPLICATIONS INFORMATION  *******************
+*********************************************************************
+
+wx             : wxWidgets not found, wx will NOT be usable
+
+*********************************************************************
+*********************************************************************
+**********************  DOCUMENTATION INFORMATION  ******************
+*********************************************************************
+
+documentation  : 
+                 fop is missing.
+                 Using fakefop to generate placeholder PDF files.
+
+*********************************************************************
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+
+
+
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ make
+ MAKE	depend
+make[1]: Entering directory `/home/ann/otp_src_17.4/erts/emulator'
+ MAKE	generate
+make[2]: Entering directory `/home/ann/otp_src_17.4/erts/emulator'
+ GEN	x86_64-unknown-linux-gnu/gen_git_version.mk
+ M4	x86_64-unknown-linux-gnu/opt/plain/hipe_x86_asm.h
+ M4	x86_64-unknown-linux-gnu/opt/plain/hipe_amd64_asm.h
+
+snip ...
+
+
+make[2]: Leaving directory `/home/ann/otp_src_17.4/erts/start_scripts'
+make[2]: Entering directory `/home/ann/otp_src_17.4/erts/start_scripts'
+ GEN	/home/ann/otp_src_17.4/bin/start.script
+ GEN	/home/ann/otp_src_17.4/bin/start_sasl.script
+ GEN	/home/ann/otp_src_17.4/bin/start_clean.script
+ GEN	/home/ann/otp_src_17.4/bin/no_dot_erlang.script
+make[2]: Leaving directory `/home/ann/otp_src_17.4/erts/start_scripts'
+make[1]: Leaving directory `/home/ann/otp_src_17.4/erts'
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+
+
+
+
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ make release_tests
+if test -f lib/test_server/Makefile; then \
+	    (cd lib/test_server; make TESTROOT="/home/ann/otp_src_17.4/release/tests" \
+	    PATH=/home/ann/otp_src_17.4/bin/:/home/ann/otp_src_17.4/bootstrap/bin:"${PATH}" release_tests) || exit $?; \
+	fi
+make[1]: Entering directory `/home/ann/otp_src_17.4/lib/test_server'
+=== Entering application test_server
+
+snip ...
+
+chmod -R u+w "/home/ann/otp_src_17.4/release/tests/emulator_test"
+tar cf - *_SUITE_data | (cd "/home/ann/otp_src_17.4/release/tests/emulator_test"; tar xf -)
+make[2]: Leaving directory `/home/ann/otp_src_17.4/erts/emulator/test'
+make[1]: Leaving directory `/home/ann/otp_src_17.4/erts/emulator/test'
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+
+
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ cd release/tests/test_server
+ann@feb ~/otp_src_17.4/release/tests/test_server $ 
+ann@feb ~/otp_src_17.4/release/tests/test_server $ 
+ann@feb ~/otp_src_17.4/release/tests/test_server $ $ERL_TOP/bin/erl -s ts install -s ts smoke_test batch -s init stop
+Running /home/ann/otp_src_17.4/release/tests/test_server/configure --enable-shlib-thread-safety 
+Env: []
+Eshell V6.3  (abort with ^G)
+1> checking build system type... 1> x86_64-unknown-linux-gnu
+1> checking host system type... 1> x86_64-unknown-linux-gnu
+1> checking for gcc... 1> gcc
+
+snip ...
+
+1> Updating /home/ann/otp_src_17.4/release/tests/test_server/index.html... 1> done
+1> Updating /home/ann/otp_src_17.4/release/tests/test_server/all_runs.html... 1> done
+1> 
+ann@feb ~/otp_src_17.4/release/tests/test_server $ 
+ann@feb ~/otp_src_17.4/release/tests/test_server $ 
+ann@feb ~/otp_src_17.4/release/tests/test_server $ 
+
+
+
+
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ make install
+ MAKE	emulator
+make[1]: Entering directory `/home/ann/otp_src_17.4/erts'
+make[2]: Entering directory `/home/ann/otp_src_17.4/erts/emulator'
+ MAKE	opt
+
+snip...
+
+
+rm -f ct_run
+ln -s ../lib/erlang/bin/erl erl
+ln -s ../lib/erlang/bin/erlc erlc
+ln -s ../lib/erlang/bin/epmd epmd
+ln -s ../lib/erlang/bin/run_erl run_erl
+ln -s ../lib/erlang/bin/to_erl to_erl
+ln -s ../lib/erlang/bin/dialyzer dialyzer
+ln -s ../lib/erlang/bin/typer typer
+ln -s ../lib/erlang/bin/escript escript
+ln -s ../lib/erlang/bin/ct_run ct_run
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+
+
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $  vi ~ann/.bashrc
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ bash
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ which erl
+/home/ann/erl/bin/erl
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ erl
+Eshell V6.3  (abort with ^G)
+1>
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+ann@feb ~/otp_src_17.4 $ 
+
+
+
+ann@feb ~ $ 
+ann@feb ~ $ git clone https://github.com/elixir-lang/elixir.git
+Cloning into 'elixir'...
+remote: Counting objects: 74979, done.        
+remote: Compressing objects: 100% (32835/32835), done.        
+remote: Total 74979 (delta 40735), reused 74910 (delta 40682)        
+Receiving objects: 100% (74979/74979), 27.37 MiB | 2.39 MiB/s, done.
+Resolving deltas: 100% (40735/40735), done.
+Checking connectivity... done.
+ann@feb ~ $ 
+ann@feb ~ $ 
+ann@feb ~ $ cd elixir
+ann@feb ~/elixir $ 
+ann@feb ~/elixir $ 
+ann@feb ~/elixir $ 
+
+
+ann@feb ~/elixir $ 
+ann@feb ~/elixir $ 
+ann@feb ~/elixir $ make clean test
+cd lib/elixir && ../../rebar clean
+==> elixir (clean)
+rm -rf ebin
+rm -rf lib/*/ebin
+rm -rf lib/elixir/test/ebin
+
+snip ...
+
+
+Compiled lib/uri.ex
+Compiled lib/version.ex
+make[1]: Entering directory `/home/ann/elixir'
+==> unicode (compile)
+Embedding the Unicode database... (this may take a while)
+*** stack smashing detected ***: /home/ann/erl/lib/erlang/erts-6.3/bin/beam.smp terminated
+Aborted (core dumped)
+make[1]: *** [lib/elixir/ebin/Elixir.String.Unicode.beam] Error 134
+make[1]: Leaving directory `/home/ann/elixir'
+make: *** [lib/elixir/ebin/Elixir.Kernel.beam] Error 2
+ann@feb ~/elixir $ 
+ann@feb ~/elixir $ 
+ann@feb ~/elixir $ 
+
+
+Next, I tried to run iex and it blew up.
+
+
+ann@feb ~/elixir $ 
+ann@feb ~/elixir $ iex
+{error_logger,{{2015,2,20},{7,48,25}},crash_report,
+
+snip ...
+
+Crash dump was written to: erl_crash.dump
+Kernel pid terminated (application_controller) 
+ann@feb ~/elixir $ 
+ann@feb ~/elixir $ 
+ann@feb ~/elixir $ 
+
+
+
+<hr />
+
+
 I went to the Elixir/Erlang Meetup at Hacker Dojo on 2015-02-19.
 
 I started by installing Erlang:
@@ -34,7 +315,7 @@ Next I installed Elixir.
 
 cd ~
 
-git clone git clone https://github.com/elixir-lang/elixir.git
+git clone https://github.com/elixir-lang/elixir.git
 
 cd elixir 
 
