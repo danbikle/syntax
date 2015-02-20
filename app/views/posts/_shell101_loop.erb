@@ -3,4 +3,33 @@
 myl=3
 sed -n "${myl} p" /tmp/g.txt | tr -d '\n'
 
+cd ~
+head ~ann/GSPC2.csv > GSPC2.csv
+
+echo line of space > GSPC3.csv
+cat GSPC2.csv >>     GSPC3.csv
+
+In Bash how to loop through an integer sequence ?
+
+typeset -i i mylen
+let mylen=3 i=1
+for ((i=1;i<=mylen;++i)); do echo $i; done
+
+declare -i i mylen
+mylen=`cat GSPC2.csv|wc -l`
+i=1
+for ((i=1;i<=mylen;++i)); do echo $i; done
+
+
+declare -i i mylen
+mylen=`cat GSPC2.csv|wc -l`
+i=1
+
+for ((i=1;i<=mylen;++i))
+do
+echo $i
+sed -n "${i} p" GSPC2.csv
+done
+
+
 </code>
