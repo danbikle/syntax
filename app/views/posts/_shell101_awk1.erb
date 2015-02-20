@@ -1,0 +1,36 @@
+<code class='bash'>#!/bin/bash
+
+# ~ann/awk1_gspc.bash
+
+# This script should awk a CSV file from Yahoo.
+
+# I should cd to the right folder:
+
+cd ~ann
+
+export TKR='GSPC'
+
+# The vertical bar is a 'pipe'.
+# A pipe is similar to a caret.
+# A caret takes rows from the left and feeds them into a file.
+# I often see pipes in shell programs.
+# A pipe takes rows from the left and feeds them to the right.
+
+# To the right of the pipe I place a shell command which wants to eat rows.
+# Many shell commands want to eat rows from the left.
+# For example, sed likes to eat rows.
+# Usually these commands also want to feed rows to the right.
+
+# In the syntax below cat feeds rows to awk.
+# Then awk transforms each row into a short row.
+# Next awk wants to feed rows to something else.
+
+# But, I am happy with the rows so I ask awk to caret them into a file:
+cat ${TKR}.csv | awk -F, '{print $1 "," $5}' > ${TKR}2.csv
+# Now ${TKR}2.csv contains only columns 1 and 5 from ${TKR}.csv
+
+# Did awk do what I want?
+head ${TKR}.csv ${TKR}2.csv
+
+exit
+</code>
