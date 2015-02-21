@@ -1,0 +1,34 @@
+<code class='bash'>#!/bin/bash
+
+# ~ann/whileloop_gspc.bash
+
+# This script should work on a CSV file from Yahoo with a while-loop.
+
+# I should cd to the right folder:
+
+cd ~ann
+
+export TKR=GSPC
+
+# Assume that ${TKR}4.csv was just built.
+
+echo 'cdate, cp, lead_date, lead_price, delta, pctg' > ${TKR}5.csv
+
+echo I am busy, please wait ...
+declare -f price1 price2 delta pctg
+grep -v Date ${TKR}4.csv | while read line 
+do
+  price1=`echo $line|cut -d, -f2`
+  price2=`echo $line|cut -d, -f4`
+  delta=`echo $price2 - $price1 | bc`
+  pctg=`echo "scale=4; 100.0 * $delta / $price1" | bc`
+  echo $line , $delta , $pctg >> ${TKR}5.csv
+done
+
+echo I am done, I created ${TKR}5.csv from ${TKR}4.csv
+echo Here look:
+
+head ${TKR}5.csv
+
+exit
+</code>
