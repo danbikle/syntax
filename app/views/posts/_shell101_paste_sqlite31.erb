@@ -8,7 +8,6 @@
 # I should cd to the right folder:
 
 cd ~ann
-cd ~dan
 
 export TKR=GSPC
 
@@ -49,6 +48,12 @@ CREATE TABLE mytable (cdate DATE, cp FLOAT, pctg FLOAT, lead_date DATE, lead_pct
 .import sqlite3.csv mytable
 
 SELECT MIN(cdate), MAX(cdate), COUNT(cdate), MIN(pctg), MAX(pctg), AVG(pctg) FROM mytable;
+
+SELECT cdate FROM mytable WHERE pctg &lt; -20.0;
+SELECT cdate FROM mytable WHERE pctg > 11.0 ;
+SELECT AVG(lead_pctg) FROM mytable WHERE pctg &lt; -3.0;
+SELECT AVG(lead_pctg) FROM mytable WHERE pctg > 3.0;
+
 EOF
 
 exit
