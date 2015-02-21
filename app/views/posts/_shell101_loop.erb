@@ -22,7 +22,7 @@ i=1
 rm -f ${TKR}4.csv
 
 echo I am busy, please wait ...
-for ((i=1;i<=mylen;++i))
+for ((i=1;i&lt;=mylen;++i))
 do
   lhs=`sed -n "${i} p" ${TKR}2.csv`
   rhs=`sed -n "${i} p" ${TKR}3.csv`

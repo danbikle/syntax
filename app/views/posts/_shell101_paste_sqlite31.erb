@@ -40,7 +40,7 @@ grep -v cdate ${TKR}6.csv > sqlite3.csv
 
 echo 'MIN(cdate) MAX(cdate) COUNT(cdate) MIN(lag_pctg) MAX(lag_pctg) AVG(lag_pctg)'
 
-sqlite3<<EOF
+sqlite3&lt;&lt;EOF
 CREATE TABLE
 mytable (cdate DATE, cp FLOAT, lag_pctg FLOAT, lead_date DATE, lead_pctg FLOAT);
 
@@ -51,9 +51,9 @@ SELECT
 MIN(cdate), MAX(cdate), COUNT(cdate), MIN(lag_pctg), MAX(lag_pctg), AVG(lag_pctg)
 FROM mytable;
 
-SELECT cdate FROM mytable WHERE lag_pctg < -20.0;
+SELECT cdate FROM mytable WHERE lag_pctg &lt; -20.0;
 SELECT cdate FROM mytable WHERE lag_pctg > 11.0 ;
-SELECT AVG(lead_pctg) FROM mytable WHERE lag_pctg < -3.0;
+SELECT AVG(lead_pctg) FROM mytable WHERE lag_pctg &lt; -3.0;
 SELECT AVG(lead_pctg) FROM mytable WHERE lag_pctg >  3.0;
 
 EOF
