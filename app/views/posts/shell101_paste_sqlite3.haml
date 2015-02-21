@@ -52,6 +52,18 @@ When I run the above script I see this:
 %pre
   =render 'shell101_paste_sqlite32'
 
+The above sqlite3 query tells me interesting facts about my data:
+%ul
+  %li The observations start in 1950
+  %li They end in 2015
+  %li I have over 16,000 observations
+  %li The average 1-day-pct-gain is 0.034%
+  %li On 1987-10-16 the market fell 20.5%
+  %li On 2008-10-10 the market gained 11.6%
+  %li Market jumps of more than 3% are not bearish
+  %li My avg-gain is 12x higher after market falls of more than 3%
+
+The last fact indicates that a machine could learn from price deltas.
 %br/
 %br/
 
