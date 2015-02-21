@@ -1,0 +1,40 @@
+<code class='bash'>
+#!/bin/bash
+
+# ~ann/paste_sqlite3_gspc.bash
+
+# This script should work on a CSV file from Yahoo with paste and sqlite3.
+
+# I should cd to the right folder:
+
+cd ~ann
+cd ~dan
+
+export TKR=GSPC
+
+# Assume that ${TKR}5.csv was just built.
+# ${TKR}5.csv has these columns:
+# cdate, cp, lead_date, lead_price, delta, pctg
+# 1      2   3          4           5      6
+
+awk -F, '{print $1","$2","$3","$6","}' ${TKR}5.csv >  tmp1.csv
+echo  un, wanted, row, here, >> tmp1.csv
+# head tmp1.csv
+
+echo ,un, wanted, row, here  >  tmp2.csv
+awk -F, '{print $1","$2","$3","$6}'    ${TKR}5.csv >> tmp2.csv
+# head tmp2.csv
+
+paste tmp1.csv tmp2.csv | grep -v 'un, wanted' | grep -v '[[:blank:]]cdate' > tmp3.csv
+# head tmp3.csv
+
+echo 'cdate, cp, pctg, lead_date, lead_pctg' >  ${TKR}6.csv
+awk -F, '{print $1","$2","$4","$5","$8}' tmp3.csv >> ${TKR}6.csv
+
+echo I am done, I created ${TKR}6.csv from ${TKR}5.csv
+echo Here look:
+
+head ${TKR}6.csv
+
+exit
+</code>
