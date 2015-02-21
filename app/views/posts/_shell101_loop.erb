@@ -1,35 +1,38 @@
-<code class='bash'>
+<code class='bash'>#!/bin/bash
 
-myl=3
-sed -n "${myl} p" /tmp/g.txt | tr -d '\n'
+# ~ann/forloop_gspc.bash
 
-cd ~
-head ~ann/GSPC2.csv > GSPC2.csv
+# This script should work on a CSV file from Yahoo with a for-loop.
 
-echo line of space > GSPC3.csv
-cat GSPC2.csv >>     GSPC3.csv
+# I should cd to the right folder:
 
-In Bash how to loop through an integer sequence ?
+cd ~ann
 
-typeset -i i mylen
-let mylen=3 i=1
-for ((i=1;i<=mylen;++i)); do echo $i; done
+export TKR=GSPC
 
-declare -i i mylen
-mylen=`cat GSPC2.csv|wc -l`
-i=1
-for ((i=1;i<=mylen;++i)); do echo $i; done
+# Assume that ${TKR}2.csv was just built.
 
+echo blank,line >  ${TKR}3.csv
+cat ${TKR}2.csv >> ${TKR}3.csv
 
 declare -i i mylen
-mylen=`cat GSPC2.csv|wc -l`
+mylen=`cat ${TKR}2.csv|wc -l`
 i=1
 
-for ((i=1;i<=mylen;++i))
+rm -f ${TKR}4.csv
+
+echo I am busy, please wait ...
+for ((i=1;i&lt;=mylen;++i))
 do
-echo $i
-sed -n "${i} p" GSPC2.csv
+  lhs=`sed -n "${i} p" ${TKR}2.csv`
+  rhs=`sed -n "${i} p" ${TKR}3.csv`
+  echo $lhs , $rhs >> ${TKR}4.csv
 done
 
+echo I am done, I created ${TKR}4.csv from ${TKR}2.csv and ${TKR}3.csv.
+echo Here look:
 
+head ${TKR}4.csv
+
+exit
 </code>
