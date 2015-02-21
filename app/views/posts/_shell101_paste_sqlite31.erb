@@ -36,5 +36,20 @@ echo Here look:
 
 head ${TKR}6.csv
 
+echo Time for sqlite3!
+
+grep -v cdate ${TKR}6.csv > sqlite3.csv
+
+echo 'MIN(cdate) MAX(cdate) COUNT(cdate) MIN(pctg) MAX(pctg) AVG(pctg)'
+
+sqlite3&lt;&lt;EOF
+CREATE TABLE mytable (cdate DATE, cp FLOAT, pctg FLOAT, lead_date DATE, lead_pctg FLOAT);
+
+.separator ","
+.import sqlite3.csv mytable
+
+SELECT MIN(cdate), MAX(cdate), COUNT(cdate), MIN(pctg), MAX(pctg), AVG(pctg) FROM mytable;
+EOF
+
 exit
 </code>
