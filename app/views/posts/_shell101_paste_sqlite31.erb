@@ -1,5 +1,4 @@
-<code class='bash'>
-#!/bin/bash
+<code class='bash'>#!/bin/bash
 
 # ~ann/paste_sqlite3_gspc.bash
 
@@ -13,7 +12,7 @@ export TKR=GSPC
 
 # Assume that ${TKR}5.csv was just built.
 # ${TKR}5.csv has these columns:
-# cdate, cp, lead_date, lead_price, delta, pctg
+# cdate, cp, lag_date, lag_price, delta, pctg
 # 1      2   3          4           5      6
 
 awk -F, '{print $1","$2","$3","$6","}' ${TKR}5.csv >  tmp1.csv
@@ -27,7 +26,7 @@ awk -F, '{print $1","$2","$3","$6}'    ${TKR}5.csv >> tmp2.csv
 paste tmp1.csv tmp2.csv | grep -v 'un, wanted' | grep -v '[[:blank:]]cdate' > tmp3.csv
 # head tmp3.csv
 
-echo 'cdate, cp, pctg, lead_date, lead_pctg' >  ${TKR}6.csv
+echo 'cdate, cp, lag_pctg, lead_date, lead_pctg' >  ${TKR}6.csv
 awk -F, '{print $1","$2","$4","$5","$8}' tmp3.csv >> ${TKR}6.csv
 
 echo I am done, I created ${TKR}6.csv from ${TKR}5.csv
@@ -39,20 +38,23 @@ echo Time for sqlite3!
 
 grep -v cdate ${TKR}6.csv > sqlite3.csv
 
-echo 'MIN(cdate) MAX(cdate) COUNT(cdate) MIN(pctg) MAX(pctg) AVG(pctg)'
+echo 'MIN(cdate) MAX(cdate) COUNT(cdate) MIN(lag_pctg) MAX(lag_pctg) AVG(lag_pctg)'
 
-sqlite3&lt;&lt;EOF
-CREATE TABLE mytable (cdate DATE, cp FLOAT, pctg FLOAT, lead_date DATE, lead_pctg FLOAT);
+sqlite3<<EOF
+CREATE TABLE
+mytable (cdate DATE, cp FLOAT, lag_pctg FLOAT, lead_date DATE, lead_pctg FLOAT);
 
 .separator ","
 .import sqlite3.csv mytable
 
-SELECT MIN(cdate), MAX(cdate), COUNT(cdate), MIN(pctg), MAX(pctg), AVG(pctg) FROM mytable;
+SELECT
+MIN(cdate), MAX(cdate), COUNT(cdate), MIN(lag_pctg), MAX(lag_pctg), AVG(lag_pctg)
+FROM mytable;
 
-SELECT cdate FROM mytable WHERE pctg &lt; -20.0;
-SELECT cdate FROM mytable WHERE pctg > 11.0 ;
-SELECT AVG(lead_pctg) FROM mytable WHERE pctg &lt; -3.0;
-SELECT AVG(lead_pctg) FROM mytable WHERE pctg > 3.0;
+SELECT cdate FROM mytable WHERE lag_pctg < -20.0;
+SELECT cdate FROM mytable WHERE lag_pctg > 11.0 ;
+SELECT AVG(lead_pctg) FROM mytable WHERE lag_pctg < -3.0;
+SELECT AVG(lead_pctg) FROM mytable WHERE lag_pctg >  3.0;
 
 EOF
 

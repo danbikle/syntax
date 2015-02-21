@@ -10,18 +10,24 @@ cd ~ann
 
 export TKR=GSPC
 
-# Assume that ${TKR}4.csv was just built.
+# Assume that ${TKR}4.csv was just built and it has these columns
+# Date, Close, date_lag, close_lag
 
-echo 'cdate, cp, lead_date, lead_price, delta, pctg' > ${TKR}5.csv
+# I should build a CSV which has these columns:
+echo 'cdate, cp, lag_date, lag_price, delta, pctg' > ${TKR}5.csv
 
 echo I am busy, please wait ...
-declare -f price1 price2 delta pctg
+
+# In Bash undeclared variables are strings.
+# I should declare to Bash that I will use variables which hold float numbers:
+declare -f current_price previous_price delta pctg
+
 grep -v Date ${TKR}4.csv | while read line 
 do
-  price1=`echo $line|cut -d, -f2`
-  price2=`echo $line|cut -d, -f4`
-  delta=`echo $price2 - $price1 | bc`
-  pctg=`echo "scale=4; 100.0 * $delta / $price1" | bc`
+  current_price=`echo  $line|cut -d, -f2`
+  previous_price=`echo $line|cut -d, -f4`
+  delta=`echo $current_price - $previous_price | bc`
+  pctg=`echo "scale=4; 100.0 * $delta / $previous_price" | bc`
   echo $line , $delta , $pctg >> ${TKR}5.csv
 done
 
