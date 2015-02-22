@@ -39,7 +39,10 @@ parquetFile: org.apache.spark.sql.SchemaRDD =
 SchemaRDD[55] at RDD at SchemaRDD.scala:108
 == Query Plan ==
 == Physical Plan ==
-ParquetTableScan [name#8,age#9], (ParquetRelation people.parquet, Some(Configuration: core-default.xml, core-site.xml, mapred-default.xml, mapred-site.xml, hdfs-default.xml, hdfs-site.xml), org.apache.spark.sql.SQLContext@5422a156, []), []
+ParquetTableScan [name#8,age#9], (ParquetRelation people.parquet,
+Some(Configuration: core-default.xml, core-site.xml,
+mapred-default.xml, mapred-site.xml, hdfs-default.xml, hdfs-site.xml),
+org.apache.spark.sql.SQLContext@5422a156, []), []
 scala> 
 scala> 
 
