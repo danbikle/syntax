@@ -1,0 +1,98 @@
+.q1 Question:
+.q2 In H2O how to breakpoint droplet in IntelliJ?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/h2o') h2o
+  %a.xtag(href='/tags/sparkling') sparkling
+  %a.xtag(href='/tags/shell') shell
+  %a.xtag(href='/tags/apache') apache
+  %a.xtag(href='/tags/spark') spark
+  %a.xtag(href='/tags/scala') scala
+  %a.xtag(href='/tags/spark_home') spark_home
+  %a.xtag(href='/tags/master') master
+  %a.xtag(href='/tags/localhost') localhost
+  %a.xtag(href='/tags/h2ocontext') h2ocontext
+%br/
+
+After spending time with the H2O Sparkling Water examples, I gained enough skill to want to
+build a small application which connects Spark Scala code with H2O.
+
+%br/
+%br/
+
+H2O.ai offers a github-repository aimed directly at this use-case.
+
+%br/
+%br/
+
+I git-cloned the repo with these shell commands:
+
+%pre
+  =render 'h2o_droplet1'
+
+So that worked well.
+%br/
+%br/
+
+Next I decided to work with this directory because it fit my use-case exactly:
+
+%br/
+%br/
+
+%a(href='https://github.com/h2oai/h2o-droplets/tree/master/sparkling-water-droplet' target='x')
+  https://github.com/h2oai/h2o-droplets/tree/master/sparkling-water-droplet
+
+
+%br/
+%br/
+
+Then I ran a shell command recommended by README.md:
+
+%pre
+  =render 'h2o_droplet2'
+
+
+%br/
+%br/
+
+Next, I loaded a file named build.gradle into IntelliJ.
+
+%br/
+%br/
+
+After bit of poking at it I was able to get IntelliJ to create a new project.
+
+%br/
+%br/
+
+Next I loaded the Scala plugin into IntelliJ.
+
+%br/
+%br/
+
+The steps I followed for that task came from Google: 
+
+%br/
+%br/
+
+%a(href='http://www.google.com/search?q=how+to+load+Scala+plugin+into+IntelliJ' target='x')
+  http://www.google.com/search?q=how+to+load+Scala+plugin+into+IntelliJ
+
+
+%br/
+%br/
+
+To effectively write code in any language, I want the ability to step
+through the code after a breakpoint.
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
+
