@@ -1,0 +1,31 @@
+<code class='bash'>
+# ~ann/py101.py
+
+# Ref:
+# http://www.meetup.com/Palo-Alto-Data-Science-Association/events/220701369/
+# http://continuum.io/downloads#py34
+
+# Demo:
+# cd ~ann
+# vi py101.py
+# ~ann/anaconda3/bin/python py101.py
+
+import subprocess
+
+subprocess.call(['/bin/date'])
+
+tkrh='%5EGSPC'
+tkr ='GSPC'
+
+subprocess.call(["/bin/rm", "-f", tkr+'.csv'])
+
+# I should call call a shell command like this:
+# /usr/bin/wget --output-document=${TKR}.csv  http://ichart.finance.yahoo.com/table.csv?s=${TKRH}
+cmd  = "/usr/bin/wget"
+arg1 = "--output-document="+tkr+".csv"
+arg2 = "http://ichart.finance.yahoo.com/table.csv?s="+tkrh
+
+subprocess.call([cmd, arg1, arg2])
+subprocess.call(["/usr/bin/head", tkr+'.csv'])
+
+</code>
