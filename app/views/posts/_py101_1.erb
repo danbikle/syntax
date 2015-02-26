@@ -10,13 +10,19 @@
 # vi py101.py
 # ~ann/anaconda3/bin/python py101.py
 
+# q: what is import?
+# q: what is subprocess?
 import subprocess
 
+# q: what is subprocess.call?
+# q: what is []?
 subprocess.call(['/bin/date'])
 
+# q: what is tkrh?
 tkrh='%5EGSPC'
 tkr ='GSPC'
 
+# q: what is +?
 subprocess.call(["/bin/rm", "-f", tkr+'.csv'])
 
 # I should call call a shell command like this:
@@ -25,7 +31,9 @@ cmd  = "/usr/bin/wget"
 arg1 = "--output-document="+tkr+".csv"
 arg2 = "http://ichart.finance.yahoo.com/table.csv?s="+tkrh
 
+
 subprocess.call([cmd, arg1, arg2])
+# q: Is double-quote same as single-quote?
 subprocess.call(["/usr/bin/head", tkr+'.csv'])
 
 </code>
