@@ -90,9 +90,68 @@ through the code after a breakpoint.
 %br/
 %br/
 
+For this use-case I wanted to step through the syntax in this script:
+
 %br/
 %br/
 
+%a(href='https://github.com/h2oai/h2o-droplets/blob/master/sparkling-water-droplet/src/main/scala/water/droplets/SparklingWaterDroplet.scala' target='x')
+  https://github.com/h2oai/h2o-droplets/blob/master/sparkling-water-droplet/src/main/scala/water/droplets/SparklingWaterDroplet.scala
+
+
 %br/
+%br/
+
+I follow two steps to do this in IntelliJ:
+%ul
+  %li click on the LHS where I want the break-point.
+  %li click the green-run-debug control
+
+%br/
+%br/
+
+That is how it is supposed to work.
+
+%br/
+%br/
+
+Fortunately I knew that was how it was supposed to work.
+
+%br/
+%br/
+
+To get it to actually work, I spent an hour trying a variety of experiments and tinkerings.
+
+%br/
+%br/
+
+If you are new to IntelliJ and you want to use it to step through SparklingWater code,
+be prepared to get confused by thoroughly buggy behavior.
+
+%br/
+%br/
+
+On my laptop, I can now use IntelliJ to walk through H2O-Spark-Scala scripts using the two step procedure described above.
+
+%br/
+%br/
+
+If you have problems getting it to work, I suggest you tinker with it in a variety of ways like reinstalling it and trying different copies of the H2O repo.
+
+%br/
+%br/
+
+Also IntelliJ often wants to wander into an unusable state where gets really busy reading thousands of files in the file system.
+
+%br/
+%br/
+
+If you see this behavior just recognize that you have 40 minutes to run errands while IntelliJ takes over your laptop. 
+
+%br/
+%br/
+
+If you are diligent and patient, it is possible to get IntelliJ into a state where it can step through a 20 line Scala script.
+
 %br/
 
