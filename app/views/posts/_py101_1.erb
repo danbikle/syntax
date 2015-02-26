@@ -158,3 +158,108 @@ print(head2)
 
 
 </code>
+
+<code class='bash'># ~ann/py101.py
+
+# Ref:
+# http://www.meetup.com/Palo-Alto-Data-Science-Association/events/220701369/
+# http://continuum.io/downloads#py34
+
+# Demo:
+# cd ~ann
+# vi py101.py
+# ~ann/anaconda3/bin/python py101.py
+
+# q: what is import?
+# q: what is subprocess?
+import subprocess
+
+# q: what is subprocess.call?
+# q: what is []?
+subprocess.call(['/bin/date'])
+
+# q: what is tkrh?
+tkrh='%5EGSPC'
+tkr ='GSPC'
+
+# q: what is +?
+subprocess.call(["/bin/rm", "-f", tkr+'.csv'])
+
+# I should call call a shell command like this:
+# /usr/bin/wget --output-document=${TKR}.csv  http://ichart.finance.yahoo.com/table.csv?s=${TKRH}
+cmd  = "/usr/bin/wget"
+arg1 = "--output-document="+tkr+".csv"
+arg2 = "http://ichart.finance.yahoo.com/table.csv?s="+tkrh
+
+
+subprocess.call([cmd, arg1, arg2])
+# q: Is double-quote same as single-quote?
+subprocess.call(["/usr/bin/head", tkr+'.csv'])
+
+
+# q: How does 'as' change the action of import?
+import pandas as pd
+
+# q: What does read_csv() do?
+df1 = pd.read_csv(tkr+'.csv')
+
+head1 = df1.head()
+
+# q: what is print()?
+print(head1)
+
+# q: Shell has tail, Pandas have tail?
+tail1 = df1.tail()
+print(tail1)
+
+# q: How to create DataFrame2 from DataFrame1?
+df2 = df1[['Date','Close']]
+
+# q: How to change name of column in DataFrame?
+df2.columns = ['cdate','cp']
+
+head2 = df2.head()
+print(head2)
+
+# q: In Python what is a List?
+# q: In Python what is a Comprehension?
+# q: How I compare Python-Comprehension to Ruby .map()?
+# Ruby demo:
+#   myruby_array = [1,2,3]
+#   array2 = myruby_array.map{|elm| elm * 2}
+
+
+mylist = [1,2,3,4,5]
+list2  = [elm * 2 for elm in mylist]
+
+# q: In Python what is pdb?
+import pdb
+
+# q: In Python what is numpy?
+import numpy as np
+
+pdb.set_trace()
+
+# q: In Pandas what does .values do?
+myarray = df2[['cp']].values
+
+# q: In Python what is an index?
+myarray[0]
+# q: In Python what does colon do in index?
+myarray[0:3]
+mylist = [1,2,3,4,5]
+mylist[0:3]
+
+# q: How I select members 1,3,4 from Python List?
+mylist   = [1,2,3,4,5]
+list134  = [mylist[1], mylist[3], mylist[4] ]
+# Or
+list134  = [mylist[idx] for idx in [1,3,4]]
+
+
+
+# q: In Python, Pandas how to create List from DataFrame Column?
+mylist  = [acp[0] for acp in myarray]
+print(mylist[0:5])
+
+</code>
