@@ -981,3 +981,47 @@ lag_pctg_2day      = 100.0 * (cp_col - cplag2_col) / cplag2_col
 lag_pctg_2day_list = [alag_pctg_2day[0] for alag_pctg_2day in lag_pctg_2day]
 df2['lag_pctg_2day']    = lag_pctg_2day_list
 </code>
+
+
+<code class='bash'># ~ann/py102.py
+
+# Ref:
+# http://www.meetup.com/Palo-Alto-Data-Science-Association/events/220701369/
+# http://continuum.io/downloads#py34
+
+# Demo:
+# cd ~ann
+# vi py102.py
+# ~ann/anaconda3/bin/python py102.py
+
+# Your homework is to type the questions into Google and study the answers.
+
+# This script should work with a CSV file created by py101.py
+
+# q: Where do I find good demos of Pandas and NumPy?
+import pandas as pd
+import numpy  as np
+
+# q: In Python what is pdb?
+import pdb
+
+# q: In Python what commands does pdb offer me in its UI?
+pdb.set_trace()
+
+# q: In Python how to read CSV into Pandas DataFrame?
+df2 = pd.read_csv('df2.csv')
+
+
+# q: In Python how to copy Pandas Column into a List?
+lag_pctg      = [elm[0] for elm in df2[['lag_pctg']].values     ]
+lag_pctg_2day = [elm[0] for elm in df2[['lag_pctg_2day']].values]
+lead_pctg     = [elm[0] for elm in df2[['lead_pctg']].values   ]
+
+# q: In Python how to create empty NumPy array?
+number_of_rows    = len(lag_pctg)
+number_of_columns = 2
+xvalues = np.zeros((number_of_rows, number_of_columns))
+# q: In Python how to create fill NumPy array column with a List?
+xvalues[:,0] = lag_pctg
+xvalues[:,1] = lag_pctg_2day
+</code>
