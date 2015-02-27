@@ -146,7 +146,7 @@ lag_pctg = 100.0 * (cp_col - cplag_col) / cplag_col
 # q: How to add lag_pctg to df2 as a column?
 lag_pctg_list = [alag_pctg[0] for alag_pctg in lag_pctg]
 
-pdb.set_trace()
+# pdb.set_trace()
 df2['lag_pctg'] = lag_pctg_list
 
 # q: How to create df2['lead_pctg'] from df2['lag_pctg']?
