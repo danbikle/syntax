@@ -1,0 +1,45 @@
+.q1 Question:
+.q2 In H2O how to convert Spark RDD to DataFrame?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/h2o') h2o
+  %a.xtag(href='/tags/sparkling') sparkling
+  %a.xtag(href='/tags/apache') apache
+  %a.xtag(href='/tags/spark') spark
+  %a.xtag(href='/tags/scala') scala
+  %a.xtag(href='/tags/bikesdf') bikesdf
+  %a.xtag(href='/tags/github') github
+  %a.xtag(href='/tags/citibike') citibike
+  %a.xtag(href='/tags/sc') sc
+  %a.xtag(href='/tags/dataframe') dataframe
+  %a.xtag(href='/tags/schemardd') schemardd
+  %a.xtag(href='/tags/rdd') rdd
+  %a.xtag(href='/tags/transform') transform
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/bikesrdd') bikesrdd
+  %a.xtag(href='/tags/bikesperdayrdd') bikesperdayrdd
+
+%br/
+
+I am very happy with how easy it is to copy data between Spark RDD objects and H2O DataFrames.
+
+%br/
+%br/
+
+I need only one line of syntax to copy a Spark RDD to a DataFrame:
+
+%pre
+  %code.scala val bikesPerDayDF:DataFrame = bikesPerDayRdd
+
+The above code can be found at the URL list below:
+
+%br/
+%br/
+
+%a(href='https://github.com/h2oai/sparkling-water/blob/master/examples/scripts/Meetup20150226.script.scala' target='x')
+  https://github.com/h2oai/sparkling-water/blob/master/examples/scripts/Meetup20150226.script.scala
+
+
+%br/
+
+
