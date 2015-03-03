@@ -1,0 +1,42 @@
+.q1 Question:
+.q2 In Python scikit-learn KNN how to understand knn.predict_proba(x_oos)?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/python101') python101
+  %a.xtag(href='/tags/python102') python102
+  %a.xtag(href='/tags/python') python
+  %a.xtag(href='/tags/import') import
+  %a.xtag(href='/tags/pandas') pandas
+  %a.xtag(href='/tags/numpy') numpy
+  %a.xtag(href='/tags/read_csv') read_csv
+  %a.xtag(href='/tags/csv') csv
+  %a.xtag(href='/tags/array') array
+  %a.xtag(href='/tags/column') column
+  .tag knn
+  .tag scikit
+  .tag scikit_learn
+  .tag sklearn
+  .tag iris
+  .tag predict_proba
+  .tag x_oos
+  .tag fit
+  .tag class_probabilities
+  .tag xvalues
+  .tag yclasses
+  .tag np_array
+
+
+%br/
+
+In Dan's Machine Learning class, how to understand this Python call:
+
+%pre
+  %code.python upprob = knn.predict_proba(x_oos)[0,1]
+
+The answer is that KNN is designed to predict multiple classes.
+So, its predictions need to be in the form of a collection rather than just one number:
+
+%pre
+  =render 'python_sklearn_knn_iris'
+
+%br/

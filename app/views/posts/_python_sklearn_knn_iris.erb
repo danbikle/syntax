@@ -1,0 +1,88 @@
+<code class='python'># ~ann/knn_iris.py
+
+# This script should help me understand this call:
+# upprob = knn.predict_proba(x_oos)[0,1]
+
+# Demo:
+# cd ~ann
+# vi ~ann/knn_iris.py
+# ~ann/anaconda3/bin/python knn_iris.py
+
+import subprocess
+subprocess.call(["/bin/rm", "-f", 'iris.csv'])
+cmd  = "/usr/bin/wget"
+arg1 = "--output-document=iris.csv"
+arg2 = "http://www.syntax.us/iris.csv"
+subprocess.call([cmd, arg1, arg2])
+subprocess.call(["/usr/bin/head", 'iris.csv'])
+
+import pandas as pd
+import numpy  as np
+import pdb
+
+df = pd.read_csv('iris.csv')
+print(df.head())
+
+# In Pandas how to convert DataFrame to NumPy Array?
+myarray = df[['sepal_len','sepal_wid','petal_len','petal_wid']].values
+print(myarray)
+
+# Darn I have 1 row of bad data:
+print(myarray[-1])
+xvalues = myarray[0:-1,:]
+
+# I should only have good data now:
+print(xvalues)
+
+classarray = df[['class']].values
+print(classarray)
+
+# Darn I have 1 row of bad data:
+print(classarray[-1])
+yclasses = classarray[0:-1]
+
+# I should only have good data now:
+print(yclasses)
+
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors=99, weights='distance')
+
+# knn.fit(xvalues, yclasses)
+knn.fit(xvalues, np.ravel(yclasses))
+
+x_oos = np.array([5.1,3.5,1.4,0.2])
+
+class_probabilities = knn.predict_proba(x_oos)
+
+print(class_probabilities)
+
+# I should see three probabilities like this:
+# [[  1.00000000e+00   4.18202782e-38   3.04464021e-39]]
+
+# One of them will be near 1.0
+# KNN is predicting that x_oos is probably in the corresponding class.
+# Also,
+# KNN is predicting that x_oos has low probability of being in the other 2 classes.
+
+# So,
+# knn.predict_proba(x_oos)
+# Is designed to deal with multi-class predictions.
+
+# In py102.py,
+# I only have 2 classes: False and True.
+
+# So, knn.predict_proba(x_oos) will return 2 probabilities.
+
+# The result should look like this:
+
+# [[0.48, 0.52]]
+
+# I only need the probability that x_oos is True.
+
+# So to get that I first need to get the 0th element from the result which is this:
+# [0.48, 0.52]
+# Then, I need to the the last element from that List which is this:
+# [0.48, 0.52][1] == 0.52
+
+# done
+</code>
