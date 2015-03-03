@@ -1,0 +1,22 @@
+<code class='bash'>import org.apache.spark.h2o._
+import org.apache.spark.examples.h2o._
+import org.apache.spark.examples.h2o.DemoUtils._
+import org.apache.spark.sql.{SQLContext, SchemaRDD}
+import water.fvec._
+
+//
+// Transform DataFrame into SchemaRDD
+//
+val bikesRdd = asSchemaRDD(bikesDF)
+
+// Register table and SQL table
+sqlContext.registerRDDAsTable(bikesRdd, "bikesRdd")
+
+//
+// Do grouping with help of Spark SQL
+//
+val bikesPerDayRdd = sql(
+  """SELECT Days, start_station_id, count(*) bikes
+    |FROM bikesRdd
+    |GROUP BY Days, start_station_id """.stripMargin)
+</code>

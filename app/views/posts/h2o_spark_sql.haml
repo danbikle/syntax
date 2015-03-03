@@ -1,0 +1,117 @@
+.q1 Question:
+.q2 In Spark how to query my data with SQL?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/h2o') h2o
+  %a.xtag(href='/tags/0xdata') 0xdata
+  %a.xtag(href='/tags/sparkling') sparkling
+  %a.xtag(href='/tags/apache') apache
+  %a.xtag(href='/tags/spark') spark
+  %a.xtag(href='/tags/scala') scala
+  %a.xtag(href='/tags/bikesdf') bikesdf
+  %a.xtag(href='/tags/github') github
+  %a.xtag(href='/tags/droplet') droplet
+  %a.xtag(href='/tags/citibike') citibike
+  %a.xtag(href='/tags/update') update
+  %a.xtag(href='/tags/replace') replace
+  %a.xtag(href='/tags/sc') sc
+  %a.xtag(href='/tags/map') map
+  %a.xtag(href='/tags/dataframe') dataframe
+  %a.xtag(href='/tags/names') names
+  %a.xtag(href='/tags/schemardd') schemardd
+  %a.xtag(href='/tags/asschemardd') asschemardd
+  %a.xtag(href='/tags/rdd') rdd
+  %a.xtag(href='/tags/transform') transform
+  %a.xtag(href='/tags/epoch') epoch
+  %a.xtag(href='/tags/milliseconds') milliseconds
+  %a.xtag(href='/tags/unixtime') unixtime
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/bikesrdd') bikesrdd
+  %a.xtag(href='/tags/colnames') colnames
+
+%br/
+
+I first encountered this question while studying the Spark documentation:
+
+%br/
+%br/
+
+https://spark.apache.org/docs/latest/sql-programming-guide.html#inferring-the-schema-using-reflection
+
+%br/
+%br/
+
+The above doc suggests I should do the following:
+
+%ul
+  %li Create a SQLcontext
+  %li Use a case class to define a schema
+  %li Create a SchemaRDD from some data constrained by the schema
+  %li Use the SchemaRDD to register a TempTable
+  %li Use SQL to SELECT rows from TempTable
+  %li Collect the rows in a second SchemaRDD
+  %li Visualize the data in the second SchemaRDD
+
+%br/
+%br/
+
+Steps two and three might be a bit tedious depending on the complexity
+of the schema and the relationship(s) between the schema and the 
+underlying data.
+
+%br/
+%br/
+
+The last four steps seem straightforward.
+
+%br/
+%br/
+
+H2O offers an alternate set of steps:
+
+%ul
+  %li Create a SQLcontext
+  %li Create a DataFrame
+  %li Create a SchemaRDD from DataFrame
+  %li Use the SchemaRDD to register a TempTable
+  %li Use SQL to SELECT rows from TempTable
+  %li Collect the rows in a second SchemaRDD
+  %li Visualize the data in the second SchemaRDD
+
+%br/
+%br/
+
+I like the "H2O way" because in step two,
+I can easily create a DataFrame from a CSV.
+
+%br/
+%br/
+
+Then at step three I only need to write one short line of syntax.
+
+%br/
+%br/
+
+It feels much less complicated than the method described in the Spark
+documentation.
+
+%br/
+%br/
+
+Here is some syntax:
+
+%pre
+  =render 'h2o_spark_sql'
+
+The above syntax can be found in the URL below:
+
+%br/
+%br/
+
+%a(href='https://github.com/h2oai/sparkling-water/blob/master/examples/scripts/Meetup20150226.script.scala' target='x')
+  https://github.com/h2oai/sparkling-water/blob/master/examples/scripts/Meetup20150226.script.scala
+
+
+%br/
+
+
