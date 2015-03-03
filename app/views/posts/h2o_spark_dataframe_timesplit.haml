@@ -36,8 +36,228 @@ I bumped into TimeSplit here:
   https://github.com/h2oai/sparkling-water/blob/master/examples/scripts/Meetup20150226.script.scala
 
 
+%br/
+%br/
+
+The API call looks like this:
+
+%pre
+  %code.scala
+    val startTimeF = bikesDF('starttime)
+    bikesDF.add(new TimeSplit().doIt(startTimeF))
+
+
+
 %pre
   =render 'h2o_spark_dataframe_timesplit1'
+
+The use-case concerns a column of continuous data named starttime
+which resides in a DataFrame called bikesDF.
+
+%br/
+%br/
+
+This data is in the form of milliseconds since 1970-01-01 AKA 'The Epoch'.
+
+%br/
+%br/
+
+The use-case implies that I want days since the Epoch.
+
+%br/
+%br/
+
+So, this boils down to syntax which does a simple conversion of all values
+in the starttime column  to another column.
+
+%br/
+%br/
+
+I notice that the API-call does not allow me to specify the name of
+the new column.
+
+%br/
+%br/
+
+What is the name of the new column?
+
+%br/
+%br/
+
+To find that name I could run the API-call and then inspect the bikesDF DataFrame.
+
+%br/
+%br/
+
+Or I study the syntax which supports the API call.
+
+%br/
+%br/
+
+I found that syntax near the bottom of the page listed below:
+
+%br/
+%br/
+
+%a(href='https://github.com/h2oai/sparkling-water/blob/master/examples/src/main/scala/org/apache/spark/examples/h2o/CitiBikeSharingDemo.scala' target='x')
+  https://github.com/h2oai/sparkling-water/blob/master/examples/src/main/scala/org/apache/spark/examples/h2o/CitiBikeSharingDemo.scala
+
+
+%br/
+%br/
+
+Currently that syntax looks like this:
+
+%pre
+  =render 'h2o_spark_dataframe_timesplit1'
+
+Currently I do not know Scala well enough to have a deep understanding of the
+above syntax.
+
+%br/
+%br/
+
+It is obvious the syntax creates a class with two methods inside.
+
+%br/
+%br/
+
+The class is a subclass of MRTask.
+
+%br/
+%br/
+
+I do not know why the author placed [TimeSplit] to the right of MRTask.
+
+%br/
+%br/
+
+I can see that .doIt() takes an argument of type DataFrame.
+Also I see that in the API call an example input of startTimeF.
+
+%br/
+%br/
+
+When I first saw how startTimeF was created, I was not sure what
+kind of object it was.  Now I know it is a DataFrame.
+
+%br/
+%br/
+
+Also it teaches me how to create a DataFrame from DataFrame-column-slice.
+
+%br/
+%br/
+
+I should use syntax like this:
+
+%pre
+  %code.scala val startTimeF = bikesDF('starttime)
+
+Anyway, when I look at the next line in doIt(), I see that that doIt()
+just calls DataFrame() which calls doAll() which calls
+doAll().outputFrame().
+
+%br/
+%br/
+
+Back to my question, What is the name of the new column?
+
+%br/
+%br/
+
+The arguments to outputFrame() suggest to me that the name of the new 
+column I am curious about is: "Days".
+
+%br/
+%br/
+
+Now back to the original question, 
+In H2O Sparkling-Water how does TimeSplit work?
+
+%br/
+%br/
+
+I see now that TimeSplit works by me creating an object
+using syntax like this: 
+
+%pre
+  %code.scala new TimeSplit()
+
+Then I can call a method like this:
+
+%pre
+  %code.scala ts_object.doIt(startTimeF)
+
+
+Control then passes to syntax inside .doIt().
+
+%br/
+%br/
+
+Inside that method is a call to doAll().
+
+%br/
+%br/
+
+The name doAll() suggest to me that it does something to all the objects
+which make up the DataFrame.
+
+%br/
+%br/
+
+I suspect that doAll() implicitly calls the second method in the class.
+
+%br/
+%br/
+
+That second method is map().
+
+%br/
+%br/
+
+I do not see that method called anywhere but I think it is being used
+by doAll(), why else would that method reside there?
+
+%br/
+%br/
+
+Another big clue is the syntax inside map().
+
+%br/
+%br/
+
+It is obviously converting milliseconds to days which is the
+intent behind the API call according to the comments.
+
+%br/
+%br/
+
+So, TimeSplit works by coordinating two methods.
+
+%br/
+%br/
+
+The first method declares that it wants a DataFrame and the output is
+also a DataFrame.  It defines the name of the column in the output.
+
+%br/
+%br/
+
+Also the first method indirectly calls a second method which is an
+overridden method from MRTask-class called .map() using a call named doAll().
+
+%br/
+%br/
+
+Inside .map(), I iterate through all the millisecond-values and convert them
+to days.
+
+%br/
+%br/
+
+Once that is done, the day-collection is passed to doIt() which passes
+me a DataFrame full of day-values. 
 
 
 %br/
