@@ -13,10 +13,8 @@
   %a.xtag(href='/tags/dkv') dkv
   %a.xtag(href='/tags/bikesdf') bikesdf
   %a.xtag(href='/tags/github') github
-  %a.xtag(href='/tags/droplet') droplet
   %a.xtag(href='/tags/citibike') citibike
   %a.xtag(href='/tags/update') update
-  %a.xtag(href='/tags/replace') replace
   %a.xtag(href='/tags/sc') sc
   %a.xtag(href='/tags/get') get
   %a.xtag(href='/tags/starttime') starttime
@@ -26,6 +24,20 @@
   %a.xtag(href='/tags/dataframe') dataframe
   %a.xtag(href='/tags/names') names
   %a.xtag(href='/tags/colnames') colnames
+  .tag month
+  .tag getmonthofyear
+  .tag getdayofweek
+  .tag msec
+  .tag addnum
+  .tag DayOfWeek
+  .tag doit
+  .tag timetransform
+  .tag timesplit
+  .tag subclass
+  .tag override
+  .tag MutableDateTime
+  .tag mrtask
+
 
 %br/
 
@@ -47,6 +59,93 @@ The API call looks like this:
   %code.scala
     val daysVec = bikesPerDayDF('Days)
     val finalBikeDF = bikesPerDayDF.add(new TimeTransform().doIt(daysVec))
+
+I can see that TimeTransform() is being used to generate data for a
+new DataFrame column.
+
+%br/
+%br/
+
+The call to TimeTransform() creates an object which then allows me to call
+an instance method named doIt() which accepts a column named Days from 
+bikesPerDayDF DataFrame.
+
+%br/
+%br/
+
+I found the syntax for TimeTransform() at the URL listed below (near the bottom):
+
+%br/
+%br/
+
+%a(href='https://github.com/h2oai/sparkling-water/blob/master/examples/src/main/scala/org/apache/spark/examples/h2o/CitiBikeSharingDemo.scala' target='x')
+  https://github.com/h2oai/sparkling-water/blob/master/examples/src/main/scala/org/apache/spark/examples/h2o/CitiBikeSharingDemo.scala
+
+
+%br/
+%br/
+
+When I read the syntax I see it follows a pattern I noticed before when I studied
+another object called TimeSplit.
+
+%br/
+%br/
+
+Although I understand Scala poorly,
+my guess is that TimeTransform is a subclass of MRTask.
+
+%br/
+%br/
+
+I do not understand why MRTask has the name, TimeSplit, in brackets to the right.
+
+%br/
+%br/
+
+I do see that TimeTransform has two definitions for instance methods.
+
+%br/
+%br/
+
+The first method, doIt(), accepts the column full of days.
+
+%br/
+%br/
+
+Then doIt() implicitly calls map().
+
+%br/
+%br/
+
+It is obvious that map() uses date-arithmetic to transform days-values
+into values: Month and DayOfWeek.
+
+%br/
+%br/
+
+When map() is done, doIt() returns two DataFrame columns full of appropriate
+data: Month and DayOfWeek.
+
+%br/
+%br/
+
+Later these columns are used as ML-features which makes intuitive sense.
+
+%br/
+%br/
+
+The use-case here is to predict bike usage in NYC.
+
+%br/
+%br/
+
+Bikes might be used more in warm months and on weekends.
+
+%br/
+%br/
+
+If that is true it makes sense to transform days-past-epoch into 
+Month and DayOfWeek.
 
 %br/
 
