@@ -1,0 +1,33 @@
+<code class='bash'>//
+// Load and parse bike data (year 2013) into H2O by using H2O parser
+//
+
+val dataFiles = Array[String](
+    "2013-07.csv", "2013-08.csv", "2013-09.csv", "2013-10.csv",
+    "2013-11.csv", "2013-12.csv").map(f => new java.io.File(DIR_PREFIX, f))
+
+// Load and parse data
+val bikesDF = new DataFrame(dataFiles:_*)
+
+// Rename columns and remove all spaces in header
+val colNames = bikesDF.names().map( n => n.replace(' ', '_'))
+bikesDF._names = colNames
+bikesDF.update(null) // Update Frame in DKV
+
+//
+// Transform start time to days from Epoch
+//
+val startTimeF = bikesDF('starttime)
+// Add a new column
+bikesDF.add(new TimeSplit().doIt(startTimeF))
+// Do not forget to update frame in K/V store
+bikesDF.update(null)
+
+//
+// Transform DataFrame into SchemaRDD
+//
+val bikesRdd = asSchemaRDD(bikesDF)
+
+// Register table and SQL table
+sqlContext.registerRDDAsTable(bikesRdd, "bikesRdd")
+</code>
