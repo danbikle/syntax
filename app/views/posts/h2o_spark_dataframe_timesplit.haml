@@ -46,11 +46,6 @@ The API call looks like this:
     val startTimeF = bikesDF('starttime)
     bikesDF.add(new TimeSplit().doIt(startTimeF))
 
-
-
-%pre
-  =render 'h2o_spark_dataframe_timesplit1'
-
 The use-case concerns a column of continuous data named starttime
 which resides in a DataFrame called bikesDF.
 
