@@ -1,0 +1,41 @@
+.q1 Question:
+.q2 In H2O Sparkling-Water how to register file to Spark?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/h2o') h2o
+  %a.xtag(href='/tags/0xdata') 0xdata
+  %a.xtag(href='/tags/sparkling') sparkling
+  %a.xtag(href='/tags/apache') apache
+  %a.xtag(href='/tags/spark') spark
+  %a.xtag(href='/tags/scala') scala
+%br/
+
+I pulled this syntax off of github:
+
+%pre
+  %code.scala
+    // Register file to be available on all nodes
+    sc.addFile("data/iris.csv")
+
+The github URL is/was:
+
+%br/
+%br/
+
+%a(href='https://github.com/h2oai/h2o-droplets/blob/master/sparkling-water-droplet/src/main/scala/water/droplets/SparklingWaterDroplet.scala' target='x')
+  https://github.com/h2oai/h2o-droplets/blob/master/sparkling-water-droplet/src/main/scala/water/droplets/SparklingWaterDroplet.scala
+
+%br/
+%br/
+
+
+Note that the path to iris.csv is a relative path.
+%br/
+%br/
+
+I studied it and have memorized that the path is relative to
+build.gradle which is the file I use to build my project within
+IntelliJ.
+
+%br/
+
