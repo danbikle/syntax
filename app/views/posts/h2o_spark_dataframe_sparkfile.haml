@@ -1,0 +1,78 @@
+.q1 Question:
+.q2 In H2O Sparkling-Water how to create DataFrame from SparkFiles?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/h2o') h2o
+  %a.xtag(href='/tags/0xdata') 0xdata
+  %a.xtag(href='/tags/sparkling') sparkling
+  %a.xtag(href='/tags/apache') apache
+  %a.xtag(href='/tags/spark') spark
+  %a.xtag(href='/tags/scala') scala
+  .tag sparkfiles
+  .tag iris
+  .tag github
+  .tag droplet
+  .tag register
+  .tag node
+  .tag addfile
+  .tag sc
+  .tag parse
+  .tag dataframe
+  .tag java_io_file
+  .tag dir_prefix
+  .tag iris_csv
+
+%br/
+
+I pulled this syntax off of github:
+
+%pre
+  %code.scala
+    // Load data and parse it via h2o parser
+    val irisTable = new DataFrame(new File(SparkFiles.get("iris.csv")))
+
+The github URL is/was:
+
+%br/
+%br/
+
+%a(href='https://github.com/h2oai/h2o-droplets/blob/master/sparkling-water-droplet/src/main/scala/water/droplets/SparklingWaterDroplet.scala' target='x')
+  https://github.com/h2oai/h2o-droplets/blob/master/sparkling-water-droplet/src/main/scala/water/droplets/SparklingWaterDroplet.scala
+
+%br/
+%br/
+
+Note that iris.csv was 'registered' in an earlier step.
+
+%br/
+%br/
+
+The syntax to register iris.csv is this:
+
+%pre
+  %code.scala
+    // Register file to be available on all nodes
+    sc.addFile("data/iris.csv")
+
+Note that I can also create a DataFrame from a file using H2O-only syntax.
+
+%br/
+%br/
+
+Here is a demo of that technique I saw at a Meetup:
+
+%pre
+  =render 'h2o_spark_dataframe_sparkfile1'
+
+I also found the above syntax on github:
+
+%br/
+%br/
+
+%a(href='https://github.com/h2oai/sparkling-water/blob/master/examples/scripts/Meetup20150226.script.scala' target='x')
+  https://github.com/h2oai/sparkling-water/blob/master/examples/scripts/Meetup20150226.script.scala
+
+
+
+%br/
+
