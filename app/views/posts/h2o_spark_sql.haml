@@ -31,7 +31,9 @@ I first encountered this question while studying the Spark documentation:
 %br/
 %br/
 
-https://spark.apache.org/docs/latest/sql-programming-guide.html#inferring-the-schema-using-reflection
+%a(href='https://spark.apache.org/docs/latest/sql-programming-guide.html#inferring-the-schema-using-reflection' target='x')
+  https://spark.apache.org/docs/latest/sql-programming-guide.html#inferring-the-schema-using-reflection
+
 
 %br/
 %br/
@@ -47,8 +49,6 @@ The above doc suggests I should do the following:
   %li Collect the rows in a second SchemaRDD
   %li Visualize the data in the second SchemaRDD
 
-%br/
-%br/
 
 Steps two and three might be a bit tedious depending on the complexity
 of the schema and the relationship(s) between the schema and the 
@@ -73,8 +73,6 @@ H2O offers an alternate set of steps:
   %li Collect the rows in a second SchemaRDD
   %li Visualize the data in the second SchemaRDD
 
-%br/
-%br/
 
 I like the "H2O way" because in step two,
 I can easily create a DataFrame from a CSV.

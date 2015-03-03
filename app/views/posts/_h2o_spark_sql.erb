@@ -4,6 +4,24 @@ import org.apache.spark.examples.h2o.DemoUtils._
 import org.apache.spark.sql.{SQLContext, SchemaRDD}
 import water.fvec._
 
+implicit val sqlContext = new SQLContext(sc)
+import sqlContext._
+
+// Create H2O context and start H2O services around the Spark cluster
+implicit val h2oContext = new H2OContext(sc).start()
+import h2oContext._
+
+//
+// Load and parse bike data (year 2013) into H2O by using H2O parser
+//
+
+val dataFiles = Array[String](
+    "2013-07.csv", "2013-08.csv", "2013-09.csv", "2013-10.csv",
+    "2013-11.csv", "2013-12.csv").map(f => new java.io.File(DIR_PREFIX, f))
+
+// Load and parse data
+val bikesDF = new DataFrame(dataFiles:_*)
+
 //
 // Transform DataFrame into SchemaRDD
 //
