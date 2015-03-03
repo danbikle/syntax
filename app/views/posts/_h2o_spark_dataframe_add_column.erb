@@ -1,0 +1,9 @@
+<code class='bash'>//
+// Transform start time to days from Epoch
+//
+val startTimeF = bikesDF('starttime)
+// Add a new column
+bikesDF.add(new TimeSplit().doIt(startTimeF))
+// Do not forget to update frame in K/V store
+bikesDF.update(null)
+</code>
