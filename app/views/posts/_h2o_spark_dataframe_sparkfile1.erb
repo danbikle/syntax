@@ -1,0 +1,11 @@
+<code class='bash'>//
+// Load and parse bike data (year 2013) into H2O by using H2O parser
+//
+
+val dataFiles = Array[String](
+    "2013-07.csv", "2013-08.csv", "2013-09.csv", "2013-10.csv",
+    "2013-11.csv", "2013-12.csv").map(f => new java.io.File(DIR_PREFIX, f))
+
+// Load and parse data
+val bikesDF = new DataFrame(dataFiles:_*)
+</code>
