@@ -3,7 +3,7 @@
       DataFrame(doAll(1, time).outputFrame(Array[String]("Days"), null))
 
   override def map(msec: Chunk, day: NewChunk):Unit = {
-    for (i <- 0 until msec.len) {
+    for (i &lt;- 0 until msec.len) {
       day.addNum(msec.at8(i) / (1000 * 60 * 60 * 24)); // Days since the Epoch
     }
   }
