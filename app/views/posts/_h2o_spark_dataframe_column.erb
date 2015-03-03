@@ -1,0 +1,6 @@
+<code class='bash'>// Rename columns and remove all spaces in header
+val colNames = bikesDF.names().map( n => n.replace(' ', '_'))
+bikesDF._names = colNames
+bikesDF.update(null) // Update Frame in DKV
+// Do not forget to update frame in K/V store !
+</code>
