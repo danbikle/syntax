@@ -18,7 +18,7 @@ Early in my Spark study I learned how to create an RDD from an Array:
 %pre
   %code.scala
     ~/spark/bin/spark-shell
-    val myarray = (1,2,3,4,5)
+    val myarray = Array(1,2,3,4,5)
     val   myrdd = sc.parallelize(myarray)
 
 Then later I learned about .take() which is useful at inspecting myrdd:
@@ -36,8 +36,7 @@ One convenient feature of this Array is it supports a call to .drop()
 which I can use to drop n number of rows from top of mytake:
 
 %pre
-  %code.scala
-    val mydrop  = mytake.drop(2)
+  %code.scala val mydrop  = mytake.drop(2)
 
 %br/
 %br/
@@ -71,7 +70,7 @@ I should do this to get an RDD:
 Also this should work:
 
 %pre
-  %code.scala val myrdd2 = sc.makeRDD(mydrop)
+  %code.scala val myrdd3 = sc.makeRDD(mydrop)
 
 %br/
 %br/
