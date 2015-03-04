@@ -93,7 +93,7 @@ This returns nothing. It is lazy:
 Then I create an RDD which contains rows for 2015-02:
 
 %pre
-  %code.scala val spy_2015_02_rdd = spy_2col_rdd.filter( line => line(0) &lt; "2015-03").filter( line => line(0) > "2015-01")
+  %code.scala val spy_2015_02_rdd = spy_2col_rdd.filter( line => line(0) &lt; "2015-03").filter( line => line(0) > "2015-02")
 
 I inspect the result:
 

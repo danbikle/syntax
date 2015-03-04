@@ -54,17 +54,29 @@ res38: Array[Array[String]] = Array(Array(2015-03-03, 211.12))
 scala> spy_2col_rdd.filter( arry => arry(0) == "2015-03-03")
 res39: org.apache.spark.rdd.RDD[Array[String]] = FilteredRDD[17] at filter at &lt;console>:17
 
-scala> val spy_2015_02_rdd = spy_2col_rdd.filter( line => line(0) &lt; "2015-03").filter( line => line(0) > "2015-01")
-spy_2015_02_rdd: org.apache.spark.rdd.RDD[Array[String]] = FilteredRDD[19] at filter at &lt;console>:16
+
+scala> val spy_2015_02_rdd = spy_2col_rdd.filter( line => line(0) &lt; "2015-03").filter( line => line(0) > "2015-02")
+spy_2015_02_rdd: org.apache.spark.rdd.RDD[Array[String]] = FilteredRDD[21] at filter at &lt;console>:16
 
 scala> spy_2015_02_rdd.count()
-res40: Long = 39
+res44: Long = 19
 
-scala> spy_2015_02_rdd.take(4)
-res41: Array[Array[String]] = Array(Array(2015-02-27, 210.66),
+scala> spy_2015_02_rdd
+res45: org.apache.spark.rdd.RDD[Array[String]] = FilteredRDD[21] at filter at &lt;console>:16
+
+scala> spy_2015_02_rdd.take(99)
+res46: Array[Array[String]] = Array(Array(2015-02-27, 210.66),
 Array(2015-02-26, 211.38), Array(2015-02-25, 211.63),
-Array(2015-02-24, 211.81))
+Array(2015-02-24, 211.81), Array(2015-02-23, 211.21),
+Array(2015-02-20, 211.24), Array(2015-02-19, 209.98),
+Array(2015-02-18, 210.13), Array(2015-02-17, 210.11),
+Array(2015-02-13, 209.78), Array(2015-02-12, 208.92),
+Array(2015-02-11, 206.93), Array(2015-02-10, 206.81),
+Array(2015-02-09, 204.63), Array(2015-02-06, 205.55),
+Array(2015-02-05, 206.12), Array(2015-02-04, 204.06),
+Array(2015-02-03, 204.84), Array(2015-02-02, 201.92))
 
+scala> 
 scala> 
 scala> 
 </code>
