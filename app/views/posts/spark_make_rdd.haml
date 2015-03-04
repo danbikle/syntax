@@ -7,13 +7,13 @@
   %a.xtag(href='/tags/rdd') rdd
   %a.xtag(href='/tags/take') take
   %a.xtag(href='/tags/parallelize') parallelize
-  .tag makerdd
-  .tag drop
-  .tag array
+  %a.xtag(href='/tags/makerdd') makerdd
+  %a.xtag(href='/tags/drop') drop
+  %a.xtag(href='/tags/array') array
 
 %br/
 
-Early in my Spark study I learned how to create an RDD from an Array:
+Early in my Spark study I learned from Spark Quick-Start how to create an RDD from an Array:
 
 %pre
   %code.scala
@@ -33,7 +33,7 @@ Later I learned that .take() gives me an Array not another RDD.
 %br/
 
 One convenient feature of this Array is it supports a call to .drop()
-which I can use to drop n number of rows from top of mytake:
+which I can use to drop n number of rows from the top of mytake:
 
 %pre
   %code.scala val mydrop  = mytake.drop(2)
