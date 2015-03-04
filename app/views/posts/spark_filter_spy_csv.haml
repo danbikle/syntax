@@ -1,0 +1,112 @@
+
+.q1 Question:
+.q2 In Spark how to filter SPY Yahoo CSV?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/apache') apache
+  %a.xtag(href='/tags/spark') spark
+  %a.xtag(href='/tags/scala') scala
+  %a.xtag(href='/tags/rdd') rdd
+  .tag filter
+  .tag map
+  .tag take
+  .tag yahoo
+  .tag csv
+  .tag spy
+
+%br/
+
+
+The SPY Yahoo CSV contains prices for SPY going back to 1993.
+
+%br/
+%br/
+
+
+The CSV contains several columns.
+
+%br/
+%br/
+
+I am only interested date-of-close and closing-price which are columns 0 and 4.
+
+%br/
+%br/
+
+The point of this demo is to get spy.csv and then return rows for February 2015 only.
+
+%br/
+%br/
+
+
+I start this demo by wgetting spy.csv from Yahoo:
+
+%pre
+  %code.bash
+    wget --output-document=tmp.csv http://ichart.finance.yahoo.com/table.csv?s=SPY
+    grep -v Date tmp.csv > spy.csv
+
+Then I start spark shell:
+
+%pre
+  %code.bash dan@feb ~/a12 $ ~/spark/bin/spark-shell
+
+
+Here is the path I follow inside the spark-shell Scala interpreter:
+
+%br/
+%br/
+
+I build an RDD from spy.csv:
+
+%pre
+  %code.scala val spy_rdd = sc.textFile("spy.csv")
+
+I count:
+
+%pre
+  %code.scala spy_rdd.count()
+
+I look at the first 4 rows
+
+%pre
+  %code.scala val spy4 = spy_rdd.take(4)
+
+Next I get columns 0 and 4:
+
+%pre
+  %code.scala
+    spy4.map( line => Array( line.split(",")(0) , line.split(",")(4) ))
+    val spy_2col_rdd = spy_rdd.map( line => Array( line.split(",")(0) , line.split(",")(4) ))
+    spy_2col_rdd.take(4)
+
+Next I look for a specific day:
+
+%pre
+  %code.scala spy_2col_rdd.take(4).filter( arry => arry(0) == "2015-03-03")
+
+This returns nothing. It is lazy:
+
+%pre
+  %code.scala spy_2col_rdd.filter( arry => arry(0) == "2015-03-03")
+
+Then I create an RDD which contains rows for 2015-02:
+
+%pre
+  %code.scala val spy_2015_02_rdd = spy_2col_rdd.filter( line => line(0) &lt; "2015-03").filter( line => line(0) > "2015-01")
+
+I inspect the result:
+
+%pre
+  %code.scala
+    spy_2015_02_rdd.count()
+    spy_2015_02_rdd.take(4)
+
+Here is a screen dump:
+
+%pre
+  =render 'spark_filter_spy_csv'
+
+%br/
+
+

@@ -1,0 +1,70 @@
+<code class='bash'>dan@feb ~/a12 $ 
+dan@feb ~/a12 $ ~/spark/bin/spark-shell
+Spark assembly has been built with Hive, including Datanucleus jars on classpath
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ /  __/   _/
+   /___/ .__/\_,_/_/ /_/\_\   version 1.2.1
+      /_/
+
+Using Scala version 2.10.4 (Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_75)
+Type in expressions to have them evaluated.
+Type :help for more information.
+Spark context available as sc.
+
+Spark assembly has been built with Hive, including Datanucleus jars on classpath
+
+scala> 
+scala> 
+
+
+
+scala> 
+scala> val spy_rdd = sc.textFile("spy.csv")
+spy_rdd: org.apache.spark.rdd.RDD[String] = spy.csv MappedRDD[15] at textFile at &lt;console>:12
+
+scala> spy_rdd.count()
+res34: Long = 5563
+
+scala> val spy4 = spy_rdd.take(4)
+spy4: Array[String] =
+Array(2015-03-03,211.47,212.05,210.08,211.12,103689300,211.12,
+2015-03-02,210.78,212.06,210.72,211.99,87491400,211.99,
+2015-02-27,211.26,211.58,210.60,210.66,108076000,210.66,
+2015-02-26,211.52,211.71,210.65,211.38,72697900,211.38)
+
+scala> 
+scala> spy4.map( line => Array( line.split(",")(0) , line.split(",")(4) ))
+res35: Array[Array[String]] = Array(Array(2015-03-03, 211.12),
+Array(2015-03-02, 211.99), Array(2015-02-27, 210.66),
+Array(2015-02-26, 211.38))
+
+scala> val spy_2col_rdd = spy_rdd.map( line => Array( line.split(",")(0) , line.split(",")(4) ))
+spy_2col_rdd: org.apache.spark.rdd.RDD[Array[String]] = MappedRDD[16] at map at &lt;console>:14
+
+scala> spy_2col_rdd.take(4)
+res36: Array[Array[String]] = Array(Array(2015-03-03, 211.12),
+Array(2015-03-02, 211.99), Array(2015-02-27, 210.66),
+Array(2015-02-26, 211.38))
+
+scala> spy_2col_rdd.take(4).filter( arry => arry(0) == "2015-03-03")
+res38: Array[Array[String]] = Array(Array(2015-03-03, 211.12))
+
+scala> spy_2col_rdd.filter( arry => arry(0) == "2015-03-03")
+res39: org.apache.spark.rdd.RDD[Array[String]] = FilteredRDD[17] at filter at &lt;console>:17
+
+scala> val spy_2015_02_rdd = spy_2col_rdd.filter( line => line(0) &lt; "2015-03").filter( line => line(0) > "2015-01")
+spy_2015_02_rdd: org.apache.spark.rdd.RDD[Array[String]] = FilteredRDD[19] at filter at &lt;console>:16
+
+scala> spy_2015_02_rdd.count()
+res40: Long = 39
+
+scala> spy_2015_02_rdd.take(4)
+res41: Array[Array[String]] = Array(Array(2015-02-27, 210.66),
+Array(2015-02-26, 211.38), Array(2015-02-25, 211.63),
+Array(2015-02-24, 211.81))
+
+scala> 
+scala> 
+</code>
