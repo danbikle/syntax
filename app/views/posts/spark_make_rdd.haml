@@ -1,0 +1,81 @@
+.q1 Question:
+.q2 In Spark what does makeRDD() do?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/spark') spark
+  %a.xtag(href='/tags/sc') sc
+  %a.xtag(href='/tags/rdd') rdd
+  %a.xtag(href='/tags/take') take
+  %a.xtag(href='/tags/parallelize') parallelize
+  .tag makerdd
+  .tag drop
+  .tag array
+
+%br/
+
+Early in my Spark study I learned how to create an RDD from an Array:
+
+%pre
+  %code.scala
+    ~/spark/bin/spark-shell
+    val myarray = (1,2,3,4,5)
+    val   myrdd = sc.parallelize(myarray)
+
+Then later I learned about .take() which is useful at inspecting myrdd:
+
+%pre
+  %code.scala
+    val mytake  = myrdd.take(4)
+
+Later I learned that .take() gives me an Array not another RDD.
+
+%br/
+%br/
+
+One convenient feature of this Array is it supports a call to .drop()
+which I can use to drop n number of rows from top of mytake:
+
+%pre
+  %code.scala
+    val mydrop  = mytake.drop(2)
+
+%br/
+%br/
+
+This means I can coordinate take() and drop() to slice some rows out of
+the middle of an RDD.
+
+%br/
+%br/
+
+When I do that then those rows are in an Array.
+
+%br/
+%br/
+
+How do I build an RDD from those rows?
+
+%br/
+%br/
+
+Well there is a demo of that at the beginning of this post.
+
+%br/
+%br/
+
+I should do this to get an RDD:
+
+%pre
+  %code.scala val myrdd2 = sc.parallelize(mydrop)
+
+Also this should work:
+
+%pre
+  %code.scala val myrdd2 = sc.makeRDD(mydrop)
+
+%br/
+%br/
+
+I prefer the second call because its intent is obvious.
+
+%br/
