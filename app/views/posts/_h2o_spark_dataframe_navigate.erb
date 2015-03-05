@@ -13,3 +13,77 @@ After I get a column, I can get the cell value of a row like this:
 
 scala> oosDF.vec(2).at(0)
 </code>
+
+Another demo:
+
+<code class='bash'>
+
+scala> val mypath = ("examples/smalldata/prostate.csv")
+val mypath = ("examples/smalldata/prostate.csv")
+mypath: String = examples/smalldata/prostate.csv
+
+scala> val jfile = new java.io.File(mypath)
+val jfile = new java.io.File(mypath)
+jfile: java.io.File = examples/smalldata/prostate.csv
+
+scala> val pDataFrame = new DataFrame(jfile)
+val pDataFrame = new DataFrame(jfile)
+pDataFrame: water.fvec.DataFrame = 
+Frame prostate.hex with 380 rows and 9 cols:
+          ID  CAPSULE  AGE  RACE  DPROS  DCAPS                 PSA                 VOL  GLEASON
+    min    1        0   43     0      1      1                 0.3                 0.0        0
+   mean  190        0   66     1      2      1  15.408631578947354  15.812921052631584        6
+ stddev  109        0    6     0      1      0   19.99757266856046   18.34761996727119        1
+    max  380        1   79     2      4      2  139.70000000000002   97.60000000000001        9
+missing    0        0    0     0      0      0                 0.0                 0.0        0
+      0    1        0   65     1      2      1  1.4000000000000001                 0.0        6
+      1    2        0   72     1      3     ...
+scala> 
+
+
+scala> pDataFrame.vec(2).at(0)
+
+res107: Double = 65.0
+
+scala> 
+
+
+scala> pDataFrame('AGE).vec(0).at(0)
+pDataFrame('AGE).vec(0).at(0)
+res108: Double = 65.0
+
+scala> 
+
+
+scala> myrow0 = Array(0,1,2,3,4,5).foreach(colnum => pDataFrame.vec(colnum).at(0)).map(colval => colval)
+)).map(colval => colval)
+<console>:71: error: not found: value myrow0
+val $ires75 = myrow0
+              ^
+<console>:68: error: not found: value myrow0
+       myrow0 = Array(0,1,2,3,4,5).foreach(colnum => pDataFrame.vec(colnum).at(0)).map(colval => colval)
+       ^
+
+scala> val myrow0 = Array(0,1,2,3,4,5).foreach(colnum => pDataFrame.vec(colnum).at(0)).map(colval => colval)
+at(0)).map(colval => colval)
+<console>:68: error: value map is not a member of Unit
+       val myrow0 = Array(0,1,2,3,4,5).foreach(colnum => pDataFrame.vec(colnum).at(0)).map(colval => colval)
+                                                                                       ^
+
+scala> Array(0,1,2,3,4,5).foreach(colnum => pDataFrame.vec(colnum).at(0))
+Array(0,1,2,3,4,5).foreach(colnum => pDataFrame.vec(colnum).at(0))
+
+scala> Array(0,1,2,3,4,5).foreach(colnum => print(pDataFrame.vec(colnum).at(0)))
+Array(0,1,2,3,4,5).foreach(colnum => print(pDataFrame.vec(colnum).at(0))) 
+1.00.065.01.02.01.0
+scala> 
+
+
+scala> Array(0,1,2,3,4,5).foreach(colnum => print(pDataFrame.vec(colnum).at(0)+","))
+,"))
+1.0,0.0,65.0,1.0,2.0,1.0,
+scala> 
+
+
+scala> 
+</code>
