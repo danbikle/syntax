@@ -16,7 +16,51 @@ scala> oosDF.vec(2).at(0)
 
 Another demo:
 
-<code class='scala'>
+<code class='scala'>dan@pav ~/sw $ 
+dan@pav ~/sw $ 
+dan@pav ~/sw $ git log -1
+commit dc7d5e76083496f47012ebdeb0390605a05e1579
+Author: mmalohlava <michal.malohlava@gmail.com>
+Date:   Wed Mar 4 14:27:21 2015 -0800
+
+    [PUBDEV-458] Test for the issue.
+dan@pav ~/sw $ 
+dan@pav ~/sw $ 
+dan@pav ~/sw $ bin/sparkling-shell 
+
+-----
+  Spark master (MASTER)     : local-cluster[1,2,1024]
+  Spark home   (SPARK_HOME) : /home/dan/spark
+----
+
+Spark assembly has been built with Hive, including Datanucleus jars on classpath
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/   _/
+   /___/ .__/\_,_/_/ /_/\_\   version 1.2.1
+      /_/
+
+Using Scala version 2.10.4 (Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_80-ea)
+Type in expressions to have them evaluated.
+Type :help for more information.
+Spark context available as sc.
+
+scala> Spark assembly has been built with Hive, including Datanucleus jars on classpath
+scala> 
+scala> 
+
+I typed in this:
+
+import org.apache.spark.h2o._
+val h2oContext = new H2OContext(sc).start()
+import h2oContext._
+import water.fvec._
+import water.fvec.DataFrame
+
+
+Then I typed in this:
+
 scala> 
 scala> 
 scala> val mypath = ("examples/smalldata/prostate.csv")
@@ -73,6 +117,7 @@ scala> Array(0,1,2,3,4,5).foreach(colnum => print(pDataFrame.vec(colnum).at(0)))
 scala> 
 scala> 
 
+Here is the general idea for printing row 0:
 
 scala> 
 scala> 
