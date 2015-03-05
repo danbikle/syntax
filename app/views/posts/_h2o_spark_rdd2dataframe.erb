@@ -1,0 +1,28 @@
+<code class='scala'>
+cd ~/sparkling-water/
+bin/sparkling-shell
+
+import org.apache.spark.h2o._
+val h2oContext = new H2OContext(sc).start()
+import h2oContext._
+import water.fvec._
+import water.fvec.DataFrame
+
+val myrdd1 = sc.makeRDD(Array(1,2,3,4,5)).map( v => IntHolder(Some(v)))
+val mydf1:DataFrame = h2oContext.createDataFrame(myrdd1)
+
+val mydoubles = Array(0.1,2.3,1.3,4.4,-9.5)
+val myrdd2 = sc.makeRDD(mydoubles).map( v => DoubleHolder(Some(v)))
+val mydf2:DataFrame = h2oContext.createDataFrame(myrdd2)
+
+val myband = Array("Ringo","John","George","Paul")
+val myrdd3 = sc.makeRDD(myband).map( v => StringHolder(Some(v)))
+val mydf3:DataFrame = h2oContext.createDataFrame(myrdd3)
+
+mydf1.delete()
+mydf2.delete()
+mydf3.delete()
+myrdd1.unpersist()
+myrdd2.unpersist()
+myrdd3.unpersist()
+</code>
