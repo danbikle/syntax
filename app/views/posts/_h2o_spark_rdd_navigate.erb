@@ -1,2 +1,40 @@
-<code class='bash'>
+<code class='scala'>import java.io._
+import org.apache.spark.h2o._
+import water.fvec._
+import water.fvec.DataFrame
+
+val hc = new H2OContext(sc).start()
+import hc._
+
+val cars = Array("415-mini","650-porsche","408-bmw","510-pizza")
+
+val rdd2 = sc.makeRDD(cars).map( v => StringHolder(Some(v)))
+
+
+I can paste the above syntax into a sparkling-shell.
+
+Then, I should have an object named rdd2 which is an enhanced H2O RDD.
+
+How can I navigate it?
+
+I first tried take().
+
+That gave me an Array.
+
+I used (0) to get inside the Array.
+
+Then I used a call to:
+
+.result.get 
+
+to get the String:
+
+scala> 
+scala> 
+scala> rdd2.take(1)(0).result.get
+res8: String = 415-mini
+
+scala> 
+scala> 
+scala> 
 </code>
