@@ -1,0 +1,91 @@
+<code class='scala'>import java.io._
+import org.apache.spark.h2o._
+import water.fvec._
+import water.fvec.DataFrame
+
+val hc = new H2OContext(sc).start()
+import hc._
+
+val food = Array("415-vegetarian","650-sushi","408-pho","510-pizza")
+val cars = Array("415-mini","650-porsche","408-bmw","510-pizza")
+
+val rdd1 = sc.makeRDD(food).map( v => StringHolder(Some(v)))
+val rdd2 = sc.makeRDD(cars).map( v => StringHolder(Some(v)))
+
+assert(rdd1.count() == rdd2.count)
+
+val zipped = rdd1.zip(rdd2).filter( myline => {
+  val line1 = myline._1
+  val line2 = myline._2
+  line1.result == line2.result}).collect()
+
+println("I have this many matches: "+zipped.length)
+println("Matches: ")
+zipped.foreach(line => println(line._1.result.get))
+
+printlin("First match: ")
+println(zipped(0)._1.result.get)
+</code>
+
+Screen Dump:
+
+<code class='scala'>
+scala> 
+scala> 
+scala> val zipped = rdd1.zip(rdd2).filter( myline => {
+     |   val line1 = myline._1
+     |   val line2 = myline._2
+     |   line1.result == line2.result}).collect()
+
+zipped: Array[(org.apache.spark.h2o.StringHolder,
+org.apache.spark.h2o.StringHolder)] =
+Array((StringHolder(Some(510-pizza)),StringHolder(Some(510-pizza))))
+scala> 
+scala> 
+
+
+scala> 
+scala> 
+scala> println("I have this many matches: "+zipped.length)
+I have this many matches: 1
+
+scala> 
+scala> 
+scala> zipped.foreach(line => println(line._1.result.get))
+510-pizza
+scala> 
+scala> 
+scala> 
+
+
+How do I navigate zipped?
+
+scala> 
+scala> 
+scala> zipped(0)
+res7: (org.apache.spark.h2o.StringHolder,
+org.apache.spark.h2o.StringHolder) =
+(StringHolder(Some(510-pizza)),StringHolder(Some(510-pizza)))
+scala> 
+scala> 
+
+scala> 
+scala> 
+scala> zipped(0)._1
+res8: org.apache.spark.h2o.StringHolder = StringHolder(Some(510-pizza))
+scala> 
+scala> 
+
+scala> 
+scala> 
+scala> zipped(0)._1.result
+res9: Option[String] = Some(510-pizza)
+scala> 
+scala> 
+
+scala> zipped(0)._1.result.get
+res10: String = 510-pizza
+scala> 
+scala> 
+
+</code>
