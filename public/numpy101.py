@@ -21,7 +21,7 @@ tkr ='GSPC'
 tkrh='%5E'+tkr
 
 import subprocess
-# subprocess.call(["/bin/rm", "-f", tkr+'.csv'])
+subprocess.call(["/bin/rm", "-f", tkr+'.csv'])
 
 # I should call call a shell command like this:
 # /usr/bin/wget --output-document=${TKR}.csv  http://ichart.finance.yahoo.com/table.csv?s=${TKRH}
@@ -30,7 +30,7 @@ arg1 = "--output-document="+tkr+".csv"
 arg2 = "http://ichart.finance.yahoo.com/table.csv?s="+tkrh
 
 # If I comment this out:
-# subprocess.call([cmd, arg1, arg2])
+subprocess.call([cmd, arg1, arg2])
 # also remem to comment out the above rm command.
 
 subprocess.call(["/usr/bin/head", tkr+'.csv'])
@@ -54,27 +54,30 @@ cp_a = df2[['cp']].values
 # I should convert cp_a into a List
 cp = [elm[0] for elm in cp_a]
 
-# I should create more lists which are shifted in time.
+# I should create neighbor lists which are shifted in time.
 # Visualize each list as a column in a spread-sheet.
 # The Yahoo CSV has newer prices at the top.
 
-# Key Idea:
-# If I push a neighbor list down,
+# Key Idea, build a neighbor from cp, push neighbor up or down.
+# If I push a neighbor-list down,
 # I push future prices next to current prices.
 
-# If I push a neighbor list up,
+# If I push a neighbor-list up,
 # I push past prices next to current prices.
 
 # I should build each row so I have this:
 # cdate, cp, leadprice, 1daylagprice, 2daylagprice, 4daylagprice, 8daylagprice
 
 # I should start pushing.
+# I push neighbor down:
 cplead = [cp[0]] + cp
+# I push neighbors up:
 cplag1 = cp +     [cp[-1]]
 cplag2 = cp +     [cp[-1]] + [cp[-1]]
 cplag4 = cp +     [cp[-1]] + [cp[-1]] + [cp[-1]] + [cp[-1]]
 cplag8 = cplag4 + [cp[-1]] + [cp[-1]] + [cp[-1]] + [cp[-1]]
-# I should snip off ends so new columns as long as cp:
+# I should snip off ends (1950s data which I do not use)
+# so new columns as long as cp:
 cplead = cplead[0:-1]
 cplag1 = cplag1[0:-1]
 cplag2 = cplag2[0:-2]
@@ -83,3 +86,34 @@ cplag8 = cplag8[0:-8]
 # I should check new columns as long as cp:
 len(cp) == len(cplead)
 len(cp) == len(cplag4)
+
+# NumPy allows me to do arithmetic on its Arrays.
+# I should convert my lists to Arrays:
+cp_a     = np.array(cp)
+cplead_a = np.array(cplead)
+cplag1_a = np.array(cplag1)
+cplag2_a = np.array(cplag2)
+cplag4_a = np.array(cplag4)
+cplag8_a = np.array(cplag8)
+
+# I should calculate pct-deltas:
+pctlead_a = (cplead_a - cp_a)/cp_a
+pctlag1_a = (cp_a - cplag1_a)/cplag1_a
+pctlag2_a = (cp_a - cplag2_a)/cplag2_a
+pctlag4_a = (cp_a - cplag4_a)/cplag4_a
+pctlag8_a = (cp_a - cplag8_a)/cplag8_a
+
+# I am done doing calculations.
+# I should put my 5 new columns into my DataFrame.
+
+df2['pctlead'] = pctlead_a
+df2['pctlag1'] = pctlag1_a
+df2['pctlag2'] = pctlag2_a
+df2['pctlag4'] = pctlag4_a
+df2['pctlag8'] = pctlag8_a
+
+# I should save my work into a CSV file:
+df2.to_csv('numpy101.csv', float_format='%4.3f', index=False)
+
+# Next step: numpy102.py
+# Done
