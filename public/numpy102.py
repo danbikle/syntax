@@ -135,9 +135,6 @@ train_idx_start  = prediction_count + 1
 x_oos = x_a[:prediction_count,:]
 len(x_oos) == prediction_count
 
-# To predict the single observation above,
-# I want 10 years of training data:
-yr10 = 10 * 252
 x_train = x_a[train_idx_start:(train_idx_start + yr10),:]
 y_train = y_a[train_idx_start:(train_idx_start + yr10),pctlead_i]
 yr10 == len(x_train)
@@ -150,7 +147,7 @@ myprediction = mygbr.predict(x_oos)
 print(myprediction)
 print("Have a nice day.")
 
-# I can save the prediction in y_a.
+# I can save the predictions in y_a.
 # I should use the same index I use for x_oos:
 
 y_a[:prediction_count,predict_i] = myprediction
