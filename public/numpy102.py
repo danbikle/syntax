@@ -99,7 +99,15 @@ yr10 == len(x_train)
 yr10 == len(y_train)
 
 pdb.set_trace()
-x_train[:4]
-y_train[:4]
+
+# Ref:
+# http://scikit-learn.org/dev/modules/ensemble.html#regression
+from sklearn.ensemble import GradientBoostingRegressor
+
+mygbr = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, max_depth=1, random_state=0, loss='ls')
+
+mygbr.fit(x_train, y_train)
+
+
 
 # Done
