@@ -132,9 +132,8 @@ y_a[prediction_count-1,predict_i] = myprediction
 
 prediction_count = 2
 train_idx_start  = prediction_count + 1
-x_oos = x_a[:prediction_count-1,:]
+x_oos = x_a[:prediction_count,:]
 len(x_oos) == prediction_count
-pdb.set_trace()
 
 # To predict the single observation above,
 # I want 10 years of training data:
@@ -145,5 +144,16 @@ yr10 == len(x_train)
 yr10 == len(y_train)
 
 mygbr.fit(x_train, y_train)
+
+print("I predict that pctleads for the two most recent observations are:")
+myprediction = mygbr.predict(x_oos)
+print(myprediction)
+print("Have a nice day.")
+
+# I can save the prediction in y_a.
+# I should use the same index I use for x_oos:
+
+pdb.set_trace()
+y_a[:prediction_count,predict_i] = myprediction
 
 # Done
