@@ -153,7 +153,9 @@ print("Have a nice day.")
 # I can save the prediction in y_a.
 # I should use the same index I use for x_oos:
 
-pdb.set_trace()
 y_a[:prediction_count,predict_i] = myprediction
+
+print('y_a[:prediction_count,predict_i]:']
+print( y_a[:prediction_count,predict_i] ]
 
 # Done
