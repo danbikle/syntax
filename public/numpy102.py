@@ -32,11 +32,13 @@ number_of_rows    = len(df3)
 number_of_columns = len(['pctlag1','pctlag2','pctlag4','pctlag8'])
 
 # I should declare some integers to help me navigate the Arrays:
-pctlead_i = 0
 pctlag1_i = 0
 pctlag2_i = 1
 pctlag4_i = 2
 pctlag8_i = 3
+#
+pctlead_i = 0
+predict_i = 1
 
 # I should create Array of correct size:
 x_a = np.zeros((number_of_rows, number_of_columns))
@@ -107,7 +109,13 @@ mygbr = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, max_depth
 mygbr.fit(x_train, y_train)
 
 print("I predict that pctlead for the most recent observation is this:")
-print(mygbr.predict(x_oos)[0])
+myprediction = mygbr.predict(x_oos)[0]
+print(myprediction)
 print("Have a nice day.")
+
+# I can save the prediction in y_a.
+# I should use the same index I use for x_oos:
+pdb.set_trace()
+y_a[prediction_count-1,predict_i] = myprediction
 
 # Done
