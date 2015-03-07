@@ -85,7 +85,7 @@ y_a = np.zeros((number_of_rows, 2))
 y_a[:,pctlead_i] = [elm[0] for elm in df3[['pctlead']].values]
 
 # For this demo, my Out-Of-Sample data is the most recent observation.
-# Recent Market close data appears at Yahoo after M-F, 6pm-ish.
+# Recent Market close data appears at Yahoo M-F, after 6pm-ish.
 prediction_count = 1
 train_idx_start  = prediction_count + 1
 x_oos = x_a[prediction_count-1,:]
@@ -94,9 +94,12 @@ x_oos = x_a[prediction_count-1,:]
 # I want 10 years of training data:
 yr10 = 10 * 252
 x_train = x_a[train_idx_start:(train_idx_start + yr10),:]
+y_train = y_a[train_idx_start:(train_idx_start + yr10),pctlead_i]
 yr10 == len(x_train)
+yr10 == len(y_train)
 
 pdb.set_trace()
 x_train[:4]
+y_train[:4]
 
 # Done
