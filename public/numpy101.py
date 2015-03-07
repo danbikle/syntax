@@ -110,7 +110,7 @@ df2['pctlag1'] = pctlag1_a
 df2['pctlag2'] = pctlag2_a
 df2['pctlag4'] = pctlag4_a
 df2['pctlag8'] = pctlag8_a
-pdb.set_trace()
+
 # I should save my work into a CSV file:
 df2.to_csv('numpy101.csv', float_format='%4.3f', index=False)
 
