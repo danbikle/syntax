@@ -98,8 +98,6 @@ y_train = y_a[train_idx_start:(train_idx_start + yr10),pctlead_i]
 yr10 == len(x_train)
 yr10 == len(y_train)
 
-pdb.set_trace()
-
 # Ref:
 # http://scikit-learn.org/dev/modules/ensemble.html#regression
 from sklearn.ensemble import GradientBoostingRegressor
@@ -108,6 +106,8 @@ mygbr = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, max_depth
 
 mygbr.fit(x_train, y_train)
 
-
+print("I predict that pctlead for the most recent observation is this:")
+print(mygbr.predict(x_oos)[0])
+print("Have a nice day.")
 
 # Done
