@@ -155,7 +155,7 @@ print("Have a nice day.")
 
 y_a[:prediction_count,predict_i] = myprediction
 
-print('y_a[:prediction_count,predict_i]:']
-print( y_a[:prediction_count,predict_i] ]
+print('y_a[:prediction_count,:]:')
+print( y_a[:prediction_count,:]  )
 
 # Done
