@@ -1,0 +1,284 @@
+<code class='python'>
+# ~ann/numpy101.py
+
+# This script should help you learn enough Python to interact with some of the scikit-learn API.
+# If you see a question in this script,
+# your homework is to type it into Google and study the search results.
+# Some of the questions ask you about the data so Google cannot help you with that.
+
+# Ref:
+# http://www.meetup.com/Palo-Alto-Data-Science-Association/events/220901594/
+# http://continuum.io/downloads#py34
+
+# Demo:
+# cd ~ann
+# vi numpy101.py
+# ~ann/anaconda3/bin/python numpy101.py
+
+import pdb
+
+# I should set 2 vars which help me get dates, prices of GSPC from Yahoo:
+tkr ='GSPC'
+tkrh='%5E'+tkr
+
+import subprocess
+subprocess.call(["/bin/rm", "-f", tkr+'.csv'])
+
+# I should call call a shell command like this:
+# /usr/bin/wget --output-document=${TKR}.csv  http://ichart.finance.yahoo.com/table.csv?s=${TKRH}
+cmd  = "/usr/bin/wget"
+arg1 = "--output-document="+tkr+".csv"
+arg2 = "http://ichart.finance.yahoo.com/table.csv?s="+tkrh
+
+# If I comment this out:
+subprocess.call([cmd, arg1, arg2])
+# also remem to comment out the above rm command.
+
+subprocess.call(["/usr/bin/head", tkr+'.csv'])
+
+import pandas as pd
+
+df1 = pd.read_csv(tkr+'.csv')
+
+# I only want two columns:
+df2 = df1[['Date','Close']]
+df2.columns = ['cdate','cp']
+# I should check my data:
+print(df2.head())
+print(df2.tail())
+
+import numpy as np
+# I should use convention,
+# variable_a is a NumPy Array:
+cp_a = df2[['cp']].values
+
+# I should convert cp_a into a List
+cp = [elm[0] for elm in cp_a]
+
+# I should create neighbor lists which are shifted in time.
+# Visualize each list as a column in a spread-sheet.
+# The Yahoo CSV has newer prices at the top.
+
+# Key Idea, build a neighbor from cp, push neighbor up or down.
+# If I push a neighbor-list down,
+# I push future prices next to current prices.
+
+# If I push a neighbor-list up,
+# I push past prices next to current prices.
+
+# I should build each row so I have this:
+# cdate, cp, leadprice, 1daylagprice, 2daylagprice, 4daylagprice, 8daylagprice
+
+# I should start pushing.
+# I push neighbor down:
+cplead = [cp[0]] + cp
+# I push neighbors up:
+cplag1 = cp +     [cp[-1]]
+cplag2 = cp +     [cp[-1]] + [cp[-1]]
+cplag4 = cp +     [cp[-1]] + [cp[-1]] + [cp[-1]] + [cp[-1]]
+cplag8 = cplag4 + [cp[-1]] + [cp[-1]] + [cp[-1]] + [cp[-1]]
+# I should snip off ends so new columns as long as cp:
+cplead = cplead[:-1]
+cplag1 = cplag1[1:]
+cplag2 = cplag2[2:]
+cplag4 = cplag4[4:]
+cplag8 = cplag8[8:]
+# I should check new columns as long as cp:
+len(cp) == len(cplead)
+len(cp) == len(cplag4)
+
+# NumPy allows me to do arithmetic on its Arrays.
+# I should convert my lists to Arrays:
+cp_a     = np.array(cp)
+cplead_a = np.array(cplead)
+cplag1_a = np.array(cplag1)
+cplag2_a = np.array(cplag2)
+cplag4_a = np.array(cplag4)
+cplag8_a = np.array(cplag8)
+
+# I should calculate pct-deltas:
+pctlead_a = 100.0 * (cplead_a - cp_a)/cp_a
+pctlag1_a = 100.0 * (cp_a - cplag1_a)/cplag1_a
+pctlag2_a = 100.0 * (cp_a - cplag2_a)/cplag2_a
+pctlag4_a = 100.0 * (cp_a - cplag4_a)/cplag4_a
+pctlag8_a = 100.0 * (cp_a - cplag8_a)/cplag8_a
+
+# I am done doing calculations.
+# I should put my 5 new columns into my DataFrame.
+
+df2['pctlead'] = pctlead_a
+df2['pctlag1'] = pctlag1_a
+df2['pctlag2'] = pctlag2_a
+df2['pctlag4'] = pctlag4_a
+df2['pctlag8'] = pctlag8_a
+
+# I should save my work into a CSV file:
+df2.to_csv('numpy101.csv', float_format='%4.3f', index=False)
+
+# Next step: numpy102.py
+# Done
+</code>
+
+
+Next Script:
+
+<code class='python'>
+# ~ann/numpy102.py
+
+# This script should help you learn enough Python to interact with some of the scikit-learn API.
+# If you see a question in this script,
+# your homework is to type it into Google and study the search results.
+# Some of the questions ask you about the data so Google cannot help you with that.
+
+# Ref:
+# http://www.meetup.com/Palo-Alto-Data-Science-Association/events/220901594/
+# http://continuum.io/downloads#py34
+
+# Demo:
+# cd ~ann
+# vi numpy102.py
+# ~ann/anaconda3/bin/python numpy102.py
+
+import pdb
+import pandas as pd
+import numpy  as np
+
+df3 = pd.read_csv('numpy101.csv')
+# I should check my data:
+print(df3.head())
+print(df3.tail())
+
+# I should get some training data from df3.
+# I should put it in NumPy Arrays.
+
+# I should initialize the x-Array.
+
+number_of_rows    = len(df3)
+number_of_columns = len(['pctlag1','pctlag2','pctlag4','pctlag8'])
+
+# I should declare some integers to help me navigate the Arrays:
+pctlag1_i = 0
+pctlag2_i = 1
+pctlag4_i = 2
+pctlag8_i = 3
+#
+pctlead_i = 0
+predict_i = 1
+
+# I should create Array of correct size:
+x_a = np.zeros((number_of_rows, number_of_columns))
+
+# Homework:
+# I should memorize this expression:
+# nparray[a:b, c:d]
+# Then, Translate above expression to English.
+# These also:
+# myarray[:b, c:d]
+# myarray[a:, c:d]
+# myarray[: , c:d]
+# myarray[: ,  : ]
+# Memorize: Rows on Left
+# Memorize: Cols on Right
+# Memorize: colon-comma-colon
+
+# Pandas is OPPOSITE!
+# Pandas: Cols on Left
+# Pandas: Rows on Right
+# Demo:
+# pdb.set_trace()
+# (Pdb) row_predicate = df3['cp'] > 2111.11
+# (Pdb) df3[['cdate','cp']][row_predicate]
+#         cdate       cp
+# 4  2015-03-02  2117.39
+# 7  2015-02-25  2113.86
+# 8  2015-02-24  2115.48
+# (Pdb) 
+# Memorize: Does Pandas use colon-comma-colon?
+# No!
+
+# Back to NumPy...
+# I should fill Array:
+x_a[:,pctlag1_i] = [elm[0] for elm in df3[['pctlag1']].values]
+x_a[:,pctlag2_i] = [elm[0] for elm in df3[['pctlag2']].values]
+x_a[:,pctlag4_i] = [elm[0] for elm in df3[['pctlag4']].values]
+x_a[:,pctlag8_i] = [elm[0] for elm in df3[['pctlag8']].values]
+# I should have x-Array now
+
+# I should initialize y-Array.
+# I want two columns:
+# response-variable (which for us is: pctlead)
+# predictions (which should get filled later)
+y_a = np.zeros((number_of_rows, 2))
+y_a[:,pctlead_i] = [elm[0] for elm in df3[['pctlead']].values]
+
+# For this demo, my Out-Of-Sample data is the most recent observation.
+# Recent Market close data appears at Yahoo M-F, after 6pm-ish.
+prediction_count = 1
+train_idx_start  = prediction_count + 1
+x_oos = x_a[prediction_count-1,:]
+
+# To predict the single observation above,
+# I want 10 years of training data:
+yr10 = 10 * 252
+x_train = x_a[train_idx_start:(train_idx_start + yr10),:]
+y_train = y_a[train_idx_start:(train_idx_start + yr10),pctlead_i]
+yr10 == len(x_train)
+yr10 == len(y_train)
+
+# Ref:
+# http://scikit-learn.org/dev/modules/ensemble.html#regression
+from sklearn.ensemble import GradientBoostingRegressor
+
+mygbr = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, max_depth=1, random_state=0, loss='ls')
+
+mygbr.fit(x_train, y_train)
+
+print("I predict that pctlead for the most recent observation is this:")
+myprediction = mygbr.predict(x_oos)[0]
+print(myprediction)
+print("Have a nice day.")
+
+# I can save the prediction in y_a.
+# I should use the same index I use for x_oos:
+
+y_a[prediction_count-1,predict_i] = myprediction
+
+
+# I should get another prediction.
+# I should predict the next oldest observation.
+# This will be interesting because I can compare my prediction to reality.
+
+# I need to rebuild the model though.
+# Why?
+# The next oldest observation is in x_train.
+# I should avoid allowing future observations to "leak" into x_train.
+
+# I should rebuild x_train, and y_train:
+
+prediction_count = 2
+train_idx_start  = prediction_count + 1
+x_oos = x_a[:prediction_count,:]
+len(x_oos) == prediction_count
+
+x_train = x_a[train_idx_start:(train_idx_start + yr10),:]
+y_train = y_a[train_idx_start:(train_idx_start + yr10),pctlead_i]
+yr10 == len(x_train)
+yr10 == len(y_train)
+
+mygbr.fit(x_train, y_train)
+
+print("I predict that pctleads for the two most recent observations are:")
+myprediction = mygbr.predict(x_oos)
+print(myprediction)
+print("Have a nice day.")
+
+# I can save the predictions in y_a.
+# I should use the same index I use for x_oos:
+
+y_a[:prediction_count,predict_i] = myprediction
+
+print('y_a[:prediction_count,:]:')
+print( y_a[:prediction_count,:]  )
+
+# Done
+</code>
