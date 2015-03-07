@@ -115,7 +115,35 @@ print("Have a nice day.")
 
 # I can save the prediction in y_a.
 # I should use the same index I use for x_oos:
-pdb.set_trace()
+
 y_a[prediction_count-1,predict_i] = myprediction
+
+
+# I should get another prediction.
+# I should predict the next oldest observation.
+# This will be interesting because I can compare my prediction to reality.
+
+# I need to rebuild the model though.
+# Why?
+# The next oldest observation is in x_train.
+# I should avoid allowing future observations to "leak" into x_train.
+
+# I should rebuild x_train, and y_train:
+
+prediction_count = 2
+train_idx_start  = prediction_count + 1
+x_oos = x_a[:prediction_count-1,:]
+len(x_oos) == prediction_count
+pdb.set_trace()
+
+# To predict the single observation above,
+# I want 10 years of training data:
+yr10 = 10 * 252
+x_train = x_a[train_idx_start:(train_idx_start + yr10),:]
+y_train = y_a[train_idx_start:(train_idx_start + yr10),pctlead_i]
+yr10 == len(x_train)
+yr10 == len(y_train)
+
+mygbr.fit(x_train, y_train)
 
 # Done
