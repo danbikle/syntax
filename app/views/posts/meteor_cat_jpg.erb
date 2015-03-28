@@ -69,7 +69,7 @@ curl http://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Cat_poster_1.jpg/8
 Next I added an img-element to 
 ~ann/catjpg1/catjpg1.html
 
-<img src='cat.jpg'>
+&lt;img src='cat.jpg'>
 
 Then I started the meteor application on my laptop:
 
@@ -80,23 +80,23 @@ ann@envy:~/catjpg1 $ cd ~ann/catjpg1
 ann@envy:~/catjpg1 $ 
 ann@envy:~/catjpg1 $ 
 ann@envy:~/catjpg1 $ cat catjpg1.html 
-<head>
-  <title>catjpg1</title>
-</head>
+&lt;head>
+  &lt;title>catjpg1&lt;/title>
+&lt;/head>
 
-<body>
-  <h1>Welcome to Meteor!</h1>
+&lt;body>
+  &lt;h1>Welcome to Meteor!&lt;/h1>
 
   {{> hello}}
 
-<img src='cat.jpg'>
+&lt;img src='cat.jpg'>
 
-</body>
+&lt;/body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
+&lt;template name="hello">
+  &lt;button>Click Me&lt;/button>
+  &lt;p>You've pressed the button {{counter}} times.&lt;/p>
+&lt;/template>
 ann@envy:~/catjpg1 $ 
 ann@envy:~/catjpg1 $ 
 ann@envy:~/catjpg1 $ meteor
