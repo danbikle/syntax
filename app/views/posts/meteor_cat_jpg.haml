@@ -1,0 +1,107 @@
+.q1 Question:
+.q2 How to use Meteor to serve a cat jpg?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/meteor') meteor
+  %a.xtag(href='/tags/linux') linux
+  .tag cat
+  .tag cats
+  .tag jpg
+  .tag jpeg
+  .tag public
+  .tag static
+  .tag curl
+  .tag img
+  .tag catjpg1
+  .tag deploy
+
+
+%br/
+I use this simple use-case as a description of how to use Meteor to serve static content.
+
+%br/
+%br/
+
+I start by login to my test account:
+%pre
+  %code.bash ssh ann@localhost
+
+Then I use a call to curl to run an installation script:
+
+%pre
+  %code.bash curl https://install.meteor.com/ | sh
+
+The script runs until it finds that ann is not in the sudoers file.
+
+%br/
+%br/
+
+I am happy with this because I do not want this script to run commands on my laptop as root.
+
+%br/
+%br/
+
+The script gives me some good info:
+
+%pre
+  =render 'meteor_cat_jpg1'
+
+I edited ~ann/.bashrc and added $HOME/.meteor to PATH using syntax like this:
+
+%pre
+  =render 'meteor_cat_jpg2'
+
+Next I created a meteor application:
+
+%pre
+  %code.bash meteor create catjpg1
+
+Then I did this:
+
+%pre
+  %code.bash
+    cd catjpg1
+    mkdir public
+    cd    public
+
+Then I got a cat jpg file from wikipedia:
+
+%pre
+  %code.bash curl http://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Cat_poster_1.jpg/800px-Cat_poster_1.jpg > cat.jpg
+
+
+Next I added an img-element to:
+
+%pre
+  %code.bash ~ann/catjpg1/catjpg1.html
+
+syntax:
+
+%pre
+  %code.html &lt;img src='cat.jpg'>
+
+Then I started the meteor application on my laptop:
+
+%pre
+  =render 'meteor_cat_jpg3'
+
+It worked!
+
+%br/
+%br/
+Next I 'deployed' the app:
+
+%pre
+  =render 'meteor_cat_jpg4'
+
+Then I verified that the deployed app was serving my jpg file:
+
+%pre
+  =render 'meteor_cat_jpg5'
+
+Then I loaded http://catjpg1.meteor.com into my browser and I saw some cats!
+
+%br/
+
+
+
