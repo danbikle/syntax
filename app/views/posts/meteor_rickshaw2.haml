@@ -1,5 +1,5 @@
 .q1 Question:
-.q2 How to mix Meteor with Rickshaw?
+.q2 How to mix Rickshaw with Meteor Template?
 .tags
   %span.tagtag Tags:
   %a.xtag(href='/tags/meteor') meteor
@@ -22,65 +22,53 @@
 
 %br/
 
-I used view-source in my browser to study the syntax served by this URL:
+This topic caught my eye while I was reading the Meteor forum.
 
 %br/
 %br/
-
-%a(href='http://code.shutterstock.com/rickshaw/examples/start.html' target='x')
-  http://code.shutterstock.com/rickshaw/examples/start.html
-
-%br/
-%br/
-
-I saw this syntax:
-
-%pre
-  =render 'meteor_rickshaw1'
 
 Then I created a Meteor application:
 
 %pre
-  =render 'meteor_rickshaw2'
+  =render 'meteor_rickshaw22'
+
 
 Then I added some syntax to 
 
 %pre
-  %code.bash ~ann/rickshaw1/rickshaw1.html
+  %code.bash ~ann/rickshaw2/rickshaw2.html
 
 
-I added this syntax:
-
-
-%pre
-  =render 'meteor_rickshaw3'
-
-Then I ran a shell command on my laptop:
+I added just one line of syntax so my html file looks like this:
 
 %pre
-  =render 'meteor_rickshaw4'
+  =render 'meteor_rickshaw23'
 
-Next I started the application on my laptop:
-
-%pre
-  =render 'meteor_rickshaw5'
-
-
-I loaded localhost:3000 into my browser.
+The main thing to note about my placement is that I put the div-element in the hello-template
+rather than the body-element.
 
 %br/
 %br/
 
-I saw the graph in my browser!
+This allows me to call Rickshaw syntax after the template is loaded into the DOM.
 
 %br/
 %br/
 
-Then I deployed the application so you can see it:
+Next, I added some JS to the rickshaw2.js file:
 
 %pre
-  =render 'meteor_rickshaw6'
+  =render 'meteor_rickshaw24'
 
+Then I started the application:
+
+%pre
+  =render 'meteor_rickshaw25'
+
+The application behaved well on my laptop so I deployed it:
+
+%pre
+  =render 'meteor_rickshaw26'
 
 Notice that I used the --debug option.
 
@@ -112,11 +100,9 @@ Fortunately this site gets little traffic:
 %br/
 %br/
 
-%a(href='http://rickshaw1.meteor.com' target='x')
-  http://rickshaw1.meteor.com
-
+%a(href='http://rickshaw2.meteor.com' target='x')
+  http://rickshaw2.meteor.com
 
 %br/
-
 
 
