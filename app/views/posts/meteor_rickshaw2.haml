@@ -60,7 +60,20 @@ Next, I added some JS to the rickshaw2.js file:
 %pre
   =render 'meteor_rickshaw24'
 
-Then I started the application:
+The main point to remember about the above syntax is that I need to place my
+Rickshaw syntax inside an anonymous function.
+%br/
+%br/
+
+Then that function needs to be an argument to this function:
+
+%pre
+  %code.javascript Template.hello.onRendered()
+
+%br/
+%br/
+
+After I wrote that syntax, I started the application:
 
 %pre
   =render 'meteor_rickshaw25'
