@@ -1,7 +1,7 @@
-# ~/x611/script/hamlposts2tags.rb
+# ~/sites/x611/script/hamlposts2tags.rb
 
 # This script should loop through 
-# ~/x611/app/views/posts/
+# ~/sites/x611/app/views/posts/
 # and look for tags in each HAML file.
 
 # If I find a tag,
@@ -12,7 +12,7 @@
 # The name of this 2nd HAML file should be built from the tag.
 
 # Next, if the tag is Rails, I should append the tag-link to
-# ~/x611/app/views/tags/_rails.haml
+# ~/sites/x611/app/views/tags/_rails.haml
 
 require 'tempfile'
 
