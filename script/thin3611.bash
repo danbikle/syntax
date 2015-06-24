@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# ~/x611/script/thin3611.bash
+# ~/sites/x2611/script/thin3611.bash
 
-cd ~/sites/x611
+cd ~/sites/x2611
 
 bin/thin -p 3611 start
 
