@@ -116,8 +116,65 @@ Also I see that some of the objects are nested within parent objects.
 %br/
 %br/
 
+After I understand JSON, the next step is to connect my software to the API and then parse the JSON.
+
 %br/
 %br/
+
+I can do this using Ruby.
+
+%br/
+%br/
+
+For this mini-project, I install Ubuntu 14.04 on my laptop.
+
+%br/
+%br/
+
+Then I install some packages inside Ubuntu using the shell commands listed below:
+
+%br/
+%br/
+%pre
+  %code
+    apt-get install autoconf bison build-essential libssl-dev libyaml-dev \
+    libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3       \
+    libgdbm-dev libsqlite3-dev gitk postgresql postgresql-server-dev-all  \
+    libpq-dev emacs wget curl chromium-browser openssh-server
+    
+    apt-get update
+    apt-get upgrade
+    shutdown -r now
+    login
+
+Then I install a recent version of Ruby:
+%pre
+  %code
+    git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+    git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+    vi .bashrc
+    bash
+    ls -la ~/.rbenv/plugins/ruby-build/share/ruby-build/
+    rbenv install 2.2.2
+    rbenv global  2.2.2
+
+%br/
+%br/
+
+
+%br/
+%br/
+
+%br/
+%br/
+
+
+%br/
+%br/
+
+%br/
+%br/
+
 
 %br/
 %br/
