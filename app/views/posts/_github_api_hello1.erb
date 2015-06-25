@@ -1,0 +1,29 @@
+<code class='ruby'># ~/github_api_ruby/gar.rb
+
+# This script should connect to the Github API and parse JSON from it.
+require 'rest-client'
+require 'json'
+
+ghrsp       = RestClient.get "https://api.github.com/users/danbikle/repos"
+parsed_json = JSON.parse(ghrsp.to_str)
+
+# I should convert parsed_json into a Ruby array:
+myarray = parsed_json.map{|repo| repo['full_name']}
+
+myarray.each{|repo| p repo}
+
+# I should look at a different user and sort his repos by star-count:
+
+ghrsp       = RestClient.get "https://api.github.com/users/ab/repos"
+parsed_json = JSON.parse(ghrsp.to_str)
+
+# I should convert parsed_json into a Ruby array:
+myarray = parsed_json.map{|repo| 
+      {'star_count' => Integer(repo['stargazers_count']),
+       'full_name' => repo['full_name']}}
+my_sortedarray = myarray.sort_by{|hsh| hsh['star_count']}
+
+my_sortedarray.each{|repo| p repo}
+
+# done
+</code>

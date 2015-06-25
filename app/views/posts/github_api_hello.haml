@@ -185,11 +185,37 @@ rbenv local 2.2.2
 
 gem install bundler
 gem install rest-client
-echo "gem 'rest-client'" > Gemfile
+gem install json
+echo "gem  'rest-client'" > Gemfile
+echo "gem  'json'"       >> Gemfile
 bundle install
 
 %br/
 %br/
+
+Next I wrote a simple script to parse JSON served to me via the API:
+
+%pre
+  =render 'github_api_hello1'
+
+%br/
+%br/
+
+Screen dump:
+
+%br/
+%br/
+
+%pre
+  =render 'github_api_hello2'
+
+%br/
+%br/
+
+
+%br/
+%br/
+
 
 %br/
 %br/
