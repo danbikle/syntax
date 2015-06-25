@@ -161,23 +161,61 @@ Then I install a recent version of Ruby:
 %br/
 %br/
 
-
-%br/
-%br/
-
-%br/
-%br/
+Next, I create a folder for my API script:
 
 
 %br/
 %br/
 
+mkdir ~/github_api_ruby
+
+%br/
+%br/
+
+Then I start populating it:
+
+%br/
+%br/
+
+cd ~/github_api_ruby
+rbenv local 2.2.2
+
+%br/
+%br/
+
+gem install bundler
+gem install rest-client
+gem install json
+echo "gem  'rest-client'" > Gemfile
+echo "gem  'json'"       >> Gemfile
+bundle install
+
+%br/
+%br/
+
+Next I wrote a simple script to parse JSON served to me via the API:
+
+%pre
+  =render 'github_api_hello1'
+
+%br/
+%br/
+
+Screen dump:
+
+%br/
+%br/
+
+%pre
+  =render 'github_api_hello2'
+
 %br/
 %br/
 
 
 %br/
 %br/
+
 
 %br/
 %br/
