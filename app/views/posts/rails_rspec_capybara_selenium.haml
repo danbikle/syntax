@@ -1,5 +1,5 @@
 .q1 Question:
-.q2 How to get started with Capybara-Selenium on Rails?
+.q2 How to start with Capybara-Selenium on Rails?
 .tags
   %span.tagtag Tags:
   %a.xtag(href='/tags/capybara') capybara
@@ -33,15 +33,20 @@ I usually answer with these responses:
 %br/
 %br/
 
+What are some drawbacks to Capybara-Selenium testing?
 
+%ul
+  %li It is slow.
+  %li It tests many layers at once, so it is not specific.
+  %li It depends on a browser like Firefox.
+  
 %br/
 %br/
 
+The steps listed below are useful to me when I create a new Rails app which has Capybara-Selenium testing enabled:
 
-%br/
-%br/
-
-
+%pre
+  =render 'rails_rspec_capybara_selenium1'
 
 %br/
 %br/
