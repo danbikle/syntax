@@ -148,6 +148,7 @@ Then I install some packages inside Ubuntu using the shell commands listed below
     login
 
 Then I install a recent version of Ruby:
+
 %pre
   %code
     git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
@@ -163,37 +164,29 @@ Then I install a recent version of Ruby:
 
 Next, I create a folder for my API script:
 
-
-%br/
-%br/
-
-mkdir ~/github_api_ruby
+%pre
+  %code mkdir ~/github_api_ruby
 
 %br/
 %br/
 
 Then I start populating it:
 
-%br/
-%br/
-
-cd ~/github_api_ruby
-rbenv local 2.2.2
-
-%br/
-%br/
-
-gem install bundler
-gem install rest-client
-gem install json
-echo "gem  'rest-client'" > Gemfile
-echo "gem  'json'"       >> Gemfile
-bundle install
+%pre
+  %code
+    cd ~/github_api_ruby
+    rbenv local 2.2.2
+    gem install bundler
+    gem install rest-client
+    gem install json
+    echo "gem  'rest-client'" > Gemfile
+    echo "gem  'json'"       >> Gemfile
+    bundle install
 
 %br/
 %br/
 
-Next I wrote a simple script to parse JSON served to me via the API:
+Next I write a simple script to parse JSON served to me via the API:
 
 %pre
   =render 'github_api_hello1'
@@ -203,20 +196,13 @@ Next I wrote a simple script to parse JSON served to me via the API:
 
 Screen dump:
 
-%br/
-%br/
-
 %pre
   =render 'github_api_hello2'
 
 %br/
 %br/
 
+So, the rest-client Ruby-Gem is a good way to get programmatic control over JSON served by the Github API.
 
 %br/
 %br/
-
-
-%br/
-%br/
-
