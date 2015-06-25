@@ -13,4 +13,115 @@ I use this post to get students started with the Github REST API.
 
 %br/
 %br/
-under construction
+Google is a good place to start with the Github REST API:
+%br/
+%br/
+
+%a(href='https://www.google.com/search?q=github+REST+API' target='x')
+  https://www.google.com/search?q=github+REST+API
+
+%br/
+%br/
+
+Next, I like to point students to this doc-link:
+
+%br/
+%br/
+
+%a(href='https://developer.github.com/v3/repos/#list-user-repositories' target='x')
+  https://developer.github.com/v3/repos/#list-user-repositories
+
+%br/
+%br/
+
+The above API call has a simple syntax:
+
+%br/
+%br/
+
+GET /users/:username/repos
+
+%br/
+%br/
+
+I can call it with my browser by clicking on the URL below:
+
+%br/
+%br/
+
+%a(href='https://api.github.com/users/danbikle/repos' target='x')
+  https://api.github.com/users/danbikle/repos
+  
+
+%br/
+%br/
+
+My browser will send a GET request and then deal with the response from api.github.com
+
+%br/
+%br/
+
+Then, my browser will display a syntax called JSON.
+
+%br/
+%br/
+
+JSON syntax is easy to read.
+
+%br/
+%br/
+
+If I see this:
+%br/
+%br/
+
+[1,2,2,3,4]
+
+%br/
+%br/
+
+I am looking at at JSON array.
+
+%br/
+%br/
+
+This is a JSON object:
+
+%br/
+%br/
+
+{"hello": "world", "life": "Is Good"}
+
+%br/
+%br/
+
+When I look at the syntax from 
+%br/
+%br/
+
+
+%a(href='https://api.github.com/users/danbikle/repos' target='x')
+  https://api.github.com/users/danbikle/repos
+  
+%br/
+%br/
+
+I see an array of objects.
+
+%br/
+%br/
+
+Also I see that some of the objects are nested within parent objects.
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
+
