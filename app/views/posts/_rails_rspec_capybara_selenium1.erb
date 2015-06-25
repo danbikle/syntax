@@ -36,9 +36,10 @@ cd    ~/sites/
 gem install rails -v 4.2.2
 rails new myapp
 cd myapp
+rbenv local 2.2.2
 vi Gemfile
 
-My Gemfile looks like this:
+My Gemfile should look like this:
 
 ruby "2.2.2"
 source 'https://rubygems.org'
@@ -82,6 +83,74 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 end
 
+
+Then, I run these shell commands:
+
+bundle install
+bundle binstub thin
+bundle binstub rspec-core
+
+Next, I scaffold a tangible noun-like thing such as Car:
+
+bin/rails g scaffold Car vin:string yr:integer model:string make:string color:string 
+bin/rake db:migrate
+
+
+Now I have enough of a Rails app to write a Feature-Spec which uses RSpec, Capybara, and Selenium:
+
+bin/rails g rspec:install
+mkdir spec/features
+
+Then I write enough of a spec to see if RSpec can start Firefox:
+
+vi spec/features/firefox_spec.rb
+
+I should type in something like this:
+
+# spec/features/firefox_spec.rb
+# Demo:
+# bin/rspec spec/features/firefox_spec.rb
+require 'rails_helper'
+describe 'This should start Firefox', :js => true do
+  it 'should start Firefox' do
+    visit '/cars'
+    # I should briefly see Firefox; then it should exit.
+  end
+end
+
+
+Then I run it with this shell command:
+
+bin/rspec spec/features/firefox_spec.rb
+
+I should briefly see Firefox; then it should exit.
+I should see something like this in my shell:
+
+dan@ann15:~/sites/myapp $ 
+dan@ann15:~/sites/myapp $ bin/rspec spec/features/firefox_spec.rb
+   (9.5ms)  CREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "vin" varchar, "yr" integer, "model" varchar, "make" varchar, "color" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+   (9.3ms)  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+   (0.2ms)  select sqlite_version(*)
+   (13.1ms)  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+   (0.2ms)  SELECT version FROM "schema_migrations"
+   (12.9ms)  INSERT INTO "schema_migrations" (version) VALUES ('20150625221319')
+  ActiveRecord::SchemaMigration Load (0.1ms)  SELECT "schema_migrations".* FROM "schema_migrations"
+   (0.1ms)  begin transaction
+Started GET "/cars" for 127.0.0.1 at 2015-06-25 22:32:09 +0000
+Processing by CarsController#index as HTML
+  Car Load (0.3ms)  SELECT "cars".* FROM "cars"
+  Rendered cars/index.html.haml within layouts/application (15.4ms)
+Completed 200 OK in 2131ms (Views: 1922.5ms | ActiveRecord: 0.3ms)
+Started GET "/assets/application.css" for 127.0.0.1 at 2015-06-25 22:32:11 +0000
+Started GET "/assets/application.js" for 127.0.0.1 at 2015-06-25 22:32:11 +0000
+   (0.1ms)  rollback transaction
+.
+
+Finished in 9.97 seconds (files took 3.92 seconds to load)
+1 example, 0 failures
+
+dan@ann15:~/sites/myapp $ 
+dan@ann15:~/sites/myapp $ 
 
 
 
