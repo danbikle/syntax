@@ -152,6 +152,99 @@ Finished in 9.97 seconds (files took 3.92 seconds to load)
 dan@ann15:~/sites/myapp $ 
 dan@ann15:~/sites/myapp $ 
 
+If that works I should start work on a spec which asks for the cars/new form:
+
+# spec/features/cars_spec.rb
+# Demo:
+# bin/rspec spec/features/cars_spec.rb
+require 'rails_helper'
+describe 'This should use Firefox to test the cars resource.', :js => true do
+  it 'should see the form at cars/new' do
+    visit '/cars/new'
+    expect(page).to have_text('New car')
+    expect(page).to have_text('Vin')
+    expect(page).to have_text('Model')
+    expect(page).to have_text('Make')
+  end
+end
+
+
+If that works I should write a spec which fills in the form and then looks for the data:
+
+# spec/features/cars_spec.rb
+# Demo:
+# bin/rspec spec/features/cars_spec.rb
+require 'rails_helper'
+describe 'This should use Firefox to test the cars resource.', :js => true do
+  it 'should see the form at cars/new' do
+    visit '/cars/new'
+    expect(page).to have_text('New car')
+    expect(page).to have_text('Vin')
+    expect(page).to have_text('Model')
+    expect(page).to have_text('Make')
+  end
+  it 'should fill in form at cars/new' do
+    visit '/cars/new'
+    fill_in "Vin",   :with => "abc123XYZ"
+    fill_in "Model", :with => "Mustang"
+    fill_in "Make",  :with => "Ford"
+    fill_in "Yr",    :with => "1968"
+    fill_in "Color", :with => "Blue"
+  end  
+  it 'should submit form at cars/new' do
+    visit '/cars/new'
+    fill_in "Vin",   :with => "abc123XYZ"
+    fill_in "Model", :with => "Mustang"
+    fill_in "Make",  :with => "Ford"
+    fill_in "Yr",    :with => "1968"
+    fill_in "Color", :with => "Blue"
+    click_on 'Save'
+  end  
+  it 'should display a new car' do
+    visit '/cars/new'
+    fill_in "Vin",   :with => "abc123XYZ"
+    fill_in "Model", :with => "Mustang"
+    fill_in "Make",  :with => "Ford"
+    fill_in "Yr",    :with => "1968"
+    fill_in "Color", :with => "Blue"
+    click_on 'Save'
+    expect(page).to have_text('Car was successfully created')
+    expect(page).to have_text('abc123XYZ')
+    expect(page).to have_text('Mustang')
+    expect(page).to have_text('Ford')
+    expect(page).to have_text('Blue')
+  end  
+  it 'should display cars' do
+    visit '/cars/new'
+    fill_in "Vin",   :with => "abc123XYZ"
+    fill_in "Model", :with => "Mustang"
+    fill_in "Make",  :with => "Ford"
+    fill_in "Yr",    :with => "1968"
+    fill_in "Color", :with => "Blue"
+    click_on 'Save'
+    click_on 'Back'
+    expect(page).to have_text('Listing cars')    
+    click_on 'New Car'
+    fill_in "Vin",   :with => "def456XYZ"
+    fill_in "Model", :with => "Vette"
+    fill_in "Make",  :with => "Chevy"
+    fill_in "Yr",    :with => "1967"
+    fill_in "Color", :with => "Black"
+    click_on 'Save'
+    click_on 'Back'
+    expect(page).to have_text('Listing cars')    
+    expect(page).to have_text('Listing cars')
+    expect(page).to have_text('abc123XYZ')
+    expect(page).to have_text('Mustang')
+    expect(page).to have_text('Ford')
+    expect(page).to have_text('Blue')
+    expect(page).to have_text('def456XYZ')
+    expect(page).to have_text('Vette')
+    expect(page).to have_text('Chevy')
+    expect(page).to have_text('Black')
+  end  
+end
+
 
 
 
