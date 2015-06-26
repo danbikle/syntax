@@ -17,8 +17,8 @@ git pull bit    master
 git push heroku master
 git push bit    master
 
-# I should remove above exit after I upgrade  ~/sites/staxus/
 cd ~/sites/staxus/
 git pull
+git commit -am mo
 git pull heroku master
 git push heroku master
