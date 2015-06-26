@@ -1,0 +1,26 @@
+<code class='bash'>dan@ann15:~/sites/myapp $ 
+dan@ann15:~/sites/myapp $ bin/rspec spec/features/firefox_spec.rb
+   (9.5ms)  CREATE TABLE "cars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "vin" varchar, "yr" integer, "model" varchar, "make" varchar, "color" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+   (9.3ms)  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+   (0.2ms)  select sqlite_version(*)
+   (13.1ms)  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+   (0.2ms)  SELECT version FROM "schema_migrations"
+   (12.9ms)  INSERT INTO "schema_migrations" (version) VALUES ('20150625221319')
+  ActiveRecord::SchemaMigration Load (0.1ms)  SELECT "schema_migrations".* FROM "schema_migrations"
+   (0.1ms)  begin transaction
+Started GET "/cars" for 127.0.0.1 at 2015-06-25 22:32:09 +0000
+Processing by CarsController#index as HTML
+  Car Load (0.3ms)  SELECT "cars".* FROM "cars"
+  Rendered cars/index.html.haml within layouts/application (15.4ms)
+Completed 200 OK in 2131ms (Views: 1922.5ms | ActiveRecord: 0.3ms)
+Started GET "/assets/application.css" for 127.0.0.1 at 2015-06-25 22:32:11 +0000
+Started GET "/assets/application.js" for 127.0.0.1 at 2015-06-25 22:32:11 +0000
+   (0.1ms)  rollback transaction
+.
+
+Finished in 9.97 seconds (files took 3.92 seconds to load)
+1 example, 0 failures
+
+dan@ann15:~/sites/myapp $ 
+dan@ann15:~/sites/myapp $ 
+</code>
