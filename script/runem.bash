@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# ~/sites/x2611/script/runem.bash
+# ~/sites/x611/script/runem.bash
 
 # I should run this script after I write a new post.
 # It enhances the post and generates some links.
 
 set -x
-cd ~/sites/x2611/
-rm ~/sites/x2611/app/views/posts/_tags.haml
-rm ~/sites/x2611/app/views/posts/_index.haml
-rm ~/sites/x2611/app/views/questions/_index.haml
-rm ~/sites/x2611/app/views/tags/_*.haml
+cd ~/sites/x611/
+rm ~/sites/x611/app/views/posts/_tags.haml
+rm ~/sites/x611/app/views/posts/_index.haml
+rm ~/sites/x611/app/views/questions/_index.haml
+rm ~/sites/x611/app/views/tags/_*.haml
 
 bin/rails r script/hamlposts2questions.rb
 bin/rails r script/hamlposts2tags.rb
