@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ~/sites/x2611/script/postem.bash
+# ~/sites/x611/script/postem.bash
 
 # I should run this script after I write a new post.
 # It enhances the post and generates some links.
@@ -8,7 +8,7 @@
 
 
 set -x
-cd ~/sites/x2611/
+cd ~/sites/x611/
 script/runem.bash
 git add .
 git commit -am mo
