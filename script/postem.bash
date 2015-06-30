@@ -6,7 +6,6 @@
 # It enhances the post and generates some links.
 # Then it deploys to heroku.
 
-
 set -x
 cd ~/sites/x611/
 script/runem.bash
