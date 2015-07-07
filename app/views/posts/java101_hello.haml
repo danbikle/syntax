@@ -1,0 +1,130 @@
+.q1 Question:
+.q2 In IntelliJ, with Java, How to println("Hello World.")
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/java') java
+  %a.xtag(href='/tags/intellij') intellij
+
+%br/
+
+If your Java skills are light, this might be a useful post for you.
+
+
+%br/
+%br/
+
+I start this task by downloading Java:
+
+%br/
+%br/
+
+%a(href='http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html' target='x')
+  http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html
+  
+
+%br/
+%br/
+
+To install it, I just un-tar it and then place JAVA_HOME in my .bashrc.
+
+%br/
+%br/
+
+Then I prepend ${JAVA_HOME}/bin to my PATH in my .bashrc.
+
+%br/
+%br/
+
+Installing IntelliJ is similar.
+
+%br/
+%br/
+
+Browse this URL:
+
+%br/
+%br/
+
+%a(href='https://www.jetbrains.com/idea/download/' target='x')
+  https://www.jetbrains.com/idea/download/
+  
+
+%br/
+%br/
+
+I should download Community Edition
+
+%br/
+%br/
+
+Then I run this shell command, perhaps in my home-folder:
+
+
+%pre
+  %code.bash
+    tar zxf ~/Downloads/ideaIC-14.1.1.tar.gz
+
+
+Then this:
+
+%pre
+  %code.bash
+    ln -s idea-IC-141.178.9 idea
+
+
+Then this:
+
+%pre
+  %code.bash
+    echo 'export PATH=~ann/idea/bin:$PATH' >> ~/.bashrc
+
+
+Then I run this shell command to start IntelliJ:
+
+%pre
+  %code.bash
+    \~/idea/bin/idea.sh
+
+
+The screendumps below are pictures worth hundreds of words.
+
+%br/
+%br/
+
+They describe how to println("Hello World.") in IntelliJ, with Java:
+
+%br/
+%br/
+
+%img(src='/images/java101_hello10.png')
+%hr/
+%img(src='/images/java101_hello11.png')
+%hr/
+%img(src='/images/java101_hello12.png')
+%hr/
+%img(src='/images/java101_hello13.png')
+%hr/
+%img(src='/images/java101_hello14.png')
+%hr/
+%img(src='/images/java101_hello15.png')
+%hr/
+%img(src='/images/java101_hello16.png')
+%hr/
+%img(src='/images/java101_hello17.png')
+%hr/
+%img(src='/images/java101_hello18.png')
+%hr/
+%img(src='/images/java101_hello19.png')
+%hr/
+%img(src='/images/java101_hello20.png')
+%hr/
+%img(src='/images/java101_hello21.png')
+%hr/
+%img(src='/images/java101_hello22.png')
+%hr/
+%img(src='/images/java101_hello23.png')
+%hr/
+%img(src='/images/java101_hello24.png')
+%hr/
+%img(src='/images/java101_hello25.png')
+%hr/

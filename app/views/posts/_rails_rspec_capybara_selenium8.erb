@@ -1,0 +1,14 @@
+<code class='ruby'># spec/features/cars_spec.rb
+# Demo:
+# bin/rspec spec/features/cars_spec.rb
+require 'rails_helper'
+describe 'This should use Firefox to test the cars resource.', :js => true do
+  it 'should see the form at cars/new' do
+    visit '/cars/new'
+    expect(page).to have_text('New car')
+    expect(page).to have_text('Vin')
+    expect(page).to have_text('Model')
+    expect(page).to have_text('Make')
+  end
+end
+</code>

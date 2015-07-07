@@ -1,0 +1,213 @@
+.q1 Question:
+.q2 How to get started with Github API?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/github') github
+  %a.xtag(href='/tags/rest') rest
+  %a.xtag(href='/tags/api') api
+  %a.xtag(href='/tags/rest_client') rest_client
+%br/
+
+I use this post to get students started with the Github REST API.
+
+
+%br/
+%br/
+Google is a good place to start with the Github REST API:
+%br/
+%br/
+
+%a(href='https://www.google.com/search?q=github+REST+API' target='x')
+  https://www.google.com/search?q=github+REST+API
+
+%br/
+%br/
+
+Next, I like to point students to this doc-link:
+
+%br/
+%br/
+
+%a(href='https://developer.github.com/v3/repos/#list-user-repositories' target='x')
+  https://developer.github.com/v3/repos/#list-user-repositories
+
+%br/
+%br/
+
+The above API call has a simple syntax:
+
+%br/
+%br/
+
+GET /users/:username/repos
+
+%br/
+%br/
+
+I can call it with my browser by clicking on the URL below:
+
+%br/
+%br/
+
+%a(href='https://api.github.com/users/danbikle/repos' target='x')
+  https://api.github.com/users/danbikle/repos
+  
+
+%br/
+%br/
+
+My browser will send a GET request and then deal with the response from api.github.com
+
+%br/
+%br/
+
+Then, my browser will display a syntax called JSON.
+
+%br/
+%br/
+
+JSON syntax is easy to read.
+
+%br/
+%br/
+
+If I see this:
+%br/
+%br/
+
+[1,2,2,3,4]
+
+%br/
+%br/
+
+I am looking at at JSON array.
+
+%br/
+%br/
+
+This is a JSON object:
+
+%br/
+%br/
+
+{"hello": "world", "life": "Is Good"}
+
+%br/
+%br/
+
+When I look at the syntax from 
+%br/
+%br/
+
+
+%a(href='https://api.github.com/users/danbikle/repos' target='x')
+  https://api.github.com/users/danbikle/repos
+  
+%br/
+%br/
+
+I see an array of objects.
+
+%br/
+%br/
+
+Also I see that some of the objects are nested within parent objects.
+
+%br/
+%br/
+
+After I understand JSON, the next step is to connect my software to the API and then parse the JSON.
+
+%br/
+%br/
+
+I can do this using Ruby.
+
+%br/
+%br/
+
+For this mini-project, I install Ubuntu 14.04 on my laptop.
+
+%br/
+%br/
+
+Then I install some packages inside Ubuntu using the shell commands listed below:
+
+%br/
+%br/
+
+%pre
+  %code
+    apt-get install autoconf bison build-essential libssl-dev libyaml-dev \
+    libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3       \
+    libgdbm-dev libsqlite3-dev gitk postgresql postgresql-server-dev-all  \
+    libpq-dev emacs wget curl chromium-browser openssh-server
+    %br/
+    apt-get update
+    apt-get upgrade
+    shutdown -r now
+    login
+    
+%br/
+%br/
+
+Then I install a recent version of Ruby:
+
+%pre
+  %code
+    cd ~
+    git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+    git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+    vi .bashrc
+    bash
+    ls -la ~/.rbenv/plugins/ruby-build/share/ruby-build/
+    rbenv install 2.2.2
+    rbenv global  2.2.2
+
+%br/
+%br/
+
+Next, I create a folder for my API script:
+
+%pre
+  %code mkdir ~/github_api_ruby
+
+%br/
+%br/
+
+Then I start populating it:
+
+%pre
+  %code
+    cd ~/github_api_ruby
+    rbenv local 2.2.2
+    gem install bundler
+    gem install rest-client
+    gem install json
+    echo "gem  'rest-client'" > Gemfile
+    echo "gem  'json'"       >> Gemfile
+    bundle install
+
+%br/
+%br/
+
+Next I write a simple script to parse JSON served to me via the API:
+
+%pre
+  =render 'github_api_hello1'
+
+%br/
+%br/
+
+Screen dump:
+
+%pre
+  =render 'github_api_hello2'
+
+%br/
+%br/
+
+So, the rest-client Ruby-Gem is a good way to get programmatic control over JSON served by the Github API.
+
+%br/
+%br/

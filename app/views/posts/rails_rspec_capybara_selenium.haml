@@ -1,0 +1,148 @@
+.q1 Question:
+.q2 How to start with Capybara-Selenium on Rails?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/capybara') capybara
+  %a.xtag(href='/tags/selenium') selenium
+  %a.xtag(href='/tags/rails') rails
+  %a.xtag(href='/tags/ruby') ruby
+  %a.xtag(href='/tags/rspec') rspec
+  %a.xtag(href='/tags/feature') feature
+%br/
+
+I use this post to get students started with using Capybara-Selenium to run
+RSpec feature tests on Rails.
+
+%br/
+%br/
+
+Some students ask an obvious question, "Why should I use Capybara-Selenium to run
+RSpec feature tests on Rails?"
+
+%br/
+%br/
+
+I usually answer with these responses:
+%ul
+  %li For small Rails-prototype applications, Capybara-Selenium is optimal.
+  %li I can use Capybara-Selenium to test the JavaScript syntax in my Rails app.
+  %li Watching a robotic browser walk through my app gives me a sense of comfort.
+  %li Capybara-Selenium tests all or most layers in my Rails app.
+  %li Capybara-Selenium tests are a good place to start writing tests in my app.
+  
+%br/
+%br/
+
+What are some drawbacks to Capybara-Selenium testing?
+
+%ul
+  %li It is slow.
+  %li It tests many layers at once, so it is not specific.
+  %li It depends on a browser like Firefox.
+  
+%br/
+%br/
+
+The steps listed below are useful to me when I create a new Rails app which has Capybara-Selenium testing enabled.
+
+%br/
+%br/
+
+I usually start a new project by installing Ubuntu 14.04 inside of VirtualBox on my laptop:
+
+%br/
+%br/
+
+%a(href='https://www.virtualbox.org/wiki/Downloads' target='x')
+  https://www.virtualbox.org/wiki/Downloads
+
+%br/
+
+%a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.2-desktop-amd64.iso' target='x')
+  http://releases.ubuntu.com/14.04/ubuntu-14.04.2-desktop-amd64.iso
+  
+%br/
+%br/
+Once I have Ubuntu booted up, I prepare it for the installation of Ruby 2.2.2:
+
+%pre
+  =render 'rails_rspec_capybara_selenium1'
+
+Then I install a recent version (as of this writing, 2.2.2) of Ruby:
+
+%pre
+  =render 'rails_rspec_capybara_selenium2'
+
+Next I start work on my new Rails app:
+%pre
+  =render 'rails_rspec_capybara_selenium3'
+
+My Gemfile should look like this:
+%pre
+  =render 'rails_rspec_capybara_selenium4'
+
+Then, I run these shell commands:
+%pre
+  =render 'rails_rspec_capybara_selenium5'
+
+Next, I scaffold a tangible noun-like thing such as Car:
+%pre
+  %code.bash
+    bin/rails g scaffold Car vin:string yr:integer model:string make:string color:string 
+    bin/rake db:migrate
+    
+Now I have enough of a Rails app to write a Feature-Spec which uses RSpec, Capybara, and Selenium:
+
+%pre
+  %code.bash
+    bin/rails g rspec:install
+    mkdir spec/features
+
+Then I write enough of a spec to see if RSpec can start Firefox:
+
+%pre
+  %code.bash
+    vi spec/features/firefox_spec.rb
+
+I should type in something like this:
+%pre
+  =render 'rails_rspec_capybara_selenium6'
+
+Then I run it with this shell command:
+
+%pre
+  %code.bash
+    bin/rspec spec/features/firefox_spec.rb
+
+I should briefly see Firefox; then it should exit.
+%br/
+I should see something like this in my shell:
+%pre
+  =render 'rails_rspec_capybara_selenium7'
+
+Here is an animated GIF:
+%br/
+%img(width='1000px' src='/myassets/gifs/rails_rspec_capybara_selenium1.gif')
+%br/
+
+
+If that works I should start work on a spec which asks for the cars/new form:
+    
+%pre
+  =render 'rails_rspec_capybara_selenium8'
+
+If that works I should write a spec which fills in the form and then looks for the data:
+
+%pre
+  =render 'rails_rspec_capybara_selenium9'
+
+I ran the above spec on my laptop and captured it with byzanz screen capturer:
+%br/
+%img(width='1000px' src='/myassets/gifs/rails_rspec_capybara_selenium2.gif')
+%br/
+
+That worked so, I am convinced that Rails-RSpec-Capybara-Selenium is working well for me.
+
+%br/
+%br/
+
