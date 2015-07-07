@@ -3,6 +3,19 @@
 # ~/x611/script/wget_syntax.bash
 
 set -x
+mkdir -p /tmp/wget_rspec4us/
+cd       /tmp/wget_rspec4us/
+wget www.rspec4.us
+wget rspec4.herokuapp.com
+
+mkdir -p /tmp/wget_algo611/
+cd       /tmp/wget_algo611/
+
+wget algo611.herokuapp.com/
+wget algo611.herokuapp.com/blog
+wget algo611.herokuapp.com/contact
+
+
 mkdir -p /tmp/wget_syntax/
 cd       /tmp/wget_syntax/
 
@@ -114,11 +127,11 @@ wget https://task4us.herokuapp.com/ads/1
 mkdir -p /tmp/wget_hpricot_com
 cd       /tmp/wget_hpricot_com
 
-wget www.hpricot.com
-wget www.hpricot.com/contact
-wget www.hpricot.com/demos
-wget www.hpricot.com/blog
-wget www.hpricot.com/alt
+wget hpricot.herokuapp.com
+wget hpricot.herokuapp.com/contact
+wget hpricot.herokuapp.com/demos
+wget hpricot.herokuapp.com/blog
+wget hpricot.herokuapp.com/alt
 
 mkdir -p /tmp/wget_hackternoon_com
 cd       /tmp/wget_hackternoon_com
