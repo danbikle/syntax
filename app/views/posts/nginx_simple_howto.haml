@@ -1,0 +1,103 @@
+.q1 Question:
+.q2 On Linux, Simplest NGINX How to?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/nginx') nginx
+  %a.xtag(href='/tags/webserver') webserver
+  %a.xtag(href='/tags/www') www
+  %a.xtag(href='/tags/apt_get') apt_get
+  %a.xtag(href='/tags/aptitude') aptitude
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  
+%br/
+
+I encountered a use case recently that asked me to install a webserver on my laptop.
+
+%br/
+%br/
+
+I studied this page:
+
+%br/
+%br/
+
+%a(href='https://en.wikipedia.org/wiki/Comparison_of_web_server_software' target='x')
+  https://en.wikipedia.org/wiki/Comparison_of_web_server_software
+  
+
+%br/
+%br/
+
+I decide to install NGINX.
+
+%br/
+%br/
+
+My laptop runs Ubuntu so I ran this shell command to install NGINX:
+
+%pre
+  =render 'nginx_simple_howto1'
+
+At the end of that installation effort I noticed that NGINX processes were running on my laptop.
+
+%br/
+%br/
+
+I used my browser to look for the associated web server:
+
+%br/
+%br/
+%img(src='/images/nginx_simple_howto1.png')
+%br/
+
+Next I created a folder named www under my home folder:
+
+%pre
+  %code.bash mkdir ~/www/
+
+I linked ~/www/ to /var/www/html/ where NGINX could see it:
+
+%pre
+  %code.bash
+    root@ann15:/home/dan# 
+    root@ann15:/home/dan# 
+    root@ann15:/home/dan# cd /var/www/html
+    root@ann15:/var/www/html# 
+    root@ann15:/var/www/html# ln -s /home/dan/www .
+    root@ann15:/var/www/html#
+
+Next, I created a simple HTML file:
+
+%pre
+  %code.bash
+    dan@ann15:~ $ 
+    dan@ann15:~ $ 
+    dan@ann15:~ $ cd ~/www/
+    dan@ann15:~/www $ 
+    dan@ann15:~/www $ 
+    dan@ann15:~/www $ echo '&lt;html>NGINX says hello world&lt;/html>' > hello.html
+    dan@ann15:~/www $ 
+    dan@ann15:~/www $ 
+
+Then, I checked that NGINX could serve it:
+
+%pre
+  %code.bash
+    dan@ann15:~/www $ 
+    dan@ann15:~/www $ curl localhost:80/www/hello.html
+    &lt;html>NGINX says hello world&lt;/html>
+    dan@ann15:~/www $ 
+    dan@ann15:~/www $ 
+    dan@ann15:~/www $   
+
+At this point I was happy because I had my laptop in this state:
+
+%ul
+  %li NGINX installed on my laptop
+  %li NGINX serving HTML from localhost:80
+  %li A folder where I could put HTML documents which were then served
+  
+%br/
+%br/
+
