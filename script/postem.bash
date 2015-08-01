@@ -20,4 +20,5 @@ cd ~/sites/staxus/
 git pull
 git commit -am mo
 git pull heroku master
+git commit -am mo
 git push heroku master
