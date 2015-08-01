@@ -1,0 +1,12 @@
+<code class='bash'>#!/bin/bash
+
+# ~/aspy/bin/curl_gspc.bash
+
+# This script should curl gspc prices into a two-column CSV file:
+# ~/aspy/csv/gspc.csv
+cd ~/aspy/
+mkdir -p ~/aspy/csv/
+gspcURL='http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC'
+curl $gspcURL | awk -F, '{print $1","$5}' > csv/gspc.csv
+exit
+</code>
