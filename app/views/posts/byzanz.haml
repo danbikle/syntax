@@ -1,0 +1,91 @@
+.q1 Question:
+.q2 How to byzanz Animated GIF Screencast?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/byzanz') byzanz
+  %a.xtag(href='/tags/gif') gif
+  %a.xtag(href='/tags/animated_gif') animated_gif
+  %a.xtag(href='/tags/screencast') screencast
+
+%br/
+
+Recently I created a 15 second screencast of an RSpec demo which
+controlled a Firefox browser with the Capybara/Selenium Gems.
+
+%br/
+%br/
+
+The screencast was actually an animated GIF which I created with byzanz.
+
+%br/
+%br/
+
+On my Ubuntu laptop, installing  byzanz was easy:
+
+%pre
+  %code.bash
+    root@u95:/home/dan# 
+    root@u95:/home/dan# 
+    root@u95:/home/dan# aptitude search byzanz
+    i   byzanz                          - small screencast creator                  
+    p   byzanz:i386                     - small screencast creator                  
+    root@u95:/home/dan# 
+    root@u95:/home/dan# 
+    root@u95:/home/dan# 
+    root@u95:/home/dan# aptitude install byzanz
+    No packages will be installed, upgraded, or removed.
+    0 packages upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+    Need to get 0 B of archives. After unpacking 0 B will be used.
+                                      
+    root@u95:/home/dan# 
+    root@u95:/home/dan# 
+    root@u95:/home/dan# exit
+    dan@u95:~ $ 
+    dan@u95:~ $ 
+    dan@u95:~ $ 
+
+%br/
+%br/
+
+After I installed byzanz, I wrote a simple shell script to call it:
+
+%pre
+  %code.bash
+    \#!/bin/bash
+    myts=`date -u +'%Y%m%d_%H_%M_%S'`
+    byzanz-record --duration=15 ~/Desktop/byzanz${myts}.gif
+    exit
+
+Next, I called my script.
+
+%br/
+%br/
+
+While the script was running I looked at the news with Firefox.
+
+%br/
+%br/
+
+After 15 seconds, the script finished and left a GIF in my Desktop folder:
+%pre
+  %code.bash
+    dan@u95:~/ks/bin $ 
+    dan@u95:~/ks/bin $ ls -la ~/Desktop/byzanz20150630_01_21_29.gif 
+    \-rw-rw-r-- 1 dan dan 937083 Jun 30 01:21 /home/dan/Desktop/byzanz20150630_01_21_29.gif
+    dan@u95:~/ks/bin $ 
+    dan@u95:~/ks/bin $ 
+%br/
+%br/
+
+The GIF file looks like this:
+%br/
+%br/
+%img(width='950px' src='/myassets/gifs/byzanz1.gif')
+%br/
+%br/
+
+I like byzanz; it is easy to use.
+
+%br/
+%br/
+

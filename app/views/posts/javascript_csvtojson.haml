@@ -1,0 +1,44 @@
+.q1 Question:
+.q2 In Node.js how to convert CSV to JSON?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/nodejs') nodejs
+  %a.xtag(href='/tags/javascript') javascript
+  %a.xtag(href='/tags/csv') csv
+  %a.xtag(href='/tags/json') json
+  %a.xtag(href='/tags/csvtojson') csvtojson
+  %a.xtag(href='/tags/jsonfile') jsonfile
+  %a.xtag(href='/tags/fs') fs
+
+%br/
+
+While working on a Node.js app I encountered a use-case asking me to convert a CSV
+file from Yahoo Finance into a JSON file.
+
+%br/
+%br/
+
+First, I wrote a simple bash script to GET the CSV file:
+
+%pre
+  =render 'javascript_csvtojson1'
+
+Then, I installed some Node.js packages:
+
+%pre
+  %code.bash
+    npm install -g csvtojson
+    npm install -g jsonfile
+
+Next, I wrote a simple Node.js script:
+
+%pre
+  =render 'javascript_csvtojson2'
+
+Then, I ran the Node.js script and it worked well:
+
+%pre
+  %code.bash node ~/aspy/bin/gspcCSV2json.js
+
+%br/
+%br/
