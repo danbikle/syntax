@@ -1,0 +1,68 @@
+.q1 Question:
+.q2 On Ubuntu How to Install Node.js?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/node') node
+  %a.xtag(href='/tags/nodejs') nodejs
+  %a.xtag(href='/tags/console') console
+  %a.xtag(href='/tags/coffee') coffee
+  %a.xtag(href='/tags/coffeescript') coffeescript
+%br/
+
+I often encounter Node.js applications during my development efforts.
+
+%br/
+%br/
+
+I use the steps below to install Node.js in new Ubuntu virtual machines:
+
+%ul
+  %li
+    Install Ubuntu (if not installed yet):
+    %br/
+    %a(href='/posts/linux101_cclud_instance') linux101_cclud_instance
+    %br/
+    %a(href='http://www.google.com/search?q=how+to+install+ubuntu+on+virtualbox' target='x')
+      http://www.google.com/search?q=how+to+install+ubuntu+on+virtualbox
+
+  %li
+    Install Ubuntu Packages
+    %br/
+    %pre
+      %code
+        apt-get install autoconf build-essential libssl-dev libyaml-dev \
+        libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 \
+        libgdbm-dev libsqlite3-dev gitk emacs wget curl chromium-browser openssh-server
+
+  %li
+    Install Node.js
+    %br/
+    %pre
+      %code
+        cd ~
+        wget https://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz
+        tar zxf node-v0.12.7-linux-x64.tar.gz
+        ln -s   node-v0.12.7-linux-x64 node
+        echo 'export PATH=${HOME}/node/bin:${PATH}' >> ${HOME}/.bashrc
+        bash
+        which node
+        node -v
+        node -e 'console.log("hello")'
+        npm install coffee -g
+        coffee -e 'console.log "Hello"'
+
+
+Notice above, that I made a call to: 'npm'.
+
+%br/
+%br/
+
+After I use npm to install coffeescript and then use coffeescript to print "Hello", 
+I consider that sufficient evidence that I have Node.js installed on my new Ubuntu instance.
+
+%br/
+%br/
+
+
+
