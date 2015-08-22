@@ -1,0 +1,68 @@
+.q1 Question:
+.q2 On Ubuntu How to Install Lineman.js?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lineman') lineman
+  %a.xtag(href='/tags/lineman_js') lineman_js
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/node') node
+  %a.xtag(href='/tags/nodejs') nodejs
+%br/
+
+While working on an AngularJS project,
+I encountered a framework named: 'Lineman.js'
+
+%br/
+%br/
+
+I prefer to call it Lineman.
+
+%br/
+%br/
+
+Lineman is easy to install:
+
+%ul
+  %li
+    Install Ubuntu and Node.js(if not installed yet):
+    %br/
+    %a(href='/posts/nodejs_install') nodejs_install
+  %li
+    %pre
+      %code npm install -g lineman
+  %li
+    %pre
+      %code
+        cd /tmp/
+        lineman new myapp
+        cd /tmp/myapp/
+        lineman run
+
+Visit this URL: http://localhost:8000/
+
+%br/
+%br/
+
+I should see something like this:
+
+%br/
+%br/
+%img(src='/images/lineman_install1.png')
+%br/
+
+Once I see that page, I am confident that I have installed Lineman on my Ubuntu host.
+
+%br/
+%br/
+
+Often the next step for me is to mix Lineman with AngularJS:
+
+%br/
+%br/
+
+%a(href='https://github.com/linemanjs/lineman-angular-template' target='x')
+  https://github.com/linemanjs/lineman-angular-template
+
+
+%br/
+%br/
