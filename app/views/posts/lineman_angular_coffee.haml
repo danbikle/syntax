@@ -1,0 +1,79 @@
+.q1 Question:
+.q2 Ubuntu How to: Lineman Angular Coffee?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/lineman') lineman
+  %a.xtag(href='/tags/lineman_js') lineman_js
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/node') node
+  %a.xtag(href='/tags/nodejs') nodejs
+  %a.xtag(href='/tags/angular') angular
+  %a.xtag(href='/tags/angularjs') angularjs
+  %a.xtag(href='/tags/coffee') coffee
+  %a.xtag(href='/tags/coffeescript') coffeescript
+%br/
+
+When I work on AngularJS projects,
+I usually start by cloning a template from Github:
+
+%br/
+%br/
+
+%a(href='/posts/lineman_angular_install') lineman_angular_install
+
+%br/
+%br/
+
+After I setup that template, in folder /tmp/latapp/
+I should be able to 
+see something like this:
+
+%br/
+%br/
+%img(src='/images/lineman_angular_install1.png')
+%br/
+
+Once I see that page, I am confident that I have installed a Lineman Angular Template on my Ubuntu host.
+
+%br/
+%br/
+
+The next step for me is to mix this template with coffeescript.
+
+%br/
+%br/
+
+I enhance this file:
+
+%pre
+  %code /tmp/latapp/config/application.js
+
+I place this syntax in application.js:
+
+%pre
+  =render 'lineman_angular_coffee1'
+
+After I verify that the app still behaves,
+I install a module named js2coffee which is useful
+for transforming a JavaScript file into a CoffeeScript file:
+
+%pre
+  %code npm i -g js2coffee
+
+Next, I convert one of the JavaScript files into a CoffeeScript file:
+
+%pre
+  %code
+    cd /tmp/latapp/app/js/
+    js2coffee router.js > router.coffee
+    mv router.js /tmp/
+
+Again, I verify that the app still behaves.
+
+%br/
+%br/
+
+If the app behaves well I am then convinced that I can use coffeescript instead of JavaScript in my new Lineman-Angular app.
+%br/
+%br/
+
