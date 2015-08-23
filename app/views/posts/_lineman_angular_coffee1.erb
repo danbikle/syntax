@@ -1,0 +1,20 @@
+<code class='javascript'>// /tmp/latapp/config/application.js
+
+module.exports = function(lineman) {
+  return {
+    server: {
+      pushState: true
+    },
+    concat_sourcemap: {
+      js: {
+        src: [
+          "&lt;%= files.js.vendor %>",
+          "&lt;%= files.coffee.generated %>",
+          "&lt;%= files.js.app %>",
+          "&lt;%= files.ngtemplates.dest %>"
+        ]
+      }
+    }
+  };
+};
+</code>
