@@ -9,8 +9,8 @@
   %a.xtag(href='/tags/nodejs') nodejs
   %a.xtag(href='/tags/angular') angular
   %a.xtag(href='/tags/angularjs') angularjs
-  .tag coffee
-  .tag coffeescript
+  %a.xtag(href='/tags/coffee') coffee
+  %a.xtag(href='/tags/coffeescript') coffeescript
 %br/
 
 When I work on AngularJS projects,
@@ -60,9 +60,6 @@ for transforming a JavaScript file into a CoffeeScript file:
 %pre
   %code npm i -g js2coffee
 
-%br/
-%br/
-
 Next, I convert one of the JavaScript files into a CoffeeScript file:
 
 %pre
@@ -70,7 +67,8 @@ Next, I convert one of the JavaScript files into a CoffeeScript file:
     cd /tmp/latapp/app/js/
     js2coffee router.js > router.coffee
     mv router.js /tmp/
-    
+
+Again, I verify that the app still behaves.
 
 %br/
 %br/
