@@ -1,0 +1,63 @@
+.q1 Question:
+.q2 How to Initialize Node.js App?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/node') node
+  %a.xtag(href='/tags/nodejs') nodejs
+  .tag grunt
+  .tag npm
+  .tag git
+%br/
+
+When I create a Node.js app, I want to the structure of my app to resemble the structure of others.
+
+%br/
+%br/
+
+If you are a Node.js developer I want the structure of my app to look familiar rather than confusing.
+
+%br/
+%br/
+
+An obvious way to do this is to follow a template:
+
+%br/
+%br/
+
+%a(href='https://www.google.com/search?q=node+npm+templates' target='x')
+  https://www.google.com/search?q=node+npm+templates
+
+%br/
+%br/
+
+If I want an app more lightweight than a template, I follow the list below:
+
+%ul
+  %li
+    Install Node.js. On Ubuntu I prefer this software:
+    %br/
+    %a(href='https://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz' target='x')
+      https://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz
+    %br/
+    More info:
+    %br/
+    %a(href='http://www.syntax.us/posts/nodejs_install' target='x')
+      http://www.syntax.us/posts/nodejs_install
+  %li mkdir ~/myapp
+  %li cd    ~/myapp
+  %li echo hello world > readme.txt
+  %li git init
+  %li git add .
+  %li git commit -am hello
+  %li
+    npm init:
+    %br/
+    answer simple questions
+  %li npm install -g grunt-cli
+  %li npm install grunt --save-dev
+  %li vi Gruntfile.js
+  %li Now I can run the 'grunt' command
+  %li echo "console.log('hello');" > index.js
+  %li node index.js
+
