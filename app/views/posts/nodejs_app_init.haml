@@ -55,8 +55,15 @@ If I want an app more lightweight than a template, I follow the list below:
     %br/
     (answer simple questions)
   %li npm install -g grunt-cli
-  %li npm install grunt --save-dev
-  %li vi Gruntfile.js
+  %li npm install grunt       --save-dev
+  %li npm install grunt-shell --save-dev
+  %li
+    vi Gruntfile.js
+    %br/
+    demo: 
+    %br/
+    %pre
+      =render 'nodejs_app_init1'
   %li Now I can run the 'grunt' command
   %li echo "console.log('hello');" > index.js
   %li node index.js
