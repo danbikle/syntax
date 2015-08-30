@@ -64,7 +64,24 @@ If I want an app more lightweight than a template, I follow the list below:
     %br/
     %pre
       =render 'nodejs_app_init1'
-  %li Now I can run the 'grunt' command
-  %li echo "console.log('hello');" > index.js
-  %li node index.js
+  %li
+    I test Gruntfile.js by running 'grunt' shell command:
+    %br/
+    %pre
+      =render 'nodejs_app_init2'
+  %li
+    If grunt succeeds, I create index.js to start my app:
+    %br/
+    %pre
+      %code.bash echo "console.log('hello');" > ~/myapp/index.js
 
+  %li
+    Now, I can run my app:
+    %br/
+    %pre
+      =render 'nodejs_app_init3'
+%br/
+So, if grunt works and Node.js can run one line of syntax in index.js,
+I consider my lightweight app to be ready for further development.
+%br/
+%br/
