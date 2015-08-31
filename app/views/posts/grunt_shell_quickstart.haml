@@ -1,5 +1,5 @@
 .q1 Question:
-.q2 How to Initialize Node.js App?
+.q2 How to Quickstart grunt-shell?
 .tags
   %span.tagtag Tags:
   %a.xtag(href='/tags/ubuntu') ubuntu
@@ -11,28 +11,13 @@
   %a.xtag(href='/tags/grunt_shell') grunt_shell
 %br/
 
-When I create a Node.js app, I want to the structure of my app to resemble the structure of others.
+The plugin, grunt-shell, is useful to developers who like using the Linux shell
+as an administrative UI for Node.js apps.
 
 %br/
 %br/
 
-If you are a Node.js developer I want the structure of my app to look familiar rather than confusing.
-
-%br/
-%br/
-
-An obvious way to do this is to follow a template:
-
-%br/
-%br/
-
-%a(href='https://www.google.com/search?q=node+npm+templates' target='x')
-  https://www.google.com/search?q=node+npm+templates
-
-%br/
-%br/
-
-If I want an app more lightweight than a template, I follow the list below:
+To quickstart grunt-shell in a lightweight app, I follow the list below:
 
 %ul
   %li
@@ -48,9 +33,6 @@ If I want an app more lightweight than a template, I follow the list below:
   %li mkdir ~/myapp
   %li cd    ~/myapp
   %li echo hello world > readme.txt
-  %li git init
-  %li git add .
-  %li git commit -am hello
   %li
     npm init
     %br/
@@ -70,19 +52,8 @@ If I want an app more lightweight than a template, I follow the list below:
     %br/
     %pre
       =render 'nodejs_app_init2'
-  %li
-    If grunt succeeds, I create index.js to start my app:
-    %br/
-    %pre
-      %code.bash echo "console.log('hello');" > ~/myapp/index.js
-
-  %li
-    Now, I can run my app:
-    %br/
-    %pre
-      =render 'nodejs_app_init3'
 %br/
-So, if grunt works and Node.js can run one line of syntax in index.js,
-I consider my lightweight app to be ready for further development.
+So, if grunt works, I consider grunt-shell to be both packaged with my new app and ready for action.
+
 %br/
 %br/
