@@ -93,6 +93,27 @@ Next, I created a simple haml file, /tmp/demo1/haml/index.haml, which looks like
 %pre
   =render 'ruby_gem_home_gem_path1'
 
+Then, I created a shell script which uses GEM_PATH as part of a 'getter mechanism':
+
+%pre
+  =render 'ruby_gem_home_gem_path2'
+
+In the above script, I use GEM_PATH to declare that my app will get RubyGems from this folder:
+
+%pre
+  %code.bash \/tmp/demo1/gems
+
+Rather than getting RubyGems from the default location which might be under /var/lib/ somewhere.
+
+%br/
+%br/
+
+To find the default folders where Ruby searches for RubyGems, I run a simple shell command:
+
+%pre
+  =render 'ruby_gem_home_gem_path3'
+
+
 %br/
 %br/
 
