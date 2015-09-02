@@ -3,15 +3,15 @@
 .tags
   %span.tagtag Tags:
   %a.xtag(href='/tags/ubuntu') ubuntu
-  .tag ruby
-  .tag ruby_gem
-  .tag gem
-  .tag gem_home
-  .tag gem_path
-  .tag bundler
-  .tag rubygem
-  .tag gem_install
-  .tag apt_get
+  %a.xtag(href='/tags/ruby') ruby
+  %a.xtag(href='/tags/ruby_gem') ruby_gem
+  %a.xtag(href='/tags/gem') gem
+  %a.xtag(href='/tags/gem_home') gem_home
+  %a.xtag(href='/tags/gem_path') gem_path
+  %a.xtag(href='/tags/bundler') bundler
+  %a.xtag(href='/tags/rubygem') rubygem
+  %a.xtag(href='/tags/gem_install') gem_install
+  %a.xtag(href='/tags/apt_get') apt_get
 
 %br/
 
@@ -132,24 +132,34 @@ The above app, /tmp/demo1, is simple; it uses one gem named haml.
 %br/
 
 If I have a ruby app which is more complex and depends on many RubyGems,
-I avoid using GEM_HOME and GEM_PATH.
+I enhance my use of GEM_HOME.
 
 %br/
 %br/
 
-Instead I use 'Bundler' (which happens to be a RubyGem).
+How?
 
 %br/
 %br/
 
-Bundler asks me to use a file (instead of env-variables) named 'Gemfile' to declare
+I use 'Bundler' (which happens to be a RubyGem).
+
+%br/
+%br/
+
+Bundler asks me to use a file named 'Gemfile' to declare
 which RubyGems my app depends upon.
 
 %br/
 %br/
 
-If I want /tmp/demo1 to use Bundler instead of GEM_HOME and GEM_PATH,
-I create /tmp/demo1/Gemfile.
+I keep in mind that Bundler does not replace GEM_HOME; 
+Actually Bundler depends on GEM_HOME.
+
+%br/
+%br/
+
+If I want /tmp/demo1 to use Bundler I create /tmp/demo1/Gemfile.
 
 %br/
 %br/
@@ -158,3 +168,29 @@ That file might look like this:
 
 %pre
   =render 'ruby_gem_home_gem_path5'
+
+I use the above Gemfile to declare that my app depends on haml version 4.0.7.
+
+%br/
+%br/
+
+To use bundler I need to install it with this shell command:
+
+%pre
+  %code.bash gem install bundler
+
+Then I need to use its shell command:
+
+%pre
+  =render 'ruby_gem_home_gem_path6'
+
+The beauty of Bundler is that it declares which RubyGems that an app depends upon.
+ 
+%br/
+%br/
+
+If I have a Rails app which depends on 200 specific versions of RubyGems,
+the power of Bundler becomes clear.
+
+%br/
+%br/
