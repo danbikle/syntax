@@ -1,0 +1,196 @@
+.q1 Question:
+.q2 Ruby: GEM_HOME, GEM_PATH do what?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/ruby') ruby
+  %a.xtag(href='/tags/ruby_gem') ruby_gem
+  %a.xtag(href='/tags/gem') gem
+  %a.xtag(href='/tags/gem_home') gem_home
+  %a.xtag(href='/tags/gem_path') gem_path
+  %a.xtag(href='/tags/bundler') bundler
+  %a.xtag(href='/tags/rubygem') rubygem
+  %a.xtag(href='/tags/gem_install') gem_install
+  %a.xtag(href='/tags/apt_get') apt_get
+
+%br/
+
+Ruby is a modular language.
+
+%br/
+%br/
+
+I use RubyGems to build Ruby applications from other developers' reusable Ruby code.
+
+%br/
+%br/
+
+I find RubyGems at this site:
+
+%br/
+%br/
+
+%a(href='https://rubygems.org/' target='x')
+  https://rubygems.org/
+
+
+%br/
+%br/
+
+Perhaps the most well known RubyGem is Ruby on Rails AKA Rails:
+
+%br/
+%br/
+
+%a(href='https://rubygems.org/gems/rails' target='x')
+  https://rubygems.org/gems/rails
+
+
+%br/
+%br/
+
+When I study the above page I see the modular nature of Ruby because I notice that Rails depends on many other gems.
+
+%br/
+%br/
+
+On my Ubuntu laptop I recently installed Ruby with a simple shell command:
+
+%pre
+  %code.bash apt-get install ruby
+
+Next, I created a folder for a demo app:
+
+%pre
+  %code.bash mkdir /tmp/demo1
+
+Then, I attached a RubyGem folder to the app:
+
+%pre
+  %code.bash mkdir /tmp/demo1/gems
+
+Next, I copied a RubyGem into the folder with the help of the GEM_HOME shell variable:
+
+%pre
+  %code.bash
+    export GEM_HOME=/tmp/demo1/gems
+    gem install haml
+    ls -la /tmp/demo1/gems
+
+I see GEM_HOME as part of a 'setter mechanism'. 
+Above, It sets, or declares, that /tmp/demo1/gems will contain RubyGems.
+
+%br/
+%br/
+
+Then, I added more folders to /tmp/demo1/
+
+%pre
+  %code.bash mkdir /tmp/demo1/bin /tmp/demo1/haml /tmp/demo1/html
+
+Next, I created a simple haml file, /tmp/demo1/haml/index.haml, which looks like this:
+
+%pre
+  =render 'ruby_gem_home_gem_path1'
+
+Then, I created a shell script which uses GEM_PATH as part of a 'getter mechanism':
+
+%pre
+  =render 'ruby_gem_home_gem_path2'
+
+In the above script, I use GEM_PATH to declare that my app will get RubyGems from this folder:
+
+%pre
+  %code.bash /tmp/demo1/gems
+
+I avoid getting RubyGems from the default location which might be under /var/lib/ somewhere.
+
+%br/
+%br/
+
+To find the default folders where Ruby searches for RubyGems, I run three shell commands:
+
+%pre
+  =render 'ruby_gem_home_gem_path3'
+
+When I run the script, /tmp/demo1/bin/runme.bash, I see the following output:
+
+%pre
+  =render 'ruby_gem_home_gem_path4'
+
+%br/
+%br/
+
+I prefer to use GEM_HOME and GEM_PATH for simple ruby apps.
+
+%br/
+%br/
+
+The above app, /tmp/demo1, is simple; it uses one gem named haml.
+
+%br/
+%br/
+
+If I have a ruby app which is more complex and depends on many RubyGems,
+I enhance my use of GEM_HOME.
+
+%br/
+%br/
+
+How?
+
+%br/
+%br/
+
+I use 'Bundler' (which happens to be a RubyGem).
+
+%br/
+%br/
+
+Bundler asks me to use a file named 'Gemfile' to declare
+which RubyGems my app depends upon.
+
+%br/
+%br/
+
+I keep in mind that Bundler does not replace GEM_HOME; 
+Actually Bundler depends on GEM_HOME.
+
+%br/
+%br/
+
+If I want /tmp/demo1 to use Bundler I create /tmp/demo1/Gemfile.
+
+%br/
+%br/
+
+That file might look like this:
+
+%pre
+  =render 'ruby_gem_home_gem_path5'
+
+I use the above Gemfile to declare that my app depends on haml version 4.0.7.
+
+%br/
+%br/
+
+To use bundler I need to install it with this shell command:
+
+%pre
+  %code.bash gem install bundler
+
+Then I need to use its shell command:
+
+%pre
+  =render 'ruby_gem_home_gem_path6'
+
+The beauty of Bundler is that it declares which RubyGems that an app depends upon.
+ 
+%br/
+%br/
+
+If I have a Rails app which depends on 200 specific versions of RubyGems,
+the power of Bundler becomes clear.
+
+%br/
+%br/
