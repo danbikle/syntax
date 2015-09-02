@@ -1,0 +1,105 @@
+.q1 Question:
+.q2 Ruby: GEM_HOME, GEM_PATH do what?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  .tag ruby
+  .tag ruby_gem
+  .tag gem
+  .tag gem_home
+  .tag gem_path
+  .tag bundler
+  .tag rubygem
+  .tag gem_install
+  .tag apt_get
+
+%br/
+
+Ruby is a modular language.
+
+%br/
+%br/
+
+I use RubyGems to build Ruby applications from other developers' reusable Ruby code.
+
+%br/
+%br/
+
+I find RubyGems at this site:
+
+%br/
+%br/
+
+%a(href='https://rubygems.org/' target='x')
+  https://rubygems.org/
+
+
+%br/
+%br/
+
+Perhaps the most well known RubyGem is Ruby on Rails AKA Rails:
+
+%br/
+%br/
+
+%a(href='https://rubygems.org/gems/rails' target='x')
+  https://rubygems.org/gems/rails
+
+
+%br/
+%br/
+
+When I study the above page I see the modular nature of Ruby because I notice that Rails depends on many other gems.
+
+%br/
+%br/
+
+On my Ubuntu laptop I recently installed Ruby with a simple shell command:
+
+%pre
+  %code.bash apt-get install ruby
+
+Next, I created a folder for a demo app:
+
+%pre
+  %code.bash mkdir /tmp/demo1
+
+Then, I attached a RubyGem folder to the app:
+
+%pre
+  %code.bash mkdir /tmp/demo1/gems
+
+Next, I copied a RubyGem into the folder with the help of the GEM_HOME shell variable:
+
+%pre
+  %code.bash
+    export GEM_HOME=/tmp/demo1/gems
+    gem install haml
+    ls -la /tmp/demo1/gems
+
+I see GEM_HOME as part of a 'setter mechanism'. 
+Above, It sets, or declares, that /tmp/demo1/gems will contain RubyGems.
+
+%br/
+%br/
+
+
+
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
