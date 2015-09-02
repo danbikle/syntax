@@ -83,8 +83,15 @@ Above, It sets, or declares, that /tmp/demo1/gems will contain RubyGems.
 %br/
 %br/
 
+Then, I added more folders to /tmp/demo1/
 
+%pre
+  %code.bash mkdir /tmp/demo1/bin /tmp/demo1/haml /tmp/demo1/html
 
+Next, I created a simple haml file, /tmp/demo1/haml/index.haml, which looks like this:
+
+%pre
+  =render 'ruby_gem_home_gem_path1'
 
 %br/
 %br/
