@@ -1,0 +1,83 @@
+.q1 Question:
+.q2 How to Web Scrape with PhantomJS?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/scrape') scrape
+  %a.xtag(href='/tags/phantomjs') phantomjs
+  %a.xtag(href='/tags/pjs') pjs
+  %a.xtag(href='/tags/nodejs') nodejs
+
+
+%br/
+
+Web pages which serve JavaScript can be difficult to scrape with traditional tools like wget.
+
+%br/
+%br/
+
+I use PhantomJS To scrape JavaScript-heavy pages.
+
+%br/
+%br/
+
+On Linux, I install PhantomJS by first installing Node.js and then using npm to install PhantomJS:
+
+%br/
+%br/
+
+%a(href='/posts/nodejs_install') nodejs_install
+
+%pre
+  %code.bash
+    npm install -g phantomjs
+    which phantomjs
+
+After I install PhantomJS, I install software called pjscrape:
+
+%pre
+  %code.bash
+    cd /tmp/
+    git clone https://github.com/nrabinowitz/pjscrape.git
+
+Next, I write a scrape-script named /tmp/scrape1.js:
+
+%pre
+  =render 'phantomjs_howto_scrape1'
+
+Then I run it:
+
+%pre
+  =render 'phantomjs_howto_scrape2'
+
+If that script works well, 
+I try something more ambitious like scraping a list of anchor-elements:
+
+%pre
+  =render 'phantomjs_howto_scrape3'
+
+If that works well, 
+I follow the tutorial to learn more about pjscrape:
+
+%br/
+%br/
+
+%a(href='http://nrabinowitz.github.io/pjscrape/#tutorial' target='x')
+  http://nrabinowitz.github.io/pjscrape/#tutorial
+
+%br/
+%br/
+
+Also I note that pjscrape depends on jQuery so I should learn that API also:
+
+%br/
+%br/
+
+%a(href='http://api.jquery.com' target='x')
+  http://api.jquery.com
+
+
+%br/
+%br/
+
+
+

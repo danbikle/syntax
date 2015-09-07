@@ -1,0 +1,149 @@
+<code class='bash'>
+dan@nia110 /tmp $ 
+dan@nia110 /tmp $ 
+dan@nia110 /tmp $ cat scrape2.js 
+/*
+/tmp/scrape2.js
+
+Demo:
+npm install -g phantomjs
+cd /tmp/
+git clone https://github.com/nrabinowitz/pjscrape.git
+phantomjs /tmp/pjscrape/pjscrape.js scrape2.js
+*/
+
+pjs.addSuite({
+    // single URL or array
+    url: 'http://www.syntax.us',
+    // single function or array, evaluated in the client
+    scraper: 'a'
+});
+dan@nia110 /tmp $ 
+dan@nia110 /tmp $ 
+dan@nia110 /tmp $ 
+
+<hr />
+
+
+dan@nia110 /tmp $ 
+dan@nia110 /tmp $ 
+dan@nia110 /tmp $ phantomjs /tmp/pjscrape/pjscrape.js scrape2.js
+* Suite 0 starting
+* Opening http://www.syntax.us
+* Scraping http://www.syntax.us
+* Suite 0 complete
+* Writing 209 items
+["syntax.us","Blog","Contact","Posts","Questions","Tags","2015-08-01 |
+bash_loop_files","2015-08-01 |
+h2o_spark_dataframe_navigate","2015-08-01 |
+linux101_cclud_cmi","2015-08-01 |
+h2o_spark_dataframe_column","2015-08-01 | h2o_howto","2015-08-01 |
+byzanz","2015-08-01 | h2o_spark_rdd2dataframe","2015-08-01 |
+aerospike_create_index","2015-08-01 | contact","2015-08-01 |
+erlang_elixer_install","2015-08-01 | linux101_cclud_file","2015-08-01
+| github_api_hello","2015-08-01 | aerospike","2015-08-01 |
+bash_loop_strings","2015-08-01 | blog","2015-08-01 |
+h2o_spark_sql","2015-08-01 |
+h2o_spark_dataframe_get_column","2015-08-01 |
+h2o_deeplearning101","2015-08-01 | linux101","2015-08-01 |
+aerospike_python_crud","2015-08-01 | heroku_buildpack","2015-08-01 |
+h2o_spark_rdd_navigate","2015-08-01 |
+aerospike_expire_record","2015-08-01 | java101_hello","2015-08-01 |
+linux101_cclud_account","2015-08-01 | h2o_sparkwater","2015-08-01 |
+h2o_spark_dataframe_sparkfile","2015-08-01 |
+flash_linux_firefox","2015-08-01 | h2o_spark_rdd_zip","2015-08-01 |
+h2o_spark_register_file","2015-08-01 |
+centos_change_hostname","2015-08-01 |
+h2o_spark_dataframe_timetransform","2015-08-01 |
+bundle_bin","2015-08-01 | h2o_r_howto","2015-08-01 |
+linux101_cclud","2015-08-01 |
+h2o_spark_convert_rdd2dataframe","2015-08-01 | haml_json","2015-08-01
+| java_jps","2015-08-01 | h2o_droplet","2015-08-01 |
+h2o_spark_dataframe_add_column","2015-08-01 |
+h2o_sparkwater_citibike_scala","2015-08-01 |
+h2o_spark_schemardd_fromcsv","2015-08-01 | h2o_r_demo","2015-08-01 |
+linux101_cclud_disk","2015-08-01 | bash_date_in_filename","2015-08-01
+| index","2015-08-01 | h2o_spark_dataframe_timesplit","2015-08-01 |
+aerospike_aql_crud","2015-08-01 | ruby_edit_file","2015-08-01 |
+shell101_parent","2015-08-01 | lua_slice_string","2015-08-01 |
+spark_whatis_rdd","2015-08-01 | lua_control","2015-08-01 |
+lua_namespace","2015-08-01 | python_numpy_subset","2015-08-01 |
+spark_log4j","2015-08-01 | python_wget","2015-08-01 |
+linux101_cclud_iso","2015-08-01 | shell101_paste_sqlite3","2015-08-01
+| meteor_cat_jpg","2015-08-01 | shell101_useradd","2015-08-01 |
+lua_ternary","2015-08-01 | linux101_cclud_sshd","2015-08-01 |
+lua_command_arg","2015-08-01 | lua_install","2015-08-01 |
+matplotlib3sets1plot","2015-08-01 | python_pdb","2015-08-01 |
+rails_heroku_sqlite","2015-08-01 | python_datetime2epoch","2015-08-01
+| lua_block_comments","2015-08-01 | lua_forward_declare","2015-08-01 |
+spark_reducebykey","2015-08-01 | rails_runner","2015-08-01 |
+python_numpy2list","2015-08-01 | python_fix_curl","2015-08-01 |
+scikit_knn_eur","2015-08-01 | lua_not_operator","2015-08-01 |
+python_pandas_sort","2015-08-01 | ruby_flatten","2015-08-01 |
+spark_howto_install","2015-08-01 | meteor_rickshaw2","2015-08-01 |
+lua_multi_assign","2015-08-01 | spark_howto_txt2rdd","2015-08-01 |
+lua_number_operator","2015-08-01 | shell101_vi","2015-08-01 |
+lua_globalvar","2015-08-01 | ruby_dir_loop","2015-08-01 |
+meteor_rickshaw","2015-08-01 | python_numpy2csv","2015-08-01 |
+lua_elseif","2015-08-01 | lua_io_read","2015-08-01 |
+lua_table_sort","2015-08-01 | python_import_fail","2015-08-01 |
+spark_make_rdd","2015-08-01 | lua_table_initialize","2015-08-01 |
+python101","2015-08-01 | python_zipline_demo1","2015-08-01 |
+lua_copy_table","2015-08-01 | lua_default_arg","2015-08-01 |
+rails_debugger","2015-08-01 | tags","2015-08-01 |
+shell101_wget","2015-08-01 | spark_max_gspc","2015-08-01 |
+spark_flatmap","2015-08-01 | ruby_write2file","2015-08-01 |
+pandas_group_by","2015-08-01 | meteor","2015-08-01 |
+sparkpi_what_happens","2015-08-01 | node_meteor","2015-08-01 |
+ruby_regexp_match","2015-08-01 | python_sklearn101","2015-08-01 |
+rails_highlight_pre_code_syntax","2015-08-01 | lua_concat","2015-08-01
+| spark_sql_parquet","2015-08-01 | shell101_awk","2015-08-01 |
+r_load_rda","2015-08-01 | ruby_datetime_strptime","2015-08-01 |
+lua_dash_e","2015-08-01 | pandas_where","2015-08-01 |
+lua_true_false","2015-08-01 | python_ml101","2015-08-01 |
+spark_integer_seq","2015-08-01 | node_unixtime","2015-08-01 |
+python_lists2numpy","2015-08-01 | python_lambda","2015-08-01 |
+lua_function","2015-08-01 | python_call_shell","2015-08-01 |
+linux101_cclud_folder","2015-08-01 | rails_csv2haml2d3","2015-08-01 |
+lua_io_lines","2015-08-01 | lua_table_forloop","2015-08-01 |
+python_future","2015-08-01 | python_str2datetime","2015-08-01 |
+ruby_read_csv","2015-08-01 | python_numpy101","2015-08-01 |
+lua_pass_variable_args","2015-08-01 | lua_find_string","2015-08-01 |
+lua_debugger","2015-08-01 | lua_val2key","2015-08-01 |
+python_pandas_max","2015-08-01 | postgres_json1","2015-08-01 |
+linux101_cclud_instance","2015-08-01 | postgres_table2csv","2015-08-01
+| python_sklearn_knn_iris","2015-08-01 | truefx_postgres","2015-08-01
+| shell101_whileloop","2015-08-01 |
+python_str_interpolate","2015-08-01 | lua_string_specials","2015-08-01
+| python_numpy_loadtxt","2015-08-01 | shell101_root","2015-08-01 |
+shell101_vi_bash_aliases","2015-08-01 |
+python_pandas_list","2015-08-01 | python_numpy_understand","2015-08-01
+| rails_wildcard_routes","2015-08-01 | plot_datetime","2015-08-01 |
+shell101","2015-08-01 | python_ins_zipline","2015-08-01 |
+ruby_array_hashes_sort_by","2015-08-01 |
+linux101_cclud_ip","2015-08-01 | ruby_array_no_nil","2015-08-01 |
+spark_filter_spy_csv","2015-08-01 | shell101_vi_bashrc","2015-08-01 |
+linux101_cclud_pkg","2015-08-01 | shell101_loop","2015-08-01 |
+lua_decorate_function","2015-08-01 | numpy_where","2015-08-01 |
+spark_schemardd","2015-08-01 | shell101_emacs","2015-08-01 |
+r_install_src","2015-08-01 | lua_colon","2015-08-01 |
+lua_pass_function2function","2015-08-01 | lua_dofile","2015-08-01 |
+python_pandas_read_csv","2015-08-01 | lua_heredoc","2015-08-01 |
+lua_data_types","2015-08-01 | lua_do_end","2015-08-01 |
+rails_rspec_capybara_selenium","2015-08-01 | lua_notequal","2015-08-01
+| lua_packages_table","2015-08-01 |
+matplotlib_no_popup_window","2015-08-01 |
+lua_state_machine","2015-08-01 |
+virtualbox_guestadditions","2015-08-01 | python_pandas101","2015-08-01
+| lua_upvalue","2015-08-01 | python_unixtime2datetime","2015-08-01 |
+python_ruby_map","2015-08-01 | postgres_unixtime","2015-08-01 |
+lua_dot_does_what","2015-08-01 | nginx_simple_howto","2015-08-01 |
+javascript_csvtojson","2015-08-23 |
+lineman_angular_install","2015-08-23 | lineman_install","2015-08-23 |
+lineman_angular_coffee","2015-08-23 | nodejs_install","2015-08-31 |
+nodejs_app_init","2015-08-31 | grunt_shell_quickstart","2015-09-03 |
+ruby_gem_home_gem_path","syntax.us","Blog","Contact","Posts","Questions","Tags"]
+* Saved 209 items
+dan@nia110 /tmp $ 
+dan@nia110 /tmp $ 
+</code>
