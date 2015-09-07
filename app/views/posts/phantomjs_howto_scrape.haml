@@ -25,8 +25,29 @@ On Linux, I install PhantomJS by first installing Node.js and then using npm to 
 %br/
 %br/
 
+%a(href='/posts/nodejs_install') nodejs_install
 
+%pre
+  %code.bash
+    npm install -g phantomjs
+    which phantomjs
 
+After I install PhantomJS, I install software called pjscrape:
+
+%pre
+  %code.bash
+    cd /tmp/
+    git clone https://github.com/nrabinowitz/pjscrape.git
+
+Next, I write a scrape-script named /tmp/scrape1.js:
+
+%pre
+  =render 'phantomjs_howto_scrape1'
+
+Then I run it:
+
+%pre
+  =render 'phantomjs_howto_scrape2'
 %br/
 %br/
 
