@@ -1,0 +1,15 @@
+<code class='bash'>#!/bin/bash
+
+# haml.bash
+
+# This script should run haml against all haml files in app/haml_templates/
+
+cd app/haml_templates/
+for hfile in *.haml
+do
+  tfile=`echo $hfile | sed '1s/.haml$/.html/'`
+  haml $hfile ../templates/${tfile}
+done
+
+exit
+</code>

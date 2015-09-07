@@ -1,0 +1,8 @@
+<code class='coffeescript'>
+module.exports = (lineman) ->
+  app = lineman.config.application
+  {
+    appendTasks: common: app.appendTasks.common.concat('haml_bash')
+    server: pushState: true
+  }
+</code>
