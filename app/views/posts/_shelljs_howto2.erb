@@ -1,0 +1,10 @@
+<code class='coffeescript'># tasks/haml_bash.coffee
+module.exports = (grunt) ->
+  grunt.registerTask "haml_bash", "Run haml.bash", (target) ->
+    shell = require 'shelljs'
+    # synchronously run shell script
+    if (shell.exec 'bash haml.bash').code != 0
+      shell.echo 'Error: haml.bash failed'
+      shell.exit 1
+    console.log 'haml_bash done now'
+</code>
