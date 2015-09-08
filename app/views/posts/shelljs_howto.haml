@@ -38,16 +38,34 @@ ShellJS allows me to write Grunt tasks which can call shell commands.
 %br/
 %br/
 
-An example of a shell script I call from Grunt is displayed below:
+Assuming that I have followed this post 
+%a(href='/posts/lineman_angular_install') lineman_angular_install
+, to start a Lineman-Angular app on my laptop,
+an example of a shell script I call from Grunt is displayed below:
 
 %pre
   =render 'shelljs_howto1'
+
+The above script transforms Haml files into HTML files.
+
+%br/
+%br/
+
+It assumes the Haml files are in app/haml_templates and that the HTML files are in app/templates.
+ 
+%br/
+%br/
 
 To call the above shell-script,
 I add syntax to a file in the tasks folder of my lineman app:
 
 %pre
   =render 'shelljs_howto2'
+
+The above script depends on ShellJS which I install with this shell command:
+
+%pre
+  %code.bash npm install --save-dev shelljs
 
 Also I add syntax to config/application.coffee:
 
@@ -135,8 +153,8 @@ When I mix
 , 
 and 
 %a(href='http://www.google.com/search?q=ShellJS')
-  ShellJS,
-I am happy with the efficiency I can harness.
+  ShellJS
+, I am happy with the efficiency of my development environment.
 
 %br/
 %br/
