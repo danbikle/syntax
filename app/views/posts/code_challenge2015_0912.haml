@@ -38,6 +38,26 @@ The 2015_0912 Code Challenge is learning exercise for students attending this Me
     %pre
       =render 'code_challenge2015_09121'
 
+  %li
+    Create account named ann:
+    %pre
+      %code.bash
+        useradd ann -m -s /bin/bash
+        passwd ann
+        ssh -YA ann@localhost
+
+  %li
+    Install Node.js in this folder: ~ann/node/
+    %br/
+    Useful:
+    %a(href='https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-x64.tar.gz' target='x')
+      https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-x64.tar.gz
+
+
+  %li
+    Add Node.js to PATH
+    
+
 %br/
 %br/
 
