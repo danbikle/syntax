@@ -55,8 +55,27 @@ The 2015_0912 Code Challenge is learning exercise for students attending this Me
 
 
   %li
-    Add Node.js to PATH
+    Add Node.js to PATH:
+    %pre
+      %code.bash export PATH="/home/ann/node/bin:${PATH}"
     
+  %li
+    Run a test:
+    %pre
+      %code.bash
+        which node
+        node -e 'console.log("hello world")'
+
+  %li
+    Install CoffeScript to test npm:
+    %pre
+      %code.bash
+        which npm
+        npm install -g coffee-script
+        ls -la /home/ann/node/lib/node_modules/
+        which coffee
+        coffee -e 'console.log "hello coffee!"'
+        
 
 %br/
 %br/
