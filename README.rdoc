@@ -1,7 +1,7 @@
 == README
 
 Under Construction
-2015-06-24
+2015-09-09
 
 repos:
 [core]
@@ -16,6 +16,14 @@ repos:
 	url = u15:sites/x611
 	fetch = +refs/heads/*:refs/remotes/u15/*
 
+[remote "u95"]
+	url = u95:sites/syntax611
+	fetch = +refs/heads/*:refs/remotes/u95/*
+
+[remote "u110"]
+	url = u110:sites/syntax611
+	fetch = +refs/heads/*:refs/remotes/u110/*
+
 [remote "heroku"]
 	url = git@heroku.com:syntax611.git
 	fetch = +refs/heads/*:refs/remotes/heroku/*
@@ -23,8 +31,3 @@ repos:
 [remote "bit"]
 	url = git@bitbucket.org:bikle/syntax611.git
 	fetch = +refs/heads/*:refs/remotes/bit/*
-
-[remote "u106"]
-	url = u106:sites/syntax611
-	fetch = +refs/heads/*:refs/remotes/u106/*
-
