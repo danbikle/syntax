@@ -1,0 +1,111 @@
+.q1 Question:
+.q2 What is 2015_0912 Code Challenge?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/npm') npm
+  %a.xtag(href='/tags/nodejs') nodejs
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+
+%br/
+
+The 2015_0912 Code Challenge is a learning exercise for students attending this Meetup:
+
+%br/
+%br/
+
+%a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225223500/' target='x')
+  http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225223500/
+
+
+%br/
+%br/
+
+%ul
+  %li Install Ubuntu 14.04.3 on your laptop
+  %li
+    Useful:
+    %a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso' target='x')
+      http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso
+
+  %li
+    Useful:
+    %a(href='https://www.virtualbox.org/wiki/Downloads' target='x')
+      https://www.virtualbox.org/wiki/Downloads
+
+  %li
+    Enhance Ubuntu:
+    %pre
+      =render 'code_challenge2015_09121'
+
+  %li
+    Create account named ann:
+    %pre
+      %code.bash
+        useradd ann -m -s /bin/bash
+        passwd ann
+        ssh -YA ann@localhost
+
+  %li
+    Install Node.js in this folder: ~ann/node/
+    %br/
+    Useful:
+    %a(href='https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-x64.tar.gz' target='x')
+      https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-x64.tar.gz
+
+
+  %li
+    Add Node.js to PATH:
+    %pre
+      %code.bash export PATH="/home/ann/node/bin:${PATH}"
+    
+  %li
+    Run a test:
+    %pre
+      %code.bash
+        which node
+        node -e 'console.log("hello world")'
+
+  %li
+    Install CoffeScript to test npm:
+    %pre
+      %code.bash
+        which npm
+        npm install -g coffee-script
+        ls -la /home/ann/node/lib/node_modules/
+        which coffee
+        coffee -e 'console.log "hello coffee!"'
+
+  %li
+    Start work on an app:
+    %pre
+      %code.bash
+        mkdir ~ann/app10
+        cd    ~ann/app10
+        echo  node_modules > .gitignore
+        npm init
+        npm install --save http-server
+  %li
+    Add HTML file to app: ~ann/app10/index.html
+    %pre
+      =render 'code_challenge2015_09123'
+
+  %li
+    Test the app:
+    %pre
+      %code.bash node ~ann/app10/node_modules/http-server/bin/http-server
+    visit: 
+    %a(href='http://localhost:8080' target='x')
+      http://localhost:8080
+
+
+%br/
+%br/
+
+
+%br/
+%br/
+
+
+%br/
+%br/
