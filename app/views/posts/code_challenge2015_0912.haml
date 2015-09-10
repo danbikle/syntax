@@ -17,7 +17,6 @@ The 2015_0912 Code Challenge is a learning exercise for students attending this 
 %a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225223500/' target='x')
   http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225223500/
 
-
 %br/
 %br/
 
@@ -85,6 +84,7 @@ The 2015_0912 Code Challenge is a learning exercise for students attending this 
         echo  node_modules > .gitignore
         npm init
         npm install --save http-server
+
   %li
     Add HTML file to app: ~ann/app10/index.html
     %pre
@@ -98,6 +98,13 @@ The 2015_0912 Code Challenge is a learning exercise for students attending this 
     %a(href='http://localhost:8080' target='x')
       http://localhost:8080
 
+  %li
+    Commit the app to a git repository:
+    %pre
+      %code.bash
+        git init
+        git add .
+        git commit -am 'hello app10'
 
 %br/
 %br/
