@@ -110,7 +110,9 @@ The 2015_0912 Code Challenge is a learning exercise for students attending this 
   %li
     Test the app:
     %pre
-      %code.bash node ~ann/app10/node_modules/http-server/bin/http-server
+      %code.bash
+        cd   ~ann/app10/
+        node ~ann/app10/node_modules/http-server/bin/http-server
     visit: 
     %a(href='http://localhost:8080' target='x')
       http://localhost:8080
@@ -119,6 +121,7 @@ The 2015_0912 Code Challenge is a learning exercise for students attending this 
     Commit the app to a git repository:
     %pre
       %code.bash
+        cd ~ann/app10/
         git init
         git add .
         git commit -am 'hello app10'
@@ -142,7 +145,9 @@ I can follow more steps to deploy the app to Heroku:
   %li
     Create a one-line Procfile:
     %pre
-      %code.bash echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
+      %code.bash
+        cd ~ann/app10/
+        echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
 
   %li
     Install Heroku Toolbelt:
@@ -162,6 +167,7 @@ I can follow more steps to deploy the app to Heroku:
     Create Blank Heroku App and then git-push my app in:
     %pre
       %code.bash
+        cd ~ann/app10/
         heroku auth:login
         heroku app create x20150910
         git add .
