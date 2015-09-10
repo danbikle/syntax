@@ -4,12 +4,12 @@
   %span.tagtag Tags:
   %a.xtag(href='/tags/npm') npm
   %a.xtag(href='/tags/nodejs') nodejs
-  .tag linux
-  .tag ubuntu
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
 
 %br/
 
-The 2015_0912 Code Challenge is learning exercise for students attending this Meetup:
+The 2015_0912 Code Challenge is a learning exercise for students attending this Meetup:
 
 %br/
 %br/
@@ -75,7 +75,13 @@ The 2015_0912 Code Challenge is learning exercise for students attending this Me
         ls -la /home/ann/node/lib/node_modules/
         which coffee
         coffee -e 'console.log "hello coffee!"'
-        
+
+  %li
+    Start work on an app:
+    %pre
+      %code.bash
+        mkdir ~ann/app10
+        cd    ~ann/app10
 
 %br/
 %br/
