@@ -17,7 +17,6 @@ The 2015_0912 Code Challenge is a learning exercise for students attending this 
 %a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225223500/' target='x')
   http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225223500/
 
-
 %br/
 %br/
 
@@ -83,8 +82,9 @@ The 2015_0912 Code Challenge is a learning exercise for students attending this 
         mkdir ~ann/app10
         cd    ~ann/app10
         echo  node_modules > .gitignore
-        npm init
+        npm init # Creates package.json (displayed below)
         npm install --save http-server
+
   %li
     Add HTML file to app: ~ann/app10/index.html
     %pre
@@ -98,14 +98,74 @@ The 2015_0912 Code Challenge is a learning exercise for students attending this 
     %a(href='http://localhost:8080' target='x')
       http://localhost:8080
 
+  %li
+    Commit the app to a git repository:
+    %pre
+      %code.bash
+        git init
+        git add .
+        git commit -am 'hello app10'
 
 %br/
 %br/
 
+At this point I should have the app running on Linux on my laptop.
 
 %br/
 %br/
 
+I can follow more steps to deploy the app to Heroku:
 
+%ul
+  %li
+    Enhance ~ann/app10/package.json so it has an "engines" property:
+    %pre
+      =render 'code_challenge2015_09124'
+
+  %li
+    Create a one-line Procfile:
+    %pre
+      %code.bash echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
+
+  %li
+    Install Heroku Toolbelt:
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+Heroku+Toolbelt+on+Linux' target='x')
+      http://www.google.com/search?q=How+to+install+Heroku+Toolbelt+on+Linux
+
+  %li
+    Create Heroku Account (cost: $0.00!):
+    %br/
+    %a(href='https://www.heroku.com' target='x')
+      https://www.heroku.com
+    %br/
+    Memorize login and password
+
+  %li
+    Create Blank Heroku App:
+    %pre
+      %code.bash
+        heroku auth:login
+        heroku app create x20150910
+        git add .
+        git commit -am ready4heroku
+        git push heroku master
+    I should see something like this:
+    %pre
+      =render 'code_challenge2015_09125'
+  %li
+    When I visit the page served by the app, I should see something like this:
+    %br/
+    %img(src='/images/code_challenge2015_09121.png')
+
+%br/
+%br/
+That could be considered an adequate code challenge for a two hour Meetup.
+%br/
+%br/
+If you have questions, e-me:
+%br/
+%br/
+bikle101@gmail.com
 %br/
 %br/
