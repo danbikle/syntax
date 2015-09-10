@@ -82,8 +82,13 @@ The 2015_0912 Code Challenge is a learning exercise for students attending this 
       %code.bash
         mkdir ~ann/app10
         cd    ~ann/app10
+        echo  node_modules > .gitignore
         npm init
-        npm install --save-dev http-server
+        npm install --save http-server
+  %li
+    Add HTML file to app: ~ann/app10/index.html
+    %pre
+      =render 'code_challenge2015_09123'
 
 %br/
 %br/
