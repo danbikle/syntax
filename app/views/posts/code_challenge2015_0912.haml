@@ -90,6 +90,15 @@ The 2015_0912 Code Challenge is a learning exercise for students attending this 
     %pre
       =render 'code_challenge2015_09123'
 
+  %li
+    Test the app:
+    %pre
+      %code.bash node ~ann/app10/node_modules/http-server/bin/http-server
+    visit: 
+    %a(href='http://localhost:8080' target='x')
+      http://localhost:8080
+
+
 %br/
 %br/
 
