@@ -82,7 +82,7 @@ The 2015_0912 Code Challenge is a learning exercise for students attending this 
         mkdir ~ann/app10
         cd    ~ann/app10
         echo  node_modules > .gitignore
-        npm init
+        npm init # Creates package.json (displayed below)
         npm install --save http-server
 
   %li
@@ -109,9 +109,18 @@ The 2015_0912 Code Challenge is a learning exercise for students attending this 
 %br/
 %br/
 
+At this point I should have the app running on Linux on my laptop.
 
 %br/
 %br/
+
+I can follow more steps to deploy the app to Heroku:
+
+%ul
+  %li
+    Enhance ~ann/app10/package.json so it has an "engines" property:
+    %pre
+      =render 'code_challenge2015_09124'
 
 
 %br/
