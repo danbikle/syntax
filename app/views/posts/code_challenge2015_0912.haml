@@ -122,6 +122,38 @@ I can follow more steps to deploy the app to Heroku:
     %pre
       =render 'code_challenge2015_09124'
 
+  %li
+    Create a one-line Procfile:
+    %pre
+      %code.bash echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
+
+  %li
+    Install Heroku Toolbelt:
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+Heroku+Toolbelt+on+Linux' target='x')
+      http://www.google.com/search?q=How+to+install+Heroku+Toolbelt+on+Linux
+
+  %li
+    Create Heroku Account (cost: $0.00!):
+    %br/
+    %a(href='https://www.heroku.com' target='x')
+      https://www.heroku.com
+    %br/
+    Memorize login and password
+
+  %li
+    Create Blank Heroku App:
+    %pre
+      %code.bash
+        heroku auth:login
+        heroku app create x20150910
+        git add .
+        git commit -am ready4heroku
+        git push heroku master
+    I should see something like this:
+    %pre
+      =render 'code_challenge2015_09125'
+
 
 %br/
 %br/
