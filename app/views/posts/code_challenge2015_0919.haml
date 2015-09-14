@@ -287,18 +287,31 @@ I can follow more steps to deploy the app to Heroku:
     Memorize login and password
 
   %li
+    Create ssh-key for ann account (assuming ann has none yet):
+    %pre
+      =render 'code_challenge2015_0919s'
+
+  %li
+    Give a copy of ann public ssh-key to heroku:
+    %pre
+      %code.bash
+        heroku status
+        heroku auth:login
+        heroku auth:whoami
+        heroku keys:add
+
+  %li
     Create Blank Heroku App and then git-push my app in:
     %pre
       %code.bash
         cd ~ann/app11/
-        heroku auth:login
         heroku create x20150914
         git add .
         git commit -am ready4heroku
         git push heroku master
     I should see something like this:
     %pre
-      =render 'code_challenge2015_09125'
+      =render 'code_challenge2015_09195'
   %li
     When I visit the page served by the app, I should see something like this:
     %br/
