@@ -339,15 +339,32 @@ I can follow more steps to deploy the app to Heroku:
     I make changes to the 'outside' before changing the 'inside'.
 
   %li
-    'Outside' means code which runs in browser: HTML, CSS, client-side-JavaScript
+    'Outside' means code which runs in browser: HTML first, then CSS, then client-side-JavaScript
     %br/
     'Inside' means code which runs on Linux server: Node.js, SQL, Bash, Python, Ruby, R, C++, and Java
   %li
-    The 'outside' of ~ann/app11 is ~ann/app11/index.html
+    The 'Outside' of ~ann/app11 is ~ann/app11/index.html
     %br/
     Enhance it:
     %pre
       =render 'code_challenge2015_09196'
+
+  %li
+    Next, I use wget to enhance the server (the 'Inside') so it can serve angular.js:
+    %pre
+      %code.bash
+        cd ~ann/app11/
+        wget https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js
+
+  %li
+    I should be able to see this:
+    %br/
+    %img(src='/images/code_challenge2015_09191.png')
+    %br/
+    %img(src='/images/code_challenge2015_09192.png')
+    %br/
+    %br/
+
 
 
 %br/
