@@ -13,6 +13,7 @@ git add .
 git commit -am mo
 git pull heroku master
 git pull bit    master
+git commit -am mo
 git push heroku master
 git push bit    master
 
