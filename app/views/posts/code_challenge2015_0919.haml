@@ -330,6 +330,25 @@ I can follow more steps to deploy the app to Heroku:
     When I visit the page served by the app, I should see something like this:
     %br/
     %img(src='/images/code_challenge2015_09121.png')
+    %br/
+    %br/
+
+  %li
+    Next I use the idea of 'outside-in' development to enhance ~ann/app11/
+    %br/
+    I make changes to the 'outside' before changing the 'inside'.
+
+  %li
+    'Outside' means code which runs in browser: HTML, CSS, client-side-JavaScript
+    %br/
+    'Inside' means code which runs on Linux server: Node.js, SQL, Bash, Python, Ruby, R, C++, and Java
+  %li
+    The 'outside' of ~ann/app11 is ~ann/app11/index.html
+    %br/
+    Enhance it:
+    %pre
+      =render 'code_challenge2015_09196'
+
 
 %br/
 %br/
