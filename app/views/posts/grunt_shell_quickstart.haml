@@ -1,0 +1,59 @@
+.q1 Question:
+.q2 How to Quickstart grunt-shell?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/node') node
+  %a.xtag(href='/tags/nodejs') nodejs
+  %a.xtag(href='/tags/grunt') grunt
+  %a.xtag(href='/tags/npm') npm
+  %a.xtag(href='/tags/git') git
+  %a.xtag(href='/tags/grunt_shell') grunt_shell
+%br/
+
+The plugin, grunt-shell, is useful to developers who like using the Linux shell
+as an administrative UI for Node.js apps.
+
+%br/
+%br/
+
+To quickstart grunt-shell in a lightweight app, I follow the list below:
+
+%ul
+  %li
+    Install Node.js. On Ubuntu I prefer this software:
+    %br/
+    %a(href='https://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz' target='x')
+      https://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz
+    %br/
+    More info:
+    %br/
+    %a(href='http://www.syntax.us/posts/nodejs_install' target='x')
+      http://www.syntax.us/posts/nodejs_install
+  %li mkdir ~/myapp
+  %li cd    ~/myapp
+  %li echo hello world > readme.txt
+  %li
+    npm init
+    %br/
+    (answer simple questions)
+  %li npm install -g grunt-cli
+  %li npm install grunt       --save-dev
+  %li npm install grunt-shell --save-dev
+  %li
+    vi Gruntfile.js
+    %br/
+    demo: 
+    %br/
+    %pre
+      =render 'nodejs_app_init1'
+  %li
+    I test Gruntfile.js by running 'grunt' shell command:
+    %br/
+    %pre
+      =render 'nodejs_app_init2'
+%br/
+So, if grunt works, I consider grunt-shell to be both packaged with my new app and ready for action.
+
+%br/
+%br/

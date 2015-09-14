@@ -1,0 +1,160 @@
+.q1 Question:
+.q2 How to use ShellJS?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/npm') npm
+  %a.xtag(href='/tags/shelljs') shelljs
+  %a.xtag(href='/tags/lineman') lineman
+  %a.xtag(href='/tags/grunt') grunt
+  %a.xtag(href='/tags/gruntjs') gruntjs
+  %a.xtag(href='/tags/haml') haml
+  %a.xtag(href='/tags/for') for
+  %a.xtag(href='/tags/nodejs') nodejs
+
+%br/
+
+I use Lineman to build websites.
+
+%br/
+%br/
+
+It is a framework technology which depends on Node.js
+
+%br/
+%br/
+
+An important component of Lineman is Grunt which offers a script driven administrative interface.
+
+%br/
+%br/
+
+When I work with Grunt I often enhance it with a module named ShellJS.
+
+%br/
+%br/
+
+ShellJS allows me to write Grunt tasks which can call shell commands.
+
+%br/
+%br/
+
+Assuming that I have followed this post 
+%a(href='/posts/lineman_angular_install') lineman_angular_install
+, to start a Lineman-Angular app on my laptop,
+an example of a shell script I call from Grunt is displayed below:
+
+%pre
+  =render 'shelljs_howto1'
+
+The above script transforms Haml files into HTML files.
+
+%br/
+%br/
+
+It assumes the Haml files are in app/haml_templates and that the HTML files are in app/templates.
+ 
+%br/
+%br/
+
+To call the above shell-script,
+I add syntax to a file in the tasks folder of my lineman app:
+
+%pre
+  =render 'shelljs_howto2'
+
+The above script depends on ShellJS which I install with this shell command:
+
+%pre
+  %code.bash npm install --save-dev shelljs
+
+Also I add syntax to config/application.coffee:
+
+%pre
+  =render 'shelljs_howto3'
+
+The above syntax ensures that Grunt will call haml.bash at appropriate times as I enhance my Lineman app.
+
+%br/
+%br/
+
+A simple post which describes installation of Haml is listed below:
+
+%br/
+%br/
+
+%a(href='/posts/ruby_gem_home_gem_path') ruby_gem_home_gem_path
+
+%br/
+%br/
+
+I learned how to use Haml
+by studying this content:
+
+%br/
+%br/
+
+%a(href='http://haml.info/docs.html' target='x')
+  http://haml.info/docs.html
+
+%br/
+%br/
+
+I learned how to write syntax for 
+tasks/haml_bash.coffee
+by studying this content:
+
+%br/
+%br/
+
+%a(href='http://gruntjs.com/creating-tasks' target='x')
+  http://gruntjs.com/creating-tasks
+
+%br/
+%br/
+
+%a(href='https://github.com/arturadib/shelljs#coffeescript' target='x')
+  https://github.com/arturadib/shelljs#coffeescript
+
+%br/
+%br/
+
+I learned how to write syntax for 
+config/application.coffee
+by studying this content:
+
+%br/
+%br/
+
+%a(href='http://linemanjs.com/#configuring-lineman' target='x')
+  http://linemanjs.com/#configuring-lineman
+
+%br/
+%br/
+
+When I mix 
+%a(target='n' href='http://www.google.com/search?q=Node+js')
+  Node.js
+,
+
+%a(target='l' href='http://www.google.com/search?q=Lineman+js')
+  Lineman
+, 
+
+%a(target='g' href='http://www.google.com/search?q=Grunt+js')
+  Grunt
+, 
+
+%a(target='c' href='http://www.google.com/search?q=CoffeeScript')
+  CoffeeScript
+, 
+
+%a(target='h' href='http://www.google.com/search?q=Haml')
+  Haml
+, 
+and 
+%a(target='s' href='http://www.google.com/search?q=ShellJS')
+  ShellJS
+, I am happy with the efficiency of my development environment.
+
+%br/
+%br/

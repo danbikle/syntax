@@ -1,0 +1,37 @@
+<code class='bash'>
+dan@usb99:/tmp/demo1 $ 
+dan@usb99:/tmp/demo1 $ export GEM_HOME=/tmp/demo1/gems
+dan@usb99:/tmp/demo1 $ export GEM_PATH=/tmp/demo1/gems
+dan@usb99:/tmp/demo1 $ 
+dan@usb99:/tmp/demo1 $ gem list
+
+*** LOCAL GEMS ***
+
+bundler (1.10.6)
+haml (4.0.7)
+tilt (2.0.1)
+dan@usb99:/tmp/demo1 $ bundle install
+The program 'bundle' is currently not installed. You can install it by typing:
+sudo apt-get install bundler
+dan@usb99:/tmp/demo1 $ 
+dan@usb99:/tmp/demo1 $ 
+
+<hr />
+I need to remember that the bundle shell command comes from a RubyGem.
+So I will find the bundle shell command under $GEM_HOME.
+<hr />
+
+dan@usb99:/tmp/demo1 $ 
+dan@usb99:/tmp/demo1 $ $GEM_HOME/bin/bundle install
+Fetching gem metadata from https://rubygems.org/.....
+Fetching version metadata from https://rubygems.org/..
+Resolving dependencies...
+Using tilt 2.0.1
+Using haml 4.0.7
+Using bundler 1.10.6
+Bundle complete! 1 Gemfile dependency, 3 gems now installed.
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+dan@usb99:/tmp/demo1 $ 
+dan@usb99:/tmp/demo1 $ 
+dan@usb99:/tmp/demo1 $ 
+</code>
