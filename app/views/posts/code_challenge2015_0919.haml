@@ -182,22 +182,139 @@ I should see something like this:
 %br/
 %br/
 
-After I learn some Emacs or some other editor,
-I Install Node.js in this folder: ~ann/node/
+%ul
+  %li
+    After I learn some Emacs or some other editor,
+    I Install Node.js in this folder: ~ann/node/
+
+  %li
+    Useful:
+    %a(href='https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-x64.tar.gz' target='x')
+      https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-x64.tar.gz
+
+  %li
+    Then, I add Node.js to PATH: 
+    %pre
+      %code.bash
+        export       PATH="/home/ann/node/bin:${PATH}"
+        echo 'export PATH="/home/ann/node/bin:${PATH}"' >> ~ann/.bashrc
+    
+  %li
+    Run a test:
+    %pre
+      %code.bash
+        which node
+        node -e 'console.log("hello world")'
+
+  %li
+    Install CoffeScript to test npm:
+    %pre
+      %code.bash
+        which npm
+        npm install -g coffee-script
+        ls -la /home/ann/node/lib/node_modules/
+        which coffee
+        coffee -e 'console.log "hello coffee!"'
+
+  %li
+    Start work on an app:
+    %pre
+      %code.bash
+        mkdir ~ann/app11
+        cd    ~ann/app11
+        echo  node_modules > .gitignore
+        npm init # Creates package.json (displayed below)
+        npm install --save http-server
+
+  %li
+    Add HTML file to app: ~ann/app11/index.html
+    %pre
+      =render 'code_challenge2015_09123'
+
+  %li
+    Test the app:
+    %pre
+      %code.bash
+        cd   ~ann/app11/
+        node ~ann/app11/node_modules/http-server/bin/http-server
+    visit: 
+    %a(href='http://localhost:8080' target='x')
+      http://localhost:8080
+
+  %li
+    Commit the app to a git repository:
+    %pre
+      %code.bash
+        cd ~ann/app11/
+        git init
+        git add .
+        git commit -am 'hello app11'
 
 %br/
 %br/
-Useful:
-%a(href='https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-x64.tar.gz' target='x')
-  https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-x64.tar.gz
+
+At this point I should have the app running on Linux on my laptop.
 
 %br/
 %br/
 
-Then, I add Node.js to PATH: 
-%pre
-  %code.bash
-    export       PATH="/home/ann/node/bin:${PATH}"
-    echo 'export PATH="/home/ann/node/bin:${PATH}"' >> ~ann/.bashrc
+I can follow more steps to deploy the app to Heroku:
+
+%ul
+  %li
+    Enhance ~ann/app11/package.json so it has an "engines" property:
+    %pre
+      =render 'code_challenge2015_09124'
+
+  %li
+    Create a one-line Procfile:
+    %pre
+      %code.bash
+        cd ~ann/app11/
+        echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
+
+  %li
+    Install Heroku Toolbelt:
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+Heroku+Toolbelt+on+Linux' target='x')
+      http://www.google.com/search?q=How+to+install+Heroku+Toolbelt+on+Linux
+
+  %li
+    Create Heroku Account (cost: $0.00!):
+    %br/
+    %a(href='https://www.heroku.com' target='x')
+      https://www.heroku.com
+    %br/
+    Memorize login and password
+
+  %li
+    Create Blank Heroku App and then git-push my app in:
+    %pre
+      %code.bash
+        cd ~ann/app11/
+        heroku auth:login
+        heroku create x20150914
+        git add .
+        git commit -am ready4heroku
+        git push heroku master
+    I should see something like this:
+    %pre
+      =render 'code_challenge2015_09125'
+  %li
+    When I visit the page served by the app, I should see something like this:
+    %br/
+    %img(src='/images/code_challenge2015_09121.png')
+
+%br/
+%br/
+That could be considered an adequate code challenge for a two hour Meetup.
+%br/
+%br/
+If you have questions, e-me:
+%br/
+%br/
+bikle101@gmail.com
+%br/
+%br/
 
     
