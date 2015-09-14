@@ -2,11 +2,15 @@
 dan@dev06:~ $ 
 dan@dev06:~ $ cd ~ann
 dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
 dan@dev06:/home/ann $ curl https://toolbelt.heroku.com/install.sh | grep tgz
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100   975  100   975    0     0   1465      0 --:--:-- --:--:-- --:--:--  1495
     HEROKU_CLIENT_URL="https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz"
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
 dan@dev06:/home/ann $ 
 dan@dev06:/home/ann $ wget https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
 --2015-09-14 18:52:29--  https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
@@ -22,7 +26,12 @@ Saving to: ‘heroku-client.tgz’
 
 dan@dev06:/home/ann $ 
 dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
 dan@dev06:/home/ann $ tar zxf heroku-client.tgz 
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
 dan@dev06:/home/ann $ 
 dan@dev06:/home/ann $ ls -la heroku-client/bin/
 total 12
@@ -30,7 +39,57 @@ drwxr-xr-x 2 dan dan 4096 Aug 31 23:56 .
 drwxr-xr-x 6 dan dan 4096 Aug 31 23:56 ..
 -rwxr-xr-x 1 dan dan  644 Aug 31 23:56 heroku
 dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
 dan@dev06:/home/ann $ echo export PATH=/home/ann/heroku-client/bin:${PATH} >> ~/.bashrc
 dan@dev06:/home/ann $ 
 dan@dev06:/home/ann $ export      PATH=/home/ann/heroku-client/bin:${PATH}
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ heroku help
+Usage: heroku COMMAND [--app APP] [command-specific-options]
+
+Primary help topics, type "heroku help TOPIC" for more details:
+
+  addons    #  manage addon resources
+  apps      #  manage apps (create, destroy)
+  auth      #  authentication (login, logout)
+  config    #  manage app config vars
+  domains   #  manage domains
+  logs      #  display logs for an app
+  ps        #  manage dynos (dynos, workers)
+  releases  #  manage app releases
+  run       #  run one-off commands (console, rake)
+  sharing   #  manage collaborators on an app
+
+Additional topics:
+
+  buildpacks   #  manage the buildpack for an app
+  certs        #  manage ssl endpoints for an app
+  drains       #  display drains for an app
+  features     #  manage optional features
+  fork         #  clone an existing app
+  git          #  manage git for apps
+  help         #  list commands and display help
+  keys         #  manage authentication keys
+  labs         #  manage optional features
+  local        #  run heroku app locally
+  maintenance  #  manage maintenance mode for an app
+  members      #  manage membership in organization accounts
+  orgs         #  manage organization accounts
+  pg           #  manage heroku-postgresql databases
+  pgbackups    #  manage backups of heroku postgresql databases
+  plugins      #  manage plugins to the heroku gem
+  redis        #  list redis databases for an app
+  regions      #  list available regions
+  stack        #  manage the stack for an app
+  status       #  check status of heroku platform
+  twofactor    #  manage two-factor authentication settings
+  update       #  update the heroku client
+  version      #  display version
+
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
 </code>
