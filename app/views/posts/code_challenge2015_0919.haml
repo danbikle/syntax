@@ -1,0 +1,332 @@
+.q1 Question:
+.q2 What is 2015_0919 Code Challenge?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/npm') npm
+  %a.xtag(href='/tags/nodejs') nodejs
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/heroku') heroku
+  %a.xtag(href='/tags/package_json') package_json
+  %a.xtag(href='/tags/javascript') javascript
+  %a.xtag(href='/tags/coffeescript') coffeescript
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/useradd') useradd
+  %a.xtag(href='/tags/passwd') passwd
+  %a.xtag(href='/tags/git') git
+  %a.xtag(href='/tags/procfile') procfile
+  %a.xtag(href='/tags/node') node
+  %a.xtag(href='/tags/node_modules') node_modules
+  %a.xtag(href='/tags/gitignore') gitignore
+  %a.xtag(href='/tags/engines') engines
+  %a.xtag(href='/tags/http_server') http_server
+  %a.xtag(href='/tags/toolbelt') toolbelt
+  %a.xtag(href='/tags/code_challenge') code_challenge
+  %a.xtag(href='/tags/bikle101') bikle101
+  %a.xtag(href='/tags/emacs') emacs
+  %a.xtag(href='/tags/buffer_menu') buffer_menu
+
+%br/
+
+The 2015_0919 Code Challenge is a learning exercise for students attending Dan's Linux JavaScript Class at 3pm on 2015-09-19 at Palo Alto Library [2nd Floor Green Meadow Room]:
+
+%br/
+%br/
+
+%a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225319549/' target='x')
+  http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225319549/
+
+%br/
+%br/
+
+We start with three tasks: Install Ubuntu, enhance it, and create account named ann:
+
+%ul
+  %li Install Ubuntu 14.04.3 on your laptop
+  %li
+    Useful:
+    %a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso' target='x')
+      http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso
+
+  %li
+    Useful:
+    %a(href='https://www.virtualbox.org/wiki/Downloads' target='x')
+      https://www.virtualbox.org/wiki/Downloads
+
+  %li
+    Enhance Ubuntu:
+    %pre
+      =render 'code_challenge2015_09121'
+
+  %li
+    Create account named ann:
+    %pre
+      %code.bash
+        useradd ann -m -s /bin/bash
+        passwd ann
+        ssh -YA ann@localhost
+
+
+Next, we learn some Emacs:
+
+%ul
+  %li
+    %pre
+      %code.bash emacs ~ann/.emacs
+  %li Experiment with the controls at the top of the emacs window
+  
+  %li
+    Add this syntax to file: ~ann/.emacs
+    %pre
+      =render 'code_challenge2015_09191'
+
+  %li Figure out how to save and exit
+  %li
+    Verify your work:
+    %pre
+      %code.bash cat ~ann/.emacs
+
+  %li
+    Start 'bare' emacs:
+    %pre
+      %code.bash emacs
+
+  %li Start a shell in emacs with ctrl-x then letter 's'.
+  %li
+    I should see something like this:
+    %br/
+    %img(src='/images/code_challenge2015_09191.png')
+  %li Rename the shell to SHELL1 with esc-key, then letter 'R'
+  %li
+    I should see something like this:
+    %br/
+    %img(src='/images/code_challenge2015_09192.png')
+  %li List all buffers in my emacs with esc-key, then letter 'm'
+  %li
+    I should see something like this:
+    %br/
+    %img(src='/images/code_challenge2015_09193.png')
+%br/
+
+I see the buffer-menu as similar to the Mac-Dock, Ubuntu-Launcher or the Windows-Taskbar.
+
+%br/
+%br/
+
+The buffer-menu is my favorite emacs feature; it allows my mind to QUICKLY switch focus among three types of objects:
+%ul
+  %li different shells
+  %li different files
+  %li different folders
+
+%br/
+
+The buffer-menu floats 'hot' shells, files and folders to the top.
+
+%br/
+%br/
+
+This is useful behavior.
+
+%br/
+%br/
+
+I mostly do 4 types of tasks on a laptop:
+%ul
+  %li Interact with file
+  %li Interact with folder
+  %li Interact with shell
+  %li Interact with browser
+
+%br
+I can do the first three types inside of emacs.
+
+%br/
+%br/
+
+When I coordinate tasks with emacs rather than a Dock, I work much faster (because of the buffer-menu).
+
+%br/
+%br/
+
+That sequence of creating a shell, and renaming it is the most difficult task I need to know.
+
+%br/
+%br/
+
+All other emacs tasks can be done using mouse and arrow keys.
+
+%br/
+%br/
+
+If I am an emacs power-user, I know two ways to use emacs to interact with folders.
+
+%br/
+%br/
+
+The GUI-way is to click on the file-cabinet at the top.
+
+%br/
+%br/
+
+Another way, which is quicker, is to type command ctrl-x then letter 'f'.
+
+%br/
+%br/
+
+I should see something like this:
+
+%br/
+%img(src='/images/code_challenge2015_09194.png')
+
+%br/
+%br/
+
+%ul
+  %li
+    After I learn some Emacs or some other editor,
+    I Install Node.js in this folder: ~ann/node/
+
+  %li
+    Useful:
+    %a(href='https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-x64.tar.gz' target='x')
+      https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-x64.tar.gz
+
+  %li
+    Then, I add Node.js to PATH: 
+    %pre
+      %code.bash
+        export       PATH="/home/ann/node/bin:${PATH}"
+        echo 'export PATH="/home/ann/node/bin:${PATH}"' >> ~ann/.bashrc
+    
+  %li
+    Run a test:
+    %pre
+      %code.bash
+        which node
+        node -e 'console.log("hello world")'
+
+  %li
+    Install CoffeScript to test npm:
+    %pre
+      %code.bash
+        which npm
+        npm install -g coffee-script
+        ls -la /home/ann/node/lib/node_modules/
+        which coffee
+        coffee -e 'console.log "hello coffee!"'
+
+  %li
+    Start work on an app:
+    %pre
+      %code.bash
+        mkdir ~ann/app11
+        cd    ~ann/app11
+        echo  node_modules > .gitignore
+        npm init # Creates package.json (displayed below)
+        npm install --save http-server
+
+  %li
+    Add HTML file to app: ~ann/app11/index.html
+    %pre
+      =render 'code_challenge2015_09123'
+
+  %li
+    Test the app:
+    %pre
+      %code.bash
+        cd   ~ann/app11/
+        node ~ann/app11/node_modules/http-server/bin/http-server
+    visit: 
+    %a(href='http://localhost:8080' target='x')
+      http://localhost:8080
+
+  %li
+    Commit the app to a git repository:
+    %pre
+      %code.bash
+        cd ~ann/app11/
+        git init
+        git add .
+        git commit -am 'hello app11'
+
+%br/
+%br/
+
+At this point I should have the app running on Linux on my laptop.
+
+%br/
+%br/
+
+I can follow more steps to deploy the app to Heroku:
+
+%ul
+  %li
+    Enhance ~ann/app11/package.json so it has an "engines" property:
+    %pre
+      =render 'code_challenge2015_09194'
+
+  %li
+    Create a one-line Procfile:
+    %pre
+      %code.bash
+        cd ~ann/app11/
+        echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
+
+  %li
+    Install Heroku Toolbelt (standalone):
+    %pre
+      =render 'code_challenge2015_0919h'
+
+  %li
+    Create Heroku Account (cost: $0.00!):
+    %br/
+    %a(href='https://www.heroku.com' target='x')
+      https://www.heroku.com
+    %br/
+    Memorize login and password
+
+  %li
+    Create ssh-key for ann account (assuming ann has none yet):
+    %pre
+      =render 'code_challenge2015_0919s'
+
+  %li
+    Give a copy of ann public ssh-key to heroku:
+    %pre
+      %code.bash
+        heroku status
+        heroku auth:login
+        heroku auth:whoami
+        heroku keys:add
+
+  %li
+    Create Blank Heroku App and then git-push my app in:
+    %pre
+      %code.bash
+        cd ~ann/app11/
+        heroku create x20150914
+        git add .
+        git commit -am ready4heroku
+        git push heroku master
+    I should see something like this:
+    %pre
+      =render 'code_challenge2015_09195'
+  %li
+    When I visit the page served by the app, I should see something like this:
+    %br/
+    %img(src='/images/code_challenge2015_09121.png')
+
+%br/
+%br/
+That could be considered an adequate code challenge for a two hour Meetup.
+%br/
+%br/
+If you have questions, e-me:
+%br/
+%br/
+bikle101@gmail.com
+%br/
+%br/
+
+    
