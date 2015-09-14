@@ -274,10 +274,9 @@ I can follow more steps to deploy the app to Heroku:
         echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
 
   %li
-    Install Heroku Toolbelt:
-    %br/
-    %a(href='http://www.google.com/search?q=How+to+install+Heroku+Toolbelt+on+Linux' target='x')
-      http://www.google.com/search?q=How+to+install+Heroku+Toolbelt+on+Linux
+    Install Heroku Toolbelt (standalone):
+    %pre
+      =render 'code_challenge2015_0919h'
 
   %li
     Create Heroku Account (cost: $0.00!):

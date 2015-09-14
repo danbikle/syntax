@@ -1,0 +1,36 @@
+<code class='bash'>dan@dev06:~ $ 
+dan@dev06:~ $ 
+dan@dev06:~ $ cd ~ann
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ curl https://toolbelt.heroku.com/install.sh | grep tgz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   975  100   975    0     0   1465      0 --:--:-- --:--:-- --:--:--  1495
+    HEROKU_CLIENT_URL="https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz"
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ wget https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
+--2015-09-14 18:52:29--  https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
+Resolving s3.amazonaws.com (s3.amazonaws.com)... 54.231.17.120
+Connecting to s3.amazonaws.com (s3.amazonaws.com)|54.231.17.120|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1828732 (1.7M) [application/x-gtar]
+Saving to: ‘heroku-client.tgz’
+
+100%[======================================>] 1,828,732    893KB/s   in 2.0s   
+
+2015-09-14 18:52:32 (893 KB/s) - ‘heroku-client.tgz’ saved [1828732/1828732]
+
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ tar zxf heroku-client.tgz 
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ ls -la heroku-client/bin/
+total 12
+drwxr-xr-x 2 dan dan 4096 Aug 31 23:56 .
+drwxr-xr-x 6 dan dan 4096 Aug 31 23:56 ..
+-rwxr-xr-x 1 dan dan  644 Aug 31 23:56 heroku
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ echo export PATH=/home/ann/heroku-client/bin:${PATH} >> ~/.bashrc
+dan@dev06:/home/ann $ 
+dan@dev06:/home/ann $ export      PATH=/home/ann/heroku-client/bin:${PATH}
+</code>
