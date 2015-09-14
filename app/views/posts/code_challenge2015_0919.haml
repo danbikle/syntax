@@ -25,6 +25,20 @@
   %a.xtag(href='/tags/bikle101') bikle101
   %a.xtag(href='/tags/emacs') emacs
   %a.xtag(href='/tags/buffer_menu') buffer_menu
+  %a.xtag(href='/tags/ssh') ssh
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/id_rsa') id_rsa
+  %a.xtag(href='/tags/alert') alert
+  %a.xtag(href='/tags/herokuapp') herokuapp
+  %a.xtag(href='/tags/cedar') cedar
+  %a.xtag(href='/tags/curl') curl
+  %a.xtag(href='/tags/heroku_client') heroku_client
+  %a.xtag(href='/tags/wget') wget
+  %a.xtag(href='/tags/coffee') coffee
+  %a.xtag(href='/tags/console_log') console_log
+  %a.xtag(href='/tags/dired') dired
+  %a.xtag(href='/tags/global_set_key') global_set_key
+  %a.xtag(href='/tags/lisp') lisp
 
 %br/
 
@@ -316,6 +330,42 @@ I can follow more steps to deploy the app to Heroku:
     When I visit the page served by the app, I should see something like this:
     %br/
     %img(src='/images/code_challenge2015_09121.png')
+    %br/
+    %br/
+
+  %li
+    Next I use the idea of 'outside-in' development to enhance ~ann/app11/
+    %br/
+    I make changes to the 'outside' before changing the 'inside'.
+
+  %li
+    'Outside' means code which runs in browser: HTML first, then CSS, then client-side-JavaScript
+    %br/
+    'Inside' means code which runs on Linux server: Node.js, SQL, Bash, Python, Ruby, R, C++, and Java
+  %li
+    The 'Outside' of ~ann/app11 is ~ann/app11/index.html
+    %br/
+    Enhance it:
+    %pre
+      =render 'code_challenge2015_09196'
+
+  %li
+    Next, I use wget to enhance the server (the 'Inside') so it can serve angular.js:
+    %pre
+      %code.bash
+        cd ~ann/app11/
+        wget https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js
+
+  %li
+    Now, I should be able to see this:
+    %br/
+    %img(src='/images/code_challenge2015_09191.png')
+    %br/
+    %img(src='/images/code_challenge2015_09192.png')
+    %br/
+    %br/
+
+
 
 %br/
 %br/
