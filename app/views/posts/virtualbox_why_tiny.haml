@@ -1,0 +1,88 @@
+.q1 Question:
+.q2 VirtualBox Screen is Tiny, Why?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/vbox') vbox
+  %a.xtag(href='/tags/tiny') tiny
+  %a.xtag(href='/tags/virtualbox') virtualbox
+  %a.xtag(href='/tags/guest_additions') guest_additions
+  %a.xtag(href='/tags/sudo') sudo
+  %a.xtag(href='/tags/root') root
+
+%br/
+
+After a fresh install of an Ubuntu 14 guest-OS on Virtualbox,
+the guest login screen is too tiny.
+
+%br/
+%br/
+
+How to make the screen larger?
+
+%br/
+%br/
+
+Short Answer: I need to install 'Guest Additions'.
+
+%br/
+%br/
+
+Long Answer: I install 'Guest Additions' with a multi step procedure.
+
+%ul
+  %li
+    In the menu-bar of the guest-OS I should find a link called: 'Devices'.
+  %li
+    In that link I click other link at bottom: 'Insert Guest Additions CD Image'
+  %li
+    VirtualBox finds the ISO file of the CD in the host-OS.
+    %br/
+    VirtualBox inserts the Guest Additions CD.
+    %br/
+    I see it at bottom-left.
+  %li
+    Also a pop-up appears with question:
+    %br/
+    "blah-blah-blah, Would you like to run it?"
+  %li
+    I click yes and then give it my password.
+  %li
+    After it finishes, I reboot the guest-OS.
+  %li
+    After bootup, the login screen should be large enough to fill my screen.
+%br/
+%br/
+Related questions:
+%ul
+  %li Q: How to set root password?
+  %li
+    A: sudo bash
+    %br
+    passwd root
+
+  %li Q: How to copy-paste between host and guest?
+  %li Short Answer: X-Windows
+  %li
+    Long Answer: Install X-Windows on host.
+    %br/
+    Start X-Windows terminal on host.
+    %br/
+    ssh -YA ann@guest
+    %br/
+    The YA option gives permission to new-guest-shell.
+    %br/
+    Type 'firefox' in new-guest-shell.
+    %br/
+    Firefox appears on host, but runs on guest.
+    %br/
+    Copy-paste from host into Firefox.
+    %br/ 
+    Note that Firefox has a bug which prevents guest-firefox and host-firefox
+    from sharing same display.
+    %br
+    Workaround: Avoid host-firefox. Use Safari or Chrome on host.
+      
+%br/
+%br/
+
+
