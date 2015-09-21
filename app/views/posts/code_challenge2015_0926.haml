@@ -70,11 +70,26 @@ We start with three tasks: Install Ubuntu, enhance it, and create account named 
       http://www.google.com/search?q=How+to+install+virtualbox    
     %br/
     %a(href='http://www.google.com/search?q=How+to+install+virtualbox+additions' target='x')
-      http://www.google.com/search?q=How+to+install+virtualbox+guest+additions
-
+      How to install virtualbox guest additions
+    %br/
+    %a(href='/posts/virtualbox_why_tiny') virtualbox_why_tiny
 
   %li
     Enhance Ubuntu:
+    %pre
+      =render 'code_challenge2015_09121'
+
+  %li
+    Create account named ann:
+    %pre
+      %code.bash
+        useradd ann -m -s /bin/bash
+        passwd ann
+        ssh -YA ann@localhost
+
+Next, we learn some Emacs:
+
+=render 'code_challenge2015_0919e'
 
 
 %br/
