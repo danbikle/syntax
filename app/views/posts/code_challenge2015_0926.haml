@@ -137,7 +137,12 @@ Next, we learn some Emacs:
     Use haml shell command to create ~ann/app13/app/index.html
     %pre
       %code.bash
-        haml something here
+        haml -eq ~ann/app13/haml/index.haml ~ann/app13/app/index.html
+  %li
+    HAML should create this:
+    %pre
+      =render 'code_challenge2015_091262'
+    Obviously HAML is easier to read than HTML.
 
 
   %li
