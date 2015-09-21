@@ -131,7 +131,7 @@ Next, we learn some Emacs:
   %li
     With emacs, create ~ann/app13/haml/index.haml
     %pre
-      =render 'code_challenge2015_091261'
+      =render 'code_challenge2015_09261'
 
   %li
     Use haml shell command to create ~ann/app13/app/index.html
@@ -141,7 +141,7 @@ Next, we learn some Emacs:
   %li
     HAML should create this:
     %pre
-      =render 'code_challenge2015_091262'
+      =render 'code_challenge2015_09262'
     Obviously HAML is easier to read than HTML.
     %br/
     Note that the above code comes from AngularJS Tutorial.
@@ -158,6 +158,17 @@ Next, we learn some Emacs:
         cd ~ann/app13/app/js
         wget http://angular.github.io/angular-phonecat/step-1/app/bower_components/angular/angular.js
 
+  %li
+    I enhnace the app so it can serve the above files:
+    %pre
+      %code.bash
+        cd ~ann/app13
+        npm install --save http-server
+        node ~ann/app13/node_modules/http-server/bin/http-server
+
+  %li
+    With broswer, I visit localhost:8080/app and should see something like this:
+    code_challenge2015_091263.png
 
 
   %li
