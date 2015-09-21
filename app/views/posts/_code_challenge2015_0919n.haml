@@ -1,0 +1,33 @@
+%ul
+  %li
+    After I learn some Emacs or some other editor,
+    I Install Node.js in this folder: ~ann/node/
+
+  %li
+    Useful:
+    %a(href='https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-x64.tar.gz' target='x')
+      https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-x64.tar.gz
+
+  %li
+    Then, I add Node.js to PATH: 
+    %pre
+      %code.bash
+        export       PATH="/home/ann/node/bin:${PATH}"
+        echo 'export PATH="/home/ann/node/bin:${PATH}"' >> ~ann/.bashrc
+    
+  %li
+    Run a test:
+    %pre
+      %code.bash
+        which node
+        node -e 'console.log("hello world")'
+
+  %li
+    Install CoffeScript to test npm:
+    %pre
+      %code.bash
+        which npm
+        npm install -g coffee-script
+        ls -la /home/ann/node/lib/node_modules/
+        which coffee
+        coffee -e 'console.log "hello coffee!"'
