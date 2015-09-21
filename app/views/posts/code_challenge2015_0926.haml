@@ -94,7 +94,28 @@ Next, we learn some Emacs:
 %br/
 %br/
 
+/ Install node.js
 =render 'code_challenge2015_0919n'
+
+%ul
+  %li
+    Start work on an app:
+    %pre
+      %code.bash
+        cd ~ann
+        mkdir app13
+        cd    ~ann/app13
+        mkdir fee haml app
+        cd ~ann/app13/app
+        mkdir css img js partials phones
+        cd ~ann/app13
+        npm init # Respond with all defaults here
+        # Now I have ~ann/app13/package.json
+        # I will change it later.
+        echo node_modules > .gitignore
+        git init
+        git add .
+        git commit -am ItsAlive
 
 
 
