@@ -1,1 +1,90 @@
-<code class='bash'></code>
+<code class='bash'>ann@dev06:~/app13$ 
+ann@dev06:~/app13$ 
+ann@dev06:~/app13$ echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
+ann@dev06:~/app13$ ls -la ~/heroku-client/bin/
+total 12
+drwxr-xr-x 2 ann ann 4096 Aug 31 23:56 .
+drwxr-xr-x 6 ann ann 4096 Aug 31 23:56 ..
+-rwxr-xr-x 1 ann ann  644 Aug 31 23:56 heroku
+ann@dev06:~/app13$ heroku auth:whoami
+scrape4.us@gmail.com
+ann@dev06:~/app13$ 
+ann@dev06:~/app13$ 
+ann@dev06:~/app13$ heroku create ann926
+Creating ann926... done, stack is cedar-14
+https://ann926.herokuapp.com/ | https://git.heroku.com/ann926.git
+Git remote heroku added
+updating Heroku CLI...done. Updated to 3.42.2
+ann@dev06:~/app13$ git add .
+ann@dev06:~/app13$ git commit -am ready4heroku
+[master 859e064] ready4heroku
+ 11 files changed, 34575 insertions(+), 4 deletions(-)
+ create mode 100644 Procfile
+ create mode 100644 app/css/app.css
+ create mode 100644 app/css/bootstrap.css
+ create mode 100644 app/index.html
+ create mode 100644 app/js/angular.js
+ create mode 100644 haml/index.haml
+ann@dev06:~/app13$ git push heroku master
+Counting objects: 22, done.
+Delta compression using up to 3 threads.
+Compressing objects: 100% (19/19), done.
+Writing objects: 100% (22/22), 272.77 KiB | 0 bytes/s, done.
+Total 22 (delta 2), reused 0 (delta 0)
+remote: Compressing source files... done.        
+remote: Building source:        
+remote: 
+remote: -----> Node.js app detected        
+remote: 
+remote: -----> Creating runtime environment        
+remote:                
+remote:        NPM_CONFIG_LOGLEVEL=error        
+remote:        NPM_CONFIG_PRODUCTION=true        
+remote:        NODE_ENV=production        
+remote:        NODE_MODULES_CACHE=true        
+remote: 
+remote: -----> Installing binaries        
+remote:        engines.node (package.json):  4.0.0        
+remote:        engines.npm (package.json):   unspecified (use default)        
+remote:                
+remote:        Downloading and installing node 4.0.0...        
+remote:        Using default npm version: 2.14.2        
+remote: 
+remote: -----> Restoring cache        
+remote:        Skipping cache (new runtime signature)        
+remote: 
+remote: -----> Building dependencies        
+remote:        Pruning any extraneous modules        
+remote:        Installing node modules (package.json)        
+remote:        http-server@0.8.0 node_modules/http-server        
+remote:        ├── opener@1.4.1        
+remote:        ├── corser@2.0.0        
+remote:        ├── colors@1.0.3        
+remote:        ├── http-proxy@1.11.2 (eventemitter3@1.1.1, requires-port@0.0.1)        
+remote:        ├── optimist@0.6.1 (wordwrap@0.0.3, minimist@0.0.10)        
+remote:        ├── portfinder@0.4.0 (async@0.9.0, mkdirp@0.5.1)        
+remote:        ├── union@0.4.4 (qs@2.3.3)        
+remote:        └── ecstatic@0.7.6 (url-join@0.0.1, mime@1.3.4, minimist@1.2.0, he@0.5.0)        
+remote: 
+remote: -----> Caching build        
+remote:        Clearing previous node cache        
+remote:        Saving 1 cacheDirectories (default):        
+remote:        - node_modules        
+remote: 
+remote: -----> Build succeeded!        
+remote:        └── http-server@0.8.0        
+remote:                
+remote: -----> Discovering process types        
+remote:        Procfile declares types -> web        
+remote: 
+remote: -----> Compressing... done, 12.2MB        
+remote: -----> Launching... done, v3        
+remote:        https://ann926.herokuapp.com/ deployed to Heroku        
+remote: 
+remote: Verifying deploy.... done.        
+To https://git.heroku.com/ann926.git
+ * [new branch]      master -> master
+ann@dev06:~/app13$ 
+ann@dev06:~/app13$ 
+ann@dev06:~/app13$ 
+</code>
