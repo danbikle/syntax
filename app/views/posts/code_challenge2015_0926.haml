@@ -180,6 +180,53 @@ Next, we learn some Emacs:
       =render 'code_challenge2015_09264'
 
   %li
+    Create a one-line Procfile:
+    %pre
+      %code.bash
+        cd ~ann/app11/
+        echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
+
+  %li
+    Install Heroku Toolbelt (standalone):
+    %pre
+      =render 'code_challenge2015_0919h'
+
+  %li
+    Create Heroku Account (cost: $0.00!):
+    %br/
+    %a(href='https://www.heroku.com' target='x')
+      https://www.heroku.com
+    %br/
+    Memorize login and password
+
+  %li
+    Create ssh-key for ann account (assuming ann has none yet):
+    %pre
+      =render 'code_challenge2015_0919s'
+
+  %li
+    Give a copy of ann public ssh-key to heroku:
+    %pre
+      %code.bash
+        heroku status
+        heroku auth:login
+        heroku auth:whoami
+        heroku keys:add
+
+  %li
+    Create Blank Heroku App and then git-push my app in:
+    %pre
+      %code.bash
+        cd ~ann/app13
+        heroku create ann926
+        git add .
+        git commit -am ready4heroku
+        git push heroku master
+    I should see something like this:
+    %pre
+      =render  'code_challenge2015_09265'
+
+  %li
     Eventually app13 will behave like this app:
     %br/
     %a(href='http://angular.github.io/angular-phonecat/step-12/app' target='x')
