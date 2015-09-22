@@ -232,15 +232,31 @@ Next, we learn some Emacs:
     %br/
     It loads. Yay!
 
-This page is the next stop in the code challenge:
-
 %br/
+%br/
+
+Step 2 of the AngularJS tutorial is the next stop in the code challenge:
+
 %br/
 
 %a(href='https://docs.angularjs.org/tutorial/step_02' target='x')
   https://docs.angularjs.org/tutorial/step_02
 
+%br/
 
+I follow the steps below to do this:
+
+%ul
+  %li
+    %pre
+      %code.bash
+        cd ~ann
+        git clone app13 app14
+        rsync -a  app13/node_modules app14
+        rsync -a  app13/gems         app14
+        cd app14
+        heroku create ann9262
+        git push heroku master
 
 
 %ul
