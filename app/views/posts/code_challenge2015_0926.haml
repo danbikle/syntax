@@ -285,10 +285,46 @@ I follow the steps below to do this:
     To me it feels cumbersome and mentally taxing.
 
   %li
+    To see a description of the above attributes (AKA 'Directives'):
+    %ul
+      %li ng-app
+      %li ng-controller
+      %li ng-repeat
+    I should read this page:
+    %br/
+    %a(href='https://docs.angularjs.org/tutorial/step_02' target='x')
+      https://docs.angularjs.org/tutorial/step_02
+  %li
+    Often my concept of %html(lang="en" ng-app="phonecatApp") is simple:
+    %ul
+      %li I have some JS code named "phonecatApp"
+      %li That code affects this html element
+
+  %li
+    My concept of %body(ng-controller="PhoneListCtrl") is also simple:
+    %ul
+      %li I have some JS code named "PhoneListCtrl"
+      %li That code affects this body element
+      %li The HAML declares that body element is inside html element
+      %li As developer, I should place PhoneListCtrl-code inside phonecatApp
+
+  %li
+    My concept of %li(ng-repeat="phone in phones") is this:
+    %ul
+      %li I have an Angular object named 'phones'
+      %li The 'phones' object should be created by PhoneListCtrl because the li-element is inside the body-element
+
+
+   
+
+  %li
+    %hr/
     Use haml shell command to create ~ann/app14/app/index.html
     %pre
       %code.bash
         haml -eq ~ann/app14/haml/index.haml ~ann/app14/app/index.html
+
+%hr/
 %ul
   %li
     Eventually app13 will behave like this app:
