@@ -260,9 +260,14 @@ I follow the steps below to do this:
 
   %li
     I enhance ~ann/app14/haml/index.haml
+    %pre
+      =render 'code_challenge2015_09266'
 
-
-
+  %li
+    Use haml shell command to create ~ann/app14/app/index.html
+    %pre
+      %code.bash
+        haml -eq ~ann/app14/haml/index.haml ~ann/app14/app/index.html
 %ul
   %li
     Eventually app13 will behave like this app:
