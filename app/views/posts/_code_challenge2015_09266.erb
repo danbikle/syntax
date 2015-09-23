@@ -1,0 +1,16 @@
+<code class='haml'>!!!
+%html(lang="en" ng-app="phonecatApp")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %meta(charset="utf-8")/
+    %title Google Phone Gallery
+    %link(href="/app/css/bootstrap.css" rel="stylesheet")/
+    %link(href="/app/css/app.css" rel="stylesheet")/
+    %script(src="/app/js/angular.js")
+    %script(src="/app/js/controllers.js")
+  %body(ng-controller="PhoneListCtrl")
+    %ul
+      %li(ng-repeat="phone in phones")
+        %span {{phone.name}}
+        %p {{phone.snippet}}
+</code>

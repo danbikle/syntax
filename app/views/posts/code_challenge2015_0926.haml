@@ -1,0 +1,390 @@
+.q1 Question:
+.q2 What is 2015_0926 Code Challenge?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/npm') npm
+  %a.xtag(href='/tags/nodejs') nodejs
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/heroku') heroku
+  %a.xtag(href='/tags/package_json') package_json
+  %a.xtag(href='/tags/javascript') javascript
+  %a.xtag(href='/tags/coffeescript') coffeescript
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/useradd') useradd
+  %a.xtag(href='/tags/passwd') passwd
+  %a.xtag(href='/tags/git') git
+  %a.xtag(href='/tags/procfile') procfile
+  %a.xtag(href='/tags/node') node
+  %a.xtag(href='/tags/node_modules') node_modules
+  %a.xtag(href='/tags/gitignore') gitignore
+  %a.xtag(href='/tags/engines') engines
+  %a.xtag(href='/tags/http_server') http_server
+  %a.xtag(href='/tags/toolbelt') toolbelt
+  %a.xtag(href='/tags/code_challenge') code_challenge
+  %a.xtag(href='/tags/bikle101') bikle101
+  %a.xtag(href='/tags/emacs') emacs
+  %a.xtag(href='/tags/buffer_menu') buffer_menu
+  %a.xtag(href='/tags/ssh') ssh
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/id_rsa') id_rsa
+  %a.xtag(href='/tags/alert') alert
+  %a.xtag(href='/tags/herokuapp') herokuapp
+  %a.xtag(href='/tags/cedar') cedar
+  %a.xtag(href='/tags/curl') curl
+  %a.xtag(href='/tags/heroku_client') heroku_client
+  %a.xtag(href='/tags/wget') wget
+  %a.xtag(href='/tags/coffee') coffee
+  %a.xtag(href='/tags/console_log') console_log
+  %a.xtag(href='/tags/dired') dired
+  %a.xtag(href='/tags/global_set_key') global_set_key
+  %a.xtag(href='/tags/lisp') lisp
+
+%br/
+
+The 2015_0926 Code Challenge is a learning exercise for students attending Dan's Linux JavaScript Class at 3pm on 2015-09-26 at Palo Alto Library [2nd Floor Green Meadow Room]:
+
+%br/
+%br/
+
+%a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225571816/' target='x')
+  http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225571816/
+
+%br/
+%br/
+
+We start with three tasks: Install Ubuntu, enhance it, and create account named ann:
+
+%ul
+  %li Install Ubuntu 14.04.3 on your laptop
+  %li
+    Useful:
+    %a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso' target='x')
+      http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso
+
+  %li
+    Useful:
+    %a(href='https://www.virtualbox.org/wiki/Downloads' target='x')
+      https://www.virtualbox.org/wiki/Downloads
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox' target='x')
+      http://www.google.com/search?q=How+to+install+virtualbox    
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox+additions' target='x')
+      How to install virtualbox guest additions
+    %br/
+    %a(href='/posts/virtualbox_why_tiny') virtualbox_why_tiny
+
+  %li
+    Enhance Ubuntu:
+    %pre
+      =render 'code_challenge2015_09121'
+
+  %li
+    Create account named ann:
+    %pre
+      %code.bash
+        useradd ann -m -s /bin/bash
+        passwd ann
+        ssh -YA ann@localhost
+
+Next, we learn some Emacs:
+
+=render 'code_challenge2015_0919e'
+
+%br/
+%br/
+
+/ Install node.js
+=render 'code_challenge2015_0919n'
+
+%ul
+  %li
+    Start work on an app:
+    %pre
+      %code.bash
+        cd ~ann
+        mkdir app13
+        cd    ~ann/app13
+        mkdir fee haml app
+        cd ~ann/app13/app
+        mkdir css img js partials phones
+        cd ~ann/app13
+        npm init # Respond with all defaults here
+        \# Now I have ~ann/app13/package.json
+        \# I will change it later.
+        echo node_modules >> .gitignore
+        git init
+        git add .
+        git commit -am ItsAlive
+
+  %li
+    Install HAML to enhance app13:
+    %pre
+      %code.bash
+        cd    ~ann/app13
+        echo  gems >> .gitignore
+        mkdir gems
+        export GEM_HOME=/home/ann/app13/gems
+        export PATH=${GEM_HOME}/bin:${PATH}
+        gem install haml
+
+  %li
+    With emacs, create ~ann/app13/haml/index.haml
+    %pre
+      =render 'code_challenge2015_09261'
+
+  %li
+    Use haml shell command to create ~ann/app13/app/index.html
+    %pre
+      %code.bash
+        haml -eq ~ann/app13/haml/index.haml ~ann/app13/app/index.html
+  %li
+    HAML should create this:
+    %pre
+      =render 'code_challenge2015_09262'
+    Obviously HAML is easier to read than HTML.
+    %br/
+    Note that the above code comes from AngularJS Tutorial.
+    %br/
+    Many thanks to angularjs.org
+
+  %li
+    I add files needed by ~ann/app13/app/index.html
+    %pre
+      %code.bash
+        cd ~ann/app13/app/css
+        wget http://angular.github.io/angular-phonecat/step-1/app/bower_components/bootstrap/dist/css/bootstrap.css
+        wget http://angular.github.io/angular-phonecat/step-1/app/css/app.css
+        cd ~ann/app13/app/js
+        wget http://angular.github.io/angular-phonecat/step-1/app/bower_components/angular/angular.js
+
+  %li
+    I enhnace the app so it can serve the above files:
+    %pre
+      %code.bash
+        cd ~ann/app13
+        npm install --save http-server
+        node ~ann/app13/node_modules/http-server/bin/http-server
+
+  %li
+    With broswer, I visit localhost:8080/app and should see something like this:
+    %br/
+    %img(src='/images/code_challenge2015_09263.png')
+    %br/
+
+  %li Next, I kill the http-server process to free-up port 8080 on localhost.
+
+  %li
+    Now, I work towards deploying this software to Heroku.
+    I use emacs to enhance ~ann/app13/package.json:
+    %pre
+      =render 'code_challenge2015_09264'
+
+  %li
+    Create a one-line Procfile:
+    %pre
+      %code.bash
+        cd ~ann/app13/
+        echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
+
+  %li
+    Install Heroku Toolbelt (standalone):
+    %pre
+      =render 'code_challenge2015_0919h'
+
+  %li
+    Create Heroku Account (cost: $0.00!):
+    %br/
+    %a(href='https://www.heroku.com' target='x')
+      https://www.heroku.com
+    %br/
+    Memorize login and password
+
+  %li
+    Create ssh-key for ann account (assuming ann has none yet):
+    %pre
+      =render 'code_challenge2015_0919s'
+
+  %li
+    Give a copy of ann public ssh-key to heroku:
+    %pre
+      %code.bash
+        heroku status
+        heroku auth:login
+        heroku auth:whoami
+        heroku keys:add
+
+  %li
+    Create blank Heroku app and then git-push my app in:
+    %pre
+      %code.bash
+        cd ~ann/app13
+        heroku create ann926
+        git add .
+        git commit -am ready4heroku
+        git push heroku master
+    I should see something like this:
+    %pre
+      =render  'code_challenge2015_09265'
+    I visit:
+    %br/
+    %a(href='https://ann926.herokuapp.com/app/index.html' target='x')
+      https://ann926.herokuapp.com/app/index.html
+    %br/
+    It loads. Yay!
+
+%br/
+%br/
+
+Step 2 of the AngularJS tutorial is the next stop in the code challenge:
+
+%br/
+
+%a(href='https://docs.angularjs.org/tutorial/step_02' target='x')
+  https://docs.angularjs.org/tutorial/step_02
+
+%br/
+
+I follow the steps below to do this:
+
+%ul
+  %li
+    %pre
+      %code.bash
+        cd ~ann
+        git clone app13 app14
+        rsync -a  app13/node_modules app14
+        rsync -a  app13/gems         app14
+        cd app14
+        heroku create ann9262
+        git push heroku master
+
+  %li
+    I enhance ~ann/app14/haml/index.haml
+    %pre
+      =render 'code_challenge2015_09266'
+
+  %li
+    A good feature of AngularJS can be seen in the above HAML.
+    %br/
+    I see three attributes which tell me that AngularJS may be affecting regions of the page.
+    %br/
+    Many other JS libraries do not offer this feature.
+    %br/
+    For example When I look at HTML controlled by jQuery,
+    the HTML does not tell me this fact.
+    %br/
+    To understand jQuery control of a page, I need to walk my mind through a multi-step procedure.
+    %br/
+    At the end of this procedure, my mind will have three pieces of information cached:
+    %ul
+      %li Some HTML
+      %li Some CSS
+      %li Some jQuery syntax
+    At that point, my mind can start writing code.
+    %br/
+    To me it feels cumbersome and mentally taxing.
+
+  %li
+    To see a description of the above attributes (AKA 'Directives'):
+    %ul
+      %li ng-app
+      %li ng-controller
+      %li ng-repeat
+    I should read this page:
+    %br/
+    %a(href='https://docs.angularjs.org/tutorial/step_02' target='x')
+      https://docs.angularjs.org/tutorial/step_02
+  %li
+    Often my concept of %html(lang="en" ng-app="phonecatApp") is simple:
+    %ul
+      %li I have some JS code named "phonecatApp"
+      %li That code affects this html element
+
+  %li
+    My concept of %body(ng-controller="PhoneListCtrl") is also simple:
+    %ul
+      %li I have some JS code named "PhoneListCtrl"
+      %li That code affects this body element
+      %li The HAML declares that body element is inside html element
+      %li As developer, I should place PhoneListCtrl-code inside phonecatApp
+
+  %li
+    My concept of %li(ng-repeat="phone in phones") is this:
+    %ul
+      %li I have an Angular object named 'phones'
+      %li The 'phones' array should be created by PhoneListCtrl because the li-element is inside the body-element
+      %li The ng-repeat attribute will create an li-element for each phone in the phones array
+   
+  %li
+    Now that I understand the above HAML better,
+    %br/
+    I use haml shell command to create ~ann/app14/app/index.html
+    %pre
+      %code.bash
+        haml -eq ~ann/app14/haml/index.haml ~ann/app14/app/index.html
+
+  %li
+    Next, I create a file of CoffeeScript named ~ann/app14/fee/controllers.coffee
+    %pre
+      =render 'code_challenge2015_09267'
+
+  %li
+    The above code helps me:
+    %ul
+      %li It creates object named "phonecatApp"
+      %li It creates object named "PhoneListCtrl" inside "phonecatApp"
+      %li It creates array, $scope.phones inside "PhoneListCtrl"
+      %li $scope.phones will be exposed as 'phones' inside of index.html
+
+  %li
+    Now that I understand the above CoffeeScript better,
+    I transform it into JavaScript using the coffee command:
+    %pre
+      %code.bash coffee -bpc ~ann/app14/fee/controllers.coffee > ~ann/app14/app/js/controllers.js
+
+
+
+
+  %li
+    I start the local server to see how app14 behaves
+    %pre
+      %code.bash
+        cd   ~ann/app14
+        node ~ann/app14/node_modules/http-server/bin/http-server
+
+  %li
+    With broswer, I visit localhost:8080/app and should see something like this:
+    %br/
+    %img(src='/images/code_challenge2015_09268.png')
+    %br/
+
+  %li Next, I kill the http-server process to free-up port 8080 on localhost.
+
+  %li
+    Then, I deploy app14 to heroku:
+    %pre
+      %code.bash
+        git add .
+        git commit -am DanWasHere
+        git push heroku master
+
+  %li
+    I should see app14 here:
+    %br/
+    %a(href='https://ann9262.herokuapp.com/app/index.html' target='x')
+      https://ann9262.herokuapp.com/app/index.html
+
+
+That could be considered an adequate code challenge for a two hour Meetup.
+%br/
+%br/
+If you have questions, e-me:
+%br/
+%br/
+bikle101@gmail.com
+%br/
+%br/
+
+    
