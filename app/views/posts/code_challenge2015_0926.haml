@@ -172,9 +172,10 @@ Next, we learn some Emacs:
     %img(src='/images/code_challenge2015_09263.png')
     %br/
 
+  %li Next, I kill the http-server process to free-up port 8080 on localhost.
 
   %li
-    Next I work towards deploying this software to Heroku.
+    Now, I work towards deploying this software to Heroku.
     I use emacs to enhance ~ann/app13/package.json:
     %pre
       =render 'code_challenge2015_09264'
@@ -341,6 +342,27 @@ I follow the steps below to do this:
     I transform it into JavaScript using the coffee command:
     %pre
       %code.bash coffee -bpc ~ann/app14/fee/controllers.coffee > ~ann/app14/app/js/controllers.js
+
+
+
+
+  %li
+    I start the local server to see how app14 behaves
+    %pre
+      %code.bash
+        cd   ~ann/app14
+        node ~ann/app14/node_modules/http-server/bin/http-server
+
+  %li
+    With broswer, I visit localhost:8080/app and should see something like this:
+    %br/
+    %img(src='/images/code_challenge2015_09268.png')
+    %br/
+
+  %li Next, I kill the http-server process to free-up port 8080 on localhost.
+
+
+
 
 %hr/
 %ul
