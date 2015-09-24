@@ -464,8 +464,13 @@ I follow the steps below to do this:
     The file app.js should look like this:
     %pre
       =render 'code_challenge2015_092693'
-   
-   
+  %li
+    Then, I get a copy of phones/phones.json so my site can serve it when PhoneListCtrl asks for it:
+    %pre
+      %code.bash
+        cd ~ann/app15
+        mkdir phones
+        curl http://angular.github.io/angular-phonecat/step-5/app/phones/phones.json > phones/phones.json
 
 That could be considered an adequate code challenge for a two hour Meetup.
 %br/
