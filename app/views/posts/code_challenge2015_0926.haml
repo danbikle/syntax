@@ -501,6 +501,32 @@ I follow the steps below to do this:
     %a(href='https://ann9265.herokuapp.com/app/index.html' target='x')
       https://ann9265.herokuapp.com/app/index.html
 
+  %li
+    Step 8 of the AngularJS tutorial is the next stop in the code challenge:
+    %br/
+    %a(href='https://docs.angularjs.org/tutorial/step_08' target='x')
+      https://docs.angularjs.org/tutorial/step_08
+    %br/
+    I follow the steps below to do this: 
+    %pre
+      %code.bash
+        cd    ~ann
+        mkdir ~ann/app16
+        cd    ~ann/app16
+        mkdir app fee haml gems
+        echo node_modules  gems > .gitignore
+        echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
+        cd    ~ann/app16/app
+        mkdir -p css js partials phones
+        cd /tmp
+        git clone https://github.com/angular/angular-phonecat.git phonecat
+        cd phonecat
+        cp app/css/app.css ~ann/app16/css/
+        rsync -a app/img ~ann/app16/app
+
+
+
+%hr/
 
 
 That could be considered an adequate code challenge for a two hour Meetup.
