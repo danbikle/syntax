@@ -344,9 +344,6 @@ I follow the steps below to do this:
     %pre
       %code.bash coffee -bpc ~ann/app14/fee/controllers.coffee > ~ann/app14/app/js/controllers.js
 
-
-
-
   %li
     I start the local server to see how app14 behaves
     %pre
@@ -375,6 +372,35 @@ I follow the steps below to do this:
     %br/
     %a(href='https://ann9262.herokuapp.com/app/index.html' target='x')
       https://ann9262.herokuapp.com/app/index.html
+
+
+Step 5 of the AngularJS tutorial is the next stop in the code challenge:
+
+%br/
+
+%a(href='https://docs.angularjs.org/tutorial/step_05' target='x')
+  https://docs.angularjs.org/tutorial/step_05
+
+%br/
+
+I follow the steps below to do this:
+
+%ul
+  %li
+    %pre
+      %code.bash
+        cd ~ann
+        git clone app14 app15
+        rsync -a  app14/node_modules app15
+        rsync -a  app14/gems         app15
+        cd app15
+        heroku create ann9265
+        git push heroku master
+
+  %li
+    I enhance ~ann/app15/haml/index.haml
+    %pre
+      =render 'code_challenge2015_09268'
 
 
 That could be considered an adequate code challenge for a two hour Meetup.
