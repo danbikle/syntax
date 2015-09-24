@@ -418,8 +418,13 @@ I follow the steps below to do this:
     That string is then referred to as "orderProp".
 
 
-
-
+  %li
+    The next Angular-related enhancement is this syntax:
+    %pre
+      %code.haml %li(ng-repeat="phone in phones | filter:query | orderBy:orderProp")
+    The above syntax allows an end-user to display phone-names which match a string held by the query variable.
+    %br/
+    After the match is made, the end-user can order the resulting list by name or age.
 
 
 
