@@ -1,1 +1,28 @@
-<code class='haml'></code>
+<code class='haml'>!!!
+%html(lang="en" ng-app="phonecatApp")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %meta(charset="utf-8")/
+    %title Google Phone Gallery
+    %link(href="/app/css/bootstrap.css" rel="stylesheet")/
+    %link(href="/app/css/app.css" rel="stylesheet")/
+    %script(src="/app/js/angular.js")
+    %script(src="/app/js/app.js")
+  %body(ng-controller="PhoneListCtrl")
+    .container-fluid
+      .row
+        .col-md-2
+          / Sidebar content
+          Search:
+          %input(ng-model="query")/
+          Sort by:
+          %select(ng-model="orderProp")
+            %option(value="name") Alphabetical
+            %option(value="age") Newest
+        .col-md-10
+          / Body content
+          %ul.phones
+            %li(ng-repeat="phone in phones | filter:query | orderBy:orderProp")
+              %span {{phone.name}}
+              %p {{phone.snippet}}
+</code>
