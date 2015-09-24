@@ -452,7 +452,7 @@ I follow the steps below to do this:
           %li $scope
           %li $http
           %li
-            Anonymous function:
+            Anonymous function which:
             %ul
               %li Copies phones/phones.json into $scope.phones
               %li Sets $scope.orderProp = 'age'
@@ -486,10 +486,20 @@ I follow the steps below to do this:
     %img(src='/images/code_challenge2015_092694.png')
     %br/
 
+  %li
+    Next, I deploy it to Heroku:
+    %pre
+      %code.bash
+        cd ~ann/app15
+        git add .
+        git commit -am DanWasHere
+        git push heroku master
 
-
-
-
+  %li
+    Then I visit this URL:
+    %br/
+    %a(href='https://ann9265.herokuapp.com' target='x')
+      https://ann9265.herokuapp.com
 
 
 
