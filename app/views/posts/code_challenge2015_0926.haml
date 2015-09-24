@@ -551,6 +551,29 @@ I follow the steps below to do this:
     Then, I create a HAML file ~ann/app16/haml/index.haml
     %pre
       =render 'code_challenge2015_092695'
+  %li
+    The above HAML asks your browser to load angular-route.js which provides an API which allows me,
+    the developer, to change page-content when the URL field changes in your browser.
+  %li
+    Also the above HAML contains the ng-view attribute:
+    %pre
+      %code.haml %div(ng-view="")
+    The ng-view attribute is part of an AngularJS mechanism which adds modular behavior to HTML styntax.
+    %br/
+    The most common modular behavior which I want is 'code reuse'.
+    %br/
+    In this app, the code I want to reuse is the syntax in the head-element of the above HAML.
+    %br/
+    The code I want to be changeable is in the body-element.
+    %br/
+    I will control this changeable code with the help of ng-view attribute, my code in app.js,
+    %br/
+    and HTML files I put under ~ann/app16/app/partials
+
+  %li
+    Then, I create a HAML file ~ann/app16/haml/phone-list.haml
+    %pre
+      =render 'code_challenge2015_092696'
 
 %hr/
 
