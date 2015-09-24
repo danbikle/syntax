@@ -608,6 +608,15 @@ I follow the steps below to do this:
     %pre
       %code.coffeescript phonecatApp.config
     The above syntax uses a concept I call 'route'.
+    %br/
+    A route has three ideas:
+    %ul
+      %li A path (which will appear in the browser URL field)
+      %li A templateUrl (HTML served in response to path you type into URL field)
+      %li A controller (JavaScript which runs also in response to path)
+    Know that a path can contain a static part and a parameter.
+    %br/
+    The value of the parameter can be fed to a controller.
 
 %hr/
 
