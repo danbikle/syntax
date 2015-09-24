@@ -524,7 +524,16 @@ I follow the steps below to do this:
         cp app/css/app.css ~ann/app16/css/
         rsync -a app/img ~ann/app16/app
 
-
+  %li
+    Next, I attach Node.js modules to app16:
+    %pre
+      %code.bash
+        cd ~ann/app16
+        npm install # Creates node_modules
+  %li
+    Then, I copy ~ann/app13/package.json into ~ann/app16/package.json so it has syntax below:
+    %pre
+      =render 'code_challenge2015_09264'
 
 %hr/
 
