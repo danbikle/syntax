@@ -1,0 +1,38 @@
+<code class='html'>&lt;!DOCTYPE html>
+&lt;html lang="en" ng-app="phonecatApp">
+  &lt;head>
+    &lt;meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    &lt;meta charset="utf-8">
+    &lt;title>Google Phone Gallery&lt;/title>
+    &lt;link href="/app/css/bootstrap.css" rel="stylesheet">
+    &lt;link href="/app/css/app.css" rel="stylesheet">
+    &lt;script src="/app/js/angular.js">&lt;/script>
+    &lt;script src="/app/js/app.js">&lt;/script>
+  &lt;/head>
+  &lt;body ng-controller="PhoneListCtrl">
+    &lt;div class="container-fluid">
+      &lt;div class="row">
+        &lt;div class="col-md-2">
+          &lt;!-- Sidebar content -->
+          Search:
+          &lt;input ng-model="query">
+          Sort by:
+          &lt;select ng-model="orderProp">
+            &lt;option value="name">Alphabetical&lt;/option>
+            &lt;option value="age">Newest&lt;/option>
+          &lt;/select>
+        &lt;/div>
+        &lt;div class="col-md-10">
+          &lt;!-- Body content -->
+          &lt;ul class="phones">
+            &lt;li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+              &lt;span>{{phone.name}}&lt;/span>
+              &lt;p>{{phone.snippet}}&lt;/p>
+            &lt;/li>
+          &lt;/ul>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+  &lt;/body>
+&lt;/html>
+</code>

@@ -1,0 +1,16 @@
+<code class='coffeescript'>'use strict'
+
+### app.coffee, app.js ###
+
+phonecatApp = angular.module('phonecatApp', [])
+phonecatApp.controller 'PhoneListCtrl', [
+  '$scope'
+  '$http'
+  ($scope, $http) ->
+    $http.get('phones/phones.json').success (data) ->
+      $scope.phones = data
+      return
+    $scope.orderProp = 'age'
+    return
+]
+</code>

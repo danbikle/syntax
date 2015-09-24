@@ -344,9 +344,6 @@ I follow the steps below to do this:
     %pre
       %code.bash coffee -bpc ~ann/app14/fee/controllers.coffee > ~ann/app14/app/js/controllers.js
 
-
-
-
   %li
     I start the local server to see how app14 behaves
     %pre
@@ -375,6 +372,135 @@ I follow the steps below to do this:
     %br/
     %a(href='https://ann9262.herokuapp.com/app/index.html' target='x')
       https://ann9262.herokuapp.com/app/index.html
+
+
+Step 5 of the AngularJS tutorial is the next stop in the code challenge:
+
+%br/
+
+%a(href='https://docs.angularjs.org/tutorial/step_05' target='x')
+  https://docs.angularjs.org/tutorial/step_05
+
+%br/
+
+I follow the steps below to do this:
+
+%ul
+  %li
+    %pre
+      %code.bash
+        cd ~ann
+        git clone app14 app15
+        rsync -a  app14/node_modules app15
+        rsync -a  app14/gems         app15
+        cd app15
+        heroku create ann9265
+        git push heroku master
+
+  %li
+    I enhance ~ann/app15/haml/index.haml
+    %pre
+      =render 'code_challenge2015_09268'
+    The head-element is the same as before except that I changed the name of controllers.js to app.js.  
+    %br/
+    The new name suggests I have more than just controller syntax in that file.
+  %li
+    The next Angular-related enhancement is this syntax:
+    %pre
+      %code.haml %input(ng-model="query")/
+    The above syntax allows the end-user to enter a string which is then referred to as "query".
+  %li
+    The next Angular-related enhancement is this syntax:
+    %pre
+      =render 'code_challenge2015_09269'
+    The above syntax allows the end-user to enter a string (either "name" or "age").
+    %br/
+    That string is then referred to as "orderProp".
+
+
+  %li
+    The next Angular-related enhancement is this syntax:
+    %pre
+      %code.haml %li(ng-repeat="phone in phones | filter:query | orderBy:orderProp")
+    The above syntax allows an end-user to display phone-names which match a string held by the query variable.
+    %br/
+    After the match is made, the end-user can order the resulting list by name or age.
+
+  %li
+    After I enhance ~ann/app15/haml/index.haml
+    %br/
+    I transform it into this file: ~ann/app15/app/index.html
+    %pre
+      %code.bash
+        haml -eq ~ann/app15/haml/index.haml ~ann/app15/app/index.html
+    The HTML file should look like this:
+    %pre
+      =render 'code_challenge2015_092691'
+    Notice that the HAML file is easier to read than the HTML file
+
+  %li
+    Next, I create a CoffeeScript file named ~ann/app15/fee/app.coffee
+    %pre
+      =render 'code_challenge2015_092692'
+    The list below describes my understanding of the above syntax:
+    %ul
+      %li I have an object named 'phonecatApp'
+      %li Inside of phonecatApp I have an object named 'PhoneListCtrl'
+      %li
+        Inside of PhoneListCtrl I have three objects:
+        %ul
+          %li $scope
+          %li $http
+          %li
+            Anonymous function which:
+            %ul
+              %li Copies phones/phones.json into $scope.phones
+              %li Sets $scope.orderProp = 'age'
+
+  %li
+    Next, I create app.js from app.coffee so that app.js can run in your browser:
+    %pre
+      %code.bash coffee -bpc ~ann/app15/fee/app.coffee > ~ann/app15/app/js/app.js
+    The file app.js should look like this:
+    %pre
+      =render 'code_challenge2015_092693'
+  %li
+    Then, I get a copy of phones/phones.json so my site can serve it when PhoneListCtrl asks for it:
+    %pre
+      %code.bash
+        cd ~ann/app15/app
+        mkdir phones
+        curl http://angular.github.io/angular-phonecat/step-5/app/phones/phones.json > phones/phones.json
+
+
+  %li
+    I start the local server to see how app15 behaves
+    %pre
+      %code.bash
+        cd   ~ann/app15
+        node ~ann/app15/node_modules/http-server/bin/http-server
+
+  %li
+    I should see something like this:
+    %br/
+    %img(src='/images/code_challenge2015_092694.png')
+    %br/
+
+  %li
+    Next, I deploy it to Heroku:
+    %pre
+      %code.bash
+        cd ~ann/app15
+        git add .
+        git commit -am DanWasHere
+        git push heroku master
+
+  %li
+    Then I visit this URL:
+    %br/
+    %a(href='https://ann9265.herokuapp.com/app/index.html' target='x')
+      https://ann9265.herokuapp.com/app/index.html
+
 
 
 That could be considered an adequate code challenge for a two hour Meetup.
