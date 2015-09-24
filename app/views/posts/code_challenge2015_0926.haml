@@ -426,9 +426,13 @@ I follow the steps below to do this:
     %br/
     After the match is made, the end-user can order the resulting list by name or age.
 
-
-
-
+  %li
+    After I enhance ~ann/app15/haml/index.haml
+    %br/
+    I transform it into this file: ~ann/app15/app/index.html
+    %pre
+      %code.bash
+        haml -eq ~ann/app15/haml/index.haml ~ann/app15/app/index.html
 
 
 
