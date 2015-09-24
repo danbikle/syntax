@@ -591,6 +591,14 @@ I follow the steps below to do this:
     %pre
       %code.haml %dd {{phone.camera.features.join(', ')}}
     The above syntax creates a string from an array.
+  %li
+    Then, I create HTML files from the above HAML files:
+    %pre
+      %code.bash
+        cd ~ann/app16/haml
+        haml -eq index.haml        ~ann/app16/app/index.html
+        haml -eq phone-list.haml   ~ann/app16/app/partials/phone-list.html
+        haml -eq phone-detail.haml ~ann/app16/app/partials/phone-detail.html
 
 
 %hr/
