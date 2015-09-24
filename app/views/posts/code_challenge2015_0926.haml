@@ -468,9 +468,30 @@ I follow the steps below to do this:
     Then, I get a copy of phones/phones.json so my site can serve it when PhoneListCtrl asks for it:
     %pre
       %code.bash
-        cd ~ann/app15
+        cd ~ann/app15/app
         mkdir phones
         curl http://angular.github.io/angular-phonecat/step-5/app/phones/phones.json > phones/phones.json
+
+
+  %li
+    I start the local server to see how app15 behaves
+    %pre
+      %code.bash
+        cd   ~ann/app15
+        node ~ann/app15/node_modules/http-server/bin/http-server
+
+  %li
+   I should see something like this:
+    %br/
+    %img(src='/images/code_challenge2015_092694.png')
+    %br/
+
+
+
+
+
+
+
 
 That could be considered an adequate code challenge for a two hour Meetup.
 %br/
