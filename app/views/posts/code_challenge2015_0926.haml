@@ -401,6 +401,30 @@ I follow the steps below to do this:
     I enhance ~ann/app15/haml/index.haml
     %pre
       =render 'code_challenge2015_09268'
+    The head-element is the same as before except that I changed the name of controllers.js to app.js.  
+    %br/
+    The new name suggests I have more than just controller syntax in that file.
+  %li
+    The next Angular-related enhancement is this syntax:
+    %pre
+      %code.haml %input(ng-model="query")/
+    The above syntax allows the end-user to enter a string which is then referred to as "query".
+  %li
+    The next Angular-related enhancement is this syntax:
+    %pre
+      =render 'code_challenge2015_09269'
+    The above syntax allows the end-user to enter a string (either "name" or "age").
+    %br/
+    That string is then referred to as "orderProp".
+
+
+
+
+
+
+
+
+
 
 
 That could be considered an adequate code challenge for a two hour Meetup.
