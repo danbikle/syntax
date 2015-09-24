@@ -439,9 +439,33 @@ I follow the steps below to do this:
     Notice that the HAML file is easier to read than the HTML file
 
   %li
-    Next, I create a CoffeeScript file:
+    Next, I create a CoffeeScript file named ~ann/app15/fee/app.coffee
     %pre
       =render 'code_challenge2015_092692'
+    The list below describes my understanding of the above syntax:
+    %ul
+      %li I have an object named 'phonecatApp'
+      %li Inside of phonecatApp I have an object named 'PhoneListCtrl'
+      %li
+        Inside of PhoneListCtrl I have three objects:
+        %ul
+          %li $scope
+          %li $http
+          %li
+            Anonymous function:
+            %ul
+              %li Copies phones/phones.json into $scope.phones
+              %li Sets $scope.orderProp = 'age'
+
+  %li
+    Next, I create app.js from app.coffee so that app.js can run in your browser:
+    %pre
+      %code.bash coffee -bpc ~ann/app15/fee/app.coffee > ~ann/app15/app/js/app.js
+    The file app.js should look like this:
+    %pre
+      =render 'code_challenge2015_092693'
+   
+   
 
 That could be considered an adequate code challenge for a two hour Meetup.
 %br/
