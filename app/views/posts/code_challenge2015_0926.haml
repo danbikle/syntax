@@ -510,19 +510,18 @@ I follow the steps below to do this:
     I follow the steps below to do this: 
     %pre
       %code.bash
-        cd    ~ann
         mkdir ~ann/app16
         cd    ~ann/app16
-        mkdir app fee haml gems
-        echo node_modules  gems > .gitignore
+        mkdir app fee haml
+        echo node_modules > .gitignore
         echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
         cd    ~ann/app16/app
-        mkdir -p css js partials phones
+        mkdir css js partials phones
         cd /tmp
         git clone https://github.com/angular/angular-phonecat.git phonecat
         cd phonecat
         git checkout step-8
-        cp app/css/app.css ~ann/app16/css/
+        cp app/css/app.css ~ann/app16/app/css/
         rsync -a app/img ~ann/app16/app
 
   %li
@@ -530,7 +529,7 @@ I follow the steps below to do this:
     %pre
       %code.bash
         cd ~ann/app16
-        npm install # Creates node_modules
+        npm init # Creates node_modules
         npm install --save http-server
 
   %li
