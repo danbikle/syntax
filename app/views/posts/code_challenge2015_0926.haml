@@ -574,6 +574,14 @@ I follow the steps below to do this:
     Then, I create a HAML file ~ann/app16/haml/phone-list.haml
     %pre
       =render 'code_challenge2015_092696'
+    The only new syntax in the above HAML is the ng-src attribute in the img-element:
+    %pre
+      %code.haml %img(ng-src="{{phone.imageUrl}}")/
+    It is obvious what that attribute does. It creates a src-attribute for %img.
+    %br/
+    Also ng-src offers a performance enhancement.
+    %br/
+    It creates the src-attribute BEFORE the page loads into your browser.
 
 %hr/
 
