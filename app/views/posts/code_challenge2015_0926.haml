@@ -619,6 +619,52 @@ I follow the steps below to do this:
     The value of the parameter can be fed to a controller.
   %li
     With the above four ideas in my mind, I can explain the English logic behind the call to phonecatApp.config().
+    %ul
+      %li
+        If I set path to /phones,
+        %br/
+        Angular serves partials/phone-list.html
+        %br/
+        My browser runs JS in PhoneListCtrl
+      %li
+        If I set path to /phones/myPhone,
+        %br/
+        Angular serves partials/phone-detail.html
+        %br/
+        My browser runs JS in PhoneDetailCtrl
+      %li
+        If I set path to /helloWorld,
+        %br/
+        Angular sets path to /phones
+
+  %li
+    Next, I create app.js from app.coffee
+    %pre
+      %code.bash coffee -bpc ~ann/app16/fee/app.coffee > ~ann/app16/app/js/app.js
+
+  %li
+    At this point I have all the syntax I need to run this app.
+    %br/
+    Time to commit it to git:
+    %pre
+      %code.bash
+        cd ~ann/app16/
+        git init
+        git add .
+        git commit -am helloApp16
+
+  %li
+    Then I deploy it to heroku
+    %pre
+      %code.bash
+        heroku create ann9268
+        git push heroku master
+
+  %li
+    I should see my app at this URL:
+    %br/
+    %a(href='https://ann9268.herokuapp.com' target='x')
+      https://ann9268.herokuapp.com
 
 %hr/
 
