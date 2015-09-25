@@ -735,6 +735,36 @@ I follow the steps below to do this:
     %pre
       =render 'code_challenge2015_0926993'
 
+  %li
+    Next, I create app.js from app.coffee
+    %pre
+      %code.bash coffee -bpc ~ann/app17/fee/app.coffee > ~ann/app17/app/js/app.js
+
+  %li
+    At this point I have all the syntax I need to run this app.
+    %br/
+    Time to commit it to git:
+    %pre
+      %code.bash
+        cd ~ann/app17/
+        git init
+        git add .
+        git commit -am helloApp17
+
+  %li
+    Then I deploy it to heroku
+    %pre
+      %code.bash
+        heroku create ann92612
+        git push heroku master
+
+  %li
+    I should see my app at this URL:
+    %br/
+    %a(href='https://ann92612.herokuapp.com/app/index.html' target='x')
+      https://ann92612.herokuapp.com/app/index.html
+
+
 %hr/
 
 
