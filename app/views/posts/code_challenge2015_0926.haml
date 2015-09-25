@@ -42,7 +42,7 @@
 
 %br/
 
-The 2015_0926 Code Challenge is a learning exercise for students attending Dan's Linux JavaScript Class at 3pm on 2015-09-26 at Palo Alto Library [2nd Floor Green Meadow Room]:
+The 2015_0926 Code Challenge is a learning exercise for students attending Dan's Linux JavaScript Class at 3pm on 2015-09-26 at Hacker Dojo:
 
 %br/
 %br/
@@ -592,6 +592,7 @@ I follow the steps below to do this:
     %pre
       %code.haml %dd {{phone.camera.features.join(', ')}}
     The above syntax creates a string from an array.
+
   %li
     Then, I create HTML files from the above HAML files:
     %pre
@@ -666,6 +667,103 @@ I follow the steps below to do this:
     %br/
     %a(href='https://ann9268.herokuapp.com/app/index.html' target='x')
       https://ann9268.herokuapp.com/app/index.html
+
+
+
+  %li
+    Step 12 of the AngularJS tutorial is the next stop in the code challenge:
+    %br/
+    %a(href='https://docs.angularjs.org/tutorial/step_012' target='x')
+      https://docs.angularjs.org/tutorial/step_012
+    %br/
+    I follow the steps below to do this: 
+    %pre
+      %code.bash
+        mkdir ~ann/tmp
+        cd    ~ann/tmp
+        git clone https://github.com/angular/angular-phonecat.git phonecat
+        cd    ~ann/tmp/phonecat
+        git checkout step-12
+        mkdir -p ~ann/app17/app/js
+        cd ~ann/tmp/phonecat/app
+        rsync -a css img phones ~ann/app17/app
+        cd ~ann/app17
+        mkdir fee haml
+        echo node_modules > .gitignore
+        echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
+        cp ~ann/app13/package.json .
+        cd ~ann/app17/app/css
+        wget http://angular.github.io/angular-phonecat/step-12/app/bower_components/bootstrap/dist/css/bootstrap.css
+        cd ~ann/app17/app/js
+        wget http://angular.github.io/angular-phonecat/step-12/app/bower_components/jquery/dist/jquery.js
+        wget http://angular.github.io/angular-phonecat/step-12/app/bower_components/angular/angular.js
+        wget http://angular.github.io/angular-phonecat/step-12/app/bower_components/angular-animate/angular-animate.js
+        wget http://angular.github.io/angular-phonecat/step-12/app/bower_components/angular-route/angular-route.js
+        wget http://angular.github.io/angular-phonecat/step-12/app/bower_components/angular-resource/angular-resource.js
+
+
+  %li
+    Then, I create a HAML file ~ann/app17/haml/index.haml
+    %pre
+      =render 'code_challenge2015_092699'
+    The above syntax contains no new AngularJS API calls.
+    %br/
+    It does however ask the browser to load some new third party JS files.
+
+  %li
+    Next, I create a HAML file ~ann/app17/haml/phone-list.haml
+    %pre
+      =render 'code_challenge2015_0926991'
+
+  %li
+    Then, I create a HAML file ~ann/app17/haml/phone-detail.haml
+    %pre
+      =render 'code_challenge2015_0926992'
+
+  %li
+    Next, I create HTML files from the above HAML files:
+    %pre
+      %code.bash
+        cd ~ann/app17/haml
+        haml -eq index.haml        ~ann/app17/app/index.html
+        mkdir                      ~ann/app17/app/partials
+        haml -eq phone-list.haml   ~ann/app17/app/partials/phone-list.html
+        haml -eq phone-detail.haml ~ann/app17/app/partials/phone-detail.html
+
+  %li
+    Then, I add CoffeeScript syntax to a file named ~ann/app17/fee/app.coffee 
+    %pre
+      =render 'code_challenge2015_0926993'
+
+  %li
+    Next, I create app.js from app.coffee
+    %pre
+      %code.bash coffee -bpc ~ann/app17/fee/app.coffee > ~ann/app17/app/js/app.js
+
+  %li
+    At this point I have all the syntax I need to run this app.
+    %br/
+    Time to commit it to git:
+    %pre
+      %code.bash
+        cd ~ann/app17/
+        git init
+        git add .
+        git commit -am helloApp17
+
+  %li
+    Then I deploy it to heroku
+    %pre
+      %code.bash
+        heroku create ann92612
+        git push heroku master
+
+  %li
+    I should see my app at this URL:
+    %br/
+    %a(href='https://ann92612.herokuapp.com/app/index.html' target='x')
+      https://ann92612.herokuapp.com/app/index.html
+
 
 %hr/
 
