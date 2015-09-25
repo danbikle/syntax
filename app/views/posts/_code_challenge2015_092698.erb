@@ -1,0 +1,41 @@
+<code class='coffeescript'>'use strict'
+
+### app.coffee, app.js ###
+
+phonecatApp = angular.module('phonecatApp', [
+  'ngRoute'
+  'phonecatControllers'
+])
+phonecatApp.config [
+  '$routeProvider'
+  ($routeProvider) ->
+    $routeProvider.when('/phones',
+      templateUrl: 'partials/phone-list.html'
+      controller: 'PhoneListCtrl').when('/phones/:phoneId',
+      templateUrl: 'partials/phone-detail.html'
+      controller: 'PhoneDetailCtrl').otherwise redirectTo: '/phones'
+    return
+]
+
+phonecatControllers = angular.module('phonecatControllers', [])
+phonecatControllers.controller 'PhoneListCtrl', [
+  '$scope'
+  '$http'
+  ($scope, $http) ->
+    $http.get('phones/phones.json').success (data) ->
+      $scope.phones = data
+      return
+    $scope.orderProp = 'age'
+    return
+]
+phonecatControllers.controller 'PhoneDetailCtrl', [
+  '$scope'
+  '$routeParams'
+  '$http'
+  ($scope, $routeParams, $http) ->
+    $http.get('phones/' + $routeParams.phoneId + '.json').success (data) ->
+      $scope.phone = data
+      return
+    return
+]
+</code>

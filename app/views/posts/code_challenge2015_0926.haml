@@ -501,6 +501,173 @@ I follow the steps below to do this:
     %a(href='https://ann9265.herokuapp.com/app/index.html' target='x')
       https://ann9265.herokuapp.com/app/index.html
 
+  %li
+    Step 8 of the AngularJS tutorial is the next stop in the code challenge:
+    %br/
+    %a(href='https://docs.angularjs.org/tutorial/step_08' target='x')
+      https://docs.angularjs.org/tutorial/step_08
+    %br/
+    I follow the steps below to do this: 
+    %pre
+      %code.bash
+        mkdir ~ann/app16
+        cd    ~ann/app16
+        mkdir app fee haml
+        echo node_modules > .gitignore
+        echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
+        cd    ~ann/app16/app
+        mkdir css js partials
+        cd /tmp
+        git clone https://github.com/angular/angular-phonecat.git phonecat
+        cd phonecat
+        git checkout step-8
+        cp app/css/app.css ~ann/app16/app/css/
+        rsync -a app/img    ~ann/app16/app
+        rsync -a app/phones ~ann/app16/app
+
+  %li
+    Next, I attach Node.js modules to app16:
+    %pre
+      %code.bash
+        cd ~ann/app16
+        npm init # Creates node_modules
+        npm install --save http-server
+
+  %li
+    Then, I copy ~ann/app13/package.json into ~ann/app16/package.json so it has syntax below:
+    %pre
+      =render 'code_challenge2015_09264'
+
+  %li
+    Next, I wget software from twitter and angularjs.org:
+    %pre
+      %code.bash
+        cd ~ann/app16/app/css
+        wget http://angular.github.io/angular-phonecat/step-8/app/bower_components/bootstrap/dist/css/bootstrap.css
+        cd ~ann/app16/app/js
+        wget http://angular.github.io/angular-phonecat/step-8/app/bower_components/angular/angular.js
+        wget http://angular.github.io/angular-phonecat/step-8/app/bower_components/angular-route/angular-route.js
+
+  %li
+    Then, I create a HAML file ~ann/app16/haml/index.haml
+    %pre
+      =render 'code_challenge2015_092695'
+  %li
+    The above HAML asks your browser to load angular-route.js which provides an API which allows me,
+    the developer, to change page-content when the URL field changes in your browser.
+  %li
+    Also the above HAML contains the ng-view attribute:
+    %pre
+      %code.haml %div(ng-view="")
+    The ng-view attribute is part of an AngularJS mechanism which adds modular behavior to HTML styntax.
+    %br/
+    The most common modular behavior which I want is 'code reuse'.
+    %br/
+    In this app, the code I want to reuse is the syntax in the head-element of the above HAML.
+    %br/
+    The code I want to be changeable is in the body-element.
+    %br/
+    I will control this changeable code with the help of ng-view attribute, my code in app.js,
+    %br/
+    and HTML files I put under ~ann/app16/app/partials
+
+  %li
+    Then, I create a HAML file ~ann/app16/haml/phone-list.haml
+    %pre
+      =render 'code_challenge2015_092696'
+    The only new syntax in the above HAML is the ng-src attribute in the img-element:
+    %pre
+      %code.haml %img(ng-src="{{phone.imageUrl}}")/
+    It is obvious what that attribute does. It creates a src-attribute for %img.
+    %br/
+    Also ng-src offers a performance enhancement.
+    %br/
+    It creates the src-attribute BEFORE the page loads into your browser.
+
+  %li
+    Next, I create a HAML file ~ann/app16/haml/phone-detail.haml
+    %pre
+      =render 'code_challenge2015_092697'
+    The only new syntax in the above HAML is the join() method:
+    %pre
+      %code.haml %dd {{phone.camera.features.join(', ')}}
+    The above syntax creates a string from an array.
+  %li
+    Then, I create HTML files from the above HAML files:
+    %pre
+      %code.bash
+        cd ~ann/app16/haml
+        haml -eq index.haml        ~ann/app16/app/index.html
+        haml -eq phone-list.haml   ~ann/app16/app/partials/phone-list.html
+        haml -eq phone-detail.haml ~ann/app16/app/partials/phone-detail.html
+
+  %li
+    Then, I add CoffeeScript syntax to a file named ~ann/app16/fee/app.coffee 
+    %pre
+      =render 'code_challenge2015_092698'
+    In the above file the most interesting syntax is the call to:
+    %pre
+      %code.coffeescript phonecatApp.config
+    The above syntax uses a concept I call 'route'.
+    %br/
+    A route has four ideas:
+    %ul
+      %li A path (which will appear in the browser URL field)
+      %li A templateUrl (HTML served in response to path you type into URL field)
+      %li A controller (JavaScript which runs also in response to path)
+    Know that a path can contain a static part and a parameter.
+    %br/
+    The value of the parameter can be fed to a controller.
+  %li
+    With the above ideas in my mind, I can explain the English logic behind the call to phonecatApp.config().
+    %ul
+      %li
+        If I set path to /phones,
+        %br/
+        Angular serves partials/phone-list.html
+        %br/
+        My browser runs JS in PhoneListCtrl
+      %li
+        If I set path to /phones/myPhone,
+        %br/
+        Angular serves partials/phone-detail.html
+        %br/
+        My browser runs JS in PhoneDetailCtrl
+      %li
+        If I set path to /helloWorld,
+        %br/
+        Angular sets path to /phones
+
+  %li
+    Next, I create app.js from app.coffee
+    %pre
+      %code.bash coffee -bpc ~ann/app16/fee/app.coffee > ~ann/app16/app/js/app.js
+
+  %li
+    At this point I have all the syntax I need to run this app.
+    %br/
+    Time to commit it to git:
+    %pre
+      %code.bash
+        cd ~ann/app16/
+        git init
+        git add .
+        git commit -am helloApp16
+
+  %li
+    Then I deploy it to heroku
+    %pre
+      %code.bash
+        heroku create ann9268
+        git push heroku master
+
+  %li
+    I should see my app at this URL:
+    %br/
+    %a(href='https://ann9268.herokuapp.com/app/index.html' target='x')
+      https://ann9268.herokuapp.com/app/index.html
+
+%hr/
 
 
 That could be considered an adequate code challenge for a two hour Meetup.
