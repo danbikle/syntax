@@ -681,15 +681,15 @@ I follow the steps below to do this:
         mkdir ~ann/tmp
         cd    ~ann/tmp
         git clone https://github.com/angular/angular-phonecat.git phonecat
+        cd    ~ann/tmp/phonecat
+	git checkout step-12
         mkdir ~ann/app17
         cd    ~ann/app17
-        mkdir app fee haml
+        mkdir fee haml
         echo node_modules > .gitignore
         echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
-        cd    ~ann/app16/app
-        mkdir css js partials
-        cd ~ann/tmp/phonecat
-        git checkout step-12
+	rsync -a ~ann/tmp/phonecat/app/css app
+
 
 %hr/
 
