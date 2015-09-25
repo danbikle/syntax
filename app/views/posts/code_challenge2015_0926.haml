@@ -516,13 +516,14 @@ I follow the steps below to do this:
         echo node_modules > .gitignore
         echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
         cd    ~ann/app16/app
-        mkdir css js partials phones
+        mkdir css js partials
         cd /tmp
         git clone https://github.com/angular/angular-phonecat.git phonecat
         cd phonecat
         git checkout step-8
         cp app/css/app.css ~ann/app16/app/css/
-        rsync -a app/img ~ann/app16/app
+        rsync -a app/img    ~ann/app16/app
+        rsync -a app/phones ~ann/app16/app
 
   %li
     Next, I attach Node.js modules to app16:
@@ -546,8 +547,7 @@ I follow the steps below to do this:
         cd ~ann/app16/app/js
         wget http://angular.github.io/angular-phonecat/step-8/app/bower_components/angular/angular.js
         wget http://angular.github.io/angular-phonecat/step-8/app/bower_components/angular-route/angular-route.js
-        cd ~ann/app16/app/phones
-        wget http://angular.github.io/angular-phonecat/step-8/app/phones/phones.json
+
   %li
     Then, I create a HAML file ~ann/app16/haml/index.haml
     %pre
@@ -610,7 +610,7 @@ I follow the steps below to do this:
       %code.coffeescript phonecatApp.config
     The above syntax uses a concept I call 'route'.
     %br/
-    A route has three ideas:
+    A route has four ideas:
     %ul
       %li A path (which will appear in the browser URL field)
       %li A templateUrl (HTML served in response to path you type into URL field)
@@ -619,7 +619,7 @@ I follow the steps below to do this:
     %br/
     The value of the parameter can be fed to a controller.
   %li
-    With the above four ideas in my mind, I can explain the English logic behind the call to phonecatApp.config().
+    With the above ideas in my mind, I can explain the English logic behind the call to phonecatApp.config().
     %ul
       %li
         If I set path to /phones,
