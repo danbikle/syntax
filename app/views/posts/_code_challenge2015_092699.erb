@@ -1,0 +1,19 @@
+<code class='haml'>!!!
+%html(lang="en" ng-app="phonecatApp")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %meta(charset="utf-8")/
+    %title Google Phone Gallery
+    %link(href="/app/css/bootstrap.css"  rel="stylesheet")/
+    %link(href="/app/css/app.css"        rel="stylesheet")/
+    %link(href="/app/css/animations.css" rel="stylesheet")/
+    %script(src="/app/js/jquery.js")
+    %script(src="/app/js/angular.js")
+    %script(src="/app/js/angular-animate.js")
+    %script(src="/app/js/angular-route.js")
+    %script(src="/app/js/angular-resource.js")
+    %script(src="/app/js/app.js")
+  %body
+    .view-container
+      .view-frame(ng-view="")
+</code>

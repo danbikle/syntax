@@ -684,7 +684,7 @@ I follow the steps below to do this:
         cd    ~ann/tmp/phonecat
         git checkout step-12
         mkdir -p ~ann/app17/app/js
-        cd app
+        cd ~ann/tmp/phonecat/app
         rsync -a css img phones ~ann/app17/app
         cd ~ann/app17
         mkdir fee haml
@@ -700,6 +700,11 @@ I follow the steps below to do this:
         wget http://angular.github.io/angular-phonecat/step-12/app/bower_components/angular-route/angular-route.js
         wget http://angular.github.io/angular-phonecat/step-12/app/bower_components/angular-resource/angular-resource.js
 
+
+  %li
+    Then, I create a HAML file ~ann/app17/haml/index.haml
+    %pre
+      =render 'code_challenge2015_092699'
 
 %hr/
 
