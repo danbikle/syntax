@@ -667,6 +667,30 @@ I follow the steps below to do this:
     %a(href='https://ann9268.herokuapp.com/app/index.html' target='x')
       https://ann9268.herokuapp.com/app/index.html
 
+
+
+  %li
+    Step 12 of the AngularJS tutorial is the next stop in the code challenge:
+    %br/
+    %a(href='https://docs.angularjs.org/tutorial/step_012' target='x')
+      https://docs.angularjs.org/tutorial/step_012
+    %br/
+    I follow the steps below to do this: 
+    %pre
+      %code.bash
+        mkdir ~ann/tmp
+        cd    ~ann/tmp
+        git clone https://github.com/angular/angular-phonecat.git phonecat
+        mkdir ~ann/app17
+        cd    ~ann/app17
+        mkdir app fee haml
+        echo node_modules > .gitignore
+        echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > Procfile
+        cd    ~ann/app16/app
+        mkdir css js partials
+        cd ~ann/tmp/phonecat
+        git checkout step-12
+
 %hr/
 
 
