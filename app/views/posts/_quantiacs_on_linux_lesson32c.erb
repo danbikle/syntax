@@ -1,0 +1,46 @@
+<code class='python'># q15q.py
+
+import numpy as np
+import pdb
+
+def myTradingSystem(DATE, OPEN, HIGH, LOW, CLOSE, VOL, exposure, equity, settings):
+    # Date of most recent observation before 'todays' trade:
+    myd                   = DATE[-1]
+    last_close_price      = CLOSE[-1][1]
+    yest_last_close_price = CLOSE[-2][1]
+    # Most recent gain may be predictive:
+    lastg  = 100.0*(last_close_price-yest_last_close_price)/yest_last_close_price
+    if str(myd) > '20150923':
+      # Demo of pdb:
+      pdb.set_trace()
+    mymnth = str(myd)[4:6]
+    xpct       = -1.0
+    bullweight = np.array([[0.0, 1.0]])
+    bearweight = np.array([[2.0, -1.0]])
+    if lastg < xpct:
+      # If today down more than x%, I should buy F_ES because of mean reversion.
+      weights = bullweight
+    elif (mymnth=='05') or (mymnth=='06') or (mymnth=='07') or (mymnth=='08') or (mymnth=='09'):
+      # Else,
+      # Sell in May, Go Away.
+      weights = bearweight
+      # Above, I want to be -100% weighted in F_ES.
+      # The cash I get from that short-sale forces me to be
+      # 200% weighted in CASH.
+    else:
+      # Return in Oct
+      weights = bullweight
+      # Above, I want to be 100% weighted in F_ES.
+      # So, I should be 0% weighted in CASH.
+    return weights, settings
+
+
+def mySettings():
+    settings= {}
+    # Futures Contracts
+    settings['markets']  = ['CASH','F_ES']
+    settings['lookback']= 3
+    settings['budget']= 10**6
+    settings['slippage']= 0.05
+    return settings
+</code>
