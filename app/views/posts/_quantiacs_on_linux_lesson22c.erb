@@ -1,0 +1,30 @@
+<code class='python'># q14q.py
+
+import numpy as np
+
+def myTradingSystem(DATE, OPEN, HIGH, LOW, CLOSE, VOL, exposure, equity, settings):
+    myd    = DATE[0]
+    mymnth = str(myd)[4:6]
+    if (mymnth=='05') or (mymnth=='06') or (mymnth=='07') or (mymnth=='08') or (mymnth=='09'):
+      # Sell in May, Go Away.
+      weights = np.array([[2.0,-1.0]])
+      # Above, I want to be -100% weighted in F_ES.
+      # The cash I get from that short-sale forces me to be
+      # 200% weighted in CASH.
+    else:
+      # Return in Oct
+      weights = np.array([[0.0,1.0]])
+      # Above, I want to be 100% weighted in F_ES.
+      # So, I should be 0% weighted in CASH.
+    return weights, settings
+
+
+def mySettings():
+    settings= {}
+    # Futures Contracts
+    settings['markets']  = ['CASH','F_ES']
+    settings['lookback']= 2
+    settings['budget']= 10**6
+    settings['slippage']= 0.05
+    return settings
+</code>
