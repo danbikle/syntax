@@ -1,0 +1,187 @@
+.q1 Question:
+.q2 Quantiacs On Linux Lesson 2?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/quantiacs') quantiacs
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/python') python
+  %a.xtag(href='/tags/anaconda') anaconda
+  %a.xtag(href='/tags/unzip') unzip
+  %a.xtag(href='/tags/numpy') numpy
+  .tag pdb
+%br/
+
+In Lesson 1 we learned that
+Quantiacs is a startup which helps me use Data Science to invest in markets.
+
+%br/
+%br/
+
+In Lesson 2 we learned how to 'back-test' a strategy called: 'Sell in May'.
+
+%br/
+%br/
+
+Like lesson 1 and 2,
+I started lesson 3 by installing VirtualBox on my laptop:
+
+%br/
+%br/
+
+%a(href='https://www.virtualbox.org/wiki/Downloads' target='x')
+  https://www.virtualbox.org/wiki/Downloads
+
+%br/
+%br/
+
+Inside of VirtualBox I installed Ubuntu 14:
+
+%br/
+%br/
+
+%a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso' target='x')
+  http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso
+
+%br/
+%br/
+
+I logged into Ubuntu and installed some packages:
+
+%pre
+  %code.bash apt-get install zip openssh-server emacs wget curl
+
+Next I created an account named 'qq' which is the account I use when I work with Quantiacs:
+
+%pre
+  %code.bash
+    useradd -m -s /bin/bash qq
+    passwd qq
+
+Then, I logged into the qq account:
+
+%pre
+  %code.bash ssh -YA qq@localhost
+
+Next, I downloaded Anaconda which contains Python:
+
+%pre
+  %code.bash
+    mkdir -p ~qq/Downloads
+    cd       ~qq/Downloads
+    wget https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda-2.3.0-Linux-x86_64.sh
+
+Then, I installed Anaconda Python:
+
+%pre
+  %code.bash
+    cd   ~qq/Downloads
+    bash Anaconda-2.3.0-Linux-x86_64.sh
+
+After the install I adjusted ~qq/.bashrc:
+
+%pre
+  %code.bash echo export PATH=${HOME}/anaconda/bin:{$PATH} >> ~qq/.bashrc
+
+Also I did a bug-work-around in Anaconda:
+
+%pre
+  %code mv ${HOME}/anaconda/bin/curl ${HOME}/anaconda/bin/curl_anaconda
+
+And, I verified:
+
+%pre
+  =render 'quantiacs_on_linux_lesson11'
+
+I noticed that I installed Python 2.7.x.
+%br/
+Quantiacs wants me to run Python 2.7.x., not Python 3.x.y.
+
+%br/
+%br/
+
+Next, I installed some Quantiacs software:
+
+%pre
+  %code.bash pip install quantiacsToolbox
+
+I wrote a tiny two-line Python script:
+
+%pre
+  =render 'quantiacs_on_linux_lesson32'
+
+The above script calls this script:
+
+%pre
+  =render 'quantiacs_on_linux_lesson32c'
+
+The above script implements this English logic.
+
+%ul
+  %li
+    Today, If SP 500 falls by more than 1%, I want to go-long at next Open.
+    %br/
+    Meaning I want to be +100% weighted in F_ES.
+  %li
+    Else, look at the calendar.
+    %br/
+    During May, June, July, Aug, Sept,
+    %br/
+    short-sell F_ES such that I am -100% weighted in F_ES.
+  %li
+    Else, go-long at next Open so I am +100% weighted in F_ES.
+
+The behavior I expect to see is that most of the time during the summer,
+I will be -100% weighted in F_ES.
+
+%br/
+
+The summer will have some down days which fall more than 1%.
+
+%br/
+
+The day after the down day, I want to go-long at next Open.
+
+%br/
+
+Then the day after that I will probably return to -100% weighted in F_ES.
+
+%br/
+
+Then, when October returns I will become +100% weighted in F_ES until the next May.
+
+%br/
+
+I ran a simple shell command to run my script:
+
+%pre
+  %code.bash python q14.py
+
+I saw this syntax in my shell:
+
+%pre
+  =render 'quantiacs_on_linux_lesson23'
+
+%br/
+%br/
+Also, a window appeared:
+%br/
+%img(src='/images/quantiacs_on_linux_lesson24.png')
+%br/
+%br/
+
+According to that chart, the 'Sell in May' strategy failed during the Y2K crash and the 2008 crash.
+
+%br/
+%br/
+
+Quantiacs has no data for 1987 but,
+also it would have failed during the 1987 crash.
+
+%br/
+%br/
+
+Other than those crashes, the 'Sell in May' strategy seems to work better than 'Go Long'.
+
+%br/
+%br/
