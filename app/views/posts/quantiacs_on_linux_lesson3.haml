@@ -162,15 +162,60 @@ I saw this syntax in my shell:
 %pre
   =render 'quantiacs_on_linux_lesson33'
 
+The above screen-dump shows me interacting with the Python debugger.
+
 %br/
 %br/
-Also, a window appeared:
+
+The debugger (AKA 'pdb') is easy to operate.
+
+%br/
+%br/
+
+I use it to display values of variables while the code is in the middle of a calculation or loop.
+
+%br/
+%br/
+
+My most common mistake with pdb is to display a variable which has the same name as a pdb command.
+
+%br/
+%br/
+
+For example, pdb has a command called, 'c'.
+
+%br/
+%br/
+
+If I try to display a variable named 'c', 
+pdb will assume that I want to call the 'c' command.
+
+%br/
+%br/
+
+The work-around is easy; if I have a variable named 'c' I change the name to something like 'myc'.
+
+%br/
+%br/
+
+After I used pdb to look at some values, I allowed it to continue.
+
+%br/
+%br/
+
+Eventually, a window appeared:
+
 %br/
 %img(src='/images/quantiacs_on_linux_lesson34.png')
 %br/
 %br/
 
-According to that chart, this hybrid strategy had similar behavior to the 'Sell in May' strategy.
+According to that chart, this hybrid strategy had similar behavior to the 'Sell in May' strategy:
+
+%br/
+%img(src='/images/quantiacs_on_linux_lesson24.png')
+%br/
+%br/
 
 %br/
 %br/
