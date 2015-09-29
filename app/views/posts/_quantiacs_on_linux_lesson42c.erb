@@ -40,12 +40,12 @@ def get2nd_opinion(myCLOSE):
 
 def myTradingSystem(DATE, OPEN, HIGH, LOW, CLOSE, VOL, exposure, equity, settings):
     # Date of most recent observation before 'todays' trade:
-    myd                   = DATE[-1]
-    mymnth = str(myd)[4:6]
+    myd        = DATE[-1]
+    mymnth     = str(myd)[4:6]
     bullweight = np.array([[0.0, 1.0]])
     bearweight = np.array([[2.0, -1.0]])
     # I am bullish by default:
-    weights = bullweight
+    weights  = bullweight
     opinion2 = get2nd_opinion(CLOSE)
     if opinion2 < 0.45:
       # I am bearish:
