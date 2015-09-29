@@ -1,0 +1,215 @@
+.q1 Question:
+.q2 Quantiacs On Linux Lesson 4?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/quantiacs') quantiacs
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/python') python
+  %a.xtag(href='/tags/anaconda') anaconda
+  %a.xtag(href='/tags/unzip') unzip
+  %a.xtag(href='/tags/numpy') numpy
+  %a.xtag(href='/tags/pdb') pdb
+  %a.xtag(href='/tags/sklearn') sklearn
+  %a.xtag(href='/tags/logistic_regression') logistic_regression
+%br/
+
+In Lessons 1, 2, and 3 we learned some simple ideas behind the
+Quantiacs API.
+
+%br/
+%br/
+
+Here,
+in Lesson 4, I demo a blend of Quantiacs and some simple Machine Learning technology.
+
+%br/
+%br/
+
+The Machine Learning technology here is sklearn which is supported by hosts
+running in the Quantiacs cloud.
+
+%br/
+%br/
+
+You can learn about sklearn at the URL listed below:
+
+%br/
+%br/
+
+%a(href='http://scikit-learn.org/stable/index.html' target='x')
+  http://scikit-learn.org/stable/index.html
+
+%br/
+%br/
+
+This lesson, Lesson 4, uses Logistic Regression which is discussed at the URL listed below:
+
+%br/
+%br/
+
+%a(href='http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html' target='x')
+  http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+
+%br/
+%br/
+
+To walk through Lesson 4, I downloaded VirtualBox and installed it on my laptop:
+
+%br/
+%br
+
+%a(href='https://www.virtualbox.org/wiki/Downloads' target='x')
+  https://www.virtualbox.org/wiki/Downloads
+
+%br/
+%br/
+
+Inside of VirtualBox I installed Ubuntu 14:
+
+%br/
+%br/
+
+%a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso' target='x')
+  http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso
+
+%br/
+%br/
+
+I logged into Ubuntu and installed some packages:
+
+%pre
+  %code.bash apt-get install zip openssh-server emacs wget curl
+
+Next I created an account named 'qq' which is the account I use when I work with Quantiacs:
+
+%pre
+  %code.bash
+    useradd -m -s /bin/bash qq
+    passwd qq
+
+Then, I logged into the qq account:
+
+%pre
+  %code.bash ssh -YA qq@localhost
+
+Next, I downloaded Anaconda which contains Python:
+
+%pre
+  %code.bash
+    mkdir -p ~qq/Downloads
+    cd       ~qq/Downloads
+    wget https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda-2.3.0-Linux-x86_64.sh
+
+Then, I installed Anaconda Python:
+
+%pre
+  %code.bash
+    cd   ~qq/Downloads
+    bash Anaconda-2.3.0-Linux-x86_64.sh
+
+After the install I adjusted ~qq/.bashrc:
+
+%pre
+  %code.bash echo export PATH=${HOME}/anaconda/bin:{$PATH} >> ~qq/.bashrc
+
+Also I did a bug-work-around in Anaconda:
+
+%pre
+  %code mv ${HOME}/anaconda/bin/curl ${HOME}/anaconda/bin/curl_anaconda
+
+And, I verified:
+
+%pre
+  =render 'quantiacs_on_linux_lesson11'
+
+I noticed that I installed Python 2.7.x.
+%br/
+Quantiacs wants me to run Python 2.7.x., not Python 3.x.y.
+
+%br/
+%br/
+
+Next, I installed some Quantiacs software:
+
+%pre
+  %code.bash pip install quantiacsToolbox
+
+I wrote a tiny two-line Python script:
+
+%pre
+  =render 'quantiacs_on_linux_lesson42'
+
+The above script calls this script:
+
+%pre
+  =render 'quantiacs_on_linux_lesson42c'
+
+The above script implements this English logic.
+
+%ul
+  %li
+    By default I am bullish.
+  %li
+    If Logistic Regression (LR) is less than 45% confident that tomorrow will go up,
+    %br/
+    then I become bearish.
+  %li
+    Next I look at the calendar.
+  %li
+    Between May and Oct, I am bearish.
+    %br/
+    If LR is more than 55% confident that tomorrow will go up,
+    %br/
+    then I become bullish.
+
+
+I ran a simple shell command to run my script:
+
+%pre
+  %code.bash python q16.py
+
+I saw this syntax in my shell:
+
+%pre
+  =render 'quantiacs_on_linux_lesson43'
+
+Eventually, a window appeared:
+
+%br/
+%img(src='/images/quantiacs_on_linux_lesson44.png')
+%br/
+%br/
+
+According to that chart, this LR strategy did poorly compared to the 'Sell in May' strategy:
+
+%br/
+%img(src='/images/quantiacs_on_linux_lesson24.png')
+%br/
+%br/
+
+Machine Learning, however, is powerful technology.
+
+%br/
+%br/
+
+Most people who learn how to implement Machine Learning, start with Logistic Regression.
+
+%br/
+%br/
+
+So the main topic of Lesson 4 is: blend Quantiacs API with sklearn Logistic Regression.
+
+%br/
+%br/
+
+You have questions?
+
+%br/
+%br/
+
+E-me: bikle101@gmail.com
+
+%br/
+%br/
+
