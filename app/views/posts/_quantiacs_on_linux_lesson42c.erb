@@ -1,0 +1,70 @@
+<code class='python'># q16q.py
+import numpy as np
+from sklearn import linear_model
+
+def get2nd_opinion(myCLOSE):
+    # I should use 2-feature Logistic Regression to get 2nd opinion:
+    cp       = [ row[1] for row in myCLOSE ]
+    if np.isnan(cp[0]):
+      cp[0]  = cp[1]
+    cplead_l = cp + [cp[-1]]
+    cplag1_l = [cp[0]] +           cp
+    cplag2_l = [cp[0]] + [cp[0]] + cp
+    # I should snip off end-val.
+    cplead_l = cplead_l[1:]
+    cplag1_l = cplag1_l[:-1]
+    cplag2_l = cplag2_l[:-2]
+    # They should be same length
+    len(cp) == len(cplead_l)
+    len(cp) == len(cplag1_l)
+    len(cp) == len(cplag2_l)
+    # I should convert them to np.arrays to enable arithmetic:
+    cp_a      = np.array(cp)
+    cplead_a  = np.array(cplead_l)
+    cplag1_a  = np.array(cplag1_l)
+    cplag2_a  = np.array(cplag2_l)
+    # I should calculate pct-deltas:
+    pctlead_a = 100.0 * (cplead_a - cp_a)/cp_a
+    pctlag1_a = 100.0 * (cp_a - cplag1_a)/cplag1_a
+    pctlag2_a = 100.0 * (cp_a - cplag2_a)/cplag2_a
+    x_a       = np.column_stack((pctlag1_a, pctlag2_a))
+    y_train   = pctlead_a[:-1]
+    yc_train  = y_train > 0.0
+    x_train   = x_a[:-1]
+    # For API info, Google: sklearn LogisticRegression
+    lrmodel   = linear_model.LogisticRegression()
+    lrmodel.fit(x_train, yc_train)
+    x_oos = x_a[-1]
+    aprediction = lrmodel.predict_proba(x_oos.astype(float))[0,1]
+    return aprediction
+
+def myTradingSystem(DATE, OPEN, HIGH, LOW, CLOSE, VOL, exposure, equity, settings):
+    # Date of most recent observation before 'todays' trade:
+    myd                   = DATE[-1]
+    mymnth = str(myd)[4:6]
+    bullweight = np.array([[0.0, 1.0]])
+    bearweight = np.array([[2.0, -1.0]])
+    # I am bullish by default:
+    weights = bullweight
+    opinion2 = get2nd_opinion(CLOSE)
+    if opinion2 < 0.45:
+      # I am bearish:
+      weights = bearweight
+    if (mymnth=='05') or (mymnth=='06') or (mymnth=='07') or (mymnth=='08') or (mymnth=='09'):
+      # Else,
+      # Sell in May, Go Away.
+      weights = bearweight
+      if opinion2 > 0.55:
+        # Sometimes I am bullish in summer:
+        weights = bullweight
+    return weights, settings
+
+def mySettings():
+    settings= {}
+    # Futures Contracts
+    settings['markets']  = ['CASH','F_ES']
+    settings['lookback']= 1010
+    settings['budget']= 10**6
+    settings['slippage']= 0.05
+    return settings
+</code>
