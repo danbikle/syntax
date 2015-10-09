@@ -407,4 +407,75 @@ I noticed the p-elements changed color after each reload.
 %br/
 Compare this behavior to the behavior of demo10 which only serves white text.
 
+%hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo12.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo12'
+
+demo12 enhances the idea behind demo11.
+
+%br/
+%br/
+
+In demo11, all of the information which changes the p-elements comes from JavaScript.
+
+%br/
+%br/
+
+In demo12, some of the information comes from JavaScript and some comes from the HTML.
+
+%br/
+%br/
+
+This is a powerful concept.  It means that D3 can look at information in the HTML,
+and then use that information to change the HTML.
+
+%br/
+%br/
+
+For example, imagine my HTML contains a table-element with x and y values.
+
+%br/
+%br/
+
+I can use D3 to read the x,y values into a JavaScript array.
+
+%br/
+%br/
+
+The next obvious step is to build a chart from that array.
+
+%br/
+%br/
+
+If the table changes every minute, D3 will update the chart automatically.
+
+%br/
+%br/
+
+I demonstrate this table-chart idea at this URL:
+
+%br/
+%br/
+
+%a(href='http://www.spy611.com/pred_lr' target='x')
+  http://www.spy611.com/pred_lr
+
+%br/
+%br/
+
+If I browse that URL with JavaScript disabled,
+I only see a plain table.
+
+%br/
+%br/
+
+If I enable JavaScript,
+D3 builds a chart from the data in the table,
+and it decorates the table based on the data in the table.
+
+%br/
+%br/
 
