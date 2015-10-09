@@ -189,3 +189,17 @@ Then, I got a copy of d3.v3.min.js
   %code.bash
     cd ~ann/app20/app/
     curl https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js > d3.v3.min.js
+
+Next, I created ~ann/app20/haml/demo10.haml
+
+%pre
+  =render 'code_challenge2015_1010demo10'
+
+Then, I used the haml shell command to generate ~ann/app20/app/demo10.html
+
+%pre
+  %code.bash
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo10.haml ~ann/app20/app/demo10.html
+
