@@ -298,7 +298,7 @@ Heroku supports the following deployment idea:
   %li git-init the app so I then have a git repo
   %li create an account at heroku.com
   %li download/install Heroku client
-  %li Use the client to "login" my shell
+  %li Use heroku-client to "login" my shell
   %li Think of a unique app name (newyork212 for example)
   %li Use the client to create a blank app named newyork212 at herokuapp.com
   %li git-push ~ann/app20 to heroku
@@ -319,7 +319,7 @@ The cost is $0.00
 The steps listed below demonstrate the above deployment idea:
 
 %ul
-  %li Create ~ann/app20 (done already)
+  %li I created ~ann/app20 (done already)
   %li
     I created a simple one-line file named: ~ann/app20/Procfile
     %pre
@@ -337,11 +337,20 @@ The steps listed below demonstrate the above deployment idea:
         echo  export PATH=/home/ann/heroku-client/bin:${PATH}
 
   %li
-    Use the client to "login" my shell
+    I used heroku-client to "login" my shell
     %pre
       %code.bash
+        heroku auth:login
+        heroku auth:whoami
 
+  %li
+    I used heroku-client to create a blank app named newyork212 at herokuapp.com
+    %pre
+      %code.bash
+        cd ~ann/app20
+        heroku create newyork212
 
+        
 
 %br/
 %br/
