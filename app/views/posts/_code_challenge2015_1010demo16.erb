@@ -1,0 +1,23 @@
+<code class='haml'>!!!
+%html(lang="en")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %meta(charset="utf-8")/
+    %title demo16
+    %script(src="/app/d3.v3.min.js")
+  %body.d3body
+    %h1 demo16
+    %svg(width="550" height="550")
+      %circle.d3circle(cx="250" cy="250" r="250" fill="blue")
+    #refer
+      Refer to:
+      %a(href='http://d3js.org/#transitions' target='x')
+        http://d3js.org/#transitions
+    :javascript
+      d3.select("body").transition()
+          .style("background-color", "grey");
+      d3.selectAll("circle.d3circle").transition()
+          .duration(750)
+          .delay(function(d, i) { return i * 10; })
+          .attr("r", function(d) { return Math.sqrt(d * scale); });
+</code>
