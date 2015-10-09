@@ -336,20 +336,15 @@ The steps listed below demonstrate the above deployment idea:
         echo 'export PATH=/home/ann/heroku-client/bin:${PATH}' >> ~ann/.bashrc
         echo  export PATH=/home/ann/heroku-client/bin:${PATH}
 
-  %li
-    I used heroku-client to "login" my shell
-    %pre
-      %code.bash
-        heroku auth:login
-        heroku auth:whoami
 
   %li
-    Create ssh-key for ann account (assuming ann has none yet):
+    I created ssh-key for ann account (assuming ann has none yet):
     %pre
       =render 'code_challenge2015_0919s'
 
   %li
-    Give a copy of ann public ssh-key to heroku:
+    I used heroku-client to "login" my shell.
+    I gave a copy of ann public ssh-key to heroku:
     %pre
       %code.bash
         heroku status
