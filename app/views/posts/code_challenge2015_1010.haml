@@ -118,4 +118,42 @@ Next, I used emacs to create a file named ~ann/app20/package.json
 %pre
   =render 'code_challenge2015_1010a'
 
+Then, I ran a simple shell command:
 
+%pre
+  %code.bash
+    cd ~ann/app20
+    npm install
+
+That shell command created a folder named node_modules:
+
+%pre
+  %code.bash
+    ann@red1:~/app20$ 
+    ann@red1:~/app20$ ll node_modules/
+    total 16
+    drwxrwxr-x 4 ann ann 4096 Oct  8 23:58 ./
+    drwxrwxr-x 6 ann ann 4096 Oct  8 23:58 ../
+    drwxrwxr-x 2 ann ann 4096 Oct  8 23:58 .bin/
+    drwxrwxr-x 8 ann ann 4096 Oct  8 23:58 http-server/
+    ann@red1:~/app20$ 
+    ann@red1:~/app20$ 
+    ann@red1:~/app20$ 
+
+I wanted git to ignore node_modules:
+
+%pre
+  %code.bash echo node_modules > ~ann/app20/.gitignore
+
+Next, I created a git repository for the app20 folder:
+
+%pre
+  %code
+    cd ~ann/app20
+    git config --global user.email "ann@ann.edu"
+    git config --global user.name ann
+    git init
+    git add .
+    git commit -am app20IsHereNow
+    git status
+    git log -1
