@@ -350,7 +350,20 @@ The steps listed below demonstrate the above deployment idea:
         cd ~ann/app20
         heroku create newyork212
 
-        
+  %li
+    git-push ~ann/app20 to heroku
+    %pre
+      %code.bash
+        cd ~ann/app20
+        git add .
+        git commit -am helloNY
+        git push heroku master
+    
+  %li
+    I saw ~ann/app20 deployed at 
+    %a(href='https://newyork212.herokuapp.com ' target='x')
+      https://newyork212.herokuapp.com
+
 
 %br/
 %br/
