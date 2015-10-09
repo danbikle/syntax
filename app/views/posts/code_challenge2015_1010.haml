@@ -506,3 +506,64 @@ I saw it here:
 
 %br/
 %br/
+
+%hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo13.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo13'
+
+The above demo shows how to attach a data source (in this case a simple JS array) to a selection of p-elements.
+
+%br/
+%br/
+
+Each member of the data source is matched to a corresponding member of the p-element-selection.
+
+%br/
+%br/
+
+After the match is made, a method is called which allows me to run an anonymous function against the match.
+
+%br/
+%br/
+
+If I did not have D3 and had to do this by hand,
+I would probably need to write a nested loop which has the outer-loop iterate through the
+p-elements and an inner loop which selects an array element for each p-element.
+Then the pair of objects would get fed to the anonymous function.
+
+%br/
+%br/
+
+
+Anyway, after I wrote ~ann/app20/haml/demo13.haml 
+I used the haml command to generate HTML from it:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo13.haml ~ann/app20/app/demo13.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo13Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork213.herokuapp.com/app/demo13.html' target='x')
+  https://newyork213.herokuapp.com/app/demo13.html
+
+%br/
+%br/
+
+%hr/
