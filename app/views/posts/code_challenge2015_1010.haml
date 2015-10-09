@@ -333,8 +333,15 @@ The steps listed below demonstrate the above deployment idea:
         cd ~ann
         wget https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
         tar zxf heroku-client.tgz
-        echo export PATH=/home/ann/heroku-client/bin:${PATH} >> ~ann/.bashrc
-        echo export PATH=/home/ann/heroku-client/bin:${PATH}
+        echo 'export PATH=/home/ann/heroku-client/bin:${PATH}' >> ~ann/.bashrc
+        echo  export PATH=/home/ann/heroku-client/bin:${PATH}
+
+  %li
+    Use the client to "login" my shell
+    %pre
+      %code.bash
+
+
 
 %br/
 %br/
