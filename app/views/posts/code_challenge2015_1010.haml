@@ -328,7 +328,13 @@ The steps listed below demonstrate the above deployment idea:
   %li Create an account at heroku.com (done already)
   %li
     Download/Install Heroku client
-
+    %pre
+      %code.bash
+        cd ~ann
+        wget https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
+        tar zxf heroku-client.tgz
+        echo export PATH=/home/ann/heroku-client/bin:${PATH} >> ~ann/.bashrc
+        echo export PATH=/home/ann/heroku-client/bin:${PATH}
 
 %br/
 %br/
