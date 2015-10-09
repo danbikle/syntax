@@ -649,6 +649,35 @@ Perhaps when you see the pieces you will then understand the D3 API better?
 %br/
 %br/
 
+I used the haml command to generate HTML from demo15.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo15.haml ~ann/app20/app/demo15.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo15Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo15.html' target='x')
+  https://newyork212.herokuapp.com/app/demo15.html
+
+%br/
+%br/
+
+%hr/
+
 %h2 To be continued ...
 
 %hr/
