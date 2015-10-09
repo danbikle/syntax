@@ -284,5 +284,40 @@ Next, I worked on deploying my current copy of ~ann/app20 to heroku.com which is
 %br/
 %br/
 
+Heroku supports the following deployment idea:
+
+%ul
+  %li Create a simple Node.js app (~ann/app20 is  a simple Node.js app)
+  %li Add a one-line-file named Procfile to the app
+  %li git-init the app so I then have a git repo
+  %li create an account at heroku.com
+  %li download/install Heroku client
+  %li Use the client to "login" my shell
+  %li Think of a unique app name (newyork212 for example)
+  %li Use the client to create a blank app named newyork212 at herokuapp.com
+  %li git-push ~ann/app20 to heroku
+  %li see ~ann/app20 deployed at newyork212.herokuapp.com
+
+%br/
+%br/
+
+What is the cost?
+
+%br/
+%br/
+
+The cost is $0.00
+
+%br/
+%br/
+
+So I created a simple one-line file named: ~ann/app20/Procfile
+
+%pre
+  %code.bash echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > ~ann/app20/Procfile
+
+%br/
+%br/
+
 %br/
 %br/
