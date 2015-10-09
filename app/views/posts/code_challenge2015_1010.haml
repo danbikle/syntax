@@ -589,6 +589,46 @@ Next, using emacs, I started work on ~ann/app20/haml/demo14.haml
 %pre
   =render 'code_challenge2015_1010demo14'
 
+The above haml file shows how to create p-elements from data source (a JS-array),
+and then append them to the body element.
+
+%br/
+%br/
+
+So, demo13.haml updates p-elements from a data source and demo14.haml creates elements from data.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo14.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo14.haml ~ann/app20/app/demo14.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo14Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo14.html' target='x')
+  https://newyork212.herokuapp.com/app/demo14.html
+
+%br/
+%br/
+
+%hr/
+
 %h2 To be continued ...
 
 %hr/
