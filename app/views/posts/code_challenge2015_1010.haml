@@ -726,6 +726,38 @@ the user might notice the change more easily.
 %br/
 %br/
 
+I used the haml command to generate HTML from demo16.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo16.haml ~ann/app20/app/demo16.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo16Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo16.html' target='x')
+  https://newyork212.herokuapp.com/app/demo16.html
+
+%br/
+%br/
+
+%hr/
+
+%br/
+%br/
+
 
 
 
