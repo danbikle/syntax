@@ -388,3 +388,20 @@ I generated an HTML file from it using the haml shell command:
     cd ~ann/app20/haml/
     \.  ~ann/app20/app20env.bash
     \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo11.haml ~ann/app20/app/demo11.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo11Hello
+    git push heroku  master
+
+I browsed this URL several times in a row:
+%br/
+%a(href='https://newyork212.herokuapp.com/app/demo11.html' target='x')
+  https://newyork212.herokuapp.com/app/demo11.html
+%br/
+I noticed the p-elements changed color after each reload.
+
