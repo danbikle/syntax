@@ -700,12 +700,12 @@ An svg-element is created with help from SVG which has been supported by browser
 %br/
 %br/
 
-I assume that D3 intends to wrap the SVG API in a way which makes it easier to use.
-
-%br/
-%br/
-
 For example in demo16 I use two lines of HAML to create a blue circle.
+
+%br/
+%br/
+
+I assume that D3 intends to wrap the SVG API in a way which makes it easier to use.
 
 %br/
 %br/
@@ -752,6 +752,43 @@ I saw it here:
 
 %br/
 %br/
+
+%hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo17.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo17'
+
+The above file is the start of a simple bar chart demo.  The file contains only HAML and CSS.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo17.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo17.haml ~ann/app20/app/demo17.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo17Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo17.html' target='x')
+  https://newyork212.herokuapp.com/app/demo17.html
+
 
 %hr/
 
