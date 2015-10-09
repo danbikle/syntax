@@ -203,3 +203,7 @@ Then, I used the haml shell command to generate ~ann/app20/app/demo10.html
     \.  ~ann/app20/app20env.bash
     \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo10.haml ~ann/app20/app/demo10.html
 
+Next, I checked that http-server was serving demo10.html
+
+%pre
+  %code.bash curl localhost:8080/app/demo10.html | head
