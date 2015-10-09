@@ -344,6 +344,20 @@ The steps listed below demonstrate the above deployment idea:
         heroku auth:whoami
 
   %li
+    Create ssh-key for ann account (assuming ann has none yet):
+    %pre
+      =render 'code_challenge2015_0919s'
+
+  %li
+    Give a copy of ann public ssh-key to heroku:
+    %pre
+      %code.bash
+        heroku status
+        heroku auth:login
+        heroku auth:whoami
+        heroku keys:add
+
+  %li
     I used heroku-client to create a blank app named newyork212 at herokuapp.com
     %pre
       %code.bash
@@ -565,5 +579,9 @@ I saw it here:
 
 %br/
 %br/
+
+%hr/
+
+%h2 To be continued ...
 
 %hr/
