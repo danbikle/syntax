@@ -214,3 +214,72 @@ Then, I browsed the URL and saw the page below:
 %img(src='/images/code_challenge2015_1010demo10.png')
 %br/
 %br/
+
+The main idea of the above demo is that when my browser loads d3.v3.min.js,
+then I get access to an object named 'd3'.
+
+%br/
+%br/
+
+A useful method of d3 is selectAll().
+
+%br/
+%br/
+
+This method transforms HTML elements into JavaScript objects.
+
+%br/
+%br/
+
+Then, I can manipulate the objects with calls to methods like style().
+
+%br/
+%br/
+
+The methods then change HTML and CSS currently rendered in the browser.
+
+%br/
+%br/
+
+This type of API behavior should seem natural and familiar to you if you have worked with jQuery.
+
+%br/
+%br/
+
+I use two ideas when I work with this kind of API.
+
+%br/
+%br/
+
+First, I use comments in the HTML which tell me when an element is affected by D3.
+
+%br/
+%br/
+
+Secondly, I use a descriptive id or class name like "d3body" or "d3p" when I intend to control
+an element with D3.
+
+%br/
+%br/
+
+One feature of AngularJS which I like is that when I look at HTML controlled by AngularJS,
+that control is obvious because of attributes with names like ng-app and ng-controller.
+
+%br/
+%br/
+
+D3 does not have this feature so I manually annotate my HTML.
+
+%br/
+%br/
+
+When I look at my code a year from now, I will easily connect my mind to the connections between the HTML and the D3 JavaScript due to my comments and class naming conventions.
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
