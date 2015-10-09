@@ -365,7 +365,7 @@ The steps listed below demonstrate the above deployment idea:
       https://newyork212.herokuapp.com/app/demo10.html
 %hr/
 
-Next, I started work on demo11.haml
+Next, using emacs, I started work on ~ann/app20/haml/demo11.haml
 
 %pre
   =render 'code_challenge2015_1010demo11'
@@ -375,7 +375,16 @@ demo10 showed us how to serve d3.v3.min.js and then get access to a JavaScript o
 %br/
 %br/
 
-demo11 shows how to get realtime programatic control of an HTML p-element.
+demo11 does that, and then shows how to get realtime programatic control of an HTML p-element using a simple anonymous JavaScript function.
 
 %br/
 %br/
+
+After I wrote demo11.haml,
+I generated an HTML file from it using the haml shell command:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo11.haml ~ann/app20/app/demo11.html
