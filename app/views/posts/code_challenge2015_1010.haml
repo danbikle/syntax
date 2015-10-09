@@ -305,7 +305,6 @@ Heroku supports the following deployment idea:
   %li see ~ann/app20 deployed at newyork212.herokuapp.com
 
 %br/
-%br/
 
 What is the cost?
 
@@ -317,10 +316,19 @@ The cost is $0.00
 %br/
 %br/
 
-So I created a simple one-line file named: ~ann/app20/Procfile
+The steps listed below demonstrate the above deployment idea:
 
-%pre
-  %code.bash echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > ~ann/app20/Procfile
+%ul
+  %li Create ~ann/app20 (done already)
+  %li
+    I created a simple one-line file named: ~ann/app20/Procfile
+    %pre
+      %code.bash echo 'web: node node_modules/http-server/bin/http-server -p $PORT' > ~ann/app20/Procfile
+  %li git-init the app so I then have a git repo (done already)
+  %li Create an account at heroku.com (done already)
+  %li
+    Download/Install Heroku client
+
 
 %br/
 %br/
