@@ -1,0 +1,29 @@
+<code class='haml'>!!!
+%html(lang="en")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %meta(charset="utf-8")/
+    %title demo10
+    %script(src="/app/d3.v3.min.js")
+  / The body-element below should be affected by D3.js
+  %body.d3body
+    hello world.
+    %br/
+    D3.js makes this text unreadable.
+    %br/
+    Why?
+    %br/
+    It is unreadable because the text becomes black,
+    and the background-color becomes black.
+    / The p-elements below should be affected by D3.js
+    %p.d3p I am Paragraph 1
+    %p.d3p I am Paragraph 2
+    %p.d3p
+      I am Paragraph 3
+      Refer to:
+      %a(href='http://d3js.org/#selections' target='x')
+        http://d3js.org/#selections
+    :javascript
+      d3.select("body.d3body").style("background-color", "black");
+      d3.selectAll("p.d3p").style("color", "white");
+</code>
