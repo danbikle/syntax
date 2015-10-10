@@ -1157,6 +1157,38 @@ Then I wrote CoffeeScript into ~ann/fee/demo25.coffee
 %pre
   =render 'code_challenge2015_1010demo25c'
 
+Next, I converted the CoffeeScript into JavaScript:
+
+%pre
+  %code.bash coffee -bpc ~ann/app20/fee/demo25.coffee > ~ann/app20/app/demo25.js
+
+I used the haml command to generate HTML from demo25.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo25.haml ~ann/app20/app/demo25.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo25Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo25.html' target='w')
+  https://newyork212.herokuapp.com/app/demo25.html
+
+%br/
+%br/
+
 %br/
 %br/
 
