@@ -1047,7 +1047,46 @@ Next, using emacs, I started work on ~ann/app20/haml/demo23.haml
 %pre
   =render 'code_challenge2015_1010demo23'
 
+The above file enhances demo22.haml by showing how to replace an internal JS-array with external data file.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo23.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo23.haml ~ann/app20/app/demo23.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo23Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo23.html' target='w')
+  https://newyork212.herokuapp.com/app/demo23.html
+
+%br/
+%br/
+
 %hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo24.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo24'
+
+The above file shows how to move the JavaScript out of the HAML into a separate file called ~ann/app20/app/demo24.js
 
 %h2 To be continued ...
 

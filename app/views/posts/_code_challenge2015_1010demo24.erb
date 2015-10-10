@@ -1,0 +1,36 @@
+<code class='haml'>!!!
+%html(lang='en')
+  %head
+    %meta(content='text/html; charset=UTF-8' http-equiv='Content-Type')/
+    %meta(charset='utf-8')/
+    %title demo24
+    %script(src='/app/d3.v3.min.js')
+    :css
+      .d3chart rect {
+        fill: steelblue;
+      }
+      .d3chart text {
+        fill: white;
+        font: 10px sans-serif;
+        text-anchor: end;
+      }
+  %body
+    %h1 demo24
+    #refer
+      Refer to:
+      %br/
+      %a(href='http://bost.ocks.org/mike/bar/2/#data' target='x')
+        http://bost.ocks.org/mike/bar/2/#data
+      %br/
+      %a(href='http://bl.ocks.org/mbostock/7341714' target='x')
+        http://bl.ocks.org/mbostock/7341714
+      %br
+      %a(href='/app/demo23data.tsv') /app/demo23data.tsv
+      %br
+      %a(href='/fee/demo24.coffee') /fee/demo24.coffee
+      %br
+      %a(href='/app/demo24.js') /app/demo24.js
+    %hr/
+    %svg.d3chart
+    %script(src='/app/demo24.js')
+</code>
