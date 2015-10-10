@@ -800,6 +800,45 @@ Next, using emacs, I started work on ~ann/app20/haml/demo18.haml
 %pre
   =render 'code_challenge2015_1010demo18'
 
+The above file uses a JS-array-data to drive two types of objects.
+
+%br/
+%br/
+
+I use the data to create div-elements.
+
+%br/
+%br/
+
+I use the data to fill the new div-elements with text.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo18.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo18.haml ~ann/app20/app/demo18.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo18Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo18.html' target='x')
+  https://newyork212.herokuapp.com/app/demo18.html
+
 %hr/
 
 %br/
