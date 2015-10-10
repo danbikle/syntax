@@ -1010,6 +1010,38 @@ Next, using emacs, I started work on ~ann/app20/haml/demo22.haml
 
 The above file enhances demo21.haml by showing how to connect the D3 API to SVG elements.
 
+%br/
+%br/
+
+I used the haml command to generate HTML from demo22.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo22.haml ~ann/app20/app/demo22.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo22Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo22.html' target='w')
+  https://newyork212.herokuapp.com/app/demo22.html
+
+%br/
+%br/
+
+%hr/
+
 %h2 To be continued ...
 
 %hr/
