@@ -899,7 +899,52 @@ Next, using emacs, I started work on ~ann/app20/haml/demo20.haml
 %pre
   =render 'code_challenge2015_1010demo20'
 
+In demo20.haml I see how to create a function named, 'x()', which scales values in an array called data.
 
+%br/
+%br/
+
+A synonym of the verb: 'scales' is, 'maps'.
+
+%br/
+%br/
+
+The function, x() maps the min-value of data to 0 and maps the max-value of data to 800.
+
+%br/
+%br/
+
+Then later in the file, I see how x() is actually called.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo20.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo20.haml ~ann/app20/app/demo20.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo20Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo20.html' target='w')
+  https://newyork212.herokuapp.com/app/demo20.html
+
+%br/
+%br/
 
 %hr/
 
