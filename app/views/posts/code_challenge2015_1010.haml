@@ -1089,7 +1089,7 @@ Next, using emacs, I started work on ~ann/app20/haml/demo24.haml
 The above file shows that I can move the JavaScript out of the HAML
 into a separate file called this:
 %br/
-~ann/app20/app/demo24.js
+\~ann/app20/app/demo24.js
 
 %br/
 %br/
@@ -1106,12 +1106,17 @@ Another way is to start with a file full of CoffeeScript.
 
 I created a CoffeeScript file at this path:
 %br/
-~ann/app20/fee/demo24.coffee
+\~ann/app20/fee/demo24.coffee
 
 %pre
   =render 'code_challenge2015_1010f'
 
 Then, I converted the CoffeeScript into JavaScript:
+
+%pre
+  %code.bash
+    npm install -g coffee-script
+    coffee -bpc ~ann/app20/fee/demo24.coffee > ~ann/app20/app/demo24.js
 
 %br/
 %br/
