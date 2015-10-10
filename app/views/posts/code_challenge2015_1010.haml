@@ -1118,6 +1118,35 @@ Then, I converted the CoffeeScript into JavaScript:
     npm install -g coffee-script
     coffee -bpc ~ann/app20/fee/demo24.coffee > ~ann/app20/app/demo24.js
 
+I used the haml command to generate HTML from demo24.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo24.haml ~ann/app20/app/demo24.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo24Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo24.html' target='w')
+  https://newyork212.herokuapp.com/app/demo24.html
+
+%br/
+%br/
+
+%hr/
+
 %br/
 %br/
 
