@@ -1,0 +1,46 @@
+<code class='haml'>!!!
+%html(lang="en")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %meta(charset="utf-8")/
+    %title demo21
+    :css
+      .chart rect {
+        fill: steelblue;
+      }
+      .chart text {
+        fill: white;
+        font: 10px sans-serif;
+        text-anchor: end;
+      }
+  %body
+    %h1 demo21
+    #refer
+      Refer to:
+      %br/
+      %a(href='http://bost.ocks.org/mike/bar/2/#manual' target='x')
+        http://bost.ocks.org/mike/bar/2/#manual
+      %br/
+      %a(href='http://bl.ocks.org/mbostock/7331260' target='x')
+        http://bl.ocks.org/mbostock/7331260
+    %hr/
+    %svg.chart(height="120" width="420")
+      %g(transform="translate(0,0)")
+        %rect(height="19" width="40")
+        %text(dy=".35em" x="37" y="9.5") 4
+      %g(transform="translate(0,20)")
+        %rect(height="19" width="80")
+        %text(dy=".35em" x="77" y="9.5") 8
+      %g(transform="translate(0,40)")
+        %rect(height="19" width="150")
+        %text(dy=".35em" x="147" y="9.5") 15
+      %g(transform="translate(0,60)")
+        %rect(height="19" width="160")
+        %text(dy=".35em" x="157" y="9.5") 16
+      %g(transform="translate(0,80)")
+        %rect(height="19" width="230")
+        %text(dy=".35em" x="227" y="9.5") 23
+      %g(transform="translate(0,100)")
+        %rect(height="19" width="420")
+        %text(dy=".35em" x="417" y="9.5") 42
+</code>

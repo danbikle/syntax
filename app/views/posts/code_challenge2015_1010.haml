@@ -948,10 +948,60 @@ I saw it here:
 
 %hr/
 
+Next, using emacs, I started work on ~ann/app20/haml/demo21.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo21'
+
+In demo21.haml I see how to duplicate the behavior of demo17.haml using plain SVG rather than div-elements.
+
 %br/
 %br/
 
+The differences between the two files appear in two places:
 
+%ul
+  %li The CSS is different
+  %li The element names are different
+
+Another obvious difference is that the syntax in demo21.haml is more verbose than the syntax in demo17.haml
+
+%br/
+%br/
+
+Note, however, that both files contain no JavaScript.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo21.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo21.haml ~ann/app20/app/demo21.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo21Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo21.html' target='w')
+  https://newyork212.herokuapp.com/app/demo21.html
+
+%br/
+%br/
+
+%hr/
 
 
 
