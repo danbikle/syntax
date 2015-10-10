@@ -54,7 +54,7 @@ The 2015_1010 Code Challenge is a learning exercise for students attending Dan's
 %br/
 %br/
 
-%a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225843604/' target='x')
+%a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225843604/' target='w')
   http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225843604/
 
 %br/
@@ -66,18 +66,18 @@ We start with three tasks: Install Ubuntu, enhance it, and create account named 
   %li Install Ubuntu 14.04.3 on your laptop
   %li
     Useful:
-    %a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso' target='x')
+    %a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso' target='w')
       http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso
 
   %li
     Useful:
-    %a(href='https://www.virtualbox.org/wiki/Downloads' target='x')
+    %a(href='https://www.virtualbox.org/wiki/Downloads' target='w')
       https://www.virtualbox.org/wiki/Downloads
     %br/
-    %a(href='http://www.google.com/search?q=How+to+install+virtualbox' target='x')
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox' target='w')
       http://www.google.com/search?q=How+to+install+virtualbox    
     %br/
-    %a(href='http://www.google.com/search?q=How+to+install+virtualbox+additions' target='x')
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox+additions' target='w')
       How to install virtualbox guest additions
     %br/
     %a(href='/posts/virtualbox_why_tiny') virtualbox_why_tiny
@@ -377,7 +377,7 @@ The steps listed below demonstrate the above deployment idea:
     
   %li
     I saw ~ann/app20 deployed at 
-    %a(href='https://newyork212.herokuapp.com/app/demo10.html' target='x')
+    %a(href='https://newyork212.herokuapp.com/app/demo10.html' target='w')
       https://newyork212.herokuapp.com/app/demo10.html
 %hr/
 
@@ -416,7 +416,7 @@ I deployed it to heroku.
 
 I browsed this URL several times in a row:
 %br/
-%a(href='https://newyork212.herokuapp.com/app/demo11.html' target='x')
+%a(href='https://newyork212.herokuapp.com/app/demo11.html' target='w')
   https://newyork212.herokuapp.com/app/demo11.html
 %br/
 I noticed the p-elements changed color after each reload.
@@ -476,7 +476,7 @@ I demonstrate this table-chart idea at this URL:
 %br/
 %br/
 
-%a(href='http://www.spy611.com/pred_lr' target='x')
+%a(href='http://www.spy611.com/pred_lr' target='w')
   http://www.spy611.com/pred_lr
 
 %br/
@@ -517,7 +517,7 @@ I saw it here:
 
 %br/
 
-%a(href='https://newyork212.herokuapp.com/app/demo12.html' target='x')
+%a(href='https://newyork212.herokuapp.com/app/demo12.html' target='w')
   https://newyork212.herokuapp.com/app/demo12.html
 
 %br/
@@ -576,7 +576,7 @@ I saw it here:
 
 %br/
 
-%a(href='https://newyork212.herokuapp.com/app/demo13.html' target='x')
+%a(href='https://newyork212.herokuapp.com/app/demo13.html' target='w')
   https://newyork212.herokuapp.com/app/demo13.html
 
 %br/
@@ -584,6 +584,636 @@ I saw it here:
 
 %hr/
 
-%h2 To be continued ...
+Next, using emacs, I started work on ~ann/app20/haml/demo14.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo14'
+
+The above haml file shows how to create p-elements from data source (a JS-array),
+and then append them to the body element.
+
+%br/
+%br/
+
+So, demo13.haml updates p-elements from a data source and demo14.haml creates elements from data.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo14.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo14.haml ~ann/app20/app/demo14.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo14Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo14.html' target='w')
+  https://newyork212.herokuapp.com/app/demo14.html
+
+%br/
+%br/
 
 %hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo15.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo15'
+
+The above syntax should do the same thing as demo14.haml.
+
+%br/
+%br/
+
+The point of demo15 is to show how to break a long chain of D3 calls into pieces.
+
+%br/
+%br/
+
+Perhaps when you see the pieces you will then understand the D3 API better?
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo15.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo15.haml ~ann/app20/app/demo15.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo15Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo15.html' target='w')
+  https://newyork212.herokuapp.com/app/demo15.html
+
+%br/
+%br/
+
+%hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo16.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo16'
+
+The above haml file introduces some new API concepts:
+%ul
+  %li svg element
+  %li circle element inside svg element
+  %li transitions
+
+An svg-element is created with help from SVG which has been supported by browsers for over 10 years:
+
+%br/
+%br/
+
+%a(href='https://en.wikipedia.org/wiki/Scalable_Vector_Graphics' target='w')
+  https://en.wikipedia.org/wiki/Scalable_Vector_Graphics
+
+%br/
+%br/
+
+For example in demo16 I use two lines of HAML to create a blue circle.
+
+%br/
+%br/
+
+I assume that D3 intends to wrap the SVG API in a way which makes it easier to use.
+
+%br/
+%br/
+
+The next API-idea in demo16 is called 'transitions'.
+
+%br/
+%br/
+
+I can use a transition when I want to change an element in a way which makes the change more evident to the user.
+
+%br/
+%br/
+
+For example if I change the color or size of an element slowly rather than quickly,
+the user might notice the change more easily.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo16.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo16.haml ~ann/app20/app/demo16.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo16Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo16.html' target='w')
+  https://newyork212.herokuapp.com/app/demo16.html
+
+%br/
+%br/
+
+%hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo17.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo17'
+
+The above file is the start of a simple bar chart demo.  The file contains only HAML and CSS.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo17.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo17.haml ~ann/app20/app/demo17.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo17Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo17.html' target='w')
+  https://newyork212.herokuapp.com/app/demo17.html
+
+%br/
+%br/
+
+
+%hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo18.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo18'
+
+The above file uses a JS-array-data to drive two types of objects.
+
+%br/
+%br/
+
+I use the data to create div-elements.
+
+%br/
+%br/
+
+I use the data to fill the new div-elements with text.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo18.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo18.haml ~ann/app20/app/demo18.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo18Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo18.html' target='w')
+  https://newyork212.herokuapp.com/app/demo18.html
+
+
+%br/
+%br/
+
+%hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo19.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo19'
+
+The above haml file offers the same behavior as demo18.haml
+
+%br/
+%br/
+
+The point of demo19 is to show how to break a long chain of D3 calls into pieces.
+
+%br/
+%br/
+
+Perhaps when you see the pieces you will then understand the D3 API better?
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo19.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo19.haml ~ann/app20/app/demo19.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo19Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo19.html' target='w')
+  https://newyork212.herokuapp.com/app/demo19.html
+
+%br/
+%br/
+
+%hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo20.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo20'
+
+In demo20.haml I see how to create a function named, 'x()', which scales values in an array called data.
+
+%br/
+%br/
+
+A synonym of the verb: 'scales' is, 'maps'.
+
+%br/
+%br/
+
+The function, x() maps the min-value of data to 0 and maps the max-value of data to 800.
+
+%br/
+%br/
+
+Then later in the file, I see how x() is actually called.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo20.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo20.haml ~ann/app20/app/demo20.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo20Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo20.html' target='w')
+  https://newyork212.herokuapp.com/app/demo20.html
+
+%br/
+%br/
+
+%hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo21.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo21'
+
+In demo21.haml I see how to duplicate the behavior of demo17.haml using plain SVG rather than div-elements.
+
+%br/
+%br/
+
+The differences between the two files appear in two places:
+
+%ul
+  %li The CSS is different
+  %li The element names are different
+
+Another obvious difference is that the syntax in demo21.haml is more verbose than the syntax in demo17.haml
+
+%br/
+%br/
+
+Note, however, that both files contain no JavaScript.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo21.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo21.haml ~ann/app20/app/demo21.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo21Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo21.html' target='w')
+  https://newyork212.herokuapp.com/app/demo21.html
+
+%br/
+%br/
+
+%hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo22.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo22'
+
+The above file enhances demo21.haml by showing how to connect the D3 API to SVG elements.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo22.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo22.haml ~ann/app20/app/demo22.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo22Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo22.html' target='w')
+  https://newyork212.herokuapp.com/app/demo22.html
+
+%br/
+%br/
+
+%hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo23.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo23'
+
+The above file enhances demo22.haml by showing how to replace an internal JS-array with external data file.
+
+%br/
+%br/
+
+I used the haml command to generate HTML from demo23.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo23.haml ~ann/app20/app/demo23.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo23Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo23.html' target='w')
+  https://newyork212.herokuapp.com/app/demo23.html
+
+%br/
+%br/
+
+%hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo24.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo24'
+
+The above file shows that I can move the JavaScript out of the HAML
+into a separate file called this:
+%br/
+\~ann/app20/app/demo24.js
+
+%br/
+%br/
+
+A simple way to do that is a straight copy using emacs.
+
+%br/
+%br/
+
+Another way is to start with a file full of CoffeeScript.
+
+%br/
+%br/
+
+I created a CoffeeScript file at this path:
+%br/
+\~ann/app20/fee/demo24.coffee
+
+%pre
+  =render 'code_challenge2015_1010f'
+
+Then, I converted the CoffeeScript into JavaScript:
+
+%pre
+  %code.bash
+    npm install -g coffee-script
+    coffee -bpc ~ann/app20/fee/demo24.coffee > ~ann/app20/app/demo24.js
+
+I used the haml command to generate HTML from demo24.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo24.haml ~ann/app20/app/demo24.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo24Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo24.html' target='w')
+  https://newyork212.herokuapp.com/app/demo24.html
+
+%br/
+%br/
+
+%hr/
+
+Next, using emacs, I started work on ~ann/app20/haml/demo25.haml 
+
+%pre
+  =render 'code_challenge2015_1010demo25'
+
+Then I wrote CoffeeScript into ~ann/fee/demo25.coffee
+
+%pre
+  =render 'code_challenge2015_1010demo25c'
+
+Next, I converted the CoffeeScript into JavaScript:
+
+%pre
+  %code.bash coffee -bpc ~ann/app20/fee/demo25.coffee > ~ann/app20/app/demo25.js
+
+I used the haml command to generate HTML from demo25.haml:
+
+%pre
+  %code.bash 
+    cd ~ann/app20/haml/
+    \.  ~ann/app20/app20env.bash
+    \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo25.haml ~ann/app20/app/demo25.html
+
+I deployed it to heroku.
+
+%pre
+  %code.bash 
+    cd ~ann/app20
+    git add .
+    git commit -am demo25Hello
+    git push heroku  master
+
+I saw it here:
+
+%br/
+
+%a(href='https://newyork212.herokuapp.com/app/demo25.html' target='w')
+  https://newyork212.herokuapp.com/app/demo25.html
+
+%br/
+%br/
+
+When I compare the syntax in demo25.coffee to the JS-syntax from the original demo,
+it seems the JS-syntax is actually easier to read:
+
+%br/
+%br/
+
+%a(href='view-source:http://bl.ocks.org/mbostock/raw/3885304/' target='x')
+  view-source:http://bl.ocks.org/mbostock/raw/3885304/
+
+%br/
+%br/
+
+For me, CoffeeScript is usually easier to read than JavaScript but that is not true in this demo.
+
+%br/
+%br/
+
+The coding style used by many D3-developers which breaks up long chains of calls,
+with indented whitespace, works well for me when I read their code.
+
+%br/
+%br/
+
+So, when I write D3 apps, I will rely less on CoffeeScript.
+
+%br/
+%br/
+

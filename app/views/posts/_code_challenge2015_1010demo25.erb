@@ -1,0 +1,49 @@
+<code class='haml'>!!!
+%html(lang='en')
+  %head
+    %meta(content='text/html; charset=UTF-8' http-equiv='Content-Type')/
+    %meta(charset='utf-8')/
+    %title demo25
+    %script(src='/app/d3.v3.min.js')
+    :css
+      .bar {
+        fill: steelblue;
+      }
+      .bar:hover {
+        fill: brown;
+      }
+      .axis {
+        font: 10px sans-serif;
+      }
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+      .x.axis path {
+        display: none;
+      }
+  / Note: D3.js acts on body-element
+  %body.d3body
+    %h1 demo25
+    #refer
+      Refer to:
+      %br/
+      %a(href='http://bost.ocks.org/mike/bar/3/' target='x')
+        http://bost.ocks.org/mike/bar/3/
+      %br/
+      %a(href='http://bl.ocks.org/mbostock/3885304/' target='x')
+        http://bl.ocks.org/mbostock/3885304/
+      %br/
+      %a(href='/app/demo25data.tsv') /app/demo25data.tsv
+      %br/
+      %a(href='/fee/demo25.coffee') /fee/demo25.coffee
+      %br/
+      %a(href='/app/demo25.js') /app/demo25.js
+      %br/
+      %a(href='view-source:http://bl.ocks.org/mbostock/raw/3885304/' target='v')
+        view-source:http://bl.ocks.org/mbostock/raw/3885304
+    %hr/
+    %script(src='/app/demo25.js')
+</code>

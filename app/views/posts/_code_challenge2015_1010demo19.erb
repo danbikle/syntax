@@ -1,0 +1,41 @@
+<code class='haml'>!!!
+%html(lang="en")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %meta(charset="utf-8")/
+    %title demo19
+    %script(src="/app/d3.v3.min.js")
+    :css
+      .d3chart div {
+        font: 10px sans-serif;
+        background-color: steelblue;
+        text-align: right;
+        padding: 3px;
+        margin: 1px;
+        color: white;
+      }
+  %body
+    %h1 demo19
+    #refer
+      Refer to:
+      %a(href='http://bost.ocks.org/mike/bar/#automatic' target='x')
+        http://bost.ocks.org/mike/bar/#automatic
+    %hr/
+    / The div.d3chart element is acted upon by D3.js:
+    .d3chart
+    :javascript
+      // I create data to drive the chart.
+      var data  = [4, 8, 15, 16, 23, 42];
+      // I select the chart container.
+      var chart = d3.select(".d3chart");
+      // I initiate the data join.
+      var bar = chart.selectAll("div");
+      // I join the data.
+      var barUpdate = bar.data(data);
+      // I use enter() to create missing elements.
+      var barEnter = barUpdate.enter().append("div");
+      // I use my data and D3.js to change style of barEnter.
+      barEnter.style("width", function(d) { return d * 10 + "px"; });
+      // I set the text content of each bar.
+      barEnter.text(function(d) { return d; });
+</code>

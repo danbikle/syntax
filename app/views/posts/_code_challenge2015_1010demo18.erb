@@ -1,0 +1,34 @@
+<code class='haml'>!!!
+%html(lang="en")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %meta(charset="utf-8")/
+    %title demo18
+    %script(src="/app/d3.v3.min.js")
+    :css
+      .d3chart div {
+        font: 10px sans-serif;
+        background-color: steelblue;
+        text-align: right;
+        padding: 3px;
+        margin: 1px;
+        color: white;
+      }
+  %body
+    %h1 demo18
+    #refer
+      Refer to:
+      %a(href='http://bost.ocks.org/mike/bar/#automatic' target='x')
+        http://bost.ocks.org/mike/bar/#automatic
+    %hr/
+    / The div.d3chart element is acted upon by D3.js:
+    .d3chart
+    :javascript
+      var data = [4, 8, 15, 16, 23, 42];
+      d3.select(".d3chart")
+        .selectAll("div")
+          .data(data)
+        .enter().append("div")
+          .style("width", function(d) { return d * 10 + "px"; })
+          .text(function(d) { return d; });
+</code>
