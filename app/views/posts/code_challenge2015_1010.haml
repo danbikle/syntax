@@ -1060,6 +1060,13 @@ I used the haml command to generate HTML from demo23.haml:
     \.  ~ann/app20/app20env.bash
     \~ann/app20/gems/bin/haml -eq ~ann/app20/haml/demo23.haml ~ann/app20/app/demo23.html
 
+I copied demo23data.tsv into place:
+
+%pre
+  %code.bash
+    cd ~ann/app20/app
+    curl https://newyork212.herokuapp.com/app/demo23data.tsv > ~ann/app20/app/demo23data.tsv
+
 I deployed it to heroku.
 
 %pre
