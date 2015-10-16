@@ -1,0 +1,37 @@
+<code class='haml'>!!!
+%html(lang="en")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %title demo10 Default renderer is 'area'
+    %script(src="/app/d3.v3.min.js")
+    %script(src="/app/rickshaw.min.js")
+  %body
+    %h1 app21/demo10 Default renderer is 'area'
+    #refer
+      Refer to:
+      %br/
+      %a(href='http://code.shutterstock.com/rickshaw/examples/' target='x')
+        http://code.shutterstock.com/rickshaw/examples/
+      %br/
+      %a(href='http://code.shutterstock.com/rickshaw/examples/start.html' target='x')
+        http://code.shutterstock.com/rickshaw/examples/start.html
+    %hr/
+    / The div-element below should be affected by rickshaw.js
+    #my_rickshawchart
+    :javascript
+      var graph = new Rickshaw.Graph( {
+          element: document.querySelector("#my_rickshawchart"), 
+          width: 500, 
+          height: 200, 
+          series: [{
+              color: 'steelblue',
+              data: [ 
+                  { x: 0, y: 40 }, 
+                  { x: 1, y: 49 }, 
+                  { x: 2, y: 38 }, 
+                  { x: 3, y: 30 }, 
+                  { x: 4, y: 32 } ]
+          }]
+      });
+      graph.render();
+</code>
