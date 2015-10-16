@@ -212,14 +212,7 @@ If you want to deploy this repository to Heroku, follow this recipe:
     %a(href='https://dojo650.herokuapp.com/demos.html' target='w')
       https://dojo650.herokuapp.com/demos.html
 
-%h2 Challenge 10
-
-Your challenge: understand what this HAML does:
-
-%pre
-  %code.haml
-    - cc1018 = "#{Rails.root}/app/views/code_challenge2015_1018"
-    = IO.binread("#{cc1018}/demo10.haml")
+=render 'code_challenge2015_1018c10'
 
 %hr/
 to be continued...
