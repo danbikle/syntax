@@ -1,0 +1,37 @@
+!!!
+%html(lang="en")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %title demo15 Bars
+    %script(src="/app/d3.v3.min.js")
+    %script(src="/app/rickshaw.min.js")
+  %body
+    %h1 app21/demo15 Bars
+    #refer
+      Refer to:
+      %br/
+      %a(href='http://code.shutterstock.com/rickshaw/' target='x')
+        http://code.shutterstock.com/rickshaw/
+      %br/
+      %a(href='http://code.shutterstock.com/rickshaw/guide/bar-1.html' target='x')
+        http://code.shutterstock.com/rickshaw/guide/bar-1.html
+    %hr/
+    / The div-element below should be affected by rickshaw.js
+    #my_rickshawchart
+    :javascript
+      var series1 = {
+        color: '#008800',
+        data: [ 
+          { x: 0, y: 40 }, 
+          { x: 1, y: 49 }, 
+          { x: 2, y: 38 }, 
+          { x: 3, y: 4 }, 
+          { x: 4, y: 6 } ]};
+      var graph = new Rickshaw.Graph( {
+          renderer: 'bar',
+          element: document.querySelector("#my_rickshawchart"), 
+          width: 500, 
+          height: 200, 
+          series: [series1]
+      });
+      graph.render();

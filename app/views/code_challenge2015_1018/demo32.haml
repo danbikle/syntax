@@ -1,0 +1,65 @@
+!!!
+%html(lang="en")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %title demo32 d3.time.scale(), Drag-Slider
+    %link(href="/app/graph.css" rel="stylesheet" type="text/css")/
+    %link(href="/app/lines.css" rel="stylesheet" type="text/css")/
+    %script(src="/app/d3.v3.min.js"    )
+    %script(src="/app/rickshaw.min.js" )
+  %body
+    %h1 app21/demo32 d3.time.scale(), Drag-Slider
+    #refer
+      Refer to:
+      %br/
+      %a(href='https://github.com/shutterstock/rickshaw/blob/master/examples/timescale.html' target='x')
+        https://github.com/shutterstock/rickshaw/blob/master/examples/timescale.html
+      %br/
+      %a(href='https://github.com/shutterstock/rickshaw/blob/master/src/js/Rickshaw.Fixtures.RandomData.js' target='x')
+        https://github.com/shutterstock/rickshaw/blob/master/src/js/Rickshaw.Fixtures.RandomData.js
+      %br/
+      %a(href='https://github.com/mbostock/d3/wiki/Time-Scales' target='x')
+        https://github.com/mbostock/d3/wiki/Time-Scales
+      %br/
+      %a(href='https://github.com/mbostock/d3/wiki/Quantitative-Scales#sqrt' target='x')
+        https://github.com/mbostock/d3/wiki/Quantitative-Scales#sqrt
+      %br/
+      %a(href='https://github.com/shutterstock/rickshaw/blob/master/src/js/Rickshaw.Graph.Axis.X.js' target='x')
+        https://github.com/shutterstock/rickshaw/blob/master/src/js/Rickshaw.Graph.Axis.X.js
+    %hr/
+    #my_rickshawchart
+    #rickshaw_slider
+    :javascript
+      var seriesData = [ [], [] ];
+      var random = new Rickshaw.Fixtures.RandomData(1500000);
+      for (var i = 0; i < 900; i++) {
+      	random.addData(seriesData);
+      }
+      var graph = new Rickshaw.Graph({
+      	element: document.getElementById("my_rickshawchart"),
+      	width: 960,
+      	height: 500,
+      	stroke: true,
+      	strokeWidth: 0.5,
+      	renderer: 'area',
+      	xScale: d3.time.scale(),
+      	yScale: d3.scale.sqrt(),
+      	series:[
+      		{ color: 'steelblue', data: seriesData[0] },
+      		{ color: '#99d4ee', data: seriesData[1] }
+      	] 
+      });
+      graph.render();
+      var xAxis = new Rickshaw.Graph.Axis.X({
+      	graph: graph,
+      	tickFormat: graph.x.tickFormat()
+      });
+      xAxis.render();
+      var yAxis = new Rickshaw.Graph.Axis.Y({
+      	graph: graph
+      });
+      yAxis.render();
+      var slider = new Rickshaw.Graph.RangeSlider.Preview({
+      	graph: graph,
+      	element: document.getElementById('rickshaw_slider')
+      });
