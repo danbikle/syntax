@@ -44,7 +44,9 @@
   %a.xtag(href='/tags/select') select
   %a.xtag(href='/tags/selectall') selectall
   %a.xtag(href='/tags/anonymous') anonymous
-
+  .tag dojo650
+  .tag rickshaw
+  .tag app21
 
 
 %br/
@@ -127,3 +129,82 @@ Try this shell command:
 
 %pre
   %code.bash ~ann/app21/http.bash
+
+%br/
+
+Browse this URL:
+
+%br/
+%br/
+
+%a(href='http://localhost:8080/demos.html' target='x')
+  http://localhost:8080/demos.html
+
+%br/
+%br/
+
+
+The above URL should resemble the content served by this URL:
+
+%br/
+%br/
+
+%a(href='https://dojo650.herokuapp.com/demos.html' target='x')
+  https://dojo650.herokuapp.com/demos.html
+
+
+%br/
+%br/
+
+If you want to deploy this repository to Heroku, follow this recipe:
+%ul
+  %li Create an account at heroku.com website
+
+  %li
+    Download/Install Heroku client
+    %pre
+      %code.bash
+        cd ~ann
+        wget https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
+        tar zxf heroku-client.tgz
+        echo 'export PATH=/home/ann/heroku-client/bin:${PATH}' >> ~ann/.bashrc
+        echo  export PATH=/home/ann/heroku-client/bin:${PATH}
+
+  %li
+    I created ssh-key for ann account (assuming ann has none yet):
+    %pre
+      =render 'code_challenge2015_0919s'
+
+  %li
+    I used heroku-client to "login" my shell.
+    I gave a copy of ann public ssh-key to heroku:
+    %pre
+      %code.bash
+        heroku status
+        heroku auth:login
+        heroku auth:whoami
+        heroku keys:add
+
+  %li
+    I used heroku-client to create a blank app named dojo650 at herokuapp.com
+    %pre
+      %code.bash
+        cd ~ann/app21
+        heroku create dojo650
+
+  %li
+    git-push ~ann/app21 to heroku
+    %pre
+      %code.bash
+        cd ~ann/app21
+        git add .
+        git commit -am hellodojo
+        git push heroku master
+    
+  %li
+    I saw ~ann/app21 deployed at 
+    %a(href='https://dojo650.herokuapp.com/demos.html' target='w')
+      https://dojo650.herokuapp.com/demos.html
+%hr/
+to be continued...
+%hr/
