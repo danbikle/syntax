@@ -1,0 +1,76 @@
+.q1 Question:
+.q2 In Rails, how to read a HAML file into an HTML-code-element?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/haml') haml
+  %a.xtag(href='/tags/rails') rails
+  %a.xtag(href='/tags/precode') precode
+  %a.xtag(href='/tags/code') code
+  %a.xtag(href='/tags/binread') binread
+  %a.xtag(href='/tags/erb') erb
+  %a.xtag(href='/tags/ruby') ruby
+  %a.xtag(href='/tags/partial') partial
+
+%br/
+
+Recently I encountered a use-case which asked me to read a HAML file into an HTML-code-element.
+
+%br/
+%br/
+
+After a bit of thought I decided it was similar to this question:
+
+%br/
+%br/
+
+In Ruby, how to read a file into a String object?
+
+%br/
+%br/
+
+I knew this because it is easy to render any Ruby string with ERB syntax.
+
+%br/
+%br/
+
+I typed that question into Google:
+
+%br/
+%br/
+
+%a(href='http://www.google.com/search?q=In+Ruby,+how+to+read+a+file+into+a+String+object' target='x')
+  http://www.google.com/search?q=In+Ruby,+how+to+read+a+file+into+a+String+object
+
+
+%br/
+%br/
+
+I found this syntax example:
+
+%pre
+  %code.ruby mystr = IO.binread("/my/path/to/file")
+
+I put it to use in a Rails partial like this:
+
+%pre
+  =render 'rails_haml2code_element1'
+
+The result can be seen at this URL:
+
+%br/
+%br/
+
+%a(href="/posts/code_challenge2015_1018" target='p') code_challenge2015_1018
+
+%br/
+%br/
+
+The next step in this idea is to ask IO.binread() to read from a git-repository rather than a folder.
+
+%br/
+%br/
+
+This enhancement would allow my Rails app to display the most recent HAML file rather than an artifact from the past.
+
+%br/
+%br/

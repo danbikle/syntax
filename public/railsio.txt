@@ -1,0 +1,18 @@
+Recently I encountered a use-case which asked me to read a HAML file into an HTML-code-element.
+
+After a bit of thought I decided it was similar to this question:
+
+In Ruby, how to read a file into a String object?
+
+I knew this because it is easy to render any Ruby string with ERB syntax.
+
+I typed that question into Google:
+
+http://www.google.com/search?q=In+Ruby,+how+to+read+a+file+into+a+String+object
+
+I found this syntax example:
+
+mystr = IO.binread("/my/path/to/file")
+
+I put it to use like this:
+
