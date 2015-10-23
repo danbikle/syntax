@@ -1,0 +1,228 @@
+.q1 Question:
+.q2 What is 2015_1024 Code Challenge?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/npm') npm
+  %a.xtag(href='/tags/nodejs') nodejs
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/heroku') heroku
+  %a.xtag(href='/tags/package_json') package_json
+  %a.xtag(href='/tags/javascript') javascript
+  %a.xtag(href='/tags/coffeescript') coffeescript
+  %a.xtag(href='/tags/useradd') useradd
+  %a.xtag(href='/tags/passwd') passwd
+  %a.xtag(href='/tags/git') git
+  %a.xtag(href='/tags/procfile') procfile
+  %a.xtag(href='/tags/node') node
+  %a.xtag(href='/tags/node_modules') node_modules
+  %a.xtag(href='/tags/gitignore') gitignore
+  %a.xtag(href='/tags/engines') engines
+  %a.xtag(href='/tags/http_server') http_server
+  %a.xtag(href='/tags/toolbelt') toolbelt
+  %a.xtag(href='/tags/code_challenge') code_challenge
+  %a.xtag(href='/tags/bikle101') bikle101
+  %a.xtag(href='/tags/emacs') emacs
+  %a.xtag(href='/tags/buffer_menu') buffer_menu
+  %a.xtag(href='/tags/ssh') ssh
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/id_rsa') id_rsa
+  %a.xtag(href='/tags/alert') alert
+  %a.xtag(href='/tags/herokuapp') herokuapp
+  %a.xtag(href='/tags/cedar') cedar
+  %a.xtag(href='/tags/curl') curl
+  %a.xtag(href='/tags/heroku_client') heroku_client
+  %a.xtag(href='/tags/wget') wget
+  %a.xtag(href='/tags/coffee') coffee
+  %a.xtag(href='/tags/console_log') console_log
+  %a.xtag(href='/tags/dired') dired
+  %a.xtag(href='/tags/global_set_key') global_set_key
+  %a.xtag(href='/tags/lisp') lisp
+  %a.xtag(href='/tags/d3') d3
+  %a.xtag(href='/tags/select') select
+  %a.xtag(href='/tags/selectall') selectall
+  %a.xtag(href='/tags/slider') slider
+  %a.xtag(href='/tags/queryselector') queryselector
+  %a.xtag(href='/tags/addeventlistener') addeventlistener
+  %a.xtag(href='/tags/gem') gem
+  %a.xtag(href='/tags/haml') haml
+  .tag sjc408
+  .tag app22
+  .tag bubble_chart
+  .tag bullet_chart
+  .tag leftover_data
+  .tag leftover_html
+  .tag calendar_view
+  .tag crossfilter
+
+%br/
+
+The 2015_1024 Code Challenge is a learning exercise for students attending Dan's Linux JavaScript Class at 3pm on 2015-10-24 at Hacker Dojo:
+
+%br/
+%br/
+
+%a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225904559' target='x')
+  http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225904559
+
+%br/
+%br/
+
+We start with three tasks: Install Ubuntu, enhance it, and create account named ann:
+
+%ul
+  %li Install Ubuntu 14.04.3 on your laptop
+  %li
+    Useful:
+    %a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso' target='w')
+      http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso
+
+  %li
+    Useful:
+    %a(href='https://www.virtualbox.org/wiki/Downloads' target='w')
+      https://www.virtualbox.org/wiki/Downloads
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox' target='w')
+      http://www.google.com/search?q=How+to+install+virtualbox    
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox+additions' target='w')
+      How to install virtualbox guest additions
+    %br/
+    %a(href='/posts/virtualbox_why_tiny') virtualbox_why_tiny
+
+  %li
+    Enhance Ubuntu:
+    %pre
+      =render 'code_challenge2015_09121'
+
+  %li
+    Create account named ann:
+    %pre
+      %code.bash
+        useradd ann -m -s /bin/bash
+        passwd ann
+        ssh -YA ann@localhost
+
+Next, we learn some Emacs:
+
+=render 'code_challenge2015_0919e'
+
+%br/
+%br/
+
+/ Install node.js
+=render 'code_challenge2015_0919n'
+
+%ul
+  %li
+    Start work on an app:
+    %pre
+      %code.bash
+        cd ~ann
+        git clone https://github.com/danbikle/app22.git
+        cd ~ann/app22
+        npm install
+        mkdir gems
+        \.  ~ann/app22/app22env.bash
+        gem install haml
+
+Now you are ready to do D3.js development on your laptop.
+
+%br/
+%br/
+
+Try this shell command:
+
+%pre
+  %code.bash ~ann/app22/http.bash
+
+%br/
+
+Browse this URL:
+
+%br/
+%br/
+
+%a(href='http://localhost:8080' target='x')
+  http://localhost:8080
+
+%br/
+%br/
+
+
+The above URL should resemble the content served by this URL:
+
+%br/
+%br/
+
+%a(href='https://sjc408.herokuapp.com' target='x')
+  https://sjc408.herokuapp.com
+
+
+%br/
+%br/
+
+If you want to deploy this repository to Heroku, follow this recipe:
+%ul
+  %li Create an account at heroku.com website
+
+  %li
+    Download/Install Heroku client
+    %pre
+      %code.bash
+        cd ~ann
+        wget https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
+        tar zxf heroku-client.tgz
+        echo 'export PATH=/home/ann/heroku-client/bin:${PATH}' >> ~ann/.bashrc
+        echo  export PATH=/home/ann/heroku-client/bin:${PATH}
+
+  %li
+    I created ssh-key for ann account (assuming ann has none yet):
+    %pre
+      =render 'code_challenge2015_0919s'
+
+  %li
+    I used heroku-client to "login" my shell.
+    I gave a copy of ann public ssh-key to heroku:
+    %pre
+      %code.bash
+        heroku status
+        heroku auth:login
+        heroku auth:whoami
+        heroku keys:add
+
+  %li
+    I used heroku-client to create a blank app named sjc408 at herokuapp.com
+    %pre
+      %code.bash
+        cd ~ann/app22
+        heroku create sjc408
+
+  %li
+    git-push ~ann/app22 to heroku
+    %pre
+      %code.bash
+        cd ~ann/app22
+        git add .
+        git commit -am hellodojo
+        git push heroku master
+    
+  %li
+    I saw ~ann/app22 deployed at 
+    %a(href='https://sjc408.herokuapp.com/demos.html' target='w')
+      https://sjc408.herokuapp.com/demos.html
+
+="render 'code_challenge2015_1024c10'"
+
+%hr/
+
+That could be considered an adequate code challenge for a two hour Meetup.
+%br/
+%br/
+If you have questions, e-me:
+%br/
+%br/
+bikle101@gmail.com
+%br/
+%br/
+
