@@ -1,0 +1,53 @@
+%hr/
+%h2 Challenge 15
+- cc1024 = "#{Rails.root}/app/views/code_challenge2015_1024"
+Your challenge: understand what this HAML does:
+%pre
+  %code.haml
+    = IO.binread("#{cc1024}/bullet.haml")
+The above HAML is deployed at this URL:
+%br/
+%a(href='https://sjc408.herokuapp.com/bullet/bullet.html' target='x')
+  https://sjc408.herokuapp.com/bullet/bullet.html
+%br/
+%h2 Challenge 15 Questions:
+%ul
+  %li What is the structure of the data which feeds bullet.haml ?
+
+  %li
+    This syntax:
+    %pre
+      %code.javascript var something = svg.append("g").append("text").text("hello");
+    does what?
+
+  %li In above example, does "hello" end up in svg, or g, or text element?
+
+  %li
+    This syntax:
+    %pre
+      %code.javascript g.attr("transform", "translate(-6," + height / 2 + ")");
+    does what?
+
+  %li
+    This syntax:
+    %pre
+      %code.javascript g.call(chart);
+    does what?
+
+  %li
+    This syntax:
+    %pre
+      %code.javascript d3.selectAll("button").on("click", function() {something;});
+    does what?
+
+  %li
+    This syntax:
+    %pre
+      %code.javascript svg.datum(randomize)
+    does what?
+
+  %li
+    This syntax:
+    %pre
+      %code.javascript Math.max(0, 4.4);
+    does what?

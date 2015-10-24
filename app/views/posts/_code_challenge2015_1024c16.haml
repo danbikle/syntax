@@ -1,0 +1,94 @@
+%hr/
+%h2 Challenge 16
+- cc1024 = "#{Rails.root}/app/views/code_challenge2015_1024"
+Your challenge: understand what this HAML does:
+%pre
+  %code.haml
+    = IO.binread("#{cc1024}/calview.haml")
+The above HAML is deployed at this URL:
+%br/
+%a(href='https://sjc408.herokuapp.com/calview/calview.html' target='x')
+  https://sjc408.herokuapp.com/calview/calview.html
+%br/
+%h2 Challenge 16 Questions:
+%ul
+  %li What is the structure of the data which feeds calview.haml ?
+  %li Is the next day observation to the right or in the square below?
+  %li What is being shown in each square?
+  %li Is it obvious that the Stock Market reverts to mean?
+  %li Is it obvious that the Stock Market tends to trend?
+
+  %li
+    This CSS syntax:
+    %pre
+      %code.css fill: #fff;
+    does what?
+
+  %li
+    This CSS syntax:
+    %pre
+      %code.css stroke: #ccc;
+    does what?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript d3.format(".1%")
+    does what?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript var format = d3.time.format("%Y-%m-%d");
+    does what?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript d3.scale.quantize()
+    does what?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript d3.csv("GSPC.csv", function(error, csv) {something});
+    does what?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript d3.nest().key(function(d) {something}).rollup(function(d) {something}).map(csv);
+    does what?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript rect.filter(function(d) { return d in data; })
+    does what?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0)
+    does what?
+
+  %li
+    The monthPath(t0) definition declares that monthPath() should be called with one parameter.
+    %br/
+    But in the above HAML, monthPath is called with no parameters.
+    %br/
+    Is that a bug or is monthPath being called correctly?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript d3.select(self.frameElement).style("height", "2910px");
+    does what?
+
+  %li
+    Usually when I call mysel.data(myarray) I understand that myarray should be an array.
+    %br/
+    When might I make a call like this:
+    %pre
+      %code.javascript mysel.data(function(d) {something})
+    ?

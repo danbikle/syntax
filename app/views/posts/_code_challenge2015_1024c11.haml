@@ -1,0 +1,45 @@
+%hr/
+%h2 Challenge 11
+- cc1024 = "#{Rails.root}/app/views/code_challenge2015_1024"
+Your challenge: understand what this HAML does:
+%pre
+  %code.haml
+    = IO.binread("#{cc1024}/leftover_data.haml")
+The above HAML is deployed at this URL:
+%br/
+%a(href='https://sjc408.herokuapp.com/leftover_data.html' target='x')
+  https://sjc408.herokuapp.com/leftover_data.html
+%br/
+%h2 Challenge 11 Questions:
+%ul
+  %li
+    This syntax:
+    %pre
+      %code.javascript d3.select("ul#ul0").selectAll("li");
+    does what?
+
+  %li
+    This syntax:
+    %pre
+      %code.javascript li_sel0.data(myarray);
+    does what?
+
+  %li
+    This syntax:
+    %pre
+      %code.javascript function(d){return d;}
+    does what?
+
+  %li
+    This syntax:
+    %pre
+      %code.javascript joined_sel0.text(function(d){return d;});
+    does what?
+
+  %li
+    This syntax:
+    %pre
+      %code.javascript joined_sel2.enter();
+    does what?
+
+  %li What type of call usually happens after enter() is called?

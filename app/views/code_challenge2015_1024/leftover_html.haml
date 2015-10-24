@@ -1,0 +1,105 @@
+!!!
+%html(lang="en")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %title leftover_html.html
+    %script(src="/d3.v3.min.js")
+    :css
+      body {font-size: 18px; font-weight: bold; font-family: sans-serif;}
+      pre {background-color: #ddd;}
+  %body
+    %h1 app22/leftover_html.html
+    #refer
+      Refer to:
+      %br/
+      %a(href="http://bost.ocks.org/mike/circles/index.html" target="x")
+        http://bost.ocks.org/mike/circles/index.html
+      %hr/
+    In
+    %a(href="crud.html") crud.html
+    I use the CRUD acronym as a perspective on the behavior of D3-objects inside your browser.
+    %br/
+    %br/
+    The U in CRUD stands for Update.
+    %br/
+    %br/
+    A useful D3.js method which can Update HTML is the exit() method.
+    %br/
+    %br/
+    The scenario below helps me understand the exit() method.
+    %br/
+    %br/
+    I use emacs to create 6 li-elements:
+    %pre
+      %code &lt;ul id='ul0'&gt; &lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;&lt;li&gt;3&lt;/li&gt;&lt;li&gt;4&lt;/li&gt;&lt;li&gt;5&lt;/li&gt;&lt;li&gt;6&lt;/li&gt; &lt;/ul&gt;
+    Next, I create a JS array called myarray which has 4 values:
+    %pre
+      %code var myarray      = [11,22,33,44];
+    Then, I create a D3 object named li_sel0 from the 6 li-elements:
+    %pre
+      %code var li_sel0      = d3.select("ul#ul0").selectAll("li");
+    Next, I 'join' myarray with li_sel0 using the data() method like this:
+    %pre
+      %code var joined_sel0  = li_sel0.data(myarray);
+    Then, I can copy values from myarray into the li-elements like this:
+    %pre
+      %code var updated_sel0 = joined_sel0.text(function(d){return d;});
+    So, this idea of using data in myarray to 'drive' an update of 6 li-elements is a central feature of D3.js and I think of it when ever I see calls to data() in D3.js syntax.
+    %br/
+    %br/
+    The problem is I only have 4 values in myarray and the HTML I want to drive has 6 li-elements.
+    %br/
+    %br/
+    I have 'leftover HTML'.
+    %br/
+    %br/
+    What can I do with this 'leftover HTML'?
+    %br/
+    %br/
+    The two likely scenarios are:
+    %ul
+      %li Ignore the 'leftover HTML'
+      %li Remove the 'leftover HTML'
+    Ignoring it is easy.
+    %br/
+    %br/
+    I remove leftover li-elements with a two-step process:
+    %pre
+      %code
+        var leftover_sel = updated_sel0.exit();
+        leftover_sel.remove();
+    Notice the above call to the exit() method.
+    %br/
+    %br/
+    The exit() method, like data() and enter(), is a key feature of the D3.js API which allows data to drive the HTML.
+    %br/
+    %br/
+    When the data is static, then data() is useful.  When the data
+    is dynamic and 'exits' an array, then the array becomes mismatched with the
+    corresponding HTML.
+    %br/
+    %br/
+    I can then use the exit() method help remove HTML which no longer matches data which has just 'exited'.
+    %br/
+    %br/
+    Feel free to right-click Inspect-Element in your browser to step your debugger through the code hidden below:
+    %hr/
+    %ul#ul0
+      %li 1
+      %li 2
+      %li 3
+      %li 4
+      %li 5
+      %li 6
+    %hr/
+    :javascript
+      var myarray      = [11,22,33,44];
+      var li_sel0      = d3.select("ul#ul0").selectAll("li");
+      var joined_sel0  = li_sel0.data(myarray);
+      var updated_sel0 = joined_sel0.text(function(d){return d;});
+      'Above, I have leftover HTML (2 li-elements).';
+      var leftover_sel = updated_sel0.exit();
+      leftover_sel.remove();
+      // Now I should have 4 li-elements
+    / I create some whitespace below to help the debugger
+    %br/

@@ -1,0 +1,114 @@
+%hr/
+%h2 Challenge 17
+- cc1024 = "#{Rails.root}/app/views/code_challenge2015_1024"
+Your challenge: understand what this HAML does:
+%pre
+  %code.haml
+    = IO.binread("#{cc1024}/crossfilter.haml")
+The above HAML is deployed at this URL:
+%br/
+%a(href='https://sjc408.herokuapp.com/crossfilter/crossfilter.html' target='x')
+  https://sjc408.herokuapp.com/crossfilter/crossfilter.html
+%br/
+%h2 Challenge 17 Questions:
+%ul
+  %li What is the structure of the data which feeds crossfilter.haml ?
+
+  %li
+    This CSS syntax:
+    %pre
+      %code.css @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700);
+    does what?
+
+  %li
+    This CSS syntax:
+    %pre
+      %code.css #body {position: relative;}
+    does what?
+
+  %li
+    This CSS syntax:
+    %pre
+      %code.css h1 + h2 {margin-top: 0;}
+    does what?
+
+  %li
+    This CSS syntax:
+    %pre
+      %code.css line {shape-rendering: crispEdges;}
+    does what?
+
+  %li
+    This CSS syntax:
+    %pre
+      %code.css rect.extent {fill-opacity: .125;}
+    does what?
+
+  %li
+    What does this comment mean:
+    %pre
+      %code.javascript // (It is CSV, but GitHub Pages only gzip's JSON at the moment.)
+    ?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript d3.csv("flights-3m.json", function(error, flights) {something});
+    does what?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript var nestByDate = d3.nest().key(function(d) { return d3.time.day(d.date); });
+    does what?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript d.date = parseDate(d.date);
+    does what?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript d.delay = +d.delay;
+    does what?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript flights.forEach(function(d, i) {d.index = i;});
+    does what?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript var flight = crossfilter(flights)
+    calls crossfilter().
+    %br/
+    Where is crossfilter(flights) defined?
+
+  %li
+    What kind of structure does crossfilter expect flights to be in?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript var all = flight.groupAll()
+    does what?
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript var date = flight.dimension(function(d) { return d.date; })
+    does what?
+
+
+  %li
+    This JS syntax:
+    %pre
+      %code.javascript var dates = date.group(d3.time.day)
+    does what?
+
+  %li
+    Does barChart() come from the D3.js API or is it part of crossfilter?

@@ -1,0 +1,34 @@
+%hr/
+%h2 Challenge 12
+- cc1024 = "#{Rails.root}/app/views/code_challenge2015_1024"
+Your challenge: understand what this HAML does:
+%pre
+  %code.haml
+    = IO.binread("#{cc1024}/leftover_html.haml")
+The above HAML is deployed at this URL:
+%br/
+%a(href='https://sjc408.herokuapp.com/leftover_html.html' target='x')
+  https://sjc408.herokuapp.com/leftover_html.html
+%br/
+%h2 Challenge 12 Questions:
+%ul
+  %li
+    This syntax:
+    %pre
+      %code.javascript var leftover_sel = updated_sel0.exit();
+    does what?
+  %li
+    This syntax:
+    %pre
+      %code.javascript leftover_sel.remove();
+    does what?
+
+  %li
+    Does this syntax make sense:
+    %pre
+      %code.javascript var rm_sel = leftover_sel.remove();
+    ?
+
+  %li What type of call usually happens after exit() is called?
+
+  %li Why is exit() called exit()?
