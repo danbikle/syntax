@@ -66,9 +66,9 @@
     I remove leftover li-elements with a two-step process:
     %pre
       %code
-        :preserve
-          var leftover_sel = updated_sel0.exit();
-              leftover_sel.remove();    Notice the above call to the exit() method.
+        var leftover_sel = updated_sel0.exit();
+        leftover_sel.remove();
+    Notice the above call to the exit() method.
     %br/
     %br/
     The exit() method, like data() and enter(), is a key feature of the D3.js API which allows data to drive the HTML.
@@ -102,13 +102,4 @@
       leftover_sel.remove();
       // Now I should have 4 li-elements
     / I create some whitespace below to help the debugger
-    %br/
-    %br/
-    %br/
-    %br/
-    %br/
-    %br/
-    %br/
-    %br/
-    %br/
     %br/
