@@ -1,0 +1,138 @@
+!!!
+%html(lang="en")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %title leftover_data.html
+    %script(src="/d3.v3.min.js")
+    :css
+      body {font-size: 18px; font-weight: bold; font-family: sans-serif;}
+      pre {background-color: #ddd;}
+  %body
+    %h1 app22/leftover_data.html
+    #refer
+      Refer to:
+      %br/
+      %a(href="http://bost.ocks.org/mike/circles/index.html" target="x")
+        http://bost.ocks.org/mike/circles/index.html
+      %hr/
+    In
+    %a(href="crud.html") crud.html
+    I describe the CRUD acronym to say that I can use D3.js to operate on HTML which resides in your browser.
+    %br/
+    %br/
+    The U in CRUD stands for Update.
+    %br/
+    %br/
+    A useful D3.js method which can Update HTML is the data() method.
+    %br/
+    %br/
+    The scenario below helps me understand the data() method.
+    %br/
+    %br/
+    I use emacs to create 4 li-elements:
+    %pre
+      %code &lt;ul id='ul0'&gt; &lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;&lt;li&gt;3&lt;/li&gt;&lt;li&gt;4&lt;/li&gt; &lt;/ul&gt;
+    Next, I create a JS array called myarray which has 4 values:
+    %pre
+      %code var myarray      = [11,22,33,44];
+    Then, I create a D3 object named li_sel0 from the 4 li-elements:
+    %pre
+      %code var li_sel0      = d3.select("ul#ul0").selectAll("li");
+    Next, I 'join' myarray with li_sel0 using the data() method like this:
+    %pre
+      %code var joined_sel0  = li_sel0.data(myarray);
+    Then, I can copy values from myarray into the li-elements like this:
+    %pre
+      %code var updated_sel0 = joined_sel0.text(function(d){return d;});
+    So, this idea of using data in myarray to 'drive' an update of 4 li-elements is a central feature of D3.js and I think of it when ever I see calls to data() in D3.js syntax.
+    %br/
+    %br/
+    In the above scenario I ensured that both the ul-element and myarray had 4 members.
+    %br/
+    %br/
+    If, however, the ul-element has 4 members and myarray has 6 members then I enter into what I
+    call the leftover data scenario.
+    %br/
+    %br/
+    Assuming I have this HTML loaded into my browser:
+    %pre
+      %code &lt;ul id='ul2'&gt; &lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;&lt;li&gt;3&lt;/li&gt;&lt;li&gt;4&lt;/li&gt; &lt;/ul&gt;
+    Here is some JS to deal with that scenario:
+    %pre
+      %code
+        :preserve
+          var urarray      = [11,22,33,44,55,66];
+              var li_sel2      = d3.select("ul#ul2").selectAll("li");
+              var joined_sel2  = li_sel2.data(urarray);    I can see that I have two leftover members: [55,66]
+    %br/
+    %br/
+    What can I do with them?
+    %br/
+    %br/
+    The two likely scenarios are:
+    %ul
+      %li Ignore them
+      %li Create li-elements from them
+    Ignoring them is easy.
+    %br/
+    %br/
+    I create li-elements from them with a three-step process:
+    %pre
+      %code
+        :preserve
+          var leftover_sel = joined_sel2.enter();
+              leftover_sel.append('li');
+              joined_sel2.text(function(d){return d;});    Notice the above call to the enter() method.
+    %br/
+    %br/
+    The enter() method, like data(), is a key feature of the D3.js API which allows data to drive the HTML.
+    %br/
+    %br/
+    When the data is static, then data() is useful.  When the data
+    is dynamic and 'enters' an array, then the array becomes mismatched with the
+    corresponding HTML.
+    %br/
+    %br/
+    I can then use the enter() method help pull the new data into the HTML.
+    %br/
+    %br/
+    Feel free to right-click Inspect-Element in your browser to step your debugger through the code hidden below:
+    %hr/
+    %ul#ul0
+      %li 1
+      %li 2
+      %li 3
+      %li 4
+    %hr/
+    %ul#ul2
+      %li 1
+      %li 2
+      %li 3
+      %li 4
+    %hr/
+    :javascript
+      var myarray      = [11,22,33,44];
+      var li_sel0      = d3.select("ul#ul0").selectAll("li");
+      var joined_sel0  = li_sel0.data(myarray);
+      var updated_sel0 = joined_sel0.text(function(d){return d;});
+      'Above, myarray and li_sel0 match cleanly';
+      var urarray      = [11,22,33,44,55,66];
+      var li_sel2      = d3.select("ul#ul2").selectAll("li");
+      var joined_sel2  = li_sel2.data(urarray);
+      'Above, urarray has leftover data.';
+      var leftover_sel = joined_sel2.enter();
+      leftover_sel.append('li');
+      // fails: leftover_sel.text(function(d){return d;});
+      // works:
+      joined_sel2.text(function(d){return d;});
+    / I create some whitespace below to help the debugger
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/

@@ -1,0 +1,70 @@
+!!!
+%html(lang="en")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %title Mixing CRUD Idea with D3.js
+    %script(src="/d3.v3.min.js")
+    :css
+      body{font-style: sans-serif; font-size: 18px;}
+  %body
+    %h1 app22/crud.html
+    I use the CRUD acronym as a start when I want to learn about a new API.
+    %ul
+      %li The C in CRUD stands for Create.
+      %li The R stands for Retrieve.
+      %li The U stands for Update.
+      %li The D stands for Delete.
+    After I can use a given API to do CRUD operations on objects,
+    then I am on a path towards understanding that API.
+    %br/
+    %br/
+    When I do CRUD with D3.js I operate on two types of things.
+    %br/
+    %br/
+    First I CRUD HTML-elements like div-elements and svg-elements.
+    Also I CRUD JavaScript objects related to the D3.js API.
+    %h2 HTML CRUD:
+    %ul
+      %li Create Method 1: Type it in via emacs
+      %li Create Method 2: D3 call to append()
+      %li Retrieve: Just Click Reload Button
+      %li Update Methods: D3 calls: append(), attr(), style(), html(), text()
+      %li Delete Methods: D3 call: remove()
+    %h2 D3.js CRUD:
+    %ul
+      %li Create Method 1: obj1 = d3.select('ul#mylist');
+      %li Create Method 2: obj2 = obj1.selectAll('li');
+      %li Retrieve: Just list the object name (useful in debugger-console): obj2;
+      %li Update Methods 1: D3 calls: append(), attr(), style(), html(), text()
+      %li Update Method 2: D3 call: obj3 = obj2.data(myarray);
+      %li Create Method 3 (left over data into obj4): obj4 = obj3.enter();
+      %li Create Method 4 (left over HTML into obj5): obj5 = obj3.exit();
+      %li Delete Methods: D3.js offers no way to Delete a D3-object.
+    %hr/
+    #crudhere
+      %p CRUD happens.
+    %hr/
+    With debugger, I step through the JS in the script-element below to see CRUD in action:
+    :javascript
+      // I start by Create of D3 selection object:                                    
+      var div_sel = d3.select('div#crudhere');
+      // Next I Create an HTML element:
+      div_sel.append('ul');
+      // More Creation:
+      var ul_sel = div_sel.select('ul');
+      li0_sel = ul_sel.append('li');
+      // Retrieve is simple but useful sometimes in debugger-console:
+      li0_sel;
+      // I Update an HTML element using D3 html() call:
+      li0_sel.html('<h1>I am Updated.</h1>')
+      h1_sel = li0_sel.select('h1');
+      // I can also Update using D3 text() call:
+      h1_sel.text('h1 has been updated by text().');
+      // The D in CRUD is Delete.
+      // I demo Delete of an HTML element after I create it:
+      li1_sel = ul_sel.append('li');
+      li1_sel.html('<h1>Delete Me.</h1>');
+      // This is a good place to stop the debugger so I see the h1-element before I delete it.
+      li1_sel.remove();
+      'done';
+    %br/
