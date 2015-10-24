@@ -74,7 +74,9 @@ The above HAML is deployed at this URL:
 
   %li
     The monthPath(t0) definition declares that monthPath() should be called with one parameter.
-    But monthPath is called with no parameters.
+    %br/
+    But in the above HAML, monthPath is called with no parameters.
+    %br/
     Is that a bug or is monthPath being called correctly?
 
   %li
@@ -82,3 +84,11 @@ The above HAML is deployed at this URL:
     %pre
       %code.javascript d3.select(self.frameElement).style("height", "2910px");
     does what?
+
+  %li
+    Usually when I call mysel.data(myarray) I understand that myarray should be an array.
+    %br/
+    When might I make a call like this:
+    %pre
+      %code.javascript mysel.data(function(d) {something})
+    ?
