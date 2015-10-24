@@ -60,10 +60,10 @@
     Here is some JS to deal with that scenario:
     %pre
       %code
-        :preserve
-          var urarray      = [11,22,33,44,55,66];
-              var li_sel2      = d3.select("ul#ul2").selectAll("li");
-              var joined_sel2  = li_sel2.data(urarray);    I can see that I have two leftover members: [55,66]
+        var urarray      = [11,22,33,44,55,66];
+        var li_sel2      = d3.select("ul#ul2").selectAll("li");
+        var joined_sel2  = li_sel2.data(urarray);
+    I can see that I have two leftover members: [55,66]
     %br/
     %br/
     What can I do with them?
@@ -79,10 +79,10 @@
     I create li-elements from them with a three-step process:
     %pre
       %code
-        :preserve
-          var leftover_sel = joined_sel2.enter();
-              leftover_sel.append('li');
-              joined_sel2.text(function(d){return d;});    Notice the above call to the enter() method.
+        var leftover_sel = joined_sel2.enter();
+        leftover_sel.append('li');
+        joined_sel2.text(function(d){return d;});
+    Notice the above call to the enter() method.
     %br/
     %br/
     The enter() method, like data(), is a key feature of the D3.js API which allows data to drive the HTML.
@@ -126,13 +126,4 @@
       // works:
       joined_sel2.text(function(d){return d;});
     / I create some whitespace below to help the debugger
-    %br/
-    %br/
-    %br/
-    %br/
-    %br/
-    %br/
-    %br/
-    %br/
-    %br/
     %br/
