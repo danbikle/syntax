@@ -49,10 +49,10 @@ The JavaScript is hidden below:
   var d3td            = d3row.selectAll('th');
   var d3td_hd         = d3td.data(row_a);
   d3td_hd.html(function(d) {return d;});
-  d3.csv("/iris.csv", function(error, csv) {
+  d3.csv("/iris.csv", function(error, csv_a) {
     if (error) throw error;
-    csv
-    csv.forEach(function(row) {
+    csv_a
+    csv_a.forEach(function(row) {
       row;
       'I should put row into array so I can join it with an D3-object';
       var row_a = [row.sepal_len];

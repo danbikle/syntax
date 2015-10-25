@@ -22,27 +22,32 @@ This is a common scenario.
 %br/
 %br/
 
-In plain English the JS code I write should generate a D3 object from each row in the CSV file.
+The list below describes some JavaScript-D3 steps I could follow to create an HTML table.
 
-%br/
-%br/
+%ul
+  %li Call d3.csv("/iris.csv") to create an array of objects named csv_a
+  %li Study the parent page and decide on a location for the table
+  %li Create a D3 object for the parent
+  %li Example: var d3table_parent = d3.select('#tr2td1');
+  %li Create the table from the parent
+  %li Example: var d3table        = d3table_parent.append('table');
+  %li Ask csv_a to drive a forEach-loop
+  %li Example: csv_a.forEach(function(row) { something; });
+  %li Inside the loop, build an array from the row-object
+  %li Example: var row_a = [row.sepal_len,row.sepal_wid];
+  %li Inside the loop, append a tr-element to the table
+  %li Example: var d3row = d3table.append('tr');
+  %li Inside the loop, append td-elements to the row
+  %li Example: row_a.forEach(function(el) {d3row.append('td');});
+  %li Join the td-elements with their data
+  %li Example: var d3td_hd = d3row.selectAll('td').data(row_a);
+  %li Fill the td-elements with their data
+  %li Example: d3td_hd.text(function(d) {return d;});
 
-Then I should join a row of data with that object.
+%h2 More discussion
 
-%br/
-%br/
-
-Next I should I should call object.append('tr') to create a row of HTML.
-
-%br/
-%br/
-
-Then I should use a nested loop to populate td-elements within that row.
-
-%br/
-%br/
-
-The code I wrote to do this is displayed below:
+An example CSV file is at this URL:
+%a(href='/iris.csv') /iris.csv
 
 %br/
 %br/
