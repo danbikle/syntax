@@ -1,17 +1,29 @@
 %h1 app/views/d3demos/d3csv_howto1.haml
 
 :javascript
-  var hello = 1.1;
   var d3table_parent = d3.select('#tr2td1');
   var d3table        = d3table_parent.append('table');
+  var d3row          = d3table.append('tr');
+  d3row.append('th');
+  d3row.append('th');
+  d3row.append('th');
+  d3row.append('th');
+  d3row.append('th');
+  var row_a          = ['sepal_len'];
+  row_a.push('sepal_wid');
+  row_a.push('petal_len');
+  row_a.push('petal_wid');
+  row_a.push('class');
+  var d3td            = d3row.selectAll('th');
+  var d3td_hd         = d3td.data(row_a);
+  d3td_hd.html(function(d) {return d;});
   d3.csv("/iris.csv", function(error, csv) {
     if (error) throw error;
     csv
     csv.forEach(function(row) {
       row;
       'I should put row into array so I can join it with an D3-object';
-      var row_a = [];
-      row_a.push(row.sepal_len);
+      var row_a = [row.sepal_len];
       row_a.push(row.sepal_wid);
       row_a.push(row.petal_len);
       row_a.push(row.petal_wid);
@@ -22,9 +34,10 @@
       // Then I should join row_a with them.
       // Then I should call .text() on each.
       row_a.forEach(function(el) {
-        d3cell = d3row.append('td');
+        d3row.append('td');
       });
-      var d3td_els = select('tr').selectAll('td');
+      // can I do this:
+      var d3td_els = d3table.select('tr').selectAll('td');
       var joined_d3td_els = d3td_els.data(row_a);
       joined_d3td_els.text(function(d) {return d;});
       'done with this row';
