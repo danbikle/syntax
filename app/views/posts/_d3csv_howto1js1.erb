@@ -1,0 +1,15 @@
+<code class='javascript'>
+var d3table_parent = d3.select('#tr2td1');
+var d3table        = d3table_parent.append('table');
+d3.csv("/iris.csv", function(error, csv_a) {
+  if (error) throw error;
+  csv_a.forEach(function(row) {
+    var d3row = d3table.append('tr');
+    var row_a = [];
+    for (key in row) {row_a.push(row[key])}
+    row_a.forEach(function(el) {d3row.append('td');});
+    var d3td_hd = d3row.selectAll('td').data(row_a);
+    d3td_hd.text(function(d) {return d;});
+  });
+});
+</code>
