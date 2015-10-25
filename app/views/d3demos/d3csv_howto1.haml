@@ -1,19 +1,18 @@
 %h1 app/views/d3demos/d3csv_howto1.haml
 
 :javascript
-  var d3table_parent = d3.select('#tr2td1');
-  var d3table        = d3table_parent.append('table');
-  var d3row          = d3table.append('tr');
-  d3row.append('th');
-  d3row.append('th');
-  d3row.append('th');
-  d3row.append('th');
-  d3row.append('th');
+  // To drive, I need data:
   var row_a          = ['sepal_len'];
   row_a.push('sepal_wid');
   row_a.push('petal_len');
   row_a.push('petal_wid');
   row_a.push('class');
+  var d3table_parent = d3.select('#tr2td1');
+  var d3table        = d3table_parent.append('table');
+  var d3row          = d3table.append('tr');
+  // Use the data to create some th-elements:
+  // for (i = 0, len = row_a.length; i < len; i++) {d3row.append('th');}
+  row_a.forEach(function(el) {d3row.append('th');});
   var d3td            = d3row.selectAll('th');
   var d3td_hd         = d3td.data(row_a);
   d3td_hd.html(function(d) {return d;});
@@ -29,17 +28,14 @@
       row_a.push(row.petal_wid);
       row_a.push(row.class);
       var d3row = d3table.append('tr');
-      // I should create 5 td elements here.
+      // I should create d3row td elements here.
       // Then I should select them.
       // Then I should join row_a with them.
       // Then I should call .text() on each.
-      row_a.forEach(function(el) {
-        d3row.append('td');
-      });
-      // can I do this:
-      var d3td_els = d3table.select('tr').selectAll('td');
-      var joined_d3td_els = d3td_els.data(row_a);
-      joined_d3td_els.text(function(d) {return d;});
+      row_a.forEach(function(el) {d3row.append('td');});
+      var d3td_sel = d3row.selectAll('td');
+      var d3td_hd = d3td_sel.data(row_a);
+      d3td_hd.text(function(d) {return d;});
       'done with this row';
     });
   });
