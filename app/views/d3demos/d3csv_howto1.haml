@@ -1,3 +1,14 @@
 %h1 app/views/d3demos/d3csv_howto1.haml
 
+:javascript
+  var hello = 1.1;
+  d3.csv("/iris.csv", function(error, csv) {
+    if (error) throw error;
+    csv
+    csv.forEach(function(row) {
+      row;
+      'I should put row into array so I can join it with an D3-object';
+      'done with this row';
+    });
+  });
 
