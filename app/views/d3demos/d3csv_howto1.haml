@@ -21,6 +21,12 @@
       // Then I should select them.
       // Then I should join row_a with them.
       // Then I should call .text() on each.
+      row_a.forEach(function(el) {
+        d3cell = d3row.append('td');
+      });
+      var d3td_els = select('tr').selectAll('td');
+      var joined_d3td_els = d3td_els.data(row_a);
+      joined_d3td_els.text(function(d) {return d;});
       'done with this row';
     });
   });
