@@ -1,0 +1,87 @@
+.q1 Question:
+.q2 In D3.js How To Build HTML Table with CSV? 
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/d3_js') d3_js
+  %a.xtag(href='/tags/d3') d3
+  %a.xtag(href='/tags/csv') csv
+  %a.xtag(href='/tags/table') table
+  %a.xtag(href='/tags/html') html
+  %a.xtag(href='/tags/foreach') foreach
+  %a.xtag(href='/tags/for') for
+  %a.xtag(href='/tags/key') key
+  %a.xtag(href='/tags/select') select
+  %a.xtag(href='/tags/selectall') selectall
+  %a.xtag(href='/tags/append') append
+  %a.xtag(href='/tags/push') push
+
+%br/
+
+I can use D3.js and a CSV file to drive creation of an HTML table.
+
+%br/
+%br/
+
+This is a common scenario.
+
+%br/
+%br/
+
+The list below describes some JavaScript-D3 steps I could follow to create an HTML table.
+
+%ul
+  %li Study the parent page and decide on a location for the table
+  %li Create a D3 object for the parent
+  %li Example: var d3table_parent = d3.select('.zebra_it');
+  %li Create the table from the parent
+  %li Example: var d3table        = d3table_parent.append('table');
+  %li Call d3.csv("/iris.csv") to create an array of objects named csv_a
+  %li Ask csv_a to drive a forEach-loop
+  %li Example: csv_a.forEach(function(row) { something; });
+  %li Inside the loop, append a tr-element to the table
+  %li Example: var d3row = d3table.append('tr');
+  %li Inside the loop, build an array from the row-object
+  %li Example1: var row_a = []; row_a.push(row.sepal_len); row_a.push(row.sepal_wid);
+  %li Example2: var row_a = []; for (key in row) {row_a.push(row[key])}
+  %li Inside the loop, append td-elements to the row
+  %li Example: row_a.forEach(function(el) {d3row.append('td');});
+  %li Join the td-elements with their data
+  %li Example: var d3td_hd = d3row.selectAll('td').data(row_a);
+  %li Fill the td-elements with their data
+  %li Example: d3td_hd.text(function(d) {return d;});
+
+An example CSV file is at this URL:
+%a(href='/iris.csv') /iris.csv
+
+%br/
+%br/
+
+The JavaScript I wrote from the above list is displayed below:
+
+%pre
+  =render 'd3csv_howto1js1'
+
+The hidden JavaScript which actually runs on this page is below this line:
+%hr/
+
+%br/
+%br/
+
+The table created from the JavaScript is displayed below:
+
+.zebra_it
+
+:javascript
+  var d3table_parent = d3.select('.zebra_it');
+  var d3table        = d3table_parent.append('table');
+  d3.csv("/iris.csv", function(error, csv_a) {
+    if (error) throw error;
+    csv_a.forEach(function(row) {
+      var d3row = d3table.append('tr');
+      var row_a = [];
+      for (key in row) {row_a.push(row[key])}
+      row_a.forEach(function(el) {d3row.append('td');});
+      var d3td_hd = d3row.selectAll('td').data(row_a);
+      d3td_hd.text(function(d) {return d;});
+    });
+  });
