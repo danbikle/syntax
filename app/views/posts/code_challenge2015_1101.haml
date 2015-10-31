@@ -123,14 +123,15 @@ Next, we learn some Emacs:
         rm -rf app25r
         git clone https://github.com/danbikle/app25r.git
         cd ~ann/app25r
-        .  ~ann/app25r/app25r.bash
+        \.  ~ann/app25r/app25r.bash
+        rm -rf   $GEM_HOME
         mkdir -p $GEM_HOME
-        /usr/bin/gem install bundler
+        \/usr/bin/gem install bundler
         $GEM_HOME/bin/bundle install
-        ~ann/app25r/bin/rake db:migrate
-        ~ann/app25r/bin/rails r ~ann/app25r/db/csv2cars.rb
-        ~ann/app25r/bin/rails s -p 3325
-        /usr/bin/curl localhost:3325|head
+        /~ann/app25r/bin/rake db:migrate
+        \~ann/app25r/bin/rails r ~ann/app25r/db/csv2cars.rb
+        \~ann/app25r/bin/rails s -p 3325
+        \/usr/bin/curl localhost:3325|head
 
 %br/
 %br/
@@ -165,27 +166,32 @@ If you want to deploy this repository to Heroku, follow this recipe:
         heroku keys:add
 
   %li
-    I used heroku-client to create a blank app named sjc408 at herokuapp.com
+    I used heroku-client to create a blank app named rails411 at herokuapp.com
     %pre
       %code.bash
-        cd ~ann/app22
-        heroku create sjc408
+        cd ~ann/app25r
+        \~ann/heroku-client/bin/heroku create rails411
 
   %li
-    git-push ~ann/app22 to heroku
+    git-push ~ann/app25r to heroku
     %pre
       %code.bash
-        cd ~ann/app22
+        cd ~ann/app25r
         git add .
-        git commit -am hellodojo
+        git commit -am rails
         git push heroku master
     
   %li
-    I saw ~ann/app22 deployed at 
-    %a(href='https://sjc408.herokuapp.com' target='w')
-      https://sjc408.herokuapp.com
+    Setup the database on heroku for my Rails app there:
+    %pre
+      %code.bash
+        \~ann/heroku-client/bin/heroku run rake db:migrate
+        \~ann/heroku-client/bin/heroku run bin/rails r db/csv2cars.rb
 
-=render 'code_challenge2015_1024c10'
+  %li
+    I saw ~ann/app25r deployed at 
+    %a(href='https://rails411.herokuapp.com' target='w')
+      https://rails411.herokuapp.com
 
 
 %hr/
