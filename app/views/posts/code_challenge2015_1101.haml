@@ -117,6 +117,18 @@ Next, we learn some Emacs:
 %ul
   %li
     Start work on an app:
+    %pre
+      %code.bash
+        cd ~ann
+        rm -rf app25r
+        git clone https://github.com/danbikle/app25r.git
+        cd ~ann/app25r
+        .  ~ann/app25r/app25r.bash
+        mkdir -p $GEM_HOME
+        /usr/bin/gem install bundler
+        $GEM_HOME/bin/bundle install
+        ~ann/app25r/bin/rake db:migrate
+        ~ann/app25r/bin/rails r ~ann/app25r/db/csv2cars.rb
 
 %br/
 %br/
