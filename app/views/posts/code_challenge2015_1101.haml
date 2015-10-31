@@ -1,0 +1,500 @@
+.q1 Question:
+.q2 What is 2015_1101 Code Challenge?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/npm') npm
+  %a.xtag(href='/tags/nodejs') nodejs
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/heroku') heroku
+  %a.xtag(href='/tags/javascript') javascript
+  %a.xtag(href='/tags/coffeescript') coffeescript
+  %a.xtag(href='/tags/useradd') useradd
+  %a.xtag(href='/tags/passwd') passwd
+  %a.xtag(href='/tags/git') git
+  %a.xtag(href='/tags/procfile') procfile
+  %a.xtag(href='/tags/node') node
+  %a.xtag(href='/tags/gitignore') gitignore
+  %a.xtag(href='/tags/toolbelt') toolbelt
+  %a.xtag(href='/tags/code_challenge') code_challenge
+  %a.xtag(href='/tags/bikle101') bikle101
+  %a.xtag(href='/tags/emacs') emacs
+  %a.xtag(href='/tags/buffer_menu') buffer_menu
+  %a.xtag(href='/tags/ssh') ssh
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/id_rsa') id_rsa
+  %a.xtag(href='/tags/alert') alert
+  %a.xtag(href='/tags/herokuapp') herokuapp
+  %a.xtag(href='/tags/cedar') cedar
+  %a.xtag(href='/tags/curl') curl
+  %a.xtag(href='/tags/heroku_client') heroku_client
+  %a.xtag(href='/tags/wget') wget
+  %a.xtag(href='/tags/coffee') coffee
+  %a.xtag(href='/tags/console_log') console_log
+  %a.xtag(href='/tags/dired') dired
+  %a.xtag(href='/tags/global_set_key') global_set_key
+  %a.xtag(href='/tags/lisp') lisp
+  %a.xtag(href='/tags/d3') d3
+  %a.xtag(href='/tags/select') select
+  %a.xtag(href='/tags/queryselector') queryselector
+  %a.xtag(href='/tags/gem') gem
+  %a.xtag(href='/tags/haml') haml
+  %a.xtag(href='/tags/rails411') rails411
+  %a.xtag(href='/tags/app25r') app25r
+
+%br/
+
+The 2015_1101 Code Challenge is a learning exercise for students attending Dan's Linux JavaScript Class at 3pm on 2015-11-01 at Hacker Dojo:
+
+%br/
+%br/
+
+%a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225904599/' target='x')
+  http://www.meetup.com/Dans-Linux-JavaScript-Class/events/225904599/
+
+%br/
+%br/
+
+We start with three tasks: Install Ubuntu, enhance it, and create account named ann:
+
+%ul
+  %li Install Ubuntu 14.04.3 on your laptop
+  %li
+    Useful:
+    %a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso' target='w')
+      http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso
+
+  %li
+    Useful:
+    %a(href='https://www.virtualbox.org/wiki/Downloads' target='w')
+      https://www.virtualbox.org/wiki/Downloads
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox' target='w')
+      http://www.google.com/search?q=How+to+install+virtualbox    
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox+additions' target='w')
+      How to install virtualbox guest additions
+    %br/
+    %a(href='/posts/virtualbox_why_tiny') virtualbox_why_tiny
+
+  %li
+    Enhance Ubuntu:
+    %pre
+      =render 'code_challenge2015_09121'
+
+  %li
+    Create account named ann:
+    %pre
+      %code.bash
+        useradd ann -m -s /bin/bash
+        passwd ann
+        ssh -YA ann@localhost
+
+Next, we learn some Emacs:
+
+=render 'code_challenge2015_0919e'
+
+%br/
+%br/
+
+/ Install node.js
+=render 'code_challenge2015_0919n'
+
+%ul
+  %li
+    Start work on an app:
+    %pre
+      %code.bash
+        cd ~ann
+        rm -rf app25r
+        git clone https://github.com/danbikle/app25r.git
+        cd ~ann/app25r
+        \.  ~ann/app25r/app25r.bash
+        rm -rf   $GEM_HOME
+        mkdir -p $GEM_HOME
+        \/usr/bin/gem install bundler
+        $GEM_HOME/bin/bundle install
+        /~ann/app25r/bin/rake db:migrate
+        \~ann/app25r/bin/rails r ~ann/app25r/db/csv2cars.rb
+        \~ann/app25r/bin/rails s -p 3325
+        \/usr/bin/curl localhost:3325|head
+
+%br/
+%br/
+
+If you want to deploy this repository to Heroku, follow this recipe:
+%ul
+  %li Create an account at heroku.com website
+
+  %li
+    Download/Install Heroku client
+    %pre
+      %code.bash
+        cd ~ann
+        wget https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
+        tar zxf heroku-client.tgz
+        echo 'export PATH=/home/ann/heroku-client/bin:${PATH}' >> ~ann/.bashrc
+        echo  export PATH=/home/ann/heroku-client/bin:${PATH}
+
+  %li
+    I created ssh-key for ann account (assuming ann has none yet):
+    %pre
+      =render 'code_challenge2015_0919s'
+
+  %li
+    I used heroku-client to "login" my shell.
+    I gave a copy of ann public ssh-key to heroku:
+    %pre
+      %code.bash
+        heroku status
+        heroku auth:login
+        heroku auth:whoami
+        heroku keys:add
+
+  %li
+    I used heroku-client to create a blank app named rails411 at herokuapp.com
+    %pre
+      %code.bash
+        cd ~ann/app25r
+        \~ann/heroku-client/bin/heroku create rails411
+
+  %li
+    git-push ~ann/app25r to heroku
+    %pre
+      %code.bash
+        cd ~ann/app25r
+        git add .
+        git commit -am rails
+        git push heroku master
+    
+  %li
+    Setup the database on heroku for my Rails app there:
+    %pre
+      %code.bash
+        \~ann/heroku-client/bin/heroku run rake db:migrate
+        \~ann/heroku-client/bin/heroku run bin/rails r db/csv2cars.rb
+
+  %li
+    I saw ~ann/app25r deployed at 
+    %a(href='https://rails411.herokuapp.com' target='w')
+      https://rails411.herokuapp.com
+
+%hr/
+%h1 Questions
+
+%a(href='http://www.google.com/search?q=Do+I+need+an+ssh-key+to+clone+a+Git+repository?' target='x')
+  http://www.google.com/search?q=Do+I+need+an+ssh-key+to+clone+a+Git+repository?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=What+kind+of+files+reside+in+GEM_HOME?' target='x')
+  http://www.google.com/search?q=What+kind+of+files+reside+in+GEM_HOME?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=Which+shell+command(s)+place+files+in+GEM_HOME?' target='x')
+  http://www.google.com/search?q=Which+shell+command(s)+place+files+in+GEM_HOME?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=Does+Node.js+have+a+folder+like+GEM_HOME?' target='x')
+  http://www.google.com/search?q=Does+Node.js+have+a+folder+like+GEM_HOME?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=What+is+the+intent+behind+using+GEM_HOME?' target='x')
+  http://www.google.com/search?q=What+is+the+intent+behind+using+GEM_HOME?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=What+is+bundler?' target='x')
+  http://www.google.com/search?q=What+is+bundler?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=What+does+bundle+install+do?' target='x')
+  http://www.google.com/search?q=What+does+bundle+install+do?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=Which+file+does+bundle+depend+upon?' target='x')
+  http://www.google.com/search?q=Which+file+does+bundle+depend+upon?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=Does+Node.js+have+a+command+like+the+bundle+command?' target='x')
+  http://www.google.com/search?q=Does+Node.js+have+a+command+like+the+bundle+command?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=Does+Node.js+have+a+command+like+the+gem+command?' target='x')
+  http://www.google.com/search?q=Does+Node.js+have+a+command+like+the+gem+command?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=How+to+create+a+new+Node.js+app?' target='x')
+  http://www.google.com/search?q=How+to+create+a+new+Node.js+app?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=How+to+create+a+new+Rails+app?' target='x')
+  http://www.google.com/search?q=How+to+create+a+new+Rails+app?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=Rails+uses+which+languages?' target='x')
+  http://www.google.com/search?q=Rails+uses+which+languages?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=Which+folders+do+I+see+in+a+Rails+app?' target='x')
+  http://www.google.com/search?q=Which+folders+do+I+see+in+a+Rails+app?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=Does+a+Rails+App+depend+on+Node.js?' target='x')
+  http://www.google.com/search?q=Does+a+Rails+App+depend+on+Node.js?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+what+does+the+rake+command+do?' target='x')
+  http://www.google.com/search?q=In+Rails+what+does+the+rake+command+do?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+what+does+rake+db:migrate+do?' target='x')
+  http://www.google.com/search?q=In+Rails+what+does+rake+db:migrate+do?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+specify+a+database+for+the+app?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+specify+a+database+for+the+app?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Ubuntu+how+to+CRUD+a+sqlite3+database?' target='x')
+  http://www.google.com/search?q=In+Ubuntu+how+to+CRUD+a+sqlite3+database?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Ubuntu+how+to+CRUD+a+Postgres+database?' target='x')
+  http://www.google.com/search?q=In+Ubuntu+how+to+CRUD+a+Postgres+database?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=On+my+laptop+should+I+use+sqlite3+or+Postgres?' target='x')
+  http://www.google.com/search?q=On+my+laptop+should+I+use+sqlite3+or+Postgres?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+CRUD+a+table+in+the+app-database?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+CRUD+a+table+in+the+app-database?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+CRUD+a+row+in+a+database+table?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+CRUD+a+row+in+a+database+table?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+copy+a+CSV+file+into+a+database+table?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+copy+a+CSV+file+into+a+database+table?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=What+kind+of+webserver+does+Rails+use?' target='x')
+  http://www.google.com/search?q=What+kind+of+webserver+does+Rails+use?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=How+to+install+the+webserver+used+by+Rails?' target='x')
+  http://www.google.com/search?q=How+to+install+the+webserver+used+by+Rails?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=How+to+start+the+webserver+used+by+Rails?' target='x')
+  http://www.google.com/search?q=How+to+start+the+webserver+used+by+Rails?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=How+to+see+status+of+webserver+used+by+Rails?' target='x')
+  http://www.google.com/search?q=How+to+see+status+of+webserver+used+by+Rails?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+what+is+a+Route?' target='x')
+  http://www.google.com/search?q=In+Rails+what+is+a+Route?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+CRUD+routes?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+CRUD+routes?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+routing+what+is+a+path?' target='x')
+  http://www.google.com/search?q=In+Rails+routing+what+is+a+path?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+routing+what+is+a+parameter?' target='x')
+  http://www.google.com/search?q=In+Rails+routing+what+is+a+parameter?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+what+is+a+controller?' target='x')
+  http://www.google.com/search?q=In+Rails+what+is+a+controller?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+routing+what+is+a+controller?' target='x')
+  http://www.google.com/search?q=In+Rails+routing+what+is+a+controller?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+routing+what+is+an+action?' target='x')
+  http://www.google.com/search?q=In+Rails+routing+what+is+an+action?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+CRUD+controllers?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+CRUD+controllers?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+copy+data+from+browser+into+controller?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+copy+data+from+browser+into+controller?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+copy+data+from+controller+into+browser?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+copy+data+from+controller+into+browser?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+what+is+a+view?' target='x')
+  http://www.google.com/search?q=In+Rails+what+is+a+view?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=Which+languages+can+I+build+a+Rails+View+from?' target='x')
+  http://www.google.com/search?q=Which+languages+can+I+build+a+Rails+View+from?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+CRUD+views?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+CRUD+views?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+copy+data+from+browser+into+View?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+copy+data+from+browser+into+View?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+copy+data+from+View+into+browser?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+copy+data+from+View+into+browser?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+copy+data+between+controller+and+View?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+copy+data+between+controller+and+View?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+what+is+a+Model?' target='x')
+  http://www.google.com/search?q=In+Rails+what+is+a+Model?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+CRUD+Models?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+CRUD+Models?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+copy+data+between+Model+and+database?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+copy+data+between+Model+and+database?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+copy+data+between+Model,+controller,+and+view?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+copy+data+between+Model,+controller,+and+view?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+serve+JavaScript+to+browser?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+serve+JavaScript+to+browser?
+%br/
+%br/
+
+
+%a(href='http://www.google.com/search?q=In+Rails+how+to+serve+JSON+to+browser?' target='x')
+  http://www.google.com/search?q=In+Rails+how+to+serve+JSON+to+browser?
+
+%br/
+%br/
+
+%a(href='http://www.google.com/search?q=In+D3.js+how+to+use+Rails+as+API+server?' target='x')
+  http://www.google.com/search?q=In+D3.js+how+to+use+Rails+as+API+server?
+
+
+%hr/
+
+That could be considered an adequate code challenge for a two hour Meetup.
+%br/
+%br/
+If you have questions, e-me:
+%br/
+%br/
+bikle101@gmail.com
+%br/
+%br/
+
