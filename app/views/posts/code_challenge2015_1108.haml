@@ -167,13 +167,6 @@ If you want to deploy this repository to Heroku, follow this recipe:
         git push heroku master
     
   %li
-    Setup the database on heroku for my Rails app there:
-    %pre
-      %code.bash
-        \~ann/heroku-client/bin/heroku run rake db:migrate
-        \~ann/heroku-client/bin/heroku run bin/rails r db/csv2cars.rb
-
-  %li
     I saw ~ann/app26r deployed at 
     %a(href='https://d1d2.herokuapp.com' target='w')
       https://d1d2.herokuapp.com
@@ -206,6 +199,22 @@ If you want to deploy this repository to Heroku, follow this recipe:
     If I use view-source in my browser I can see the JavaScript which builds the charts,
     where do I find that JavaScript in the Rails app?
 
+  %li
+    Bostock shows how create a histogram here:
+    %a(href='http://bl.ocks.org/mbostock/3048450' target='x')
+      http://bl.ocks.org/mbostock/3048450
+    Does app26r do it the same way or does app26r do something fundamentally different?
+
+  %li
+    D3.js has this API call d3.layout.histogram().  What does it create exactly?
+    Does it create data? Does it create a chart? Does it create data and a chart?
+
+  %li
+    About this API call d3.layout.histogram(),
+    What does it take as an input?
+
+  %li
+    Compare and contrast app25r and app26r.
 
 %hr/
 
