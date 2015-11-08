@@ -1,0 +1,230 @@
+.q1 Question:
+.q2 What is 2015_1108 Code Challenge?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/npm') npm
+  %a.xtag(href='/tags/nodejs') nodejs
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/heroku') heroku
+  %a.xtag(href='/tags/javascript') javascript
+  %a.xtag(href='/tags/coffeescript') coffeescript
+  %a.xtag(href='/tags/useradd') useradd
+  %a.xtag(href='/tags/passwd') passwd
+  %a.xtag(href='/tags/git') git
+  %a.xtag(href='/tags/procfile') procfile
+  %a.xtag(href='/tags/node') node
+  %a.xtag(href='/tags/gitignore') gitignore
+  %a.xtag(href='/tags/toolbelt') toolbelt
+  %a.xtag(href='/tags/code_challenge') code_challenge
+  %a.xtag(href='/tags/bikle101') bikle101
+  %a.xtag(href='/tags/emacs') emacs
+  %a.xtag(href='/tags/buffer_menu') buffer_menu
+  %a.xtag(href='/tags/ssh') ssh
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/id_rsa') id_rsa
+  %a.xtag(href='/tags/alert') alert
+  %a.xtag(href='/tags/herokuapp') herokuapp
+  %a.xtag(href='/tags/cedar') cedar
+  %a.xtag(href='/tags/curl') curl
+  %a.xtag(href='/tags/heroku_client') heroku_client
+  %a.xtag(href='/tags/wget') wget
+  %a.xtag(href='/tags/coffee') coffee
+  %a.xtag(href='/tags/console_log') console_log
+  %a.xtag(href='/tags/dired') dired
+  %a.xtag(href='/tags/global_set_key') global_set_key
+  %a.xtag(href='/tags/lisp') lisp
+  %a.xtag(href='/tags/d3') d3
+  %a.xtag(href='/tags/select') select
+  %a.xtag(href='/tags/queryselector') queryselector
+  %a.xtag(href='/tags/gem') gem
+  %a.xtag(href='/tags/haml') haml
+  %a.xtag(href='/tags/app26r') app26r
+  %a.xtag(href='/tags/d1d2') d1d2
+
+%br/
+
+The 2015_1108 Code Challenge is a learning exercise for students attending Dan's Linux JavaScript Class at 3pm on 2015-11-01 at Hacker Dojo:
+
+%br/
+%br/
+
+%a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/226495833/' target='x')
+  http://www.meetup.com/Dans-Linux-JavaScript-Class/events/226495833/
+
+%br/
+%br/
+
+We start with three tasks: Install Ubuntu, enhance it, and create account named ann:
+
+%ul
+  %li Install Ubuntu 14.04.3 on your laptop
+  %li
+    Useful:
+    %a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso' target='w')
+      http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso
+
+  %li
+    Useful:
+    %a(href='https://www.virtualbox.org/wiki/Downloads' target='w')
+      https://www.virtualbox.org/wiki/Downloads
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox' target='w')
+      http://www.google.com/search?q=How+to+install+virtualbox    
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox+additions' target='w')
+      How to install virtualbox guest additions
+    %br/
+    %a(href='/posts/virtualbox_why_tiny') virtualbox_why_tiny
+
+  %li
+    Enhance Ubuntu:
+    %pre
+      =render 'code_challenge2015_09121'
+
+  %li
+    Create account named ann:
+    %pre
+      %code.bash
+        useradd ann -m -s /bin/bash
+        passwd ann
+        ssh -YA ann@localhost
+
+Next, we learn some Emacs:
+
+=render 'code_challenge2015_0919e'
+
+%br/
+%br/
+
+/ Install node.js
+=render 'code_challenge2015_0919n'
+
+%ul
+  %li
+    Start work on an app:
+    %pre
+      %code.bash
+        cd ~ann
+        echo 'gem: --no-ri --no-rdoc' >> ~ann/.gemrc
+        rm -rf app26r
+        git clone https://github.com/danbikle/app26r.git
+        cd ~ann/app26r
+        \.  ~ann/app26r/app26r.bash
+        rm -rf   $GEM_HOME
+        mkdir -p $GEM_HOME
+        \/usr/bin/gem install bundler
+        $GEM_HOME/bin/bundle install
+        \~ann/app26r/bin/rails s -p 3326
+        \/usr/bin/curl localhost:3326|head
+
+%br/
+%br/
+
+If you want to deploy this repository to Heroku, follow this recipe:
+%ul
+  %li Create an account at heroku.com website
+
+  %li
+    Download/Install Heroku client
+    %pre
+      %code.bash
+        cd ~ann
+        wget https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
+        tar zxf heroku-client.tgz
+        echo 'export PATH=/home/ann/heroku-client/bin:${PATH}' >> ~ann/.bashrc
+        echo  export PATH=/home/ann/heroku-client/bin:${PATH}
+
+  %li
+    I created ssh-key for ann account (assuming ann has none yet):
+    %pre
+      =render 'code_challenge2015_0919s'
+
+  %li
+    I used heroku-client to "login" my shell.
+    I gave a copy of ann public ssh-key to heroku:
+    %pre
+      %code.bash
+        heroku status
+        heroku auth:login
+        heroku auth:whoami
+        heroku keys:add
+
+  %li
+    I used heroku-client to create a blank app named d1d2 at herokuapp.com
+    %pre
+      %code.bash
+        cd ~ann/app26r
+        \~ann/heroku-client/bin/heroku create d1d2
+
+  %li
+    git-push ~ann/app26r to heroku
+    %pre
+      %code.bash
+        cd ~ann/app26r
+        git add .
+        git commit -am rails
+        git push heroku master
+    
+  %li
+    I saw ~ann/app26r deployed at 
+    %a(href='https://d1d2.herokuapp.com' target='w')
+      https://d1d2.herokuapp.com
+
+%hr/
+%h1 Questions
+
+%ul
+  %li
+    Look at 
+    %a(href='https://d1d2.herokuapp.com' target='x')
+      https://d1d2.herokuapp.com
+    and answer what is a histogram?
+
+  %li
+    What kind of questions can a histogram answer?
+
+  %li
+    The blue histogram describes a collection of observations,
+    how are the observations collected?
+
+  %li
+    The blue histogram can show the number of observations where day1 gained between +3% and +4%.
+    How many of those observations can you count?
+
+  %li
+    If day1 gains -2.0% would you expect day2 to gain more than the median?
+
+  %li
+    If I use view-source in my browser I can see the JavaScript which builds the charts,
+    where do I find that JavaScript in the Rails app?
+
+  %li
+    Bostock shows how create a histogram here:
+    %a(href='http://bl.ocks.org/mbostock/3048450' target='x')
+      http://bl.ocks.org/mbostock/3048450
+    Does app26r do it the same way or does app26r do something fundamentally different?
+
+  %li
+    D3.js has this API call d3.layout.histogram().  What does it create exactly?
+    Does it create data? Does it create a chart? Does it create data and a chart?
+
+  %li
+    About this API call d3.layout.histogram(),
+    What does it take as an input?
+
+  %li
+    Compare and contrast app25r and app26r.
+
+%hr/
+
+That could be considered an adequate code challenge for a two hour Meetup.
+%br/
+%br/
+If you have questions, e-me:
+%br/
+%br/
+bikle101@gmail.com
+%br/
+%br/
+
