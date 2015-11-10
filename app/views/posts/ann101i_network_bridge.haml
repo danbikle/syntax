@@ -1,0 +1,183 @@
+.q1 Question:
+.q2 How to Setup ann101i Network Bridge?
+.tags
+  %span.tagtag Tags:
+  .tag ann101i
+  .tag virtualbox
+  .tag network_bridge
+%br/
+
+I can download ann101i from this URL:
+
+%br/
+%br/
+
+%a(href='https://s3-us-west-1.amazonaws.com/ann101bucket/ann101i.ova' target='x')
+  https://s3-us-west-1.amazonaws.com/ann101bucket/ann101i.ova
+
+
+%br/
+%br/
+
+I collected some screen shots as I started it up on my laptop.
+
+%br/
+%br/
+%img(src='/images/ann101i/ann10.png')/
+
+%br/
+%br/
+%img(src='/images/ann101i/ann11.png')/
+
+%br/
+%br/
+This image gets to the heart of the matter:
+
+%br/
+%br/
+
+%img(src='/images/ann101i/ann12.png')/
+
+%br/
+%br/
+
+I want to connect ann101i to the internet
+
+%br/
+%br/
+
+To do this I form this picture in my mind:
+
+%br/
+%br/
+
+ann101i -> myLaptop -> Internet
+
+%br/
+%br/
+
+The above ASCII art tells me I need to configure two connections.
+
+%br/
+%br/
+
+%img(src='/images/ann101i/ann13.png')/
+
+%br/
+%br/
+
+The first connection is easy to setup.
+%br/
+%br/
+
+I click open tab2 which is called Adapter2.
+
+%br/
+%br/
+
+Then I click two checkboxes: Enable Network Adapter and Cable Connected.
+
+%br/
+%br/
+
+The second connection requires that I know how my laptop is connected to the internet.
+
+%br/
+%br/
+
+My laptop is usually connected via ethernet cable or WIFI.
+
+%br/
+%br/
+
+On this particular laptop ethernet cable corresponds to 'eth9'.
+
+%br/
+%br/
+
+Sometimes it is other names like eth0 or eth1.
+
+%br/
+%br/
+
+If my laptop is connected to internet via WIFI, then the connection might be called something like: wlan0
+
+%br/
+%br/
+
+On a Mac, the connections might be called ...
+en1: WiFi (airport) or en0: Ethernet
+
+
+%br/
+%br/
+
+%img(src='/images/ann101i/ann14.png')/
+
+%br/
+%br/
+
+So that should setup the second part of the network bridge.
+
+%br/
+%br/
+
+Next, I should be able to start ann101i and it should then be connected to the internet.
+
+%br/
+%br/
+%img(src='/images/ann101i/ann15.png')/
+
+%br/
+%br/
+
+The password for both the ann account and the root account is the single letter: 'a'.
+
+%br/
+%br/
+
+%img(src='/images/ann101i/ann16.png')/
+
+%br/
+%br/
+%img(src='/images/ann101i/ann17.png')/
+
+%br/
+%br/
+%img(src='/images/ann101i/ann18.png')/
+
+%br/
+%br/
+%img(src='/images/ann101i/ann19.png')/
+
+%br/
+%br/
+%img(src='/images/ann101i/ann20.png')/
+
+%br/
+%br/
+%img(src='/images/ann101i/ann21.png')/
+
+%br/
+%br/
+%img(src='/images/ann101i/ann22.png')/
+
+%br/
+%br/
+%img(src='/images/ann101i/ann23.png')/
+
+%br/
+%br/
+%img(src='/images/ann101i/ann24.png')/
+
+%br/
+%br/
+%img(src='/images/ann101i/ann25.png')/
+
+%br/
+%br/
+
+The above images were useful to a student who needed to install ann101i into VirtualBox on a Mac.
+
+%br/
+%br/
