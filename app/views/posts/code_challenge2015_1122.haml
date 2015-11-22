@@ -1,0 +1,265 @@
+.q1 Question:
+.q2 What is 2015_1122 Code Challenge?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/npm') npm
+  %a.xtag(href='/tags/nodejs') nodejs
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/heroku') heroku
+  %a.xtag(href='/tags/javascript') javascript
+  %a.xtag(href='/tags/useradd') useradd
+  %a.xtag(href='/tags/passwd') passwd
+  %a.xtag(href='/tags/git') git
+  %a.xtag(href='/tags/procfile') procfile
+  %a.xtag(href='/tags/node') node
+  %a.xtag(href='/tags/gitignore') gitignore
+  %a.xtag(href='/tags/toolbelt') toolbelt
+  %a.xtag(href='/tags/code_challenge') code_challenge
+  %a.xtag(href='/tags/bikle101') bikle101
+  %a.xtag(href='/tags/ssh') ssh
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/id_rsa') id_rsa
+  %a.xtag(href='/tags/alert') alert
+  %a.xtag(href='/tags/herokuapp') herokuapp
+  %a.xtag(href='/tags/curl') curl
+  %a.xtag(href='/tags/heroku_client') heroku_client
+  %a.xtag(href='/tags/wget') wget
+  %a.xtag(href='/tags/console_log') console_log
+  %a.xtag(href='/tags/d3') d3
+  %a.xtag(href='/tags/select') select
+  .tag app28
+
+%br/
+
+The 2015_1122 Code Challenge is a learning exercise for students attending Dan's Linux JavaScript Class at 3pm on 2015-11-01 at Hacker Dojo:
+
+%br/
+%br/
+
+
+%a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/' target='x')
+  http://www.meetup.com/Dans-Linux-JavaScript-Class/
+
+%br/
+%br/
+
+We start with three tasks: Install Ubuntu, enhance it, and create account named ann:
+
+%ul
+  %li Install Ubuntu 14.04.3 on your laptop
+  %li
+    Useful:
+    %a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso' target='w')
+      http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso
+
+  %li
+    Useful:
+    %a(href='https://www.virtualbox.org/wiki/Downloads' target='w')
+      https://www.virtualbox.org/wiki/Downloads
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox' target='w')
+      http://www.google.com/search?q=How+to+install+virtualbox    
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox+additions' target='w')
+      How to install virtualbox guest additions
+    %br/
+    %a(href='/posts/virtualbox_why_tiny') virtualbox_why_tiny
+
+  %li
+    Enhance Ubuntu:
+    %pre
+      =render 'code_challenge2015_09121'
+
+  %li
+    Create account named ann:
+    %pre
+      %code.bash
+        useradd ann -m -s /bin/bash
+        passwd ann
+        ssh -YA ann@localhost
+%br/
+%br/
+
+/ Install node.js
+=render 'code_challenge2015_0919n'
+
+%ul
+  %li
+    Start work on an app:
+    %pre
+      %code.bash
+        cd ~ann
+        rm -rf app28
+        git clone https://github.com/danbikle/app28.git
+        cd ~ann/app28
+        \.  ~ann/app28/app28env.bash
+
+%br/
+%br/
+
+If you want to deploy this repository to Heroku, follow this recipe:
+%ul
+  %li Create an account at heroku.com website
+
+  %li
+    Download/Install Heroku client
+    %pre
+      %code.bash
+        cd ~ann
+        wget https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
+        tar zxf heroku-client.tgz
+        echo 'export PATH=/home/ann/heroku-client/bin:${PATH}' >> ~ann/.bashrc
+        echo  export PATH=/home/ann/heroku-client/bin:${PATH}
+
+  %li
+    I created ssh-key for ann account (assuming ann has none yet):
+    %pre
+      =render 'code_challenge2015_0919s'
+
+  %li
+    I used heroku-client to "login" my shell.
+    I gave a copy of ann public ssh-key to heroku:
+    %pre
+      %code.bash
+        heroku status
+        heroku auth:login
+        heroku auth:whoami
+        heroku keys:add
+
+  %li
+    I used heroku-client to create a blank app named app28 at herokuapp.com
+    %pre
+      %code.bash
+        cd ~ann/app28
+        \~ann/heroku-client/bin/heroku create app28
+
+  %li
+    git-push ~ann/app28 to heroku
+    %pre
+      %code.bash
+        cd ~ann/app28
+        git add .
+        git commit -am hello
+        git push heroku master
+    
+  %li
+    I saw ~ann/app28 deployed at 
+    %a(href='https://app28.herokuapp.com' target='w')
+      https://app28.herokuapp.com
+
+%hr/
+%h1 Questions
+
+%ul
+  %li
+    Which javascript libraries do I need to run the React demos?
+
+  %li
+    What does browser.js do?
+
+  %li
+    The syntax: ReactDOM.render(p1, p2); is what kind of syntax?
+
+  %li
+    Is p1 usually a string?
+
+  %li
+    Is p2 a JavaScript call?
+
+  %li
+    What are 2 ways I can use jQuery to simulate the React-Hello-World demo?
+
+  %li
+    What are 2 ways I can use D3.js to simulate the React-Hello-World demo?
+
+  %li
+    When I call ReactDOM.render(p1, p2), which React-call can I make to create p1?
+
+  %li
+    When I call React.createClass(p3), how might I create p3?
+
+  %li
+    What is a property of p3 which I might set?
+
+  %li
+    When I call React.createClass(p3) can it place HTML in the DOM for me?
+
+  %li
+    When I call React.createClass(p3) what is the name of the object which gets created?
+
+  %li
+    Suppose I create DanDiv from React.createClass(p4). How do I nest DanDiv inside a later call to React.createClass(p5)?
+
+  %li
+    Suppose I create DanDiv from React.createClass(p4) and place DanDiv inside of BigDiv, what phrase describes what I am doing?
+
+  %li
+    Whats the difference between an HTML component and a component?
+
+  %li
+    How can a child component get data from a parent component?
+
+  %li
+    In JS I can pass a paramter to a function call by placing the parameter inside parenthesis.  In JSX how to pass a parameter to a component call?
+
+  %li
+    In JS when I define a function I can specify that it take a parameter and then I can get the value of the parameter later.  When I define a component, How do I define a parameter in a component definition and how do I get a value out of each parameter later?
+
+  %li
+    When I define a simple component which can accept a text-node as a parameter, how do I refer to the value of the text-node?
+
+  %li
+    When I define a simple component which can accept an href-attribute as a parameter, how do I refer to the value of the href-attribute?
+
+  %li
+    How to serve the marked.js lib to my browser?
+
+  %li
+    How to assume a string is in markedown format and then convert the markedown syntax into HTML?
+
+  %li
+    Will React allow me to render HTML I get from a call to marked()?
+
+  %li
+    What does it mean to 'sanitize' HTML?
+
+  %li
+    What kind of syntax is inside un-sanitary HTML?
+
+  %li
+    How to install React Developer Tools in Firefox?
+
+  %li
+    How to use React Developer Tools in Firefox?
+
+  %li
+    How to use inspect a component using React Developer Tools in Firefox?
+
+  %li
+    How to pass an array of data to a component?
+
+  %li
+    Look at demo20.html and describe how mydata flows to urdata.
+
+  %li
+    How does a component get data?
+
+  %li
+    How does a component set data?
+
+  %li
+    Can JSX syntax 'see' an array which was set via JavaScript earlier?
+
+%hr/
+
+That could be considered an adequate code challenge for a two hour Meetup.
+%br/
+%br/
+If you have questions, e-me:
+%br/
+%br/
+bikle101@gmail.com
+%br/
+%br/
+
