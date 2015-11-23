@@ -150,155 +150,155 @@ If you want to deploy this repository to Heroku, follow this recipe:
 %h1 Questions
 
 %ul
-    %li
-      Which javascript libraries do I need to run the React demos?
-    %li
-      a: react.js, react-dom.js, browser.js
+  %li
+    Which javascript libraries do I need to run the React demos?
+  %li
+    a: react.js, react-dom.js, browser.js
 
-    %li
-      What does browser.js do?
-    %li
-      a: I think it supports babel,jsx
+  %li
+    What does browser.js do?
+  %li
+    a: I think it supports babel,jsx
 
-    %li
-      The syntax: ReactDOM.render(p1, p2); is what kind of syntax?
-    %li
-      a: babel, jsx
+  %li
+    The syntax: ReactDOM.render(p1, p2); is what kind of syntax?
+  %li
+    a: babel, jsx
 
-    %li
-      Is p1 usually a string?
-    %li
-      a: no it is a component.
+  %li
+    Is p1 usually a string?
+  %li
+    a: no it is a component.
 
-    %li
-      Is p2 a JavaScript call?
-    %li
-      a: yes!
+  %li
+    Is p2 a JavaScript call?
+  %li
+    a: yes!
 
-    %li
-      What are 2 ways I can use jQuery to simulate the React-Hello-World demo?
-    %li
-      a: html in a string
-      a: clear and append where I do this to append:
-      jQuery('<h1/>', {text:jmsg2}).appendTo('#jquery_example2');
-      
-    %li
-      What are 2 ways I can use D3.js to simulate the React-Hello-World demo?
-    %li
-      a: like jquery see demo11.html
+  %li
+    What are 2 ways I can use jQuery to simulate the React-Hello-World demo?
+  %li
+    a: html in a string
+    a: clear and append where I do this to append:
+    jQuery('&lt;h1/>', {text:jmsg2}).appendTo('#jquery_example2');
+    
+  %li
+    What are 2 ways I can use D3.js to simulate the React-Hello-World demo?
+  %li
+    a: like jquery see demo11.html
 
-    %li
-      When I call ReactDOM.render(p1, p2), which React-call can I make to create p1?
-    %li
-      a: React.createClass(), see demo12.html
+  %li
+    When I call ReactDOM.render(p1, p2), which React-call can I make to create p1?
+  %li
+    a: React.createClass(), see demo12.html
 
-    %li
-      When I call React.createClass(p3), how might I create p3?
-    %li
-      I create an object which has a property called render 
-      which points to function which returns a component.
+  %li
+    When I call React.createClass(p3), how might I create p3?
+  %li
+    I create an object which has a property called render 
+    which points to function which returns a component.
 
-    %li
-      What is a property of p3 which I might set?
-    %li
-      a: render, ....
+  %li
+    What is a property of p3 which I might set?
+  %li
+    a: render, ....
 
-    %li
-      When I call React.createClass(p3) can it place HTML in the DOM for me?
-    %li
-      a: No, I use... ReactDOM.render()
+  %li
+    When I call React.createClass(p3) can it place HTML in the DOM for me?
+  %li
+    a: No, I use... ReactDOM.render()
 
-    %li
-      When I call React.createClass(p3) what is the name of the object which gets created?
-    %li
-      a: component
+  %li
+    When I call React.createClass(p3) what is the name of the object which gets created?
+  %li
+    a: component
 
-    %li
-      Suppose I create DanDiv from React.createClass(p4). 
-      How do I nest DanDiv inside a later call to React.createClass(p5)?
-    %li
-      a: I create DanDiv, I get DanDiv with a call which looks like <DanDiv />
+  %li
+    Suppose I create DanDiv from React.createClass(p4). 
+    How do I nest DanDiv inside a later call to React.createClass(p5)?
+  %li
+    a: I create DanDiv, I get DanDiv with a call which looks like &lt;DanDiv />
 
-    %li
-      Suppose I create DanDiv from React.createClass(p4) and place DanDiv inside of BigDiv, 
-      what phrase describes what I am doing?
-    %li
-      a: Composing Components
+  %li
+    Suppose I create DanDiv from React.createClass(p4) and place DanDiv inside of BigDiv, 
+    what phrase describes what I am doing?
+  %li
+    a: Composing Components
 
-    %li
-      Whats the difference between an HTML component and a component?
-    %li
-      a: A component has a name, an HTML component is referred to immediately.
+  %li
+    Whats the difference between an HTML component and a component?
+  %li
+    a: A component has a name, an HTML component is referred to immediately.
 
-    %li
-      How can a child component get data from a parent component?
-    %li
-      a: Using attributes and text as children when I call the child. See
-      demo17.html where Comment is the child.
+  %li
+    How can a child component get data from a parent component?
+  %li
+    a: Using attributes and text as children when I call the child. See
+    demo17.html where Comment is the child.
 
-    %li
-      In JS I can pass a paramter to a function call by placing the parameter inside parenthesis.
-      In JSX how to pass a parameter to a component call?
-    %li
-      a see demo17.html when I call Comment.
+  %li
+    In JS I can pass a paramter to a function call by placing the parameter inside parenthesis.
+    In JSX how to pass a parameter to a component call?
+  %li
+    a see demo17.html when I call Comment.
 
-    %li
-      In JS when I define a function I can specify that it take a
-      parameter and then I can get the value of the parameter later.
+  %li
+    In JS when I define a function I can specify that it take a
+    parameter and then I can get the value of the parameter later.
 
-      When I define a component, How do I define a parameter in a
-      component definition and how do I get a value out of each
-      parameter later?
-    %li
-      a: look at set state and get state...
+    When I define a component, How do I define a parameter in a
+    component definition and how do I get a value out of each
+    parameter later?
+  %li
+    a: look at set state and get state...
 
-    %li
-      When I define a simple component which can accept a text-node as a parameter, 
-      how do I refer to the value of the text-node?
+  %li
+    When I define a simple component which can accept a text-node as a parameter, 
+    how do I refer to the value of the text-node?
 
-    %li
-      When I define a simple component which can accept an href-attribute as a parameter, 
-      how do I refer to the value of the href-attribute?
+  %li
+    When I define a simple component which can accept an href-attribute as a parameter, 
+    how do I refer to the value of the href-attribute?
 
-    %li
-      How to serve the marked.js lib to my browser?
+  %li
+    How to serve the marked.js lib to my browser?
 
-    %li
-      How to assume a string is in markedown format and then 
-      convert the markedown syntax into HTML?
+  %li
+    How to assume a string is in markedown format and then 
+    convert the markedown syntax into HTML?
 
-    %li
-      Will React allow me to render HTML I get from a call to marked()?
+  %li
+    Will React allow me to render HTML I get from a call to marked()?
 
-    %li
-      What does it mean to 'sanitize' HTML?
+  %li
+    What does it mean to 'sanitize' HTML?
 
-    %li
-      What kind of syntax is inside un-sanitary HTML?
+  %li
+    What kind of syntax is inside un-sanitary HTML?
 
-    %li
-      How to install React Developer Tools in Firefox?
+  %li
+    How to install React Developer Tools in Firefox?
 
-    %li
-      How to use React Developer Tools in Firefox?
+  %li
+    How to use React Developer Tools in Firefox?
 
-    %li
-      How to use inspect a component using React Developer Tools in Firefox?
+  %li
+    How to use inspect a component using React Developer Tools in Firefox?
 
-    %li
-      How to pass an array of data to a component?
+  %li
+    How to pass an array of data to a component?
 
-    %li
-      Look at demo20.html and describe how mydata flows to urdata.
+  %li
+    Look at demo20.html and describe how mydata flows to urdata.
 
-    %li
-      How does a component get data?
+  %li
+    How does a component get data?
 
-    %li
-      How does a component set data?
+  %li
+    How does a component set data?
 
-    %li
-      Can JSX syntax 'see' an array which was set via JavaScript earlier?
+  %li
+    Can JSX syntax 'see' an array which was set via JavaScript earlier?
 
 %hr/
 
