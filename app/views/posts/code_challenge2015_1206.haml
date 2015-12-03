@@ -120,8 +120,8 @@ We start with three tasks: Install Ubuntu, enhance it, and create account named 
     Create account named ann:
     %pre
       %code.bash
-        useradd ann -m -s /bin/bash
-        passwd ann
+        sudo useradd ann -m -s /bin/bash
+        sudo passwd ann
         ssh -YA ann@localhost
 
 / Install node.js
