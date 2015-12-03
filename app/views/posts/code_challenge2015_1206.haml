@@ -1,0 +1,204 @@
+.q1 Question:
+.q2 What is 2015_1128 Code Challenge?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/npm') npm
+  %a.xtag(href='/tags/nodejs') nodejs
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/heroku') heroku
+  %a.xtag(href='/tags/javascript') javascript
+  %a.xtag(href='/tags/useradd') useradd
+  %a.xtag(href='/tags/passwd') passwd
+  %a.xtag(href='/tags/git') git
+  %a.xtag(href='/tags/procfile') procfile
+  %a.xtag(href='/tags/node') node
+  %a.xtag(href='/tags/gitignore') gitignore
+  %a.xtag(href='/tags/toolbelt') toolbelt
+  %a.xtag(href='/tags/code_challenge') code_challenge
+  %a.xtag(href='/tags/bikle101') bikle101
+  %a.xtag(href='/tags/ssh') ssh
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/id_rsa') id_rsa
+  %a.xtag(href='/tags/alert') alert
+  %a.xtag(href='/tags/herokuapp') herokuapp
+  %a.xtag(href='/tags/curl') curl
+  %a.xtag(href='/tags/heroku_client') heroku_client
+  %a.xtag(href='/tags/wget') wget
+  %a.xtag(href='/tags/console_log') console_log
+  %a.xtag(href='/tags/d3') d3
+  %a.xtag(href='/tags/select') select
+  .tag app30
+  .tag convnetjs
+  .tag convnet
+  .tag deeplearning
+  .tag machine_learning
+  .tag gspc
+  .tag d3
+
+%br/
+
+The 2015_1206 Code Challenge is a learning exercise for students attending Dan's Linux JavaScript Class at 3pm on 2015-12-06 at Hacker Dojo:
+
+%br/
+%br/
+
+
+%a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/' target='x')
+  http://www.meetup.com/Dans-Linux-JavaScript-Class/
+
+%br/
+%br/
+
+In class we will study a repository with the chrome-browser debugger:
+
+%br/
+%br/
+
+%a(href='https://github.com/danbikle/app30' target='x')
+  https://github.com/danbikle/app30
+
+
+%br/
+%br/
+
+Already, the above repository should be deployed at heroku.com for you
+so you can use a browser (Chrome works best) to study the behavior of
+the JavaScript:
+
+%br/
+%br/
+
+%a(href='https://app30.herokuapp.com' target='w')
+  https://app30.herokuapp.com
+
+%br/
+%br/
+
+We start with three tasks: Install Ubuntu, enhance it, and create account named ann:
+
+%ul
+  %li Install Ubuntu 14.04.3 on your laptop
+  %li
+    Useful:
+    %a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso' target='w')
+      http://releases.ubuntu.com/14.04/ubuntu-14.04.3-desktop-amd64.iso
+
+  %li
+    Useful:
+    %a(href='https://www.virtualbox.org/wiki/Downloads' target='w')
+      https://www.virtualbox.org/wiki/Downloads
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox' target='w')
+      http://www.google.com/search?q=How+to+install+virtualbox    
+    %br/
+    %a(href='http://www.google.com/search?q=How+to+install+virtualbox+additions' target='w')
+      How to install virtualbox guest additions
+    %br/
+    %a(href='/posts/virtualbox_why_tiny') virtualbox_why_tiny
+
+  %li
+    Enhance Ubuntu:
+    %pre
+      =render 'code_challenge2015_09121'
+
+  %li
+    Create account named ann:
+    %pre
+      %code.bash
+        useradd ann -m -s /bin/bash
+        passwd ann
+        ssh -YA ann@localhost
+
+/ Install node.js
+=render 'code_challenge2015_0919n'
+
+%ul
+  %li
+    Start work on an app:
+    %pre
+      %code.bash
+        cd ~ann
+        rm -rf app30
+        git clone https://github.com/danbikle/app30.git
+        cd ~ann/app30
+        \.  ~ann/app30/app30env.bash
+
+%br/
+%br/
+
+If you want to deploy this repository to Heroku, follow this recipe:
+%ul
+  %li Create an account at heroku.com website
+
+  %li
+    Download/Install Heroku client
+    %pre
+      %code.bash
+        cd ~ann
+        wget https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
+        tar zxf heroku-client.tgz
+        echo 'export PATH=/home/ann/heroku-client/bin:${PATH}' >> ~ann/.bashrc
+        echo  export PATH=/home/ann/heroku-client/bin:${PATH}
+
+  %li
+    I created ssh-key for ann account (assuming ann has none yet):
+    %pre
+      =render 'code_challenge2015_0919s'
+
+  %li
+    I used heroku-client to "login" my shell.
+    I gave a copy of ann public ssh-key to heroku:
+    %pre
+      %code.bash
+        heroku status
+        heroku auth:login
+        heroku auth:whoami
+        heroku keys:add
+
+  %li
+    I used heroku-client to create a blank app named app30 at herokuapp.com
+    %pre
+      %code.bash
+        cd ~ann/app30
+        \~ann/heroku-client/bin/heroku create app30
+
+  %li
+    git-push ~ann/app30 to heroku
+    %pre
+      %code.bash
+        cd ~ann/app30
+        git add .
+        git commit -am hello
+        git push heroku master
+    
+  %li
+    I saw ~ann/app30 deployed at 
+    %a(href='https://app30.herokuapp.com' target='w')
+      https://app30.herokuapp.com
+
+%hr/
+%h1 Questions
+
+%ul
+  %li How to get started with ConvNet.js?
+  %li
+    %a(href='http://app30.herokuapp.com/demo/autoencoder ' target='x')
+      http://app30.herokuapp.com/demo/autoencoder
+    shows a demo of Unsupervised Learning.
+    What exactly is being learned?
+
+  %li How does Unsupervised Learning compare to Supervised Learning?
+
+%hr/
+
+That could be considered an adequate code challenge for a two hour Meetup.
+%br/
+%br/
+If you have questions, e-me:
+%br/
+%br/
+bikle101@gmail.com
+%br/
+%br/
+
