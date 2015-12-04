@@ -29,17 +29,17 @@ To reproduce the bug I posted a screen dump to the Meteor Forum:
 %br/
 
 %pre
-  render 'meteor_mongo1'
+  =render 'meteor_mongo1'
 
 Other shell:
 
 %pre
-  render 'meteor_mongo2'
+  =render 'meteor_mongo2'
 
 The work around is to find the mongo command under .meteor and then use it like this:
 
 %pre
-  render 'meteor_mongo3'
+  =render 'meteor_mongo3'
 
 %br/
 %br/
