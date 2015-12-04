@@ -1,0 +1,40 @@
+<code class='bash'>
+dan@nia111:~ $ cd bin
+dan@nia111:~/bin $ find ~/.meteor -name mongo -type f -print
+/home/dan/.meteor/packages/meteor-tool/.1.1.10.ki0ccv++os.linux.x86_64+web.browser+web.cordova/mt-os.linux.x86_64/dev_bundle/mongodb/bin/mongo
+dan@nia111:~/bin $ ln -s /home/dan/.meteor/packages/meteor-tool/.1.1.10.ki0ccv++os.linux.x86_64+web.browser+web.cordova/mt-os.linux.x86_64/dev_bundle/mongodb/bin/mongo .
+dan@nia111:~/bin $ mongo
+The program 'mongo' is currently not installed. You can install it by typing:
+sudo apt-get install mongodb-clients
+dan@nia111:~/bin $ ./mongo
+MongoDB shell version: 2.6.7
+connecting to: test
+2015-12-04T05:06:47.423+0000 warning: Failed to connect to 127.0.0.1:27017, reason: errno:111 Connection refused
+2015-12-04T05:06:47.424+0000 Error: couldn't connect to server 127.0.0.1:27017 (127.0.0.1), connection attempt failed at src/mongo/shell/mongo.js:146
+exception: connect failed
+dan@nia111:~/bin $ 
+dan@nia111:~/bin $ 
+dan@nia111:~/bin $ ./mongo --port=3001
+MongoDB shell version: 2.6.7
+connecting to: 127.0.0.1:3001/test
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+	http://docs.mongodb.org/
+Questions? Try the support group
+	http://groups.google.com/group/mongodb-user
+meteor:PRIMARY> 
+meteor:PRIMARY> show dbs
+admin  (empty)
+local  0.063GB
+test   0.031GB
+meteor:PRIMARY> 
+meteor:PRIMARY> 
+meteor:PRIMARY> use meteor
+switched to db meteor
+meteor:PRIMARY> 
+meteor:PRIMARY> db.tasks.insert({ text: "Hello world!", createdAt: new Date() });
+WriteResult({ "nInserted" : 1 })
+meteor:PRIMARY> 
+meteor:PRIMARY> 
+</code>

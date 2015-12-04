@@ -1,0 +1,26 @@
+<code class='bash'>
+dan@nia111:~/met12 $ 
+dan@nia111:~/met12 $ 
+dan@nia111:~/met12 $ ps -ef|grep mongo
+dan       7876  7812  0 04:18 pts/38   00:00:00 grep mongo
+dan@nia111:~/met12 $ ps -ef | grep meteor
+dan       7724  7593 15 04:16 pts/37   00:00:18 /home/dan/.meteor/packages/meteor-tool/.1.1.10.ki0
+dan       7747  7724  0 04:16 pts/37   00:00:00 /home/dan/.meteor/packages/meteor-tool/.1.1.10.ki0
+dan       7799  7724  0 04:16 pts/37   00:00:00 /home/dan/.meteor/packages/meteor-tool/.1.1.10.ki0
+dan       7878  7812  0 04:18 pts/38   00:00:00 grep meteor
+dan@nia111:~/met12 $ 
+dan@nia111:~/met12 $ meteor mongo
+mongo: Meteor isn't running a local MongoDB server.
+
+This command only works while Meteor is running your application locally. Start
+your application first with 'meteor' and then run this command in a new
+terminal. This error will also occur if you asked Meteor to use a different
+MongoDB server with $MONGO_URL when you ran your application.
+
+If you're trying to connect to the database of an app you deployed with
+'meteor deploy', specify your site's name as an argument to this command.
+dan@nia111:~/met12 $ 
+dan@nia111:~/met12 $ env|grep MONGO
+dan@nia111:~/met12 $ 
+dan@nia111:~/met12 $ 
+</code>
