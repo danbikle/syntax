@@ -59,18 +59,54 @@ the JavaScript:
 %br/
 %br/
 
-The steps you follow to run this app on your laptop are listed below:
+The steps I followed to run this repository on my Ubuntu host are listed below:
 
 %ul
-  %li under construction
-  %li under construction
-  %li under construction
+  %li
+    This repo depends on Meteor so I installed it:
+    %pre
+      %code.bash
+        cd ~
+        curl https://install.meteor.com/ | sh
+        echo 'export PATH=${HOME}/.meteor:$PATH' >> ~/.bashrc
+        bash
 
+  %li
+    Next I ensured that my Ubuntu host had both curl and git:
+    %pre
+      %code.bash sudo apt-get curl gitk
+
+  %li
+    Then I cloned the deep500 repo:
+    %pre
+      %code.bash
+        cd ~
+        git clone https://github.com/danbikle/deep500
+
+  %li
+    Then I started the Meteor server:
+    %pre
+      %code.bash
+        cd ~/deep500
+        git checkout -b mybranch
+        ~/.meteor/meteor
+
+  %li
+    I started Chrome (not Firefox) and browsed this URL:
+    %br/
+    %a(href='http://localhost:3000' target='x')
+      http://localhost:3000
+
+  %li I saw a page which was mostly empty.
+  %li I created an account via the Sign-in-link.
+  %li Then I logged in and created a model.
+  %li Next, I clicked the 'chart em' button to see what I call the "blue-green visualization".
 
 %hr/
 %h1 Questions
 
 %ul
+  %li Why does this repo only work on Chrome?
   %li How to get started with ConvNet.js?
 
 
