@@ -137,6 +137,9 @@ With that behind me I should install ta-lib:
 %pre
   =render 'python_preso11'
 
+After I install ta-lib, I should install python:
+%pre
+  =render 'python_preso12'
 
 %br/
 %br/
