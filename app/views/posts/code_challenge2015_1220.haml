@@ -151,9 +151,14 @@ I descibe below the path which data follows when I create a model with the Deep5
   %li Meteor gives me access to the form values inside an object named event.
   %li For example I get the value of the model name from: event.target.form.children.model_name.value
   %li The form uses radio buttons to help the user avoid making mistakes, but the code behind the radio buttons is verbose.
-  %li For example the syntax which gets num_yrs value from one of seven radio buttons looks like this:
+  %li
+    For example the syntax which gets num_yrs value from one of seven radio buttons looks like this:
     %pre
       =render 'code_challenge2015_1220_10'
+  %li After I get all the values from the form, I tinker with them a bit and then load them into an object called model_o.
+
+  %li I found it convenient to make model_o a global object meaning that I can access it anywhere in my running JavaScript code.
+
 
 %hr/
 %h1 Questions
