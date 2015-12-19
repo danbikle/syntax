@@ -165,6 +165,10 @@ Now, I descibe below the path which data follows when I create a model with the 
   %li Once model_o is filled and control moves to start_modelbuild(), I use D3.js to tell the user what is happening.
   %li Next, I read /csv/GSPC.csv and move control into function cb1(err, csv_a).
   %li Inside cb1(), D3.js copies data from GSPC.csv into an array called csv_a.
+  %li
+    I understand the flow of data through cb1() by reading the comments which are listed below:
+    %pre
+      =render 'code_challenge2015_1220_11'
 
 
 
