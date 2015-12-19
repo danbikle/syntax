@@ -141,7 +141,7 @@ The steps I followed to run this repository on my Ubuntu host are listed below:
   %li Next, I clicked the 'chart em' button to see what I call the "blue-green visualization".
 
 
-I descibe below the path which data follows when I create a model with the Deep500 model-creation form.
+Now, I descibe below the path which data follows when I create a model with the Deep500 model-creation form.
 
 %ul
   %li I fill in the form and press the save-button.
@@ -156,8 +156,16 @@ I descibe below the path which data follows when I create a model with the Deep5
     %pre
       =render 'code_challenge2015_1220_10'
   %li After I get all the values from the form, I tinker with them a bit and then load them into an object called model_o.
-
   %li I found it convenient to make model_o a global object meaning that I can access it anywhere in my running JavaScript code.
+  %li After I fill model_o with data, I call start_modelbuild() which resides in public/mmodel.js
+  %li The two interesting JavaScript files in the public folder are mmodel.js and deep500.js
+  %li I use mmodel.js to build a model from model_o
+  %li I use deep500.js for tasks which might need to be reused in various situations.
+  %li For example function lagn(n,my_a){} could be used in various situations.
+  %li Once model_o is filled and control moves to start_modelbuild(), I use D3.js to tell the user what is happening.
+  %li Next, I read /csv/GSPC.csv and move control into function cb1(err, csv_a).
+  %li Inside cb1(), D3.js copies data from GSPC.csv into an array called csv_a.
+
 
 
 %hr/
