@@ -140,6 +140,21 @@ The steps I followed to run this repository on my Ubuntu host are listed below:
   %li Then I logged in and created a model.
   %li Next, I clicked the 'chart em' button to see what I call the "blue-green visualization".
 
+
+I descibe below the path which data follows when I create a model with the Deep500 model-creation form.
+
+%ul
+  %li I fill in the form and press the save-button.
+  %li Values from the form flow to met10.js
+  %li In that file values flow to: Template.body.events()
+  %li In that function values flow to: "click #button_newmodel": function(event){}
+  %li Meteor gives me access to the form values inside an object named event.
+  %li For example I get the value of the model name from: event.target.form.children.model_name.value
+  %li The form uses radio buttons to help the user avoid making mistakes, but the code behind the radio buttons is verbose.
+  %li For example the syntax which gets num_yrs value from one of seven radio buttons looks like this:
+    %pre
+      =render 'code_challenge2015_1220_10'
+
 %hr/
 %h1 Questions
 
