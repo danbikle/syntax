@@ -188,6 +188,17 @@ Now, I descibe below the path which data follows when I create a model with the 
   %li After I know fnum I use it to help create a convnetjs.Vol()-object (which I call obsv_v) for each observation in the Training-Data (which resides in train_o).
   %li So, if the user wants Deep500 to learn from 10 years of observations, then I should use the code here to create 10x252 obsv_v objects.
   %li When I study the structure of an obsv_v object I see that it resembles a short array (of size fnum) with some extra data attached to it.
+  %li While creating these obsv_v objects I use a simple array named train_data to collect them.
+  %li After I fill train_data, I use the ConvNetJS-API to create an object called: magicNet
+  %li At this point my system is ready to learn from the arrays: train_data and train_o.label
+  %li Before pulling the trigger though, I capture a timestamp so I will know when the learning had started.
+  %li Next, I make another ConvNetJS-API call: magicNet.onFinishFold(finishedFold)
+  %li And another: magicNet.onFinishBatch(finishedBatch)
+  %li This is where rubber meets the road.
+  %li
+    AK wrote ConvNetJS so that I can observe the progress of learning with a call to this function:
+    %pre
+      %code.javascript setInterval(function(){ // watching syntax here })
   
 
 %hr/
