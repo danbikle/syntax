@@ -147,20 +147,32 @@ Now, I descibe below the path which data follows when I create a model with the 
   %li I fill in the form and press the save-button.
   %li Values from the form flow to met10.js
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/met10.js
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js
+
 
   %li In that file values flow to: Template.body.events()
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/met10.js#L39
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L39' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L39
+
 
   %li In that function values flow to: "click #button_newmodel": function(event){}
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/met10.js#L82
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L82' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L82
+
 
   %li Meteor gives me access to the form values inside an object named event.
   %li For example I get the value of the model name from: event.target.form.children.model_name.value
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/met10.js#L87
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L87' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L87
+
 
   %li The form uses radio buttons to help the user avoid making mistakes, but the code behind the radio buttons is verbose.
   %li
@@ -169,27 +181,42 @@ Now, I descibe below the path which data follows when I create a model with the 
       =render 'code_challenge2015_1220_10'
   %li After I get all the values from the form, I tinker with them a bit and then load them into an object called model_o.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/met10.js#L187
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L187' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L187
+
 
   %li I found it convenient to make model_o a global object meaning that I can access it anywhere in my running JavaScript code.
   %li After I fill model_o with data, I call start_modelbuild() which resides in public/mmodel.js
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L16
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L16' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L16
+
 
   %li The two interesting JavaScript files in the public folder are mmodel.js and deep500.js
   %li I use mmodel.js to build a model from model_o
   %li I use deep500.js for tasks which might need to be reused in various situations.
   %li For example function lagn(n,my_a){} could be used in various situations.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L29
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L29' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L29
+
 
   %li Once model_o is filled and control moves to start_modelbuild(), I use D3.js to tell the user what is happening.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L19
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L19' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L19
+
 
   %li Next, I read /csv/GSPC.csv and move control into function cb1(err, csv_a).
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L44
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L44' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L44
+
 
   %li Inside cb1(), D3.js copies data from GSPC.csv into an array called csv_a.
   %li
@@ -201,17 +228,26 @@ Now, I descibe below the path which data follows when I create a model with the 
     %pre |Old-Data (Ignored)|Training-Data|Out-Of-Sample-Data(252 observations)|
   %li Currently the size of the Out-Of-Sample-Data is hard-coded to 1 year of observations.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L55
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L55' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L55
+
 
   %li The default size of the Training-Data is 25 years but I allow the user to pick another value.
   %li At the end of cb1() I send the Training-Data to cr_mn() and control passes to there.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L89
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L89' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L89
+
 
   %li While in cr_mn() I get the data I need from the global model_o and the scoped train_o objects.
   %li cr_mn() is easy to follow until I fill a variable named fnum.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L109
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L109' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L109
+
 
   %li This variable is an integer which counts how many features I can use in the model.
   %li
@@ -223,17 +259,26 @@ Now, I descibe below the path which data follows when I create a model with the 
       %li pctlag8
   %li After I know fnum I use it to help create a convnetjs.Vol()-object (which I call obsv_v) for each observation in the Training-Data (which resides in train_o).
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L117
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L117' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L117
+
 
   %li So, if the user wants Deep500 to learn from 10 years of observations, then I should use the code here to create 10x252 obsv_v objects.
   %li When I study the structure of an obsv_v object I see that it resembles a short array (of size fnum) with some extra data attached to it.
   %li While creating these obsv_v objects I use a simple array named train_data to collect them.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L125
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L125' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L125
+
 
   %li After I fill train_data, I use the ConvNetJS-API to create an object called: magicNet
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L128
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L128' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L128
+
 
   %li At this point my system is ready to learn from the arrays: train_data and train_o.label
   %li Before pulling the trigger though, I capture a timestamp so I will know when the learning had started.
@@ -241,8 +286,14 @@ Now, I descibe below the path which data follows when I create a model with the 
   %li And another: magicNet.onFinishBatch(finishedBatch)
   %li This is where rubber meets the road.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L132
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L134
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L132' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L132
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L134' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L134
+
 
   %li
     AK wrote ConvNetJS so that I can observe the progress of learning with a call to this function:
@@ -256,11 +307,17 @@ Now, I descibe below the path which data follows when I create a model with the 
       %li Step: A fold is made from thousands of steps.  Many steps can complete in less than a second.
   %li The way I expose progress in the UI is to display a small amount of information during the creation of the first fold.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L28
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L28' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L28
+
 
   %li Upon finish of the first fold, the API sends control to finishedFold().
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L168
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L168' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L168
+
 
   %li Inside of finishedFold() I observe the number of steps I needed to make that first fold.
   %li With that number and num_fold (which was supplied by the user) I can calculate these values for the UI:
@@ -270,41 +327,93 @@ Now, I descibe below the path which data follows when I create a model with the 
     %li The clock time when the batch will be done.
   %li After finishedFold() has been called once I depend on another function: setInterval(), to both observe and report on batch progress every 1000 steps.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L138
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L138' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L138
+
 
   %li Upon completion of the batch, the API sends control to finishedBatch().
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L176
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L176' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L176
+
 
   %li Inside that function I get a copy of the MagicNet object.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L184
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L184' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L184
+
 
   %li With that, I get a JSON representation of it.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L180
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L180' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L180
+
 
   %li Next, I run a simple test to see how well the MagicNet object predicts 252 observations which I call Out-Of-Sample data.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L185
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L192
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L185' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L185
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L192' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L192
+
 
   %li From that test I calculate a variety of measurements, like accuracy, which would be interesting to a Data Scientist.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L209
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L78
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L96
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L115
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L209' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L209
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L78' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L78
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L96' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L96
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L115' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L115
+
 
   %li Also I use D3.js to create what I call the Blue-Line-Green-Line visualization.
 
-  %li https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L133
-  %li https://github.com/danbikle/deep500/blob/mup1220/met10.html#L24
-  %li https://github.com/danbikle/deep500/blob/mup1220/met10.html#L123
-  %li https://github.com/danbikle/deep500/blob/mup1220/met10.html#L174
-  %li https://github.com/danbikle/deep500/blob/mup1220/met10.js#L47
-  %li https://github.com/danbikle/deep500/blob/mup1220/met10.js#L239
-  %li https://github.com/danbikle/deep500/blob/mup1220/met10.js#L298
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L133' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L133
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.html#L24' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.html#L24
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.html#L123' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.html#L123
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.html#L174' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.html#L174
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L47' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L47
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L239' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L239
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L298' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L298
+
+
 
   %li One obvious enhancement to this app would be to create this visualization immediately after the data is available.
   %li Currently I depend on a button click to create the visualization because I am confident that once the button is rendered, the visualization data will also be ready.
