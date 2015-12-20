@@ -1,0 +1,15 @@
+<code class='bash'>
+mkdir -p ~/Downloads
+cd       ~/Downloads
+rm -rf ta-lib ta-lib-0.4.0-src.tar.gz
+wget http://skylineservers.dl.sourceforge.net/project/ta-lib/ta-lib/0.4.0/ta-lib-0.4.0-src.tar.gz
+tar zxf ta-lib-0.4.0-src.tar.gz
+cd ta-lib
+./configure --prefix=/usr
+make
+sudo make install
+ls -l /usr/lib/libta*
+ls -l /usr/include/ta-lib
+ls -l /usr/bin/ta-lib-config
+cat   /usr/bin/ta-lib-config
+</code>

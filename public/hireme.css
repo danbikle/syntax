@@ -1,0 +1,19 @@
+
+body {
+  max-width:800px;
+  padding: 5px;
+  font-size: 1.2em;
+  line-height: 1.7em;
+  font-family: sans-serif; 
+  border-color: #080;
+  border-style: solid;
+  border-width: 1px; }
+
+a, a:visited {
+  color: #0000BB;
+  text-decoration: underline;
+  font-weight: 600; }
+
+a:hover {
+  background-color: #EEEEEE;
+  color: #BB0000; }

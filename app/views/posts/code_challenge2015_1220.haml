@@ -1,0 +1,445 @@
+.q1 Question:
+.q2 What is 2015_1220 Code Challenge?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/javascript') javascript
+  %a.xtag(href='/tags/git') git
+  %a.xtag(href='/tags/code_challenge') code_challenge
+  %a.xtag(href='/tags/bikle101') bikle101
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/curl') curl
+  %a.xtag(href='/tags/d3') d3
+  %a.xtag(href='/tags/select') select
+  %a.xtag(href='/tags/convnetjs') convnetjs
+  %a.xtag(href='/tags/convnet') convnet
+  %a.xtag(href='/tags/deeplearning') deeplearning
+  %a.xtag(href='/tags/machine_learning') machine_learning
+  %a.xtag(href='/tags/gspc') gspc
+  %a.xtag(href='/tags/supervised_learning') supervised_learning
+  %a.xtag(href='/tags/classification') classification
+  %a.xtag(href='/tags/chrome') chrome
+  %a.xtag(href='/tags/meteor') meteor
+  %a.xtag(href='/tags/hacker_dojo') hacker_dojo
+  %a.xtag(href='/tags/github') github
+  %a.xtag(href='/tags/gitk') gitk
+  %a.xtag(href='/tags/debugger') debugger
+  %a.xtag(href='/tags/deep500') deep500
+  %a.xtag(href='/tags/blue_green') blue_green
+  %a.xtag(href='/tags/finishedfold') finishedfold
+  %a.xtag(href='/tags/finishedbatch') finishedbatch
+
+%br/
+
+The 2015_1220 Code Challenge is a learning exercise for students attending Dan's Linux JavaScript Class at 3pm on 2015-12-20 at Hacker Dojo:
+
+%br/
+%br/
+
+%a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/227427102' target='x')
+  http://www.meetup.com/Dans-Linux-JavaScript-Class/events/227427102
+
+%br/
+%br/
+
+This class is similar to the class on 2015-12-12 except that we will study D3.js a bit more.
+
+%br/
+%br/
+
+During the week of 2015-12-13 I enhanced the UI and behavior of Deep500 so we will also study those enhancements.
+
+%h2 UI On 2015-12-12
+%img(src='/images/code_challenge2015_1220/dp10.png')
+%hr/
+%img(src='/images/code_challenge2015_1220/dp11.png')
+%hr/
+%img(src='/images/code_challenge2015_1220/dp12.png')
+%hr/
+%img(src='/images/code_challenge2015_1220/dp13.png')
+%hr/
+
+%h2 UI On 2015-12-19 (Week Later)
+%img(src='/images/code_challenge2015_1220/dp15.png')
+%hr/
+%img(src='/images/code_challenge2015_1220/dp16.png')
+%hr/
+%img(src='/images/code_challenge2015_1220/dp17.png')
+%hr/
+%img(src='/images/code_challenge2015_1220/dp18.png')
+%hr/
+%img(src='/images/code_challenge2015_1220/dp19.png')
+%hr/
+
+%br/
+%br/
+
+In class we will study Deep500 with the chrome-browser debugger:
+
+%br/
+%br/
+
+%a(href='https://github.com/danbikle/deep500' target='x')
+  https://github.com/danbikle/deep500
+
+%br/
+%br/
+
+Already, the above repository should be deployed at meteor.com for you
+so you can use a browser to study the behavior of the JavaScript:
+
+%br/
+%br/
+
+%a(href='https://deep500.meteor.com' target='x')
+  https://deep500.meteor.com
+
+
+%br/
+%br/
+
+The steps I followed to run this repository on my Ubuntu host are listed below:
+
+%ul
+  %li
+    This repo depends on Meteor so I installed it:
+    %pre
+      %code.bash
+        cd ~
+        curl https://install.meteor.com/ | sh
+        echo 'export PATH=${HOME}/.meteor:$PATH' >> ~/.bashrc
+        bash
+
+  %li
+    Next I ensured that my Ubuntu host had both curl and git:
+    %pre
+      %code.bash sudo apt-get install curl gitk
+
+  %li
+    Then I cloned the deep500 repo:
+    %pre
+      %code.bash
+        cd ~
+        git clone https://github.com/danbikle/deep500
+
+  %li
+    Then I started the Meteor server:
+    %pre
+      %code.bash
+        cd ~/deep500
+        git checkout -b mybranch
+        \~/.meteor/meteor
+
+  %li
+    I started Chrome and browsed this URL:
+    %br/
+    %a(href='http://localhost:3000' target='x')
+      http://localhost:3000
+
+  %li I saw a page which was mostly empty.
+  %li I created an account via the Sign-in-link.
+  %li Then I logged in and created a model.
+  %li Next, I clicked the 'chart em' button to see what I call the "blue-green visualization".
+
+
+Now, I descibe below the path which data follows when I create a model with the Deep500 model-creation form.
+
+%ul
+  %li I fill in the form and press the save-button.
+  %li Values from the form flow to met10.js
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js
+
+
+  %li In that file values flow to: Template.body.events()
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L39' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L39
+
+
+  %li In that function values flow to: "click #button_newmodel": function(event){}
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L82' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L82
+
+
+  %li Meteor gives me access to the form values inside an object named event.
+  %li For example I get the value of the model name from: event.target.form.children.model_name.value
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L87' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L87
+
+
+  %li The form uses radio buttons to help the user avoid making mistakes, but the code behind the radio buttons is verbose.
+  %li
+    For example the syntax which gets num_yrs value from one of seven radio buttons looks like this:
+    %pre
+      =render 'code_challenge2015_1220_10'
+  %li After I get all the values from the form, I tinker with them a bit and then load them into an object called model_o.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L187' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L187
+
+
+  %li I found it convenient to make model_o a global object meaning that I can access it anywhere in my running JavaScript code.
+  %li After I fill model_o with data, I call start_modelbuild() which resides in public/mmodel.js
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L16' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L16
+
+
+  %li The two interesting JavaScript files in the public folder are mmodel.js and deep500.js
+  %li I use mmodel.js to build a model from model_o
+  %li I use deep500.js for tasks which might need to be reused in various situations.
+  %li For example function lagn(n,my_a){} could be used in various situations.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L29' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L29
+
+
+  %li Once model_o is filled and control moves to start_modelbuild(), I use D3.js to tell the user what is happening.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L19' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L19
+
+
+  %li Next, I read /csv/GSPC.csv and move control into function cb1(err, csv_a).
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L44' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L44
+
+
+  %li Inside cb1(), D3.js copies data from GSPC.csv into an array called csv_a.
+  %li
+    I understand the flow of data through cb1() by reading the comments which are listed below:
+    %pre
+      =render 'code_challenge2015_1220_11'
+  %li
+    A main idea behind cb1() is displayed below; cb1 divides csv_a into three pieces:
+    %pre |Old-Data (Ignored)|Training-Data|Out-Of-Sample-Data(252 observations)|
+  %li Currently the size of the Out-Of-Sample-Data is hard-coded to 1 year of observations.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L55' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L55
+
+
+  %li The default size of the Training-Data is 25 years but I allow the user to pick another value.
+  %li At the end of cb1() I send the Training-Data to cr_mn() and control passes to there.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L89' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L89
+
+
+  %li While in cr_mn() I get the data I need from the global model_o and the scoped train_o objects.
+  %li cr_mn() is easy to follow until I fill a variable named fnum.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L109' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L109
+
+
+  %li This variable is an integer which counts how many features I can use in the model.
+  %li
+    When I look at the UI I see four features which are available:
+    %ul
+      %li pctlag1
+      %li pctlag2
+      %li pctlag4
+      %li pctlag8
+  %li After I know fnum I use it to help create a convnetjs.Vol()-object (which I call obsv_v) for each observation in the Training-Data (which resides in train_o).
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L117' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L117
+
+
+  %li So, if the user wants Deep500 to learn from 10 years of observations, then I should use the code here to create 10x252 obsv_v objects.
+  %li When I study the structure of an obsv_v object I see that it resembles a short array (of size fnum) with some extra data attached to it.
+  %li While creating these obsv_v objects I use a simple array named train_data to collect them.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L125' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L125
+
+
+  %li After I fill train_data, I use the ConvNetJS-API to create an object called: magicNet
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L128' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L128
+
+
+  %li At this point my system is ready to learn from the arrays: train_data and train_o.label
+  %li Before pulling the trigger though, I capture a timestamp so I will know when the learning had started.
+  %li Next, I make another ConvNetJS-API call: magicNet.onFinishFold(finishedFold)
+  %li And another: magicNet.onFinishBatch(finishedBatch)
+  %li This is where rubber meets the road.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L132' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L132
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L134' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L134
+
+
+  %li
+    AK wrote ConvNetJS so that I can observe the progress of learning with a call to this function:
+    %pre
+      %code.javascript setInterval(function(){ 'I watch learning here.' })
+  %li
+    I use the following nouns to understand how learning progress can be observed and then exposed to the UI:
+    %ul
+      %li Batch: A batch can take a long time. Upon the finish of a batch, I have a new Model.
+      %li Fold: By default a batch is made from 8 folds but the user can pick a different count.
+      %li Step: A fold is made from thousands of steps.  Many steps can complete in less than a second.
+  %li The way I expose progress in the UI is to display a small amount of information during the creation of the first fold.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L28' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L28
+
+
+  %li Upon finish of the first fold, the API sends control to finishedFold().
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L168' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L168
+
+
+  %li Inside of finishedFold() I observe the number of steps I needed to make that first fold.
+  %li With that number and num_fold (which was supplied by the user) I can calculate these values for the UI:
+  %ul
+    %li Percent done
+    %li Hours needed to complete the batch
+    %li The clock time when the batch will be done.
+  %li After finishedFold() has been called once I depend on another function: setInterval(), to both observe and report on batch progress every 1000 steps.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L138' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L138
+
+
+  %li Upon completion of the batch, the API sends control to finishedBatch().
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L176' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L176
+
+
+  %li Inside that function I get a copy of the MagicNet object.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L184' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L184
+
+
+  %li With that, I get a JSON representation of it.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L180' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L180
+
+
+  %li Next, I run a simple test to see how well the MagicNet object predicts 252 observations which I call Out-Of-Sample data.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L185' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L185
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L192' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L192
+
+
+  %li From that test I calculate a variety of measurements, like accuracy, which would be interesting to a Data Scientist.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L209' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/mmodel.js#L209
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L78' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L78
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L96' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L96
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L115' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L115
+
+
+  %li Also I use D3.js to create what I call the Blue-Line-Green-Line visualization.
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L133' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/public/deep500.js#L133
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.html#L24' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.html#L24
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.html#L123' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.html#L123
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.html#L174' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.html#L174
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L47' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L47
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L239' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L239
+
+  %li
+    %a(href='https://github.com/danbikle/deep500/blob/mup1220/met10.js#L298' target='x')
+      https://github.com/danbikle/deep500/blob/mup1220/met10.js#L298
+
+
+
+  %li One obvious enhancement to this app would be to create this visualization immediately after the data is available.
+  %li Currently I depend on a button click to create the visualization because I am confident that once the button is rendered, the visualization data will also be ready.
+
+%hr/
+%h1 Questions
+
+%ul
+  %li How to create a diagram from above list of steps?
+  %li How to enhance Deep500 to calculate duration of fold-1 creation?
+  %li How to enhance Deep500 to display form values during model creation?
+  %li How to enhance Deep500 to report failed model creation attempts?
+  %li How to enhance Deep500 to create model at the server with NodeJS?
+  %li What are some obvious model-features to add?
+
+%hr/
+
+That could be considered an adequate code challenge for a two hour Meetup.
+%br/
+%br/
+If you have questions, e-me:
+%br/
+%br/
+bikle101@gmail.com
+%br/
+%br/
+
