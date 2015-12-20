@@ -1,0 +1,137 @@
+<code class='javascript'>
+Deep500 ASCII Flow Diagram
+
+Type Data into Deep500 Form
+|
+V
+met10.js
+|
+V
+Template.body.events()
+|
+V
+"click #button_newmodel": function(event){}
+|
+V
+event
+event.target.form.children
+event.target.form.children.model_name.value
+fields.ny05.checked
+fields.nc01.checked
+fields.tr50.checked
+fields.nf02.checked
+fields.ne002.checked
+fields.nn002.checked
+fields.mn2.checked
+fields.mx2.checked
+|
+V
+model_o
+|
+V
+public/mmodel.js
+|
+V
+start_modelbuild()
+|
+V
+D3.js
+Busy... Learning... (Please Wait)
+|
+V
+datenow_s    = new Date(Date.now()).toString()
+|
+V
+d3.csv("/csv/GSPC.csv", cb1)
+|
+V
+cb1()
+csv_a
+|
+V
+divide data:
+|Old-Data (Ignored)|Training-Data|Out-Of-Sample-Data(252 observations)|
+|
+V
+cp2ftr()
+|
+V
+cp2label()
+|
+V
+cr_train_o()
+|
+V
+cr_mn(train_o)
+|
+V
+var obsv_v = new convnetjs.Vol(1,1,fnum)
+train_data.push(obsv_v)
+|
+V
+var magicNet = new convnetjs.MagicNet(train_data, train_o.label, opts)
+|
+V
+magicNet.onFinishFold(finishedFold)
+magicNet.onFinishBatch(finishedBatch)
+setInterval(function(){})
+|
+V
+D3.js
+.text('Hours left: '+d3.round(hrleft,2))
+|
+V
+finishedFold(){}
+steptotal = stepcntr * model_o.num_folds
+|
+V
+finishedBatch() {}
+|
+V
+model_o.mnjson         = magicNet.toJSON()
+predict_o.mymn         = magicNet
+|
+V
+model_o.results_o      = predict_oos(predict_o)
+|
+V
+Meteor.call("addMmodel", model_o)
+|
+V
+met10.js: Meteor.methods({addMmodel:function (m_o){}})
+|
+V
+document.location.reload(true);
+|
+V
+met10.html
+|
+V
+met10.js
+|
+V
+Template.body.helpers({})
+|
+V
+Mmodels.find({})
+|
+V
+Template.mmodel.helpers({})
+|
+V
+bgchart:function(){}
+|
+V
+Template.body.events({})
+|
+V
+"click #show_mymodels": function(event){}
+"click #chartem":       function(event){}
+|
+V
+bgcharts_a.forEach(function(chrt){})
+|
+V
+new Rickshaw.Graph({})
+
+</code>
