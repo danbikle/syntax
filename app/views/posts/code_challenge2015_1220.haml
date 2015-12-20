@@ -213,8 +213,13 @@ Now, I descibe below the path which data follows when I create a model with the 
     %li Percent done
     %li Hours needed to complete the batch
     %li The clock time when the batch will be done.
-  %li After finishedFold() has been called once I depend on another function: setInterval(), to both observer and report on batch progress every 1000 steps.
-
+  %li After finishedFold() has been called once I depend on another function: setInterval(), to both observe and report on batch progress every 1000 steps.
+  %li Upon completion of the batch, the API sends control to finishedBatch().
+  %li Inside that function I get a copy of the MagicNet object.
+  %li With that, I get a JSON representation of it.
+  %li Next, I run a simple test to see how well the MagicNet object predicts 252 observations which I call Out-Of-Sample data.
+  %li From that test I calculate a variety of measurements which would be interesting to a Data Scientist like accuracy.
+  %li Also I use D3.js to create what I call the Blue-Line-Green-Line visualization.
 
 %hr/
 %h1 Questions
