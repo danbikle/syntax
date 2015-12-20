@@ -198,7 +198,13 @@ Now, I descibe below the path which data follows when I create a model with the 
   %li
     AK wrote ConvNetJS so that I can observe the progress of learning with a call to this function:
     %pre
-      %code.javascript setInterval(function(){ // watching syntax here })
+      %code.javascript setInterval(function(){ // watch learning here })
+  %li
+    I use the following nouns to understand how learning progress can be observed and then exposed to the UI:
+    %ul
+      %li Batch: A batch can take a long time. Upon the finish of a batch, I have a new Model.
+      %li Fold: By default a batch is made from 8 folds but the user can pick a different count.
+      %li Step: A fold is made from thousands of steps.  Many steps can complete in less than a second.
   
 
 %hr/
