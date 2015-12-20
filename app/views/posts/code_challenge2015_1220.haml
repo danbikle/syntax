@@ -198,14 +198,23 @@ Now, I descibe below the path which data follows when I create a model with the 
   %li
     AK wrote ConvNetJS so that I can observe the progress of learning with a call to this function:
     %pre
-      %code.javascript setInterval(function(){ // watch learning here })
+      %code.javascript setInterval(function(){ 'I watch learning here.' })
   %li
     I use the following nouns to understand how learning progress can be observed and then exposed to the UI:
     %ul
       %li Batch: A batch can take a long time. Upon the finish of a batch, I have a new Model.
       %li Fold: By default a batch is made from 8 folds but the user can pick a different count.
       %li Step: A fold is made from thousands of steps.  Many steps can complete in less than a second.
-  
+  %li The way I expose progress in the UI is to display a small amount of information during the creation of the first fold.
+  %li Upon finish of the first fold, the API sends control to finishedFold().
+  %li Inside of finishedFold() I observe the number of steps I needed to make that first fold.
+  %li With that number and num_fold (which was supplied by the user) I can calculate these values for the UI:
+  %ul
+    %li Percent done
+    %li Hours needed to complete the batch
+    %li The clock time when the batch will be done.
+  %li After finishedFold() has been called once I depend on another function: setInterval(), to both observer and report on batch progress every 1000 steps.
+
 
 %hr/
 %h1 Questions
