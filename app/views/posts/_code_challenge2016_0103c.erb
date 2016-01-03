@@ -1,0 +1,13 @@
+<code class='ruby'>
+cb1 = (in_a)->
+  if in_a[0].split(',')[0] is 'Date'
+    csv_s_a = in_a[1..]
+  # I should check again
+  csv_a_a = csv_s_a.map (row)->row.split(',')
+  d1      = csv_a_a[1][0]
+  d2      = csv_a_a[2][0]
+  if (d1 > d2) # date1 > date2?
+    csv_a_a.reverse()
+  ydate_s_a = csv_a_a.map (row_s)->  row_s[0]
+  cp_a      = csv_a_a.map (row_s)-> +row_s[4]
+</code>
