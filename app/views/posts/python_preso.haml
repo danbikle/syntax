@@ -152,18 +152,53 @@ Then, I should pip install TA-lib:
     pip install TA-Lib
     python -c 'import numpy, talib'
 
-%br/
-%br/
-
-%h2 Data Acquistion
-For pyspy, Data Acquistion is simple.
+%h2 Data Acquistion (Automated)
+For pyspy, automated data acquistion is simple.
 %ul
   %li Create a folder for data
   %li Clone a repo with a script to copy data into the folder
   %li Create a cron entry to run the script at 12:50 M-F.
   %li Syntax to do this:
+
 %pre
   =render 'python_preso13'
+
+The crontab in the above example assumes that you are in the California timezone.
+
+%br/
+%br/
+
+If you are in a different timezone, study the comments in ~/pyspy/crontab.txt to see what you should change.
+
+%h2 Data Acquistion (Manual at Night)
+
+To manually acquire data, run this shell script:
+
+%pre
+  %code.bash ~/pyspy/bin/night.bash
+
+I captured some screen output when I did that:
+
+%pre
+  =render 'python_preso14'
+
+%h2 Data Acquistion (Manual at Near Calif-Noon)
+
+When the market is near close (California lunch hour) sometimes I will manually acquire data:
+
+%pre
+  %code.bash ~/pyspy/bin/noon50.bash
+
+I captured some screen output when I did that:
+
+%pre
+  =render 'python_preso15'
+
+The script noon50.bash is an enhanced version of night.bash.
+%br/
+%br/
+
+The script noon50.bash gets the most recent price by scraping a web-page with python.
 
 More topics under construction:
 
