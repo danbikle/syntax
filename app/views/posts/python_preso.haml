@@ -109,7 +109,7 @@ It is possible to build a complex ML-app which runs on both Mac and Ubuntu but m
 %br/
 %br/
 
-Instead I just pick the OS which will support the production-app, in this case Ubuntu, and then use that OS to underlie my development environment.
+Instead I just pick the OS which will support the production-app, in this case Ubuntu, and then use that OS to host my development environment.
 
 %br/
 %br/
@@ -158,7 +158,7 @@ For pyspy, automated data acquistion is simple.
   %li Create a folder for data
   %li Clone a repo with a script to copy data into the folder
   %li Create a cron entry to run the script at 12:50 M-F.
-  %li Syntax to do this:
+  %li I list syntax below to do this:
 
 %pre
   =render 'python_preso13'
@@ -194,12 +194,20 @@ I captured some screen output when I did that:
 %pre
   =render 'python_preso15'
 
-The script noon50.bash is an enhanced version of night.bash.
+The script
+%a(href='https://github.com/danbikle/pyspy/blob/master/bin/noon50.bash' target='g')
+  noon50.bash
+is an enhanced version of
+%a(href='https://github.com/danbikle/pyspy/blob/master/bin/night.bash' target='g')
+  night.bash
 
 %br/
 %br/
 
-The script noon50.bash gets the most recent price by scraping a web-page with python.
+The script
+%a(href='https://github.com/danbikle/pyspy/blob/master/bin/noon50.bash' target='g')
+  noon50.bash
+gets the most recent price by scraping a web-page with python.
 
 %br/
 %br/
