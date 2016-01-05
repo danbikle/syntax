@@ -212,11 +212,74 @@ gets the most recent price by scraping a web-page with python.
 %br/
 %br/
 
+%h2 Feature Creation with Python
+
+When I talk with stock-traders about how they decide to open or close a position,
+often they will describe an example of a price chart:
+
+%br/
+%br/
+
+%img(src='/images/python_preso16.png')
+
+%br/
+%br/
+
+For example they might overlay a simple-moving-average on top of a price-time-series and then make decisions based on rules which they believe are true.
+
+%br/
+%br/
+
+An example of a rule might be this statement:
+When price is below a 5-day-moving average, I should be bullish.
+
+%br/
+%br/
+
+A Python programmer might look at that rule and ask,
+"How to use Python to build a  5-day-moving average and then compare it to the price?"
+
+%br/
+%br/
+
+The answer is, it is relatively easy to do this calculation in Python.
+
+%br/
+%br/
+
+As a product manager I would describe how I want to interact with this calculation.
+
+%br/
+%br/
+
+Currently, I would be happy if the calculation was placed within a simple 2D Python-List:
+
+%pre
+  %code.python
+    [
+    ["2015-12-01",2102.63,price_over5d_sma]
+    ,["2015-12-02",2079.51,price_over5d_sma]
+    ,["2015-12-03",2049.62,price_over5d_sma]
+    ,["2015-12-04",2091.69,price_over5d_sma]
+    ]
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
+
 More topics under construction:
 
-%h2 Feature Visualization with Pandas
 %h2 Feature Creation with NumPy
 %h2 Feature Creation with TA-lib
+%h2 Feature Visualization with Pandas
 %h2 Model Building with scikit-learn
 %h2 Prediction of Out-of-Sample (OOS) data
 %h2 Visualization of OOS predictions
