@@ -4,7 +4,8 @@
 
 import pdb
 
-cp_a = [
+# Here is some data:
+cp0_a = [
 ['2015-12-31',2043.94]
 ,['2015-12-30',2063.36]
 ,['2015-12-29',2078.36]
@@ -28,5 +29,23 @@ cp_a = [
 ,['2015-12-02',2079.51]
 ,['2015-12-01',2102.62]
 ]
-pdb.set_trace()
+
+
+# I should reverse the order of the data so it ascends by date:
+d_cp_a = [row for row in reversed(cp0_a)]
+
+# I should get the column of prices:
+cp_a = [row[1] for row in d_cp_a]
+
+# I should collect a moving avg:
+mvgavg5 = []
+for rn in range(1,len(d_cp_a)):
+  rn0 = rn-5
+  if rn0 < 0:
+    rn0 = 0
+  pdb.set_trace()
+  mvgavg5.append(sum(cp_a[rn0:rn])/len(cp_a[rn0:rn]))
+
+len(mvgavg5)
+
 'done'
