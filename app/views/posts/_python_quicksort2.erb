@@ -4,7 +4,7 @@ dan@nia111:~/ks/b/cs231/lec01 $
 dan@nia111:~/ks/b/cs231/lec01 $ python myquicksort.py 
 -> quicksort([1,2,3])
 (Pdb) c
--> if len(mylst) <= 1:
+-> if len(mylst) &lt;= 1:
 (Pdb) mylst
 [1, 2, 3]
 (Pdb) c
@@ -14,7 +14,7 @@ dan@nia111:~/ks/b/cs231/lec01 $ python myquicksort.py
 (Pdb) n
 -> pivot   = mylst[pivot_i]
 (Pdb) n
--> left    = [x for x in mylst if x < pivot ]
+-> left    = [x for x in mylst if x &lt; pivot ]
 (Pdb) n
 -> middle  = [x for x in mylst if x == pivot]
 (Pdb) n
@@ -28,11 +28,11 @@ dan@nia111:~/ks/b/cs231/lec01 $ python myquicksort.py
 (Pdb) right
 [3]
 (Pdb) c
--> if len(mylst) <= 1:
+-> if len(mylst) &lt;= 1:
 (Pdb) mylst
 [1]
 (Pdb) c
--> if len(mylst) <= 1:
+-> if len(mylst) &lt;= 1:
 (Pdb) mylst
 [3]
 (Pdb) c
