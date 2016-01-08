@@ -3,6 +3,7 @@
 # This script should demo how to create a list of observations of cp over 5day mvg avg.
 
 import pdb
+import statistics
 
 # Here is some data:
 d_cp0_a = [
@@ -43,24 +44,26 @@ for rn in range(1,1+len(cp_a)):
   if rn0 < 0:
     rn0 = 0
   avgthis = cp_a[rn0:rn]
-  mvgavg5.append(sum(avgthis)/len(avgthis))
+  mvgavg5.append(statistics.mean(avgthis))
 
+# I should check my work:
 len(mvgavg5) == len(cp_a) # should be true
 mvgavg5[0]   == cp_a[0]   # should be true
 avgthis      == cp_a[-5+len(cp_a):len(cp_a)] # should be true
 avgthis      == [2060.98, 2056.5, 2078.36, 2063.36, 2043.94] # should be true
-mvgavg5[-1+len(cp_a)] == sum([2060.98, 2056.5, 2078.36, 2063.36, 2043.94])/5 # should be true
+mvgavg5[-1+len(cp_a)] == sum([2060.98, 2056.5, 2078.36, 2063.36, 2043.94])/5
+# should be true
 
 cp_o5dmvg_avg = []
 # I should add the feature now:
 for rn in range(0,len(cp_a)):
   d_cp_a[rn].append(cp_a[rn]/mvgavg5[rn])
-  'end'
 
 # I should check my work:
 d_cp_a[0] == ['2015-12-01',2102.62,2102.62/2102.62] # should be true
-d_cp_a[1] == ['2015-12-02',2079.51,2079.51/(2079.51+2102.62)/2] # should be true
-d_cp_a[len(cp_a)-1] == ['2015-12-31',2043.94,2043.94/(sum([2060.98, 2056.5, 2078.36, 2063.36, 2043.94])/5)] # should be true
+d_cp_a[1] == ['2015-12-02',2079.51,2079.51/((2079.51+2102.62)/2)] # should be true
+d_cp_a[len(cp_a)-1] == ['2015-12-31',2043.94,2043.94/(sum([2060.98, 2056.5, 2078.36, 2063.36, 2043.94])/5)] 
+# should be true
 
 print(d_cp_a)
 
