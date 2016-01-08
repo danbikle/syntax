@@ -39,13 +39,16 @@ cp_a = [row[1] for row in d_cp_a]
 
 # I should collect a moving avg:
 mvgavg5 = []
-for rn in range(1,len(d_cp_a)):
+for rn in range(1,1+len(cp_a)):
   rn0 = rn-5
   if rn0 < 0:
     rn0 = 0
-  pdb.set_trace()
-  mvgavg5.append(sum(cp_a[rn0:rn])/len(cp_a[rn0:rn]))
+  avgthis = cp_a[rn0:rn]
+  mvgavg5.append(sum(avgthis)/len(avgthis))
 
-len(mvgavg5)
-
+len(mvgavg5) == len(cp_a) # should be true
+mvgavg5[0]   == cp_a[0]   # should be true
+avgthis      == cp_a[-5+len(cp_a):len(cp_a)] # should be true
+avgthis      == [2060.98, 2056.5, 2078.36, 2063.36, 2043.94] # should be true
+mvgavg5[-1+len(cp_a)] == sum([2060.98, 2056.5, 2078.36, 2063.36, 2043.94])/5 # should be true
 'done'
