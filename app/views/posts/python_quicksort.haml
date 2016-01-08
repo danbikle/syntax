@@ -1,0 +1,170 @@
+.q1 Question:
+.q2 In Python how to Quicksort?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/python') python
+  %a.xtag(href='/tags/quicksort') quicksort
+  %a.xtag(href='/tags/pdb') pdb
+  %a.xtag(href='/tags/recursion') recursion
+  %a.xtag(href='/tags/comprehension') comprehension
+  %a.xtag(href='/tags/cs231') cs231
+  
+%br/
+
+I bumped into a Python quicksort example at this URL:
+
+%br/
+%br/
+
+%a(href='http://cs231n.github.io/python-numpy-tutorial/' target='x')
+  http://cs231n.github.io/python-numpy-tutorial/
+
+%br/
+%br/
+
+How does Quicksort work?
+
+%br/
+%br/
+
+I enhanced the above example so it will run on my laptop:
+
+%pre
+  = render 'python_quicksort1'
+
+Notice that I wrote in lines of debugging syntax.
+
+%br/
+%br/
+
+This allows me to connect my mind to each line and each variable as the syntax walks forward.
+
+%br/
+%br/
+
+Also I see quicksort() calling itself in the last line of the method.
+
+%br/
+%br/
+
+So this implementation of quicksort() is recursive.
+
+%br/
+%br/
+
+It is easy to explain a general behavior of the method by looking at that last line:
+%ul
+  %li I divide the input-list into three pieces.
+  %li I sort the left piece.
+  %li I no-op the middle piece
+  %li I sort the right piece.
+  %li I concatenate the 3 pieces
+
+That behavior is easy to understand.
+
+%br/
+%br/
+
+It is more difficult to understand how the recursion stops once the list is sorted.
+
+%br/
+%br/
+
+I stepped through the method with the debugger and captured a screen dump.
+
+%br/
+%br/
+
+The debugger has simple behavior.
+
+%br/
+%br/
+
+It runs the script until the debugger encounters a breakpoint.
+
+%br/
+%br/
+
+Then it lists the line about to run.
+
+%br/
+%br/
+
+When the debugger is stopped I can look at variable-values.
+
+%br/
+%br/
+
+When I want to see a variable-value in the line:
+%ul
+  %li I type in the name of the variable before the line runs.
+  %li I type in the name of the variable after  the line runs.
+  %li Then I can see how the line changed the variable-value.
+
+%br/
+%br/
+
+In the example below I use only two commands: c and n
+
+%br/
+%br/
+
+The c command asks the debugger to run until it encounters a breakpoint I place in the code.
+After the debugger encounters the breakpoint it stops and displays the line of syntax about to be run.
+
+%br/
+%br/
+
+The n command asks the debugger to run only 1 line and then stop and then show the next line about to run.
+
+%br/
+%br/
+
+The debugger works well unless my code has a variable with the same name as a debugger command.
+
+%br/
+%br/
+
+So, in my code, I avoid using variables named c or n:
+
+%pre
+  = render 'python_quicksort2'
+
+When I watched the above debugger in action, my mind grasped the idea that recursion stops when quicksort() encounters a list with only one member.
+
+%br/
+%br/
+
+Perhaps a more important observation is that I saw recursion stop when quicksort() encountered a sorted list of three members.
+
+%br/
+%br/
+
+Then the next level of understanding came when saw that this expression:
+
+%pre
+  %code.python nxtlst  = quicksort(leftlst) + middle + quicksort(right)
+
+quickly becomes this expression:
+
+%pre
+  %code.python nxtlst  = leftlst + middle + quicksort(right)
+
+after leftlst is a sorted list of three members.
+
+%br/
+%br/
+
+So, this quicksort() example is a good way to learn about:
+%ul
+  %li Quicksort
+  %li Pdb-debugger
+  %li Python-comprehensions
+  %li len()
+  %li int()
+  %li Python-method-syntax
+  %li Python-if-then-syntax
+  %li Recursion
+
+%br/
+%br/

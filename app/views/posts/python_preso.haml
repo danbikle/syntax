@@ -3,7 +3,16 @@
 .tags
   %span.tagtag Tags:
   %a.xtag(href='/tags/python') python
-
+  %a.xtag(href='/tags/numpy') numpy
+  %a.xtag(href='/tags/pandas') pandas
+  %a.xtag(href='/tags/sklearn') sklearn
+  %a.xtag(href='/tags/crontab') crontab
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/baypiggies') baypiggies
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/yahoo') yahoo
+  %a.xtag(href='/tags/gspc') gspc
+  
 %br/
 
 This is/will be a presentation at the Python Meetup on 2016-01-18 at Hacker Dojo.
@@ -34,13 +43,9 @@ Currently this page is UNDER CONSTRUCTION.
   %li At 12:55 PM Ted rebalances his position of SPY so that it is bullish.
   %li Ted is done trading for that Tuesday.
 
-%br/
-%br/
-
-
 %h2 Development Environment Setup
 
-pyspy is developed on Ubuntu 14.
+I use Ubuntu 14 to develop and run pyspy.
 
 %br/
 %br/
@@ -104,7 +109,7 @@ It is possible to build a complex ML-app which runs on both Mac and Ubuntu but m
 %br/
 %br/
 
-Instead I just pick the OS which will support the production-app, in this case Ubuntu, and then use that OS to underlie my development environment.
+Instead I just pick the OS which will support the production-app, in this case Ubuntu, and then use that OS to host my development environment.
 
 %br/
 %br/
@@ -147,24 +152,140 @@ Then, I should pip install TA-lib:
     pip install TA-Lib
     python -c 'import numpy, talib'
 
-%br/
-%br/
-
-%h2 Data Acquistion
-For pyspy, Data Acquistion is simple.
+%h2 Data Acquistion (Automated)
+For pyspy, automated data acquistion is simple.
 %ul
   %li Create a folder for data
   %li Clone a repo with a script to copy data into the folder
   %li Create a cron entry to run the script at 12:50 M-F.
-  %li Syntax to do this:
+  %li I list syntax below to do this:
+
 %pre
   =render 'python_preso13'
 
+The crontab in the above example assumes that you are in the California timezone.
+
+%br/
+%br/
+
+If you are in a different timezone, study the comments in ~/pyspy/crontab.txt to see what you should change.
+
+%h2 Data Acquistion (Manual at Night)
+
+To manually acquire data, run this shell script:
+
+%pre
+  %code.bash ~/pyspy/bin/night.bash
+
+I captured some screen output when I did that:
+
+%pre
+  =render 'python_preso14'
+
+%h2 Data Acquistion (Manual at Near Calif-Noon)
+
+When the market is near close (California lunch hour) sometimes I will manually acquire data:
+
+%pre
+  %code.bash ~/pyspy/bin/noon50.bash
+
+I captured some screen output when I did that:
+
+%pre
+  =render 'python_preso15'
+
+The script
+%a(href='https://github.com/danbikle/pyspy/blob/master/bin/noon50.bash' target='g')
+  noon50.bash
+is an enhanced version of
+%a(href='https://github.com/danbikle/pyspy/blob/master/bin/night.bash' target='g')
+  night.bash
+
+%br/
+%br/
+
+The script
+%a(href='https://github.com/danbikle/pyspy/blob/master/bin/noon50.bash' target='g')
+  noon50.bash
+gets the most recent price by scraping a web-page with python.
+
+%br/
+%br/
+
+%h2 Feature Creation with Python
+
+When I talk with stock-traders about how they decide to open or close a position,
+often they will describe an example of a price chart:
+
+%br/
+%br/
+
+%img(src='/images/python_preso16.png')
+
+%br/
+%br/
+
+For example they might overlay a simple-moving-average on top of a price-time-series and then make decisions based on rules which they believe are true.
+
+%br/
+%br/
+
+An example of a rule might be this statement:
+When price is below a 5-day-moving average, I should be bullish.
+
+%br/
+%br/
+
+A Python programmer might look at that rule and ask,
+"How to use Python to build a 5-day-moving average and then compare it to the price?"
+
+%br/
+%br/
+
+The answer is, it is relatively easy to do this calculation in Python.
+
+%br/
+%br/
+
+As a product manager I would describe how I want to interact with this calculation.
+
+%br/
+%br/
+
+Currently, I would be happy if the calculation was placed within a simple 2D Python-List:
+
+%pre
+  %code.python
+    [
+    ["2015-12-01",2102.63,price_over5d_sma]
+    ,["2015-12-02",2079.51,price_over5d_sma]
+    ,["2015-12-03",2049.62,price_over5d_sma]
+    ,["2015-12-04",2091.69,price_over5d_sma]
+    ]
+
+As a programmer I would look at the above example and then write this python code:
+
+%pre
+  =render 'python_preso16'
+
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
+
 More topics under construction:
 
-%h2 Feature Visualization with Pandas
 %h2 Feature Creation with NumPy
 %h2 Feature Creation with TA-lib
+%h2 Feature Visualization with Pandas
 %h2 Model Building with scikit-learn
 %h2 Prediction of Out-of-Sample (OOS) data
 %h2 Visualization of OOS predictions
