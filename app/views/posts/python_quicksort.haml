@@ -130,10 +130,41 @@ So, in my code, I avoid using variables named c or n:
 %pre
   = render 'python_quicksort2'
 
+When I watched the above debugger in action, my mind grasped the idea that recursion stops when quicksort() encounters a list with only one member.
 
 %br/
 %br/
 
+Perhaps a more important observation is that I saw recursion stop when quicksort() encountered a sorted list of three members.
+
+%br/
+%br/
+
+Then the next level of understanding came when saw that this expression:
+
+%pre
+  %code.python nxtlst  = quicksort(leftlst) + middle + quicksort(right)
+
+quickly becomes this expression:
+
+%pre
+  %code.python nxtlst  = leftlst + middle + quicksort(right)
+
+after leftlst is a sorted list of three members.
+
+%br/
+%br/
+
+So, this quicksort() example is a good way to learn about:
+%ul
+  %li Quicksort
+  %li Pdb-debugger
+  %li Python-comprehensions
+  %li len()
+  %li int()
+  %li Python-method-syntax
+  %li Python-if-then-syntax
+  %li Recursion
 
 %br/
 %br/
