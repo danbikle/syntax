@@ -1,0 +1,46 @@
+<code class='bash'>
+dan@nia111:~/ks/b/cs231/lec01 $ 
+dan@nia111:~/ks/b/cs231/lec01 $ 
+dan@nia111:~/ks/b/cs231/lec01 $ python myquicksort.py 
+-> quicksort([1,2,3])
+(Pdb) c
+-> if len(mylst) <= 1:
+(Pdb) mylst
+[1, 2, 3]
+(Pdb) c
+-> pivot_n = len(mylst) / 2
+(Pdb) n
+-> pivot_i = int(pivot_n)
+(Pdb) n
+-> pivot   = mylst[pivot_i]
+(Pdb) n
+-> left    = [x for x in mylst if x < pivot ]
+(Pdb) n
+-> middle  = [x for x in mylst if x == pivot]
+(Pdb) n
+-> right   = [x for x in mylst if x > pivot ]
+(Pdb) n
+-> nxtlst  = quicksort(left) + middle + quicksort(right)
+(Pdb) left
+[1]
+(Pdb) middle
+[2]
+(Pdb) right
+[3]
+(Pdb) c
+-> if len(mylst) <= 1:
+(Pdb) mylst
+[1]
+(Pdb) c
+-> if len(mylst) <= 1:
+(Pdb) mylst
+[3]
+(Pdb) c
+-> return nxtlst
+(Pdb) nxtlst
+[1, 2, 3]
+(Pdb) c
+dan@nia111:~/ks/b/cs231/lec01 $ 
+dan@nia111:~/ks/b/cs231/lec01 $ 
+dan@nia111:~/ks/b/cs231/lec01 $ 
+</code>

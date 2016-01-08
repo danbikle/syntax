@@ -1,0 +1,28 @@
+<code class='python'>
+# myquicksort.py
+
+# ref: 
+# http://cs231n.github.io/python-numpy-tutorial/
+import pdb
+
+def quicksort(mylst):
+    pdb.set_trace() # breakpoint
+    if len(mylst) <= 1:
+        return mylst
+    pdb.set_trace() # breakpoint
+    pivot_n = len(mylst) / 2
+    # In Python how to round off decimal to integer?
+    pivot_i = int(pivot_n)
+    pivot   = mylst[pivot_i]
+    # Use 'comprehension' to get members left of middle.
+    left    = [x for x in mylst if x < pivot ]
+    middle  = [x for x in mylst if x == pivot]
+    # Use 'comprehension' to get members right of middle.
+    right   = [x for x in mylst if x > pivot ]
+    nxtlst  = quicksort(left) + middle + quicksort(right)
+    pdb.set_trace() # breakpoint
+    return nxtlst
+
+pdb.set_trace()
+quicksort([1,2,3])
+</code>
