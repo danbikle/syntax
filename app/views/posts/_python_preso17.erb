@@ -1,3 +1,4 @@
+<code class='python'>
 # genf_demo.py
 
 # This script should demo how to generate features from prices.
@@ -6,7 +7,6 @@
 # https://github.com/danbikle/pyspy/blob/master/py/genf.py
 
 import numpy  as np
-import pdb
 
 # Here is some data:
 d_cp0_a = [
@@ -44,7 +44,7 @@ cplag1_l = [cp[0]] + cp
 cplag2_l = [cp[0],cp[0]]             + cp
 cplag4_l = [cp[0],cp[0],cp[0],cp[0]] + cp
 cplag8_l = [cp[0],cp[0],cp[0],cp[0]] + cplag4_l
-# I should snip off ends so new columns as long as cp:
+# I should snip off ends so new columns are as long as cp:
 cplag1_l = cplag1_l[:-1]
 cplag2_l = cplag2_l[:-2]
 cplag4_l = cplag4_l[:-4]
@@ -69,5 +69,4 @@ pctlag8_a = 100.0 * (cp_a - cplag8_a)/cplag8_a
 # pctlag2_a
 # pctlag4_a
 # pctlag8_a
-
-'done'
+</code>
