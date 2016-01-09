@@ -33,23 +33,60 @@ d_cp_l = [
 # I should reverse the order of the data so it ascends by date:
 d_cp_l = [row for row in reversed(d_cp_l)]
 
+# I should get the column of date strings
+cdate_l = [row[0] for row in d_cp_l]
+
 # I should get the column of prices:
 cp   = [row[1] for row in d_cp_l]
-cp_a = np.array(cp)
-# I should calculate Bollinger Bands
 
-upper_a, middle_a, lower_a = talib.BBANDS(cp_a,timeperiod=5, nbdevup=2, nbdevdn=2, matype=0)
+# Work towards dependent array:
+cplead_l = cp + [cp[-1]]
 
-# Now that I have 3 Bollinger Bands,
-# I combine them with current price to get 3 features:
+# Work towards independent array:
+cplag1_l = [cp[0]] + cp
 
-upper_o_cp  = upper_a  / cp_a
-middle_o_cp = middle_a / cp_a
-cp_o_lower  = cp_a / lower_a
+# I should snip off ends so new columns as long as cp:
+cplead_l = cplead_l[1:]
+cplag1_l = cplag1_l[:-1]
 
-# I should now have 3 more features:
-# upper_o_cp
-# middle_o_cp
-# cp_o_lower
+# NumPy allows me to do arithmetic on its Arrays.
+# I should convert my lists to Arrays:
+cp_a     = np.array(cp)
+cplead_a = np.array(cplead_l)
+cplag1_a = np.array(cplag1_l)
+
+# I should use simple arithmetic to calculate pct-deltas:
+pctlead_a = 100.0 * (cplead_a - cp_a)/cp_a
+pctlag1_a = 100.0 * (cp_a - cplag1_a)/cplag1_a
+
+# I should put my columns into a DataFrame:
+df1            = pd.DataFrame(cdate_l)
+df1.columns    = ['cdate']
+df1['cp']      = cp
+df1['pctlag1'] = pctlag1_a
+df1['pctlead'] = pctlead_a
+
+# I should create simple predicates:
+pred_lt0 = df1['pctlag1'] < 0
+pred_gt0 = df1['pctlag1'] > 0
+
+# I should apply them:
+lt0_df = df1[pred_lt0]
+gt0_df = df1[pred_gt0]
+
+# I should study pctlead:
+pctlead_lt0_df     = lt0_df['pctlead']
+pctlead_lt0_mean_n = np.mean(pctlead_lt0_df)
+print(pctlead_lt0_mean_n)
+
+pctlead_gt0_df     = gt0_df['pctlead']
+pctlead_gt0_mean_n = np.mean(pctlead_gt0_df)
+print(pctlead_gt0_mean_n)
+pdb.set_trace()
+
+pred_lt0  = df1['pctlag1'] < 0
+pred_gtm1 = df1['pctlag1'] > -1
+lt0_gtm1_df = df1[pred_lt0][pred_gtm1]
+print(lt0_gtm1_df)
 
 'done'
