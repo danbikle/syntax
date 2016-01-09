@@ -1,11 +1,11 @@
-# genf_demo_talib.py
+# pandas_demo.py
 
+import pandas as pd
 import numpy  as np
-import talib
 import pdb
 
 # Here is some data:
-d_cp0_a = [
+d_cp_l = [
 ['2015-12-31',2043.94]
 ,['2015-12-30',2063.36]
 ,['2015-12-29',2078.36]
@@ -31,10 +31,10 @@ d_cp0_a = [
 ]
 
 # I should reverse the order of the data so it ascends by date:
-d_cp_a = [row for row in reversed(d_cp0_a)]
+d_cp_l = [row for row in reversed(d_cp_l)]
 
 # I should get the column of prices:
-cp   = [row[1] for row in d_cp_a]
+cp   = [row[1] for row in d_cp_l]
 cp_a = np.array(cp)
 # I should calculate Bollinger Bands
 
