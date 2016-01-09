@@ -37,13 +37,12 @@ d_cp_a = [row for row in reversed(d_cp0_a)]
 # I should get the column of prices:
 cp   = [row[1] for row in d_cp_a]
 cp_a = np.array(cp)
-# I should calculate Bollinger Bands
 
+# I should calculate Bollinger Bands:
 upper_a, middle_a, lower_a = talib.BBANDS(cp_a,timeperiod=5, nbdevup=2, nbdevdn=2, matype=0)
 
 # Now that I have 3 Bollinger Bands,
 # I combine them with current price to get 3 features:
-
 upper_o_cp  = upper_a  / cp_a
 middle_o_cp = middle_a / cp_a
 cp_o_lower  = cp_a / lower_a
