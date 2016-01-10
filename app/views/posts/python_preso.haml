@@ -516,10 +516,39 @@ Now I show more Pandas predicate syntax to calculate accuracies:
     \# I should calculate combined accuracy
     com_acc  = 100.0 * (len(tposp_df)+len(tnegp_df))/len(test_df)
 
-
+After I see the accuracy, I want to know the effectiveness of the predictions.
 
 %br/
 %br/
+
+The idea behind effectiveness can be described with a simple sentence:
+
+%br/
+%br/
+
+Get all the positive predictions, then calculate their average gain.
+
+%br/
+%br/
+
+Also I should get all the negative predictions and then calculate their average gain.
+
+%br/
+%br/
+
+If the average gain of the positive predictions is higher than the gain of the negative predictions I interpret that to mean that the model is effective.
+
+%br/
+%br/
+
+The syntax to calculate effectiveness is displayed below:
+
+%pre
+  %code.python
+    pos_pctlead_a = np.array(test_df[['pctlead']][test_df['pdir'] == 1])
+    pos_eff       = np.mean(pos_pctlead_a)
+    neg_pctlead_a = np.array(test_df[['pctlead']][test_df['pdir'] == -1])
+    neg_eff       = np.mean(neg_pctlead_a)
 
 %br/
 %br/
