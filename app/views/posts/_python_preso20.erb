@@ -1,0 +1,8 @@
+<code class='python'>
+predictions_l = []
+for xoos_a in x_test_a:
+  xf_a        = xoos_a.astype(float)
+  xr_a        = xf_a.reshape(1, -1)
+  aprediction = lrmodel.predict_proba(xr_a)[0,1]
+  predictions_l.append(aprediction)
+</code>

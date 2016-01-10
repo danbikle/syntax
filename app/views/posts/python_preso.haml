@@ -336,14 +336,15 @@ On github a link to the Python script I use to build Logistic Regression model f
 %a(href='https://github.com/danbikle/pyspy/blob/master/py/learn_test.py' target='x')
   https://github.com/danbikle/pyspy/blob/master/py/learn_test.py
 
+%br/
+%br/
 
-%br/
-%br/
 The syntax which creates a model is 3 simple lines of Python:
-
-from sklearn import linear_model
-lrmodel = linear_model.LogisticRegression()
-lrmodel.fit(x_train_a, label_train_a)
+%pre
+  %code.python
+    from sklearn import linear_model
+    lrmodel = linear_model.LogisticRegression()
+    lrmodel.fit(x_train_a, label_train_a)
 
 Much of my effort behind this script supported creation of the the two Numpy Arrays which I feed to lrmodel.fit():
 
@@ -353,20 +354,34 @@ Much of my effort behind this script supported creation of the the two Numpy Arr
 
 The first array, x_train_a, is a simple array of features which I discussed earlier in this page.
 
+%br/
+%br/
+
 The second array, label_train_a, is an array of what I call 'labels'.
 A label is one of two values: True or False
 
+%br/
+%br/
+
 Both arrays are created from all observations between 1987 and 2015 which is about (2015-1987)*252 observations.
+
+%br/
+%br/
 
 My intent here is to create a model which will help me predict if a future observation is above the training median, True or False?
 
-In Python terms, a future observation is a simple array like this: [pctlag1, pctlag2, pctlag4, pctlag8, upf, lowf]
+%br/
+%br/
+
+In Python terms, a future observation is a simple array like this: 
+
+%pre
+  %code.python [pctlag1, pctlag2, pctlag4, pctlag8, upf, lowf]
 
 An actual future observation might look like this:
 
-[-0.127,0.791,0.000,-1.194,-2.056, 1.002, 1.004]
-
-
+%pre
+  %code.python [-0.127,0.791,0.000,-1.194,-2.056, 1.002, 1.004]
 
 %h2 Prediction of Out-of-Sample (OOS) data
 
@@ -376,30 +391,31 @@ I can use this model to make predictions with appropriate calls the sklearn API.
 
 For example I could make a single prediction with syntax like this:
 
-  xoos_a      = [-0.127,0.791,0.000,-1.194,-2.056, 1.002, 1.004]
-  xf_a        = xoos_a.astype(float)
-  xr_a        = xf_a.reshape(1, -1)
-  aprediction = lrmodel.predict_proba(xr_a)[0,1]
+%pre
+  %code.python
+    xoos_a      = [-0.127,0.791,0.000,-1.194,-2.056, 1.002, 1.004]
+    xf_a        = xoos_a.astype(float)
+    xr_a        = xf_a.reshape(1, -1)
+    aprediction = lrmodel.predict_proba(xr_a)[0,1]
 
 Then I will see my prediction in the variable, aprediction.
+
+%br/
+%br/
 
 The prediction should be a value between 0 and 1.
 
 A value of 0.55 is a signal that the model is 55% confident that the label for the observation:
-[-0.127,0.791,0.000,-1.194,-2.056, 1.002, 1.004]
+%pre
+  %code.python [-0.127,0.791,0.000,-1.194,-2.056, 1.002, 1.004]
 will be True.
 
 I am interested in more than one prediction;
 I want all the predictions for 2015.
 
 To get those I use a loop:
-
-predictions_l = []
-for xoos_a in x_test_a:
-  xf_a        = xoos_a.astype(float)
-  xr_a        = xf_a.reshape(1, -1)
-  aprediction = lrmodel.predict_proba(xr_a)[0,1]
-  predictions_l.append(aprediction)
+%pre
+  =render 'python_preso20'  
 
 %h2 Visualization of OOS predictions
 
@@ -410,15 +426,23 @@ After I collected the 2015 predictions, I had some questions:
   %li How 'effective' where they?
   %li How to best visualize their effectiveness?
 
-
 Measuring accuracy is easy.
 
+%br/
+%br/
+
 For example if I have 10 predictions and 6 of them are correct (AKA 'True') then I have 60% accuracy.
+
+%br/
+%br/
 
 Usually I like to categorize my accuracy calculations into Postive accuracy and Negative accuracy.
 
 If I have a Negative accuracy of 60% and a Postive accuracy of 50% then I see that my model
 is better at predicting when the market will go down.
+
+%br/
+%br/
 
 That would be useful information if I am gambling money with these predictions.
 
