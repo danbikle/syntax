@@ -460,7 +460,75 @@ is better at predicting when the market will go down.
 
 That would be useful information if I am gambling money with these predictions.
 
+%br/
+%br/
 
+When I study the above Python syntax I see that the 2015 predictions accumulate in a list named predictions_l via this line:
+
+%pre
+  %code.python predictions_l.append(aprediction)
+
+%br/
+%br/
+
+I rely on Pandas to help me calculate prediction accuracy.
+
+%br/
+%br/
+
+I start this effort by transforming predictions_l into +1 or -1 using syntax like this:
+
+%pre
+  %code.python test_df['pdir'] = [np.sign(prediction-0.5) for prediction in predictions_l] 
+
+The above line captures prediction 'direction' with a column named 'pdir' in a Pandas DataFrame.
+
+%br/
+%br/
+
+Next, I capture the actual priced direction using syntax like this:
+
+%pre
+  %code.python
+    cp_l   = list(test_df['cp'].values)
+    lead_l = cp_l[1:] + [cp_l[len(cp_l)-1]]
+    lead_a = np.array(lead_l) - np.array(cp_l)
+    test_df['actual_dir'] = [np.sign(lead_delta) for lead_delta in lead_a]
+
+Earlier in this page I showed some Pandas predicate syntax to 
+visualize dependency between features and future deltas.
+
+%br/
+%br/
+
+Now I show more Pandas predicate syntax to calculate accuracies:
+%pre
+  %code.python
+    # I should count positive predictions.
+    posp_df  = test_df[['pdir','actual_dir']][test_df['pdir'] == 1]
+    # I should count true positive predictions.
+    tposp_df = posp_df[posp_df['actual_dir'] == 1]
+    # I should calculate positive accuracy.
+    pos_acc  = 100.0 * len(tposp_df)/len(posp_df)
+    # I should count negative predictions.
+    negp_df  = test_df[['pdir','actual_dir']][test_df['pdir'] == -1]
+    # I should count true negative predictions.
+    tnegp_df = negp_df[negp_df['actual_dir'] == -1]
+    # I should calculate negative accuracy.
+    neg_acc  = 100.0 * len(tnegp_df)/len(negp_df)
+    # I should calculate combined accuracy
+    com_acc  = 100.0 * (len(tposp_df)+len(tnegp_df))/len(test_df)
+
+
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
 
 More topics under construction:
 
