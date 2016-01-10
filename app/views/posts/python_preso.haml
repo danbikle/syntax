@@ -212,6 +212,24 @@ gets the most recent price by scraping a web-page with python.
 %br/
 %br/
 
+After you study 
+%a(href='https://github.com/danbikle/pyspy/blob/master/bin/noon50.bash' target='g')
+  noon50.bash
+and
+%a(href='https://github.com/danbikle/pyspy/blob/master/bin/night.bash' target='g')
+  night.bash
+you should notice that they do more than just collect data.
+They also do the following tasks:
+%ul
+  %li Create Features
+  %li Build a model with scikit-learn
+  %li Build Visualization of OOS predictions
+
+The above three topics are discussed below.
+
+%br/
+%br/
+
 %h2 Feature Creation with Python
 
 When I talk with stock-traders about how they decide to open or close a position,
@@ -308,11 +326,23 @@ I can use this syntax to visualize dependency between features and future deltas
 %pre
   =render 'python_preso19'
 
+%h2 Model Building with scikit-learn
+
+On github a link to the Python script I use to build Logistic Regression model from my features is listed below:
+
+%br/
+%br/
+
+%a(href='https://github.com/danbikle/pyspy/blob/master/py/learn_test.py' target='x')
+  https://github.com/danbikle/pyspy/blob/master/py/learn_test.py
+
+
+%br/
+%br/
 
 
 More topics under construction:
 
-%h2 Model Building with scikit-learn
 %h2 Prediction of Out-of-Sample (OOS) data
 %h2 Visualization of OOS predictions
 %h2 Build  the ML Application with Django
