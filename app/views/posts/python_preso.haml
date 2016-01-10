@@ -328,7 +328,7 @@ I can use this syntax to visualize dependency between features and future deltas
 
 %h2 Model Building with scikit-learn
 
-On github a link to the Python script I use to build Logistic Regression model from my features is listed below:
+On github, a link to the Python script I use to build Logistic Regression model from my features is listed below:
 
 %br/
 %br/
@@ -387,7 +387,13 @@ An actual future observation might look like this:
 
 After I create the model, I have a Python object called lrmodel.
 
-I can use this model to make predictions with appropriate calls the sklearn API.
+%br/
+%br/
+
+I can use this model to make predictions with appropriate calls to the sklearn API.
+
+%br/
+%br/
 
 For example I could make a single prediction with syntax like this:
 
@@ -405,7 +411,11 @@ Then I will see my prediction in the variable, aprediction.
 
 The prediction should be a value between 0 and 1.
 
+%br/
+%br/
+
 A value of 0.55 is a signal that the model is 55% confident that the label for the observation:
+
 %pre
   %code.python [-0.127,0.791,0.000,-1.194,-2.056, 1.002, 1.004]
 will be True.
@@ -413,7 +423,11 @@ will be True.
 I am interested in more than one prediction;
 I want all the predictions for 2015.
 
+%br/
+%br/
+
 To get those I use a loop:
+
 %pre
   =render 'python_preso20'  
 
