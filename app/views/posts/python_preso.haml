@@ -622,6 +622,15 @@ Earlier in the script, test_df had been created from a CSV file full of test dat
     test_df = pd.read_csv(testf)
 
 After I create test_df['prediction'] from predictions_l,
+I calculate what I call prediction direction and also copy those calculations into test_df:
+
+%pre
+  %code.python
+    # I should capture prediction 'direction'. Above 0.5 is bullish else bearish.
+    test_df['pdir'] = [np.sign(prediction-0.5) for prediction in predictions_l]
+
+
+
 
   
 %br/
