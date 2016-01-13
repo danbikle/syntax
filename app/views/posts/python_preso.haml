@@ -629,7 +629,7 @@ I calculate what I call prediction direction and also copy those calculations in
     \# I should capture prediction 'direction'. Above 0.5 is bullish else bearish.
     test_df['pdir'] = [np.sign(prediction-0.5) for prediction in predictions_l]
 
-Next I calculate 'lead_delta' which is the amount Blue-Line change each day:
+Next, I calculate 'lead_delta' which is the amount Blue-Line change each day:
 
 %pre
   %code.python
@@ -638,6 +638,11 @@ Next I calculate 'lead_delta' which is the amount Blue-Line change each day:
     lead_l = cp_l[1:] + [cp_l[len(cp_l)-1]]
     lead_a = np.array(lead_l) - np.array(cp_l)
     test_df['lead_delta'] = list(lead_a)
+
+Then, I calculate 'actual_dir' which is either +1 or -1 like 'pdir', the predicted direction:
+
+%pre
+  %code.python test_df['actual_dir'] = [np.sign(lead_delta) for lead_delta in lead_a]
 
 
 
