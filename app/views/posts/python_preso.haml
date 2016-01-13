@@ -554,7 +554,7 @@ After doing the above calculations of accuracy and effectiveness, I should show 
 
 %pre
   %code.python
-    # I should report
+    \# I should report
     print('True  positive count: '+str(len(tposp_df)))
     print('False positive count: '+str(len(posp_df)-len(tposp_df)))
     print('True  negative count: '+str(len(tnegp_df)))
@@ -598,7 +598,35 @@ The phrases below describe the main ideas behind the plot:
   %li If prediction is Bullish, Blue-Line and Green-Line move in same direction.
   %li If prediction is Bearish, Blue-Line and Green-Line move in opposite directions.
 
- 
+After I see the above list of behaviors,
+I am ready to code some Python to collect data for the plot.
+
+%br/
+%br/
+
+I start by seeing that I have my predictions accumulated in a list called: predictions_l
+
+%br/
+%br/
+
+I copy values from predictions_l into a data frame column:
+
+%pre
+  %code.python test_df['prediction'] = predictions_l
+
+Earlier in the script, test_df had been created from a CSV file full of test data using syntax like this:
+
+%pre
+  %code.python
+    testf   = sys.argv[2]
+    test_df = pd.read_csv(testf)
+
+After I create test_df['prediction'] from predictions_l,
+
+  
+%br/
+%br/
+
 %br/
 %br/
 
