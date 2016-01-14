@@ -766,4 +766,83 @@ I deployed my app to heroku with one shell command:
 
 If heroku likes you and your laptop it will tell you the URL which is serving your app.
 
+%br/
+%br/
+
+I see my app at this URL:
+
+%br/
+%br/
+
+%a(href='https://hspy10.herokuapp.com' target='x')
+  https://hspy10.herokuapp.com
+
+
 %h2 Operate the ML Application on Heroku
+
+
+I operate herokuspy in two different modes.
+
+%br/
+%br/
+
+First, I run a script at 12:50pm Mon-Fri California time which relies on pyspy to observe the current price of the S&P 500 index.
+
+%br/
+%br/
+
+Next, the script uses this new observation to generate the most recent prediction.
+
+%br/
+%br/
+
+This prediction is published to the web so that users can act on it before the market closes at 13:00pm (16:00 NY time).
+
+%br/
+%br/
+
+The script is listed below:
+
+%pre
+  %code.bash
+    \~/herokuspy/bin/noon50.bash
+
+In the second mode I run a script at 21:00pm Mon-Fri California time which uses the closing price of the S&P 500 index to generate the most recent prediction.
+
+%br/
+%br/
+
+This second script is listed below:
+
+%pre
+  %code.bash
+    \~/herokuspy/bin/night.bash
+
+I see the scripts listed on github too:
+
+%br/
+%br/
+
+%a(href='https://github.com/danbikle/herokuspy/blob/master/bin/noon50.bash' target='x')
+  https://github.com/danbikle/herokuspy/blob/master/bin/noon50.bash
+
+%br/
+%br/
+
+
+%a(href='https://github.com/danbikle/herokuspy/blob/master/bin/night.bash' target='x')
+  https://github.com/danbikle/herokuspy/blob/master/bin/night.bash
+
+%br/
+%br/
+
+If you want to run herokuspy on your laptop and you want help, e-me:
+
+%br/
+%br/
+
+bikle101@gmail.com
+
+%br/
+%br/
+
