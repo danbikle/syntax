@@ -1,8 +1,7 @@
-# pandas_demo.py
+<code class='python'># pandas_demo.py
 
 import pandas as pd
 import numpy  as np
-import pdb
 
 # Here is some data:
 d_cp_l = [
@@ -82,11 +81,10 @@ print(pctlead_lt0_mean_n)
 pctlead_gt0_df     = gt0_df['pctlead']
 pctlead_gt0_mean_n = np.mean(pctlead_gt0_df)
 print(pctlead_gt0_mean_n)
-pdb.set_trace()
 
+# I can stack predicates which then acts as AND:
 pred_lt0  = df1['pctlag1'] < 0
 pred_gtm1 = df1['pctlag1'] > -1
 lt0_gtm1_df = df1[pred_lt0][pred_gtm1]
 print(lt0_gtm1_df)
-
-'done'
+</code>

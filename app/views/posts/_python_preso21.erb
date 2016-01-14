@@ -1,0 +1,24 @@
+<code class='python'>
+# I should declare some integers to help me navigate the Array.
+cp_i         =  1
+prediction_i =  9
+pdir_i       = 10
+lead_delta_i = 11
+# I should get the array,
+# but the result of last prediction unknown,
+# so avoid it:
+bg_a = (test_df.values)[:-1]
+# I should calculate values of greenline
+greenline_l = []
+# Blue-line and greenline should start at same place:
+greenline_l.append(bg_a[0,cp_i])
+# I should look at each row in bg_a
+row_i = 0
+for row in bg_a:
+  greenline_l.append(greenline_l[row_i]+(row[pdir_i] * row[lead_delta_i]))
+  row_i += 1
+# I should add greenline_l to test_df so I can chart it later
+test_df['greenline'] = greenline_l
+# I should save test_df as CSV file:
+test_df.to_csv('learn_test.csv', float_format='%4.3f', index=False)
+</code>
