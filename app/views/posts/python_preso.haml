@@ -763,6 +763,11 @@ I deployed my app to heroku with one shell command:
 %pre
   %code.bash git push heroku master
 
+After that I asked heroku to connect my app to a database:
+
+%pre
+  %code.bash ~/heroku-client/bin/heroku run python manage.py migrate
+
 If heroku likes you and your laptop it will tell you the URL which is serving your app.
 
 %br/
@@ -776,9 +781,7 @@ I see my app at this URL:
 %a(href='https://hspy10.herokuapp.com' target='x')
   https://hspy10.herokuapp.com
 
-
 %h2 Operate the ML Application on Heroku
-
 
 I operate herokuspy in two different modes.
 
