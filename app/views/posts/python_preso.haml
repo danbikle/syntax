@@ -669,5 +669,56 @@ The above script should give me an image file which looks like this:
 
 The easy way to build the ML Application with Django is to git clone my repository into your development environment.
 
+%br/
+%br/
+
+On my Linux laptop I started by running two shell commands:
+
+%pre
+  %code.bash
+    cd ~
+    git clone https://github.com/danbikle/herokuspy
+
+Next, I installed the Heroku Toolbelt:
+
+%pre
+  %code.bash
+    cd ~
+    rm -rf heroku-client.tgz heroku-client
+    wget https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
+    tar zxf heroku-client.tgz
+    echo 'export PATH=/home/ann/heroku-client/bin:${PATH}' >> ~/.bashrc
+    bash
+
+Then, I create an ssh-key for my account; I had none yet:
+
+%pre
+  %code.bash ssh-keygen -t rsa
+
+Next, I browsed heroku.com and created an account via the web-ui.
+
+Then, I returned to the shell and gave a copy of public ssh-key to heroku:
+
+%pre
+  %code.bash
+    cd ~/herokuspy
+    ~/heroku-client/bin/heroku status
+    ~/heroku-client/bin/heroku auth:login
+    ~/heroku-client/bin/heroku auth:whoami
+    ~/heroku-client/bin/heroku keys:add
+
+Also, on my Linux laptop, I created an ann role in Postgres:
+
+%pre
+  %code.bash
+    sudo su - postgres
+    psql
+    CREATE ROLE ann WITH superuser login;
+    CREATE DATABASE ann;
+    
+
+Above, I picked the name 'ann' because than name matched the name of my Linux account.
+
+
 %h2 Deploy  the ML Application to Heroku
 %h2 Operate the ML Application on Heroku
