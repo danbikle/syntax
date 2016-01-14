@@ -702,10 +702,10 @@ Then, I returned to the shell and gave a copy of public ssh-key to heroku:
 %pre
   %code.bash
     cd ~/herokuspy
-    ~/heroku-client/bin/heroku status
-    ~/heroku-client/bin/heroku auth:login
-    ~/heroku-client/bin/heroku auth:whoami
-    ~/heroku-client/bin/heroku keys:add
+    \~/heroku-client/bin/heroku status
+    \~/heroku-client/bin/heroku auth:login
+    \~/heroku-client/bin/heroku auth:whoami
+    \~/heroku-client/bin/heroku keys:add
 
 Also, on my Linux laptop, I created an ann role in Postgres:
 
@@ -719,6 +719,51 @@ Also, on my Linux laptop, I created an ann role in Postgres:
 
 Above, I picked the name 'ann' because than name matched the name of my Linux account.
 
+%br/
+%br/
+
+I ran some shell commands:
+
+%pre
+  %code.bash
+    cd ~/herokuspy
+    \~/anaconda3/bin/pip install -r requirements.txt
+    /usr/bin/createdb python_getting_started
+    \~/heroku-client/bin/heroku local:run python manage.py migrate
+    python manage.py collectstatic
+    \~/heroku-client/bin/heroku local
+
+My app should now be accepting requests at this URL:
+
+%br/
+%br/
+
+http://localhost:5000
 
 %h2 Deploy  the ML Application to Heroku
+
+I created an app on heroku:
+
+%pre
+  %code.bash
+    cd ~/herokuspy
+    \~/heroku-client/bin/heroku create hspy10
+
+You will need to use a different app name than hspy10.
+
+%br/
+%br/
+
+Perhaps hspy11 is available?
+
+I deployed my app to heroku with one shell command:
+
+%pre
+  %code.bash git push heroku master
+
+%br/
+%br/
+
+If heroku likes you and your laptop it will tell you the URL which is serving your app.
+
 %h2 Operate the ML Application on Heroku
