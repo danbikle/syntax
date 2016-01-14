@@ -758,15 +758,12 @@ You will need to use a different app name than hspy10.
 
 Perhaps hspy11 is available?
 
-I deployed my app to heroku with one shell command:
+I deployed my app to heroku with two shell commands:
 
 %pre
-  %code.bash git push heroku master
-
-After that I asked heroku to connect my app to a database:
-
-%pre
-  %code.bash ~/heroku-client/bin/heroku run python manage.py migrate
+  %code.bash
+    git push heroku master
+    \~/heroku-client/bin/heroku run python manage.py migrate
 
 If heroku likes you and your laptop it will tell you the URL which is serving your app.
 
