@@ -1,0 +1,2 @@
+module ScaeHelper
+end
