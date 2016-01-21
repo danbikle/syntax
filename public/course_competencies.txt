@@ -1,0 +1,17 @@
+Program: Vocational Education - High Tech
+Course (Catalog) Title: Data Science Of Time Series
+Course #: 626669
+Instructor: Dan Bikle
+Total Course Hours: 38
+Week 	Time of Inst. 	SPECIFIC PERFORMANCE OBJECTIVES
+Wk 1 	3.5 Hrs 	Histograms, Scatter Plots, Correlation, Time Series Plots, Time Series Calculations, Linear Regression
+Wk 2 	3.5 Hrs 	AWS, Linux, Git, Heroku,
+Wk 3 	3.5 Hrs 	Vectors, SQL, Pandas, NumPy,
+Wk 4 	3.5 Hrs 	Machine Learning, Python scikit-learn, Naive Bayes, Linear Regression, Logistic Regression, SVM, GBRT, Neural Networks
+Wk 5 	3.5 Hrs 	The R Language
+Wk 6 	3.5 Hrs 	ConvNetJS
+Wk 7 	3.5 Hrs 	School Closed
+Wk 8 	3.5 Hrs 	Predictions from Features from Time Series
+Wk 9 	3.5 Hrs 	Visualizatons of Predictions
+Wk 10 	3.5 Hrs 	Serve Visualizatons to the Web
+Wk 11 	3.5 Hrs 	Deploy application to AWS-Heroku which predicts a financial market 
