@@ -6,8 +6,8 @@ Total Course Hours: 37
 
 Week    Time of Inst.   SPECIFIC PERFORMANCE OBJECTIVES
 Wk 1    3.5 Hrs         Histograms, Scatter Plots, Correlation, Time Series Plots, Time Series Calculations, Linear Regression
-Wk 2    3.5 Hrs         AWS, Linux, Git, Heroku,
-Wk 3    3.5 Hrs         Vectors, SQL, Pandas, NumPy,
+Wk 2    3.5 Hrs         AWS, Linux, Git, Heroku
+Wk 3    3.5 Hrs         Vectors, SQL, Pandas, NumPy
 Wk 4    3.5 Hrs         Machine Learning, Python scikit-learn, Naive Bayes, Linear Regression, Logistic Regression, SVM, GBRT, Neural Networks
 Wk 5    3.5 Hrs         The R Language
 Wk 6    3.5 Hrs         ConvNetJS
