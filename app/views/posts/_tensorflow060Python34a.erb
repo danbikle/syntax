@@ -1,0 +1,23 @@
+<code class='bash'>
+cd ~
+
+rm -rf ~/anaconda3/
+
+wget https://repo.continuum.io/archive/Anaconda3-2.3.0-Linux-x86_64.sh
+
+bash Anaconda3-2.3.0-Linux-x86_64.sh
+
+mv ~/anaconda3/bin/curl ~/anaconda3/bin/curl_ana
+
+which python
+
+which pip
+
+~/anaconda3/bin/pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.6.0-cp34-none-linux_x86_64.whl
+
+python
+
+# In python I should type these two commands:
+# import tensorflow
+# print(tensorflow.__version__)
+</code>
