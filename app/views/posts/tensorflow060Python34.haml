@@ -20,7 +20,13 @@ I just finished setting up a TensorFlow training environment on my Ubuntu laptop
 %br/
 %br/
 
-It is easy to do but required some detective work.
+It is easy to do but required some detective work.  The proper way to
+install packages into an Anaconda deployment is to use a utility named
+conda.  I could not get conda to install TensorFlow.  Another issue I
+bumped into was finding the right version of Anaconda matched to the
+right version of the TensorFlow whl file.  The Google TensorFlow docs
+showed how to install 0.5.0 on a vanilla install of Python 2.7 which
+is not what I wanted.
 
 %br/
 %br/
@@ -36,6 +42,9 @@ I ran the above commands and captured some of the output
   =render 'tensorflow060Python34b'
 
 Next I will follow the content here:
+
+%br/
+%br/
 
 %a(href='https://www.tensorflow.org/versions/0.6.0/tutorials/index.html' target='x')
   https://www.tensorflow.org/versions/0.6.0/tutorials/index.html
