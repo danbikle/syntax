@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  #get 'scae/index'
+
   get 'hireme/index'
   get 'hireme'    => 'hireme#index'
   root 'posts#index'
