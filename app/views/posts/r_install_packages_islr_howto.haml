@@ -1,0 +1,86 @@
+.q1 Question:
+.q2 How to install ISLR R Package on Ubuntu 14.04?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/islr') islr
+  %a.xtag(href='/tags/rpackage') rpackage
+  %a.xtag(href='/tags/cran') cran
+  %a.xtag(href='/tags/libpaths') libpaths
+  %a.xtag(href='/tags/rpkgs') rpkgs
+  %a.xtag(href='/tags/library') library
+
+%br/
+
+I am currently reading a book: "An Introduction to Statistical Learning"
+
+%br/
+%br/
+
+I found it at the URL listed below:
+
+%br/
+%br/
+
+%a(href='http://www-bcf.usc.edu/~gareth/ISL/' target='x')
+  http://www-bcf.usc.edu/~gareth/ISL/
+
+%br/
+%br/
+
+The book has a companion R package which I just installed on my Ubuntu Laptop.
+
+%br/
+%br/
+
+I started by creating a folder for the R package:
+
+%br/ 
+%br/ 
+
+%pre
+  %code.bash
+    mkdir -p ~/ks/b/hastie/rpkgs
+    cd       ~/ks/b/hastie/
+
+Next I created a script named demoISLR.r with a few lines of R syntax:
+
+%pre
+  =render 'r_install_packages_islr_howto1'
+
+I started R and ran this command from the R command line:
+
+%pre
+  %code.r install.packages("ISLR", lib="rpkgs", repos="http://cran.us.r-project.org")
+
+I exited R and ran this shell command:
+
+%pre
+  %code.bash R -f insISLR.r
+
+It worked well and I saw this:
+
+%pre
+  =render 'r_install_packages_islr_howto2'
+
+The above output shows that I have access to some data inside ISLR called Auto.
+
+%br/
+%br/
+
+This data is about cars made in the 1970s and early 1980s.
+
+%br/
+%br/
+
+Also the above output shows the behavior of a useful R function called summary() which can
+display aggregated calculations of collections of either strings or numbers.
+
+%br/
+%br/
+
+For example, summary() shows the minimum year is 70 and the maximum year is 82.
+
+%br/
+%br/
+
+
