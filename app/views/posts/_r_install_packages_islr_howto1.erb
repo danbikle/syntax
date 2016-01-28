@@ -1,0 +1,18 @@
+<code class='bash'>
+# demoISLR.r
+
+# I should run this syntax inside R (once):
+# install.packages("ISLR", lib="rpkgs", repos="http://cran.us.r-project.org")
+
+# Now I can do this in my scripts:
+
+# Next, tell this script where it is:
+.libPaths("rpkgs")
+
+# Now I can use it
+
+library(ISLR)
+
+myauto = Auto
+summary(myauto)
+</code>
