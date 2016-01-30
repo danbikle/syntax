@@ -1,0 +1,328 @@
+.q1 Question:
+.q2 How to Start Learning Angular2?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/angular2') angular2
+  %a.xtag(href='/tags/javascript') javascript
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/hackerdojo') hackerdojo
+  %a.xtag(href='/tags/heroku') heroku
+  %a.xtag(href='/tags/git') git
+
+%br/
+
+This page corresponds to a Meetup and a git-repo:
+
+%ul
+  %li
+    %a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/228359487' target='x')
+      http://www.meetup.com/Dans-Linux-JavaScript-Class/events/228359487
+  %li
+    %a(href='https://github.com/danbikle/ang2tut201602' target='x')
+      https://github.com/danbikle/ang2tut201602
+
+The purpose of the Meetup is to help you start learning Angular2.
+
+%br/
+%br/
+
+The git-repo is a teaching aid for the Meetup but should be good enough to point you down the path of learning Angular2.
+
+%br/
+%br/
+
+We start the class by assuming you have Ubuntu installed on your laptop.
+
+%br/
+%br/
+
+If you want to try doing this class with MacOS/X instead of Ubuntu, that should be do-able.
+
+%br/
+%br/
+
+I start by installing Ubuntu 14.04 on my laptop.
+%br/
+%br/
+
+
+The most recent version of Ubuntu which I like is at this URL:
+%br/
+%br/
+
+
+%a(href='http://releases.ubuntu.com/14.04.3/ubuntu-14.04.3-desktop-amd64.iso' target='x')
+  http://releases.ubuntu.com/14.04.3/ubuntu-14.04.3-desktop-amd64.iso
+%br/
+%br/
+
+
+The three general paths to install Ubuntu on a laptop are listed below:
+%ul
+  %li Remove Windows and install Ubuntu
+  %li Ignore Windows and install Ubuntu on USB drive
+  %li Install VirtualBox on Mac or Windows, Install Ubuntu inside VirtualBox
+
+My favorite path is path2: Ignore Windows and install Ubuntu on USB drive.
+%br/
+%br/
+
+Path2 works well with a new laptop should I want to maintain the warranty.
+%br/
+%br/
+
+If you are new to the world of Ubuntu laptops I suggest you buy a cheap windows laptop from Walmart and run some experiments.
+%br/
+%br/
+
+E-me if you need help: bikle101@gmail.com
+%br/
+%br/
+
+When I install Ubuntu, it will ask who I am.
+%br/
+%br/
+
+I tell Ubuntu that my name is ann.
+%br/
+%br/
+
+Then, Ubuntu will create an account named ann which has useful privileges.
+%br/
+%br/
+
+If you use a different initial account, you should create an account named ann after you boot the laptop.
+%br/
+%br/
+
+The shell commands to create the ann account are listed below:
+%pre
+  %code.bash
+    sudo useradd -m -s /bin/bash ann
+    sudo passwd ann
+
+The first command creates ann.
+%br/
+The second command gives her a password.
+%br/
+%br/
+
+After I create the ann account, I enhance and update Ubuntu.
+%br/
+%br/
+
+The shell commands to do this are listed below:
+%pre
+  =render 'angular2class2016_0131a'
+
+After that I login as ann and I download Node.js.
+%pre
+  %code.bash
+    cd ~
+    wget https://nodejs.org/dist/v5.5.0/node-v5.5.0-linux-x64.tar.gz
+
+
+Then I install it:
+%pre
+  %code.bash
+    cd ~
+    rm -rf  node
+    tar zxf node-v5.5.0-linux-x64.tar.gz
+    mv      node-v5.5.0-linux-x64 node
+
+So, I did that on my laptop.
+
+Then I did this:
+%pre
+  %code.bash
+    cd ~ann
+    git clone https://github.com/danbikle/ang2tut201602
+    cd  ang2tut201602
+    npm install
+    npm start
+
+The console indicated that lite-server was serving at two URLs:
+%br/
+%br/
+
+http://localhost:3000
+%br/
+%br/
+
+http://localhost:3001
+%br/
+%br/
+
+The first URL corresponded to my Angular2 app.
+%br/
+%br/
+
+The second URL corresponded to an admin-UI for lite-server.
+%br/
+%br/
+
+I saw this:
+%pre
+  =render 'angular2class2016_0131b'
+
+Also it brought up a browser and displayed the h1-element I had typed into app/app.component.ts.
+%br/
+%br/
+
+And I noticed that it created some new files in my git repo:
+%pre
+  %code.bash
+    app/app.component.js
+    app/app.component.js.map
+    app/boot.js
+    app/boot.js.map
+
+The way I got started with Angular2 development is to memorize a set of words which I see in the tutorial.
+%br/
+%br/
+
+This is a boring way to learn development but I need to know how to describe the internals of my Angular2 apps when I work with other people.
+%br/
+%br/
+
+This is similar to learning a foreign language like French.
+%br/
+%br/
+
+I need to start by memorizing some words.
+%br/
+%br/
+
+For Angualar2, the words I need to memorize are listed below in alphabetical order:
+%ul
+  %li at-sign
+  %li Apache Cordova
+  %li CSS selector
+  %li ES5
+  %li ES6
+  %li NativeScript
+  %li RxJS 
+  %li System
+  %li System.config
+  %li System.import
+  %li SystemJS
+  %li angular2/core
+  %li angular2/platform/browser
+  %li app
+  %li boot.ts
+  %li bootstrap
+  %li class
+  %li companion template
+  %li component
+  %li component metadata
+  %li concurrent
+  %li configuration object
+  %li decorator
+  %li dependencies
+  %li devDependencies
+  %li export
+  %li file
+  %li import
+  %li index.html
+  %li internet explorer polyfills
+  %li lite-server
+  %li module
+  %li my-app
+  %li noImplicitAny
+  %li node_modules
+  %li npm
+  %li npm install
+  %li npm package
+  %li npm package manager 
+  %li package.json
+  %li platform-specific
+  %li plunker
+  %li pre-compilation
+  %li project folder
+  %li promise
+  %li reactive extensions
+  %li root component
+  %li routing
+  %li scripts section
+  %li selector
+  %li Separation of concerns
+  %li system.src.js
+  %li template
+  %li template property
+  %li transpile
+  %li tsconfig.json
+  %li typescript
+  %li typescript compiler
+  %li view
+  %li view template
+  %li webpack
+
+My memorization strategy is simple.
+%br/
+%br/
+
+First I form questions from the word.
+%br/
+%br/
+
+Next, I will try building sentences from the word; maybe they would answer the questions.
+%br/
+%br/
+
+Then, I build some code snippets which are related to the word.
+%br/
+%br/
+
+For example the first word is:
+%br/
+%br/
+
+at-sign
+%br/
+%br/
+
+I thought up four questions related to at-sign:
+%ul
+  %li Can I ignore at-sign or should I know about it?
+  %li Where in the tutorial is at-sign?
+  %li What should I call the at-sign?
+  %li Why should I use the at-sign?
+
+Next, I thought up some sentences related to at-sign:
+%ul
+  %li I see the at-sign in the tutorial when they describe how to write app.component.ts.
+  %li The at-sign looks important; I should know about it.
+  %li I should remember the at-sign as, "Some TypeScript syntax which helps me apply a function to a class as a decorator."
+  %li This syntax is discussed at this URL:
+  %li https://angular.io/docs/ts/latest/quickstart.html#component-metadata
+  %li I use the at-sign to help me tell Angular that a class is an 'Angular Component'.
+  %li The at-sign can be placed in front of a function named 'Component' which has been imported from angular2/core.
+  %li
+    Once I do that, I can call
+    %pre
+      %code.javasript @Component()
+    with some metadata as a parameter to create an 'Angular Component'.
+  %li This metadata is a simple JS-object which contains a CSS-selector and a thing called a template which I see as some HTML-syntax.
+
+Here is a code snippet related to the at-sign:
+
+%pre
+  =render 'angular2class2016_0131c'
+
+So, I just demostrated how I route-memorize the idea behind the Angular2 at-sign:
+%ul
+  %li 4 Questions
+  %li Some sentences
+  %li A  code snippet
+
+In the list above I see 77 words I want to memorize.
+%br/ 
+%br/ 
+
+It would take me a long time to memorize them using my Question-Sentence-Snippet technique.
+%br/ 
+%br/ 
+
+But those memorized ideas should become useful as I start writing more Angular2 code.
+%br/ 
+%br/ 
