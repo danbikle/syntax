@@ -1,0 +1,247 @@
+.q1 Question:
+.q2 How to Start Learning Angular2 Tour Of Heros?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/angular2') angular2
+  %a.xtag(href='/tags/javascript') javascript
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/hackerdojo') hackerdojo
+  %a.xtag(href='/tags/heroku') heroku
+  %a.xtag(href='/tags/git') git
+  %a.xtag(href='/tags/es5') es5
+  %a.xtag(href='/tags/es6') es6
+  %a.xtag(href='/tags/nativescript') nativescript
+  %a.xtag(href='/tags/rxjs') rxjs
+  %a.xtag(href='/tags/angular2_core') angular2_core
+  %a.xtag(href='/tags/boot_ts') boot_ts
+  %a.xtag(href='/tags/companion') companion
+  %a.xtag(href='/tags/component') component
+  %a.xtag(href='/tags/concurrent') concurrent
+  %a.xtag(href='/tags/decorator') decorator
+  %a.xtag(href='/tags/dependencies') dependencies
+  %a.xtag(href='/tags/polyfills') polyfills
+  %a.xtag(href='/tags/lite_server') lite_server
+  %a.xtag(href='/tags/noimplicitany') noimplicitany
+  %a.xtag(href='/tags/node_modules') node_modules
+  %a.xtag(href='/tags/npm') npm
+  %a.xtag(href='/tags/plunker') plunker
+  %a.xtag(href='/tags/transpile') transpile
+  %a.xtag(href='/tags/typescript') typescript
+  %a.xtag(href='/tags/webpack') webpack
+  .tag heros
+  .tutorial
+
+%br/
+
+This page corresponds to a Meetup and a git-repo:
+
+%ul
+  %li
+    %a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/228538450' target='x')
+      http://www.meetup.com/Dans-Linux-JavaScript-Class/events/228538450
+
+  %li
+    %a(href='https://github.com/danbikle/ang2tut20160207' target='x')
+      https://github.com/danbikle/ang2tut20160207
+
+The purpose of the Meetup is to help you start the Angular2 Tour of Heros Tutorial.
+
+%br/
+%br/
+
+The git-repo is a teaching aid for the Meetup but should be good enough to point you down the path of learning Angular2.
+
+%br/
+%br/
+
+We start the class by assuming you have Ubuntu installed on your laptop.
+
+%br/
+%br/
+
+If you want to try doing this class with MacOS/X instead of Ubuntu, that should be do-able.
+
+%br/
+%br/
+
+I start by installing Ubuntu 14.04 on my laptop.
+%br/
+%br/
+
+
+The most recent version of Ubuntu which I like is at this URL:
+%br/
+%br/
+
+
+%a(href='http://releases.ubuntu.com/14.04.3/ubuntu-14.04.3-desktop-amd64.iso' target='x')
+  http://releases.ubuntu.com/14.04.3/ubuntu-14.04.3-desktop-amd64.iso
+%br/
+%br/
+
+
+The three general paths to install Ubuntu on a laptop are listed below:
+%ul
+  %li Remove Windows and install Ubuntu
+  %li Ignore Windows and install Ubuntu on USB drive
+  %li Install VirtualBox on Mac or Windows, Install Ubuntu inside VirtualBox
+
+My favorite path is path2: Ignore Windows and install Ubuntu on USB drive.
+%br/
+%br/
+
+Path2 works well with a new laptop should I want to maintain the warranty.
+%br/
+%br/
+
+If you are new to the world of Ubuntu laptops I suggest you buy a cheap windows laptop from Walmart and run some experiments.
+%br/
+%br/
+
+E-me if you need help: bikle101@gmail.com
+%br/
+%br/
+
+When I install Ubuntu, it will ask who I am.
+%br/
+%br/
+
+I tell Ubuntu that my name is ann.
+%br/
+%br/
+
+Then, Ubuntu will create an account named ann which has useful privileges.
+%br/
+%br/
+
+If you use a different initial account, you should create an account named ann after you boot the laptop.
+%br/
+%br/
+
+The shell commands to create the ann account are listed below:
+%pre
+  %code.bash
+    sudo useradd -m -s /bin/bash ann
+    sudo passwd ann
+
+The first command creates ann.
+%br/
+The second command gives her a password.
+%br/
+%br/
+
+After I create the ann account, I enhance and update Ubuntu.
+%br/
+%br/
+
+The shell commands to do this are listed below:
+%pre
+  =render 'angular2class2016_0207a'
+
+After that I login as ann and I download Node.js.
+%pre
+  %code.bash
+    cd ~
+    wget https://nodejs.org/dist/v5.5.0/node-v5.5.0-linux-x64.tar.gz
+
+
+Then I install it:
+%pre
+  %code.bash
+    cd ~
+    rm -rf  node
+    tar zxf node-v5.5.0-linux-x64.tar.gz
+    mv      node-v5.5.0-linux-x64 node
+
+So, I did that on my laptop.
+
+Then I did this:
+%pre
+  %code.bash
+    cd ~ann
+    git clone https://github.com/danbikle/ang2tut20160207
+    cd  ang2tut20160207
+    npm install
+    npm start
+
+The console indicated that lite-server was serving at two URLs:
+%br/
+%br/
+
+http://localhost:3000
+%br/
+%br/
+
+http://localhost:3001
+%br/
+%br/
+
+The first URL corresponded to my Angular2 app.
+%br/
+%br/
+
+The second URL corresponded to an admin-UI for lite-server.
+%br/
+%br/
+
+I saw this:
+%pre
+  =render 'angular2class2016_0207b'
+
+Also it brought up a browser and displayed the same content I saw at this URL:
+
+%br/
+%br/
+
+%a(href='https://angular.io/resources/live-examples/toh-4/ts/plnkr.html' target='x')
+  https://angular.io/resources/live-examples/toh-4/ts/plnkr.html
+
+%br/
+%br/
+
+So, that convinced me I was on the right track.
+
+%br/
+%br/
+
+Next, I removed some files so I could start the tutorial:
+
+%pre
+  %code.bash
+    cd ~/ang2tut20160207/
+    rm index.html
+    rm -rf app
+    mkdir  app
+
+Then, by hand, I copied in the three files from this URL:
+
+%br/
+%br/
+
+%a(href='https://angular.io/resources/live-examples/quickstart/ts/plnkr.html' target='x')
+  https://angular.io/resources/live-examples/quickstart/ts/plnkr.html
+
+
+%br/
+%br/
+
+Next, I followed the tutorial at this URL:
+
+%br/
+%br/
+
+%a(href='https://angular.io/docs/ts/latest/tutorial' target='x')
+  https://angular.io/docs/ts/latest/tutorial
+
+
+%br/
+%br/
+
+If you have questions, e-me: bikle101@gmail.com
+
+%br/
+%br/
+
+
+ 
+
