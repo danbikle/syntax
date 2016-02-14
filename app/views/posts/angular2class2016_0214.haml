@@ -156,8 +156,8 @@ Then I did this:
 %pre
   %code.bash
     cd ~ann
-    git clone https://github.com/danbikle/ang2tut20160207
-    cd  ang2tut20160207
+    git clone https://github.com/danbikle/ang2tut20160214
+    cd  ang2tut20160214
     npm install
     npm start
 
@@ -183,53 +183,20 @@ The second URL corresponded to an admin-UI for lite-server.
 
 I saw this:
 %pre
-  =render 'angular2class2016_0207b'
+  =render 'angular2class2016_0214b'
 
-Also it brought up a browser and displayed the same content I saw at this URL:
-
-%br/
-%br/
-
-%a(href='https://angular.io/resources/live-examples/toh-4/ts/plnkr.html' target='x')
-  https://angular.io/resources/live-examples/toh-4/ts/plnkr.html
+Also it brought up a browser and displayed the Tour of Heroes demo.
 
 %br/
 %br/
 
-So, that convinced me I was on the right track.
+Next, I studied the content in this repo to better understand how Angular2 interacts with Firebase:
 
 %br/
 %br/
 
-Next, I removed some files so I could start the tutorial:
-
-%pre
-  %code.bash
-    cd ~/ang2tut20160207/
-    rm index.html
-    rm -rf app
-    mkdir  app
-
-Then, by hand, I copied in the three files from this URL:
-
-%br/
-%br/
-
-%a(href='https://angular.io/resources/live-examples/quickstart/ts/plnkr.html' target='x')
-  https://angular.io/resources/live-examples/quickstart/ts/plnkr.html
-
-
-%br/
-%br/
-
-Next, I followed the tutorial at this URL:
-
-%br/
-%br/
-
-%a(href='https://angular.io/docs/ts/latest/tutorial' target='x')
-  https://angular.io/docs/ts/latest/tutorial
-
+%a(href='http://kallyngowdy.github.io/angular2-firebase/' target='x')
+  http://kallyngowdy.github.io/angular2-firebase/
 
 %br/
 %br/
