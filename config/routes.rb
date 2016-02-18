@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'beauty/index'
+
   #get 'scae/index'
 
   get 'hireme/index'
