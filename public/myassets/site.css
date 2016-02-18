@@ -53,3 +53,7 @@ table#maint {min-width: 600px; max-width: 900px;}
 
 .zebra_it table tr:nth-child(odd) {
   background-color: #DDDDDD; }
+
+table#maint #tr0{background: linear-gradient(#DFD, #FFF); }
+table#maint #tr2{background: linear-gradient(#DFD, #FFF); }
+#tr0td0 img{margin-left: 70px;}
