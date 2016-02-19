@@ -57,3 +57,4 @@ table#maint {min-width: 600px; max-width: 900px;}
 table#maint #tr0{background: linear-gradient(#99D, #DFD); }
 table#maint #tr2{background: linear-gradient(#DFD, #FFF); }
 #tr0td0 img{margin-left: 70px;}
+span.spanred {color: #D00;}
