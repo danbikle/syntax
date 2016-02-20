@@ -80,3 +80,93 @@ If you are new to the world of Ubuntu laptops I suggest you buy a cheap windows 
 E-me if you need help: bikle101@gmail.com
 %br/
 %br/
+
+So, after I installed Ubuntu on my laptop, I ran some shell commands:
+%pre
+  %code.bash
+    sudo apt-get update
+    sudo apt-get upgrade
+    
+    sudo apt-get install autoconf bison build-essential libssl-dev libyaml-dev \
+    libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 sqlite3    \
+    libgdbm-dev libsqlite3-dev gitk emacs wget curl openssh-server aptitude
+    
+    sudo apt-get update
+    sudo apt-get upgrade
+
+Next, I downloaded and installed Node.js:
+%pre
+  %code.bash
+    cd ~
+    wget https://nodejs.org/dist/v5.6.0/node-v5.6.0-linux-x64.tar.gz
+    rm -rf  node
+    tar zxf node-v5.6.0-linux-x64.tar.gz
+    mv      node-v5.6.0-linux-x64 node
+
+Then I ran some shell commands:
+%pre
+  %code.bash
+    cd ~
+    git clone https://github.com/danbikle/ang2auth0
+    cd ~/ang2auth0/
+    ls -l
+    cd ~/ang2auth0/nodejs-jwt-authentication-sample/
+    npm set progress=false
+    npm install -s
+    PORT=3001 node server.js
+
+Those shell commands worked well on my laptop so I opened another shell and ran these shell commands:
+%pre
+  %code.bash
+    cd ~/ang2auth0/angular2-authentication-sample/
+    npm install -s
+    npm start
+
+That also worked well for me so I opened another shell command and ran this shell command:
+%pre
+  %code.bash curl localhost:3000
+
+I saw this:
+%pre
+  =render 'angular2class2016_0220a'
+
+Next, I used my browser to GET localhost:3000.
+
+%br/
+%br/
+I saw this:
+%br/
+%img(src='/images/angular2class2016_0220/a1.png')
+%br/
+%br/
+I saw this:
+%br/
+%img(src='/images/angular2class2016_0220/a2.png')
+%br/
+%br/
+I saw this:
+%br/
+%img(src='/images/angular2class2016_0220/a3.png')
+%br/
+%br/
+I saw this:
+%br/
+%img(src='/images/angular2class2016_0220/a4.png')
+
+%br/
+%br/
+
+In class we will explore ways to enhance this demo.
+
+%br/
+%br/
+
+That should be enough to keep us busy for 2 hours.
+
+%br/
+%br/
+
+
+E-me if you need help: bikle101@gmail.com
+%br/
+%br/
