@@ -291,9 +291,28 @@ does what?
 
 In Pandas, how to create a DataFrame from a List?
 
+In the world of software, what does a Pandas DataFrame remind you of?
+
 In Python, how to create a Pandas DataFrame from a NumPy Array?
 
 In Python how to create a NumPy Array from Pandas DataFrame?
+
+This Pandas syntax:
+%pre
+  %code.python
+    # I should create simple predicates:
+    pred_lt0 = df1['pctlag1'] < 0
+    pred_gt0 = df1['pctlag1'] > 0
+    # I should apply them:
+    lt0_df = df1[pred_lt0]
+    gt0_df = df1[pred_gt0]
+does what?
+
+So, Pandas supports the idea of applying a predicate to a DataFrame;
+does NumPy support  the idea of applying a predicate to an Array?
+
+Does Python support  the idea of applying a predicate to a List?
+
 
 
 
