@@ -43,15 +43,15 @@ What is sudo?
 What is TA-lib?
 
 About This Bash syntax:
-./configure --prefix=/usr
+<code class='bash'>./configure --prefix=/usr</code>
 where do I typically see syntax like that?
 
 In Bash, this command:
-make
+<code class='bash'>make</code>
 does what?
 
 In Bash, this command:
-wget
+<code class='bash'>wget</code>
 does what?
 
 How to install TA-lib on Ubuntu?
@@ -69,36 +69,38 @@ How to install Anaconda?
 Python2 vs Python3, what should I know?
 
 In Bash, this syntax:
-which python
+<code class='bash'>which python</code>
 does what?
 
-What is .bashrc?
+What is
+<code class='bash'>.bashrc</code>
+?
 
-What is curl?
+What is<code class='bash'> curl</code>?
 
 Should I use the curl inside Anaconda?
 
-What is /usr/bin/curl?
+What is <code class='bash'>/usr/bin/curl</code>?
 
 How to see my version of Python?
 
 In Bash, this syntax:
-python -c 
+<code class='bash'>python -c </code>
 does what?
 
-What is pip?
+What is <code class='bash'>pip</code>?
 
 In Bash, this syntax:
-pip install
+<code class='bash'>pip install</code>
 does what?
 
 In Bash, this command:
-conda
+<code class='bash'>conda</code>
 does what?
 
 pip vs conda, which should I use?
 
-What is crontab?
+What is <code class='bash'>crontab</code>?
 
 In Bash what is an executable script?
 
@@ -139,13 +141,13 @@ With Python what can I put in a List?
 After I create a Python List, can I change it?
 
 This Python syntax:
-import statistics
+<code class='python'>import statistics</code>
 does what?
 
 When I sort a List am I sorting the List or a copy of the List?
 
 This Python syntax:
-reversed(mylist)
+<code class='python'>reversed(mylist)</code>
 does what?
 
 In Python, how to get length of a List?
@@ -165,15 +167,15 @@ In Python how to get a sub-List from a List?
 In Python what could be simple example of if-then-else syntax?
 
 This Python syntax:
-range(9)
+<code class='python'>range(9)</code>
 does what?
 
 This Python syntax:
-range(5,9)
+<code class='python'>range(5,9)</code>
 does what?
 
 This Python syntax:
-mylist.append(7)
+<code class='python'>mylist.append(7)</code>
 appends a 7 at the end of mylist.
 How to prepend 7 to front of mylist?
 
@@ -193,11 +195,11 @@ how might I create a feature which makes sense to a speculator?
 What is NumPy?
 
 This Python syntax:
-import numpy
+<code class='python'>import numpy</code>
 does what?
 
 This Python syntax:
-import numpy as np
+<code class='python'>import numpy as np</code>
 does what?
 
 What is the most common type of object I create with NumPy?
@@ -231,11 +233,11 @@ In Python how to create a function which returns 3 numbers?
 In Python how to call a function which returns 3 numbers?
 
 This Python syntax:
-myval = myfunc(name='Dan', age=44)
+<code class='python'>myval = myfunc(name='Dan', age=44)</code>
 does what?
 
 Could I rewrite myfunc() so the call behaves like this:
-myval = myfunc('Dan',44)
+<code class='python'>myval = myfunc('Dan',44)</code>
 ??
 
 Which behavior do you prefer; first way or second method?
@@ -243,7 +245,7 @@ Which behavior do you prefer; first way or second method?
 What is Pandas?
 
 This Python syntax:
-import pandas as pd
+<code class='python'>import pandas as pd</code>
 does what?
 
 In Python, how to see which version of NumPy and Pandas I am using?
@@ -337,12 +339,21 @@ does what?
 
 In the above syntax if aprediction is 0.55, what does that mean?
 
-What does xr_a.shape tell me about xr_a?
+What does 
+<code class='python'>xr_a.shape</code>
+tell me about
+<code class='python'> xr_a</code>?
 
-If xr_a.shape is (1,7), what does that mean?
+If
+<code class='python'>xr_a.shape</code> 
+is
+<code class='python'>(1,7)</code> 
+what does that mean?
 
-If myarray is a NumPy Array, what is this expression:
-myarray[0,1]
+If
+<code class='python'>myarray</code> 
+ is a NumPy Array, what is this expression:
+<code class='python'>myarray[0,1]</code>
 ??
 
 When I talk about predictions, what is a synonym for 'True'?
@@ -356,7 +367,7 @@ In Pandas, how to create a column from a List?
 In Pandas, how to create a column from a Comprehension?
 
 This Python syntax:
-<code class='bash'>list1 = [1,2,3]
+<code class='python'>list1 = [1,2,3]
 list2 = [4,5,6]
 list3 = list1 + list2</code>
 does what?
@@ -369,11 +380,9 @@ This combination of Pandas and NumPy syntax:
 <code class='python'>test_df['pdir'] = [np.sign(prediction-0.5) for prediction in predictions_l]</code>
 does what?
 
-
 This Pandas syntax:
 <code class='python'>posp_df  = test_df[['pdir','actual_dir']][test_df['pdir'] == 1]</code>
 does what?
-
 
 The idea behind effectiveness can be described with two simple sentences:
 1. Get all the positive predictions, then calculate their average gain.
@@ -405,7 +414,7 @@ This Pandas syntax:
 does what?
 
 This Python syntax:
-<code class='bash'>something = datetime.datetime.strptime(row, "%Y-%m-%d")</code>
+<code class='python'>something = datetime.datetime.strptime(row, "%Y-%m-%d")</code>
 does what?
 
 This Python syntax:
