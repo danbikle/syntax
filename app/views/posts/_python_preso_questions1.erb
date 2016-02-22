@@ -1,4 +1,3 @@
-<code class='python'>
 What is SPY?
 
 What is GSPC?
@@ -33,7 +32,7 @@ What is the Ubuntu wizard?
 
 What is an Ubuntu privileged account?
 
-In California, when does stockmarket typically close?
+In California, when does the stockmarket typically close?
 
 What is Bash?
 
@@ -43,14 +42,16 @@ What is sudo?
 
 What is TA-lib?
 
-This syntax:
+About This Bash syntax:
 ./configure --prefix=/usr
 where do I typically see syntax like that?
 
-Shell syntax: make
+In Bash, this command:
+make
 does what?
 
-Shell syntax: wget
+In Bash, this command:
+wget
 does what?
 
 How to install TA-lib on Ubuntu?
@@ -67,7 +68,8 @@ How to install Anaconda?
 
 Python2 vs Python3, what should I know?
 
-Shell syntax: which python
+In Bash, this syntax:
+which python
 does what?
 
 What is .bashrc?
@@ -80,15 +82,18 @@ What is /usr/bin/curl?
 
 How to see my version of Python?
 
-Shell syntax: python -c 
+In Bash, this syntax:
+python -c 
 does what?
 
 What is pip?
 
-Shell syntax: pip install
+In Bash, this syntax:
+pip install
 does what?
 
-Shell syntax: conda
+In Bash, this command:
+conda
 does what?
 
 pip vs conda, which should I use?
@@ -453,8 +458,9 @@ does what?
 In Bash, this syntax:
 %pre
   %code.bash
-    cd ~
-    git clone https://github.com/danbikle/herokuspy
+<code class='bash'>cd ~
+git clone https://github.com/danbikle/herokuspy
+</code>
 does what?
 
 What is Heroku?
@@ -464,18 +470,18 @@ What is the Heroku Toolbelt?
 In Bash, this syntax:
 %pre
   %code.bash
-    ssh-keygen -t rsa
+<code class='bash'>ssh-keygen -t rsa</code>
 does what?
 
 How to deploy a simple Django app to Heroku?
 
 In Bash and SQL, this syntax:
-%pre
-  %code.bash
-    sudo su - postgres
-    psql
-    CREATE ROLE ann WITH superuser login;
-    CREATE DATABASE ann;
+<code class='bash'>
+sudo su - postgres
+psql
+CREATE ROLE ann WITH superuser login;
+CREATE DATABASE ann;
+</code>
 does what?
 
 After I run the above syntax, what would be an obvious next step?
@@ -483,9 +489,7 @@ After I run the above syntax, what would be an obvious next step?
 Node.js has package.json and Ruby has Gemfile, what does Python have?
 
 In Bash, this syntax:
-%pre
-  %code.bash
-    \~/heroku-client/bin/heroku create hspy10
+<code class='bash'>~/heroku-client/bin/heroku create hspy10</code>
 does what?
 
 In Django how to configure the connection between my app and the database?
@@ -510,4 +514,3 @@ This should be enough questions for a two hour Meetup.
 
 If you have any questions and/or answers, please E-me: bikle101@gmail.com
 
-</code>
