@@ -400,4 +400,30 @@ This Python syntax:
     list3 = list1 + list2
 does what?
 
+This NumPy syntax:
+%pre
+  %code.python
+    mysign = np.sign(prediction-0.5)
+does what?
+
+This combination of Pandas and NumPy syntax:
+%pre
+  %code.python
+    test_df['pdir'] = [np.sign(prediction-0.5) for prediction in predictions_l]
+does what?
+
+
+This Pandas syntax:
+%pre
+  %code.python
+    posp_df  = test_df[['pdir','actual_dir']][test_df['pdir'] == 1]
+does what?
+
+
+The idea behind effectiveness can be described with two simple sentences:
+1. Get all the positive predictions, then calculate their average gain.
+What English should I write for sentence 2?
+
+
+
 
