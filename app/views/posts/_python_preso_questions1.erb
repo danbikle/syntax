@@ -253,11 +253,9 @@ How to compare NumPy to Pandas?
 In Pandas, what is the most common type of object I create?
 
 This Pandas syntax:
-%pre
-  %code.python
-    df1            = pd.DataFrame(cdate_l)
-    df1.columns    = ['cdate']
-    df1['cp']      = cp
+<code class='python'>df1            = pd.DataFrame(cdate_l)
+df1.columns    = ['cdate']
+df1['cp']      = cp</code>
 does what?
 
 In Pandas, how to create a DataFrame from a List?
@@ -269,14 +267,12 @@ In Python, how to create a Pandas DataFrame from a NumPy Array?
 In Python how to create a NumPy Array from Pandas DataFrame?
 
 This Pandas syntax:
-%pre
-  %code.python
-    # I should create simple predicates:
-    pred_lt0 = df1['pctlag1'] &lt; 0
-    pred_gt0 = df1['pctlag1'] > 0
-    # I should apply them:
-    lt0_df = df1[pred_lt0]
-    gt0_df = df1[pred_gt0]
+<code class='python'># I should create simple predicates:
+pred_lt0 = df1['pctlag1'] &lt; 0
+pred_gt0 = df1['pctlag1'] > 0
+# I should apply them:
+lt0_df = df1[pred_lt0]
+gt0_df = df1[pred_gt0]</code>
 does what?
 
 So, Pandas supports the idea of applying a predicate to a DataFrame;
@@ -301,11 +297,9 @@ What is scikit-learn?
 In Math, when I talk about Linear Regression, what does the verb 'fit' mean?
 
 This Python syntax:
-%pre
-  %code.python
-    from sklearn import linear_model
-    lrmodel = linear_model.LogisticRegression()
-    lrmodel.fit(x_train_a, label_train_a)
+<code class='python'>from sklearn import linear_model
+lrmodel = linear_model.LogisticRegression()
+lrmodel.fit(x_train_a, label_train_a)</code>
 does what?
 
 In the above syntax, the developer of lrmodel.fit() assumes what facts about x_train_a, label_train_a?
@@ -335,12 +329,10 @@ In Machine Learning, what is 'In-Sample-Data'?
 In Machine Learning, what is 'Out-of-Sample-Data'?
 
 This Python syntax:
-%pre
-  %code.python
-    xoos_a      = np.array([-0.127,0.791,0.000,-1.194,-2.056, 1.002, 1.004])
-    xf_a        = xoos_a.astype(float)
-    xr_a        = xf_a.reshape(1, -1)
-    aprediction = lrmodel.predict_proba(xr_a)[0,1]
+<code class='python'>xoos_a      = np.array([-0.127,0.791,0.000,-1.194,-2.056, 1.002, 1.004])
+xf_a        = xoos_a.astype(float)
+xr_a        = xf_a.reshape(1, -1)
+aprediction = lrmodel.predict_proba(xr_a)[0,1]</code>
 does what?
 
 In the above syntax if aprediction is 0.55, what does that mean?
@@ -364,30 +356,22 @@ In Pandas, how to create a column from a List?
 In Pandas, how to create a column from a Comprehension?
 
 This Python syntax:
-%pre
-  %code.python
-    list1 = [1,2,3]
-    list2 = [4,5,6]
-    list3 = list1 + list2
+<code class='bash'>list1 = [1,2,3]
+list2 = [4,5,6]
+list3 = list1 + list2</code>
 does what?
 
 This NumPy syntax:
-%pre
-  %code.python
-    mysign = np.sign(prediction-0.5)
+<code class='python'>mysign = np.sign(prediction-0.5)</code>
 does what?
 
 This combination of Pandas and NumPy syntax:
-%pre
-  %code.python
-    test_df['pdir'] = [np.sign(prediction-0.5) for prediction in predictions_l]
+<code class='python'>test_df['pdir'] = [np.sign(prediction-0.5) for prediction in predictions_l]</code>
 does what?
 
 
 This Pandas syntax:
-%pre
-  %code.python
-    posp_df  = test_df[['pdir','actual_dir']][test_df['pdir'] == 1]
+<code class='python'>posp_df  = test_df[['pdir','actual_dir']][test_df['pdir'] == 1]</code>
 does what?
 
 
@@ -417,47 +401,37 @@ In Pandas, how to create a CSV file from a DataFrame?
 In Python, how to read data values from command line?
 
 This Pandas syntax:
-%pre
-  %code.python
-    myval = df1['cdate'].values
+<code class='python'>myval = df1['cdate'].values</code>
 does what?
 
 This Python syntax:
-%pre
-  %code.python
-    something = datetime.datetime.strptime(row, "%Y-%m-%d")
+<code class='bash'>something = datetime.datetime.strptime(row, "%Y-%m-%d")</code>
 does what?
 
 This Python syntax:
-%pre
-  %code.python
-    cdate_l = [datetime.datetime.strptime(row, "%Y-%m-%d") for row in df1['cdate'].values]
+<code class='python'>cdate_l = [datetime.datetime.strptime(row, "%Y-%m-%d") for row in df1['cdate'].values]</code>
 does what?
 
 In Python, what is matplotlib?
 
 This Python syntax:
-%pre
-  %code.python
-    import matplotlib
-    matplotlib.use('Agg')
+<code class='python'>
+import matplotlib
+matplotlib.use('Agg')</code>
 does what?
 
 This Python syntax:
-%pre
-  %code.python
-    import matplotlib.pyplot as plt
-    plt.figure(figsize=(15,10))
-    plt.plot(cdate_l, cp_l, 'b-', cdate_l, gl_l, 'g-')
-    plt.title('Blue-Line/Green-Line Visualization (Blue: Long Only, Green: Follow Predictions)')
-    plt.grid(True)
-    plt.savefig('/tmp/plt.png')
-    plt.close()
+<code class='python'>
+import matplotlib.pyplot as plt
+plt.figure(figsize=(15,10))
+plt.plot(cdate_l, cp_l, 'b-', cdate_l, gl_l, 'g-')
+plt.title('Blue-Line/Green-Line Visualization (Blue: Long Only, Green: Follow Predictions)')
+plt.grid(True)
+plt.savefig('/tmp/plt.png')
+plt.close()</code>
 does what?
 
 In Bash, this syntax:
-%pre
-  %code.bash
 <code class='bash'>cd ~
 git clone https://github.com/danbikle/herokuspy
 </code>
@@ -468,8 +442,6 @@ What is Heroku?
 What is the Heroku Toolbelt?
 
 In Bash, this syntax:
-%pre
-  %code.bash
 <code class='bash'>ssh-keygen -t rsa</code>
 does what?
 
