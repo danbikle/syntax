@@ -301,7 +301,7 @@ This Pandas syntax:
 %pre
   %code.python
     # I should create simple predicates:
-    pred_lt0 = df1['pctlag1'] < 0
+    pred_lt0 = df1['pctlag1'] &lt; 0
     pred_gt0 = df1['pctlag1'] > 0
     # I should apply them:
     lt0_df = df1[pred_lt0]
@@ -457,9 +457,89 @@ This Python syntax:
     something = datetime.datetime.strptime(row, "%Y-%m-%d")
 does what?
 
+This Python syntax:
+%pre
+  %code.python
+    cdate_l = [datetime.datetime.strptime(row, "%Y-%m-%d") for row in df1['cdate'].values]
+does what?
 
 In Python, what is matplotlib?
 
+This Python syntax:
+%pre
+  %code.python
+    import matplotlib
+    matplotlib.use('Agg')
+does what?
 
+This Python syntax:
+%pre
+  %code.python
+    import matplotlib.pyplot as plt
+    plt.figure(figsize=(15,10))
+    plt.plot(cdate_l, cp_l, 'b-', cdate_l, gl_l, 'g-')
+    plt.title('Blue-Line/Green-Line Visualization (Blue: Long Only, Green: Follow Predictions)')
+    plt.grid(True)
+    plt.savefig('/tmp/plt.png')
+    plt.close()
+does what?
 
+In Bash, this syntax:
+%pre
+  %code.bash
+    cd ~
+    git clone https://github.com/danbikle/herokuspy
+does what?
 
+What is Heroku?
+
+What is the Heroku Toolbelt?
+
+In Bash, this syntax:
+%pre
+  %code.bash
+    ssh-keygen -t rsa
+does what?
+
+How to deploy a simple Django app to Heroku?
+
+In Bash and SQL, this syntax:
+%pre
+  %code.bash
+    sudo su - postgres
+    psql
+    CREATE ROLE ann WITH superuser login;
+    CREATE DATABASE ann;
+does what?
+
+After I run the above syntax, what would be an obvious next step?
+
+Node.js has package.json and Ruby has Gemfile, what does Python have?
+
+In Bash, this syntax:
+%pre
+  %code.bash
+    \~/heroku-client/bin/heroku create hspy10
+does what?
+
+In Django how to configure the connection between my app and the database?
+
+In Django how to configure routing?
+
+In Python what is psycopg2?
+
+In Django how to declare and configure models?
+
+In my Django app I see a folder called static; what is that for?
+
+In Django, what is a template?
+
+In Django, how to share HTML between files?
+
+In a Django template, how to refer to an image file which I want to serve?
+
+In Django what is an example of building a ul-element with help from a Python for-loop?
+
+This should be enough questions for a two hour Meetup.
+
+If you have any questions and/or answers, please E-me: bikle101@gmail.com
