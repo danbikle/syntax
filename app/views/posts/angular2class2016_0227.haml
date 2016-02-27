@@ -1,0 +1,181 @@
+.q1 Question:
+.q2 Angular2 Tour Of Heros Routing?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/angular2') angular2
+  %a.xtag(href='/tags/javascript') javascript
+  %a.xtag(href='/tags/meetup') meetup
+  %a.xtag(href='/tags/hackerdojo') hackerdojo
+  %a.xtag(href='/tags/git') git
+  %a.xtag(href='/tags/npm') npm
+  %a.xtag(href='/tags/typescript') typescript
+  %a.xtag(href='/tags/tutorial') tutorial
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/ubuntu') ubuntu
+  %a.xtag(href='/tags/nodejs') nodejs
+  %a.xtag(href='/tags/sample') sample
+  %a.xtag(href='/tags/heros') heros
+  %a.xtag(href='/tags/plnkr') plnkr
+
+This page corresponds to a Meetup and a git-repo:
+
+%ul
+  %li
+    %a(href='http://www.meetup.com/Dans-Linux-JavaScript-Class/events/229050759' target='x')
+      http://www.meetup.com/Dans-Linux-JavaScript-Class/events/229050759
+
+  %li
+    %a(href='https://github.com/danbikle/ang2tut20160227' target='x')
+      https://github.com/danbikle/ang2tut20160227
+
+This Meetup has two tracks:
+
+%ul
+  %li Run Tour Of Heros demo on plnkr.co
+  %li Run Tour Of Heros demo on your laptop
+
+The first track is the easy track.
+
+%br/
+%br/
+
+It would be suitable, however, for the student who wants to focus on Angular2 syntax.
+
+%br/
+%br/
+
+All you need for the first track is any laptop which can run a google-chrome-browser.
+
+%br/
+%br/
+
+The code for the first track is at this URL:
+
+%br/
+%br/
+
+%a(href='https://github.com/danbikle/ang2tut20160227' target='x')
+  https://github.com/danbikle/ang2tut20160227
+
+
+%br/
+%br/
+
+The way I do the first track is to copy-paste syntax out of the above repo into a plnkr.co session.
+
+%br/
+%br/
+
+We should have a short demo of me doing this in the lecture portion of the Meetup.
+
+%br/
+%br/
+
+The second track will be more difficult because I cannot get Tour Of Heros to run on my laptop.
+
+%br/
+%br/
+
+So if you want to wrestle with a somewhat typical-annoying-NodeJS bug, then track two is for you.
+
+%br/
+%br/
+
+We start track two by assuming you have Ubuntu installed on your laptop.
+
+%br/
+%br/
+
+If you want to try doing this class with MacOS/X instead of Ubuntu, that should be do-able.
+
+%br/
+%br/
+
+I start by installing Ubuntu 14.04 on my laptop.
+%br/
+%br/
+
+
+The most recent version of Ubuntu which I like is at this URL:
+%br/
+%br/
+
+
+%a(href='http://releases.ubuntu.com/14.04.3/ubuntu-14.04.3-desktop-amd64.iso' target='x')
+  http://releases.ubuntu.com/14.04.3/ubuntu-14.04.3-desktop-amd64.iso
+%br/
+%br/
+
+
+The three general paths to install Ubuntu on a laptop are listed below:
+%ul
+  %li Remove Windows and install Ubuntu
+  %li Ignore Windows and install Ubuntu on USB drive
+  %li Install VirtualBox on Mac or Windows, Install Ubuntu inside VirtualBox
+
+My favorite path is path2: Ignore Windows and install Ubuntu on USB drive.
+%br/
+%br/
+
+Path2 works well with a new laptop should I want to maintain the warranty.
+%br/
+%br/
+
+If you are new to the world of Ubuntu laptops I suggest you buy a cheap windows laptop from Walmart and run some experiments.
+%br/
+%br/
+
+E-me if you need help: bikle101@gmail.com
+%br/
+%br/
+
+So, after I installed Ubuntu on my laptop, I ran some shell commands:
+%pre
+  %code.bash
+    sudo apt-get update
+    sudo apt-get upgrade
+    
+    sudo apt-get install autoconf bison build-essential libssl-dev libyaml-dev \
+    libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 sqlite3    \
+    libgdbm-dev libsqlite3-dev gitk emacs wget curl openssh-server aptitude
+    
+    sudo apt-get update
+    sudo apt-get upgrade
+
+Next, I downloaded and installed Node.js:
+%pre
+  %code.bash
+    cd ~
+    rm -rf node node-v5.7.0-linux-x64.tar.xz
+    wget https://nodejs.org/dist/v5.7.0/node-v5.7.0-linux-x64.tar.xz
+    tar xf node-v5.7.0-linux-x64.tar.xz
+    mv     node-v5.7.0-linux-x64 node
+
+Then I ran some shell commands:
+%pre
+  %code.bash
+    cd ~
+    git clone https://github.com/danbikle/ang2tut20160227
+    cd ~/ang2tut20160227/hero_ed/qk_start
+    ls -l
+    npm set progress=false
+    npm install -s
+
+At this point I should see an error message from npm:
+%pre
+  =render 'angular2class2016_0227a'
+
+The point of track two is either fix or work-around the above error message.
+
+%br/
+%br/
+
+That should be enough to keep us busy for 2 hours.
+
+%br/
+%br/
+
+
+E-me if you need help: bikle101@gmail.com
+%br/
+%br/
