@@ -531,16 +531,31 @@ Here is some Numpy syntax. You should try it:
     myarray_a - myarray_a
     myarray_a / myarray_a
     myarray_a * myarray_a
+    (1.1 + myarray_a) / (2.2 - myarray_a)
 
-%br/
-%br/
+%h3 Python Pandas
+Often I use Pandas to read CSV files from Yahoo.
 
+I start this demo with shell commands in my terminal:
 
-%br/
-%br/
-%br/
-%br/
-%br/
+%pre
+  %code.bash
+    cd /tmp
+    wget --output-document=TEAM.csv http://ichart.finance.yahoo.com/table.csv?s=TEAM
+
+Then I use Pandas to read it:
+%pre
+  %code.bash
+    import pandas as pd
+    
+    team_df = pd.read_csv('/tmp/TEAM.csv')
+    team_df.head()
+    team_df.columns
+    new_columns_l = [col_s.lower().replace(' ','_') for col_s in team_df.columns]
+    new_columns_l
+    team_df.columns = new_columns_l
+    team_df.head()
+
 %br/
 %br/
 %br/
