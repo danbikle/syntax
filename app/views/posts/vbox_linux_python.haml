@@ -133,6 +133,10 @@ Next, you have a choice:
     %a(href='https://s3-us-west-2.amazonaws.com/tsds1/tsds0307b.ova' target='x')
       https://s3-us-west-2.amazonaws.com/tsds1/tsds0307b.ova
     and 'import' it
+  %li
+    %a(href='https://s3-us-west-2.amazonaws.com/tsds1/tsds0307b.ova' target='x')
+      https://s3-us-west-2.amazonaws.com/tsds1/tsds0307b.ova
+    has ~dan/anaconda3 installed. I find that useful.
 
 The first method is more difficult and thus more educational.  The best way to learn it is to watch someone do it via youtube video.
 This will allow you to rewind and watch difficult sections until you understand it better.
@@ -485,6 +489,25 @@ The comprehension below can replace the loop above:
   %code.python
     zlist_l = ['hello '+row for row in urlist_l]
     print(zlist_l)
+
+%h3 Python Function
+
+The syntax below demonstrates how to create and call a function:
+%pre
+  =render 'vbox_linux_python13'
+
+%h3 Python import
+
+The Python import command allows me to import packages into my Python.
+I tried to use numpy:
+
+%pre
+  =render 'vbox_linux_python14'
+It failed.
+I called import:
+%pre
+  =render 'vbox_linux_python15'
+It worked.
 
 %br/
 %br/
