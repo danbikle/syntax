@@ -271,29 +271,39 @@ Now, that method of learning is old and inefficient.
 
 Perhaps though, you should memorize these demos:
 %ul
-  %li Create a file:
+  %li
+    %span.spanred Create a file:
   %li echo hello > ~/hello.txt
-  %li Copy   a file:
+  %li
+    %span.spanred Copy   a file:
   %li cp ~/hello.txt ~/hello2.txt
-  %li List   a file:
+  %li
+    %span.spanred List   a file:
   %li ls -l ~/hello.txt
   %li cat   ~/hello.txt
-  %li Update a file:
+  %li
+    %span.spanred Update a file:
   %li echo hola >> ~/hello.txt
-  %li Delete a file:
+  %li
+    %span.spanred Delete a file:
   %li rm ~/hello2.txt
   %li
     %hr
-  %li Create a folder:
+  %li
+    %span.spanred Create a folder:
   %li mkdir ~/mydirectory
-  %li Copy   a folder:
+  %li
+    %span.spanred Copy   a folder:
   %li rsync -a ~/mydirectory ~/urdirectory
-  %li List   a folder:
+  %li
+    %span.spanred List   a folder:
   %li ls -l ~/mydirectory
-  %li Update a folder:
+  %li
+    %span.spanred Update a folder:
   %li echo bonjour > ~/mydirectory/bonjour.txt
   %li touch ~/mydirectory
-  %li Delete a folder:
+  %li
+    %span.spanred Delete a folder:
   %li rm -rf ~/urdirectory
 
 In Linux we often use the word 'directory' to mean folder.
@@ -392,6 +402,10 @@ Lists are easy:
     my_l[-1:]
     my_l[-3:]
     my_l[-5:-2]
+    \# I should use predicate on a list.
+    \# The predicate I want is (member > 4).
+    \# I should code it up now:
+    ur_l = [member for member in my_l if (member > 4)]
 
 Learning Python can be similar to learning Shell.
 
@@ -530,6 +544,17 @@ Here is some Numpy syntax. You should try it:
     myarray_a[:, 1:4]
     myarray_a[1:3, :]
     
+    \# I should use a predicate on myarray_a
+    predicate1 = myarray_a[:,0] == 8
+    \# English of above predicate:
+    \# get all rows,
+    \# where column0 == 8
+    predicate1
+    
+    ur_array_a = myarray_a[predicate1,:]
+    ur_array_a
+
+    \# Now, I should demo array arithmetic:
     1.1 + myarray_a
     myarray_a + myarray_a
     myarray_a - myarray_a
