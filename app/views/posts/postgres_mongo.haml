@@ -20,54 +20,85 @@ Then it is easy to compare them.
 
 When I installed Postgres on my Linux laptop I followed some steps.
 
-I issued a shell command:
+%br/
+%br/
 
-apt-get install postgresql postgresql-server-dev-all libpq-dev
+I issued a shell command:
+%pre
+  %code.bash apt-get install postgresql postgresql-server-dev-all libpq-dev
 
 After that finished, I rebooted the laptop.
 
+%br/
+%br/
+
 The next series of steps depend on the name of my Linux account.
+%br/
+%br/
 
 On my laptop I login to Linux as dan.
+%br/
+%br/
 
 Postgres works well on my laptop if I create an account inside of Postgres named dan.
+%br/
+%br/
 
 Also Postgres wants me to create a database inside of Postgres named dan.
+%br/
+%br/
 
-I created an account named dan inside using some shell commands:
+So I did those two tasks using some simple commands:
 
-sudo su - postgres
+%pre
+  %code.bash sudo su - postgres
 
 The above command put me into the Linux-Postgres account.
+%br/
+%br/
 
 Then I used a command name psql to connect to the Postgres instance.
+%br/
+%br/
 
 I saw this:
-postgres@nia111:~$ 
-postgres@nia111:~$ 
-dan@nia111:~/x611 $ sudo su - postgres
-[sudo] password for dan: 
-postgres@nia111:~$ 
-postgres@nia111:~$ 
 
-postgres@nia111:~$ 
-postgres@nia111:~$ psql
-psql (9.3.11)
-Type "help" for help.
+%pre
+  %code.bash
+    postgres@nia111:~$ 
+    postgres@nia111:~$ 
+    dan@nia111:~/x611 $ sudo su - postgres
+    [sudo] password for dan: 
+    postgres@nia111:~$ 
+    postgres@nia111:~$ 
+    postgres@nia111:~$ 
+    postgres@nia111:~$ psql
+    psql (9.3.11)
+    Type "help" for help.
+    postgres=# 
+    postgres=# 
 
-postgres=# 
-postgres=# 
+The last prompt looks like a shell prompt but it is actually a SQL prompt.
+%br/
+%br/
 
+
+I have seen many people mistake a Postgres SQL prompt for a Linux shell prompt.
+%br/
+%br/
 
 Next I created a dan account inside of Postgres:
+%pre
+  %code.sql create role dan with superuser login;
 
-create role dan with superuser login;
 
-Then, I created a database named dan.
-
-create database dan;
+Then, I created a database named dan:
+%pre
+  %code.sql create database dan;
 
 Next, I entered '\q' which allowed me to exit psql.
+%br/
+%br/
 
 Then, I entered the shell command: exit which allowed me to leave the
 postgres Linux account and return to my dan Linux account.
@@ -76,11 +107,23 @@ postgres Linux account and return to my dan Linux account.
 
 When I encounter a new technology I learn it by understanding both nouns and verbs which frequently appear inside the technology.
 
+%br/
+%br/
+
 Five verbs which I usually see in software systems are listed below:
+
+%br/
+%br/
 
 Copy, Create, List, Update, Delete (CCLUD)
 
+%br/
+%br/
+
 The above five verbs are prominent within Postgres.
+
+%br/
+%br/
 
 Above I displayed two examples of the Create-verb:
 %ul
@@ -103,12 +146,32 @@ For Postgres, the nouns which I want to operate on with the 5 verbs are listed b
   %li Postgres-View
 
 The most common verb-noun combinations are listed below:
+%ul
+  %li Create Table
+  %li List   Table
+  %li Delete Table
+  %li Copy Rows
+  %li Create Rows
+  %li List Rows
+  %li Update Rows
+  %li Delete Rows
 
-Create Table
-List Table
-Delete Table
+Examples of the 8 above combinations are listed below.
 
-Copy, Create, List, Update, Delete: Row
+%h2 Postgres: Create Table
 
-Examples of the 8 above combinations are listed below:
+The main command line interface (CLI) for Postgres is psql.
 
+When I work with Postgres I often place my syntax in a script and then feed the script to psql.
+
+Here is a simple demo of me runnin a one line SQL script:
+
+%pre
+  %code.bash
+    echo "select 'hello world';" > /tmp/myscript.sql
+    psql -f /tmp/myscript.sql
+
+I created a script which is a demo of the idea Create Table:
+
+%pre
+  =render 'postgres_mongo10'
