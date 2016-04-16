@@ -220,7 +220,15 @@ When I ran the above script it issued very little output:
     dan@nia111:~/x611/public/apr16 $ 
     dan@nia111:~/x611/public/apr16 $ 
 
+%h2 Postgres: Create Rows
 
+The above demo actually demonstrated two ideas: Copy Rows and Create Rows.
 
+Usually I use the postgres insert command to implement the Create Rows idea.
 
+Below, I list a demo of postgres insert:
 
+%pre
+  %code.bash
+    insert into tkrdates(tkr,cdate,cp) values ('IBM','2016-04-15',151.72);
+    select tkr,cdate,cp from tkrdates where tkr = 'IBM';
