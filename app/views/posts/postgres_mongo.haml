@@ -186,3 +186,41 @@ A demo is listed below:
 %pre
   =render 'postgres_mongo11'
 
+%h2 Postgres: Delete Table
+
+In Postgres, the syntax I use to implement the Delete Table idea is 'drop table':
+%pre
+  =render drop table mytable;
+
+%h2 Postgres: Copy Rows
+
+Postgres offers me a variety of ways to copy table rows from point a to point b.
+
+One useful technique is to copy the rows from a CSV file.
+
+Below I list some syntax to copy two CSV files from Yahoo into the /tmp/ folder.
+
+%pre
+  =render 'postgres_mongo12'
+
+So, I ran the above script on my laptop and then ran a SQL script to copy tkrdates.csv into a table called tkrdates:
+
+%pre
+  =render 'postgres_mongo13'
+
+When I ran the above script it issued very little output:
+
+%pre
+  %code.bash
+    dan@nia111:~/x611/public/apr16 $ 
+    dan@nia111:~/x611/public/apr16 $ psql -f copycsv.sql
+    DROP TABLE
+    CREATE TABLE
+    COPY 22525
+    dan@nia111:~/x611/public/apr16 $ 
+    dan@nia111:~/x611/public/apr16 $ 
+
+
+
+
+
