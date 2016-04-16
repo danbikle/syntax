@@ -49,4 +49,21 @@ and   a.cdate between '2015-12-01' and '2015-12-31'
 order by a.cdate
 ) subq
 ;
+
+DROP   TABLE window_demo;
+CREATE TABLE window_demo AS
+SELECT
+cdate
+,LAG(cp,1,cp)    OVER (ORDER BY cdate) lag_cp1d
+,cp
+,LEAD(cp,1,NULL) OVER (ORDER BY cdate) lead_cp
+,AVG(cp) OVER (ORDER BY cdate ROWS BETWEEN 2 PRECEDING AND 0 PRECEDING) mvgavg
+from tkrdates
+where tkr = 'GSPC'
+order by cdate
+;
+
+select * from window_demo where cdate > '2016-04-01';
+
+-- to be continued.
 </code>
