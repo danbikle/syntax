@@ -16,3 +16,15 @@ select tkr
 ,max(cdate)
 from tkrdates group by tkr
 ;
+
+select
+a.cdate
+,a.cp cp_spy
+,b.cp cp_gspc
+from tkrdates a, tkrdates b
+where a.cdate = b.cdate
+and   a.tkr   = 'SPY'
+and   b.tkr   = 'GSPC'
+and   a.cdate between '2015-12-01' and '2015-12-31'
+order by a.cdate
+;
