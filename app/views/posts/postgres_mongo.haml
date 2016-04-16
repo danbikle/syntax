@@ -164,7 +164,7 @@ The main command line interface (CLI) for Postgres is psql.
 
 When I work with Postgres I often place my syntax in a script and then feed the script to psql.
 
-Here is a simple demo of me runnin a one line SQL script:
+Here is a simple demo of me running a one line SQL script:
 
 %pre
   %code.bash
@@ -175,3 +175,14 @@ I created a script which is a demo of the idea Create Table:
 
 %pre
   =render 'postgres_mongo10'
+
+So, I ran the above script on my laptop and asked, "How to list that table?"
+
+%h2 Postgres: List Table
+
+To list my tables I start psql and then issue a simple command.
+
+A demo is listed below:
+%pre
+  =render 'postgres_mongo11'
+
