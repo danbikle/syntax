@@ -1,0 +1,138 @@
+.q1 Question:
+.q2 How to start with Spark?
+.tags
+  %a.xtag(href='/tags/linux') linux
+  .tag spark
+  .tag scala
+  .tag java
+  .tag spark_shell
+  .tag pyspark
+  .tag spark_submit
+
+%br/
+
+On Ubuntu it is easy to install Spark.
+
+%br/
+%br/
+
+We need Java. Lets download Java:
+
+%br/
+%br/
+
+%a(href='http://www.oracle.com/technetwork/java/javase/downloads' target='x')
+  http://www.oracle.com/technetwork/java/javase/downloads
+
+
+%br/
+%br/
+
+After I downloaded Java I did this:
+%pre
+  %code.bash
+    tar zxf jdk-8u92-linux-x64.tar.gz
+    mv jdk1.8.0_92 ~/
+    cd             ~/
+    rm -rf            jdk
+    ln -s jdk1.8.0_92 jdk
+
+I added syntax to my .bashrc:
+%pre
+  %code.bash
+    export JAVA_HOME=${HOME}/jdk
+    export PATH="${JAVA_HOME}/bin:${PATH}"
+
+I tested Java:
+%pre
+  %code.bash
+    java -showversion
+
+Next I downloaded Spark:
+
+%pre
+  %code.bash
+    cd ~/Downloads/
+    wget http://d3kbcqa49mib13.cloudfront.net/spark-1.6.1-bin-hadoop2.6.tgz
+    tar zxf spark-1.6.1-bin-hadoop2.6.tgz
+    mv spark-1.6.1-bin-hadoop2.6 ~/
+    cd                           ~/
+    rm -rf spark
+    ln -s spark-1.6.1-bin-hadoop2.6 spark
+
+I added syntax to my .bashrc (notice my use of PYSPARK_PYTHON):
+
+%pre
+  %code.bash
+    export SPARK_HOME=${HOME}/jdk
+    export PATH="${SPARK_HOME}/bin:${PATH}"
+    export PYSPARK_PYTHON=${HOME}/anaconda3/bin/python
+
+I tested Spark:
+
+%pre
+  %code.bash
+    spark-shell
+
+I saw this:
+
+%pre
+  =render 'spark_start10'
+
+Currently I see spark as having 3 main command line interfaces:
+%ul
+  %li spark-shell
+  %li pyspark
+  %li spark-submit
+
+Here is a demo of spark-shell:
+
+%pre
+  %code.bash
+    spark-shell -i demo11.scala
+
+Here is a copy of demo11.scala:
+
+%pre
+  =render 'spark_start11'
+
+Here is a demo of pyspark:
+
+%pre
+  %code.bash pyspark
+
+I only use pyspark for interactive work.
+
+%br/
+%br/
+
+My favorite of the three is spark-submit. I use it to submit python scripts to Spark:
+
+%pre
+  %code.bash spark-submit demo10.py
+
+Here is a copy of demo10.py:
+
+%pre
+  =render 'spark_start12'
+
+That should be enough information to get you over the initial hurdle of running Spark on your Linux laptop.
+
+
+%br/
+%br/
+
+Exercises:
+%ul
+  %li Convert demo11.scala to demo11.py
+  %li try: spark-submit demo11.py
+  %li Convert demo10.py to demo10.scala
+  %li try: spark-shell -i demo10.scala
+
+%br/
+%br/
+Questions?
+%br/
+%br/
+E-me: bikle101@gmail.com
+%br/

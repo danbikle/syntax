@@ -1,0 +1,24 @@
+<code class='bash'>
+# demo10.py
+
+# This script should demonstrate how to connect Python syntax to Spark.
+
+# ref:
+# http://spark.apache.org/docs/latest/quick-start.html#self-contained-applications
+
+# Demo:
+# $SPARK_HOME/bin/spark-submit demo10.py
+
+from pyspark import SparkContext
+
+sc = SparkContext("local", "Simple_App")
+myfile = "/etc/hosts"  # Should be some file on your system
+readme_md_rdd = sc.textFile(myfile).cache()
+
+num1s = readme_md_rdd.filter(lambda s: '1' in s).count()
+num2s = readme_md_rdd.filter(lambda s: '2' in s).count()
+
+print("Lines with 1: %i, lines with 2: %i" % (num1s, num2s))
+
+'bye'
+</code>
