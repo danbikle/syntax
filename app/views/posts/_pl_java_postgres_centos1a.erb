@@ -1,10 +1,10 @@
 <code class='bash'>
 yum groupinstall  'Development Tools'
 yum install openssl-devel
-mkdir -p /opt/downloads
-cd       /opt/downloads
 wget https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-6-x86_64/pgdg-centos95-9.5-2.noarch.rpm
 yum install pgdg-centos95-9.5-2.noarch.rpm 
 yum list postgresql95*
 yum install postgresql95 postgresql95-server postgresql95-libs postgresql95-devel
+/etc/init.d/postgresql-9.5 initdb
+echo 'export PATH=/usr/pgsql-9.5/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin' >> ~postgres/.bash_profile
 </code>
