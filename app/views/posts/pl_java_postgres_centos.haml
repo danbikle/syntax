@@ -44,9 +44,43 @@ Next, I logged in as postgres and ran some commands:
 %pre
   =render 'pl_java_postgres_centos1b'
 
+
+Next, I install jdk 1.8 which I download from oracle.com:
+
 %br/
 %br/
 
+%a(href='http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html' target='x')
+  http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+%br/
+%br/
+
+If Oracle moves that link, try this link:
+
+%br/
+%br/
+
+%a(href='http://www.google.com/search?q=java+jdk+1.8+download' target='x')
+  http://www.google.com/search?q=java+jdk+1.8+download
+
+%br/
+%br/
+
+The section below assumes the jdk from oracle is in ~root/
+
+%pre
+  =render 'pl_java_postgres_centos1c'
+
+The above commands get the download ready for a call to tar.
+%br/
+%br/
+
+I want postgres to run the tar command because I see this jdk as part of postgres rather than public.
+
+
+%pre
+  =render 'pl_java_postgres_centos1d'
 
 %br/
 %br/
