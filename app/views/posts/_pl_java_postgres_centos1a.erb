@@ -73,5 +73,15 @@ su - postgres
 which mvn
 mvn -version
 
+# Next, I cloned a repo:
+su - postgres
+cd /opt/downloads
+git clone https://github.com/tada/pljava
+cd pljava
+git checkout V1_5_0
+git checkout -b branch150
+mvn clean install
+# I should see this at the end:
+# [INFO] BUILD SUCCESS
 
 </code>
