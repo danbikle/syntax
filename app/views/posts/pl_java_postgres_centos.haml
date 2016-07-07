@@ -78,9 +78,13 @@ The above commands get the download ready for a call to tar.
 
 I want postgres to run the tar command because I see this jdk as part of postgres rather than public.
 
-
 %pre
   =render 'pl_java_postgres_centos1d'
+
+I want the jdk to reside in /opt/ so I rely on root to put it there.
+
+%pre
+  =render 'pl_java_postgres_centos1e'
 
 %br/
 %br/
