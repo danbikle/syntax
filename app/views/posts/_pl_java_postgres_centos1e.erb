@@ -1,0 +1,19 @@
+<code class='bash'>
+su
+mv jdk1.8.0_92 /opt
+cd /opt
+ln -s jdk1.8.0_92 jdk
+echo 'export JAVA_HOME=/opt/jdk'            >> ~root/.bashrc
+echo 'export PATH=${JAVA_HOME}/bin:${PATH}' >> ~root/.bashrc
+bash
+javac              -version
+/opt/jdk/bin/javac -version
+
+echo 'export JAVA_HOME=/opt/jdk'            >> ~postgres/.bash_profile
+echo 'export PATH=${JAVA_HOME}/bin:${PATH}' >> ~postgres/.bash_profile
+
+su - postgres
+
+javac              -version
+/opt/jdk/bin/javac -version
+</code>

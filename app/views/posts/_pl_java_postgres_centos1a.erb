@@ -1,0 +1,24 @@
+<code class='bash'>
+su
+cd ~root
+yum groupinstall  'Development Tools'
+yum install openssl-devel
+wget https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-6-x86_64/pgdg-centos95-9.5-2.noarch.rpm
+yum install pgdg-centos95-9.5-2.noarch.rpm 
+yum list postgresql95*
+yum install postgresql95 postgresql95-server postgresql95-libs postgresql95-devel
+/etc/init.d/postgresql-9.5 initdb
+echo 'export PATH=/usr/pgsql-9.5/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin' >> ~postgres/.bash_profile
+
+cd /var/lib/pgsql/9.5/data/
+cp pg_hba.conf pg_hba.conf.bak
+chown postgres pg_hba.conf.bak
+
+sed -i '/^host/s/ident/md5/' pg_hba.conf
+sed -i '/128/s/md5/ident/'   pg_hba.conf
+
+diff pg_hba.conf.bak pg_hba.conf
+
+/etc/init.d/postgresql-9.5 start
+/etc/init.d/postgresql-9.5 reload
+</code>

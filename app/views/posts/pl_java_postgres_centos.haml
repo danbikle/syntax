@@ -1,0 +1,137 @@
+.q1 Question:
+.q2 How to install PL/Java on Postgres 9.5 on Centos 6.5?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/pl_java') pl_java
+  %a.xtag(href='/tags/java') java
+  %a.xtag(href='/tags/postgres') postgres
+  %a.xtag(href='/tags/centos') centos
+  %a.xtag(href='/tags/groupinstall') groupinstall
+  %a.xtag(href='/tags/openssl_devel') openssl_devel
+  %a.xtag(href='/tags/yum') yum
+  %a.xtag(href='/tags/sed') sed
+  %a.xtag(href='/tags/pg_hba_conf') pg_hba_conf
+  %a.xtag(href='/tags/init_d') init_d
+  %a.xtag(href='/tags/reload') reload
+  %a.xtag(href='/tags/jdk') jdk
+  %a.xtag(href='/tags/oracle') oracle
+  %a.xtag(href='/tags/postgresql') postgresql
+  %a.xtag(href='/tags/localhost') localhost
+  %a.xtag(href='/tags/jar') jar
+  %a.xtag(href='/tags/javac') javac
+  %a.xtag(href='/tags/maven') maven
+  %a.xtag(href='/tags/mvn') mvn
+  %a.xtag(href='/tags/git') git
+  %a.xtag(href='/tags/clone') clone
+  %a.xtag(href='/tags/checkout') checkout
+  %a.xtag(href='/tags/branch') branch
+  %a.xtag(href='/tags/pljava') pljava
+  %a.xtag(href='/tags/libjvm') libjvm
+  %a.xtag(href='/tags/libjvm_location') libjvm_location
+  %a.xtag(href='/tags/extension') extension
+  %a.xtag(href='/tags/volatile') volatile
+  %a.xtag(href='/tags/java_max') java_max
+
+%br/
+
+I encountered a use-case recently which asked me to use PL/Java on Postgres.
+
+%br/
+%br/
+
+I wrote up some notes on how to install it.
+
+%br/
+%br/
+
+I started by downloading a copy of Centos from the URLs listed below:
+%ul
+  %li
+    %a(href='http://vault.centos.org/6.5/isos/x86_64/' target='x')
+      http://vault.centos.org/6.5/isos/x86_64/
+  %li
+    %a(href='http://vault.centos.org/6.5/isos/x86_64/CentOS-6.5-x86_64-LiveDVD.iso' target='x')
+      http://vault.centos.org/6.5/isos/x86_64/CentOS-6.5-x86_64-LiveDVD.iso
+
+Next, I did a simple text-only install of CentOS-6.5-x86_64-LiveDVD.iso into VirtualBox on my laptop.
+
+%br/
+%br/
+
+Then, I logged in as root and ran some shell commands:
+
+%pre
+  =render 'pl_java_postgres_centos1a'
+
+Next, I logged in as postgres and ran some commands:
+
+%pre
+  =render 'pl_java_postgres_centos1b'
+
+
+Next, I install jdk 1.8 which I download from oracle.com:
+
+%br/
+%br/
+
+%a(href='http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html' target='x')
+  http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+%br/
+%br/
+
+If Oracle moves that link, try this link:
+
+%br/
+%br/
+
+%a(href='http://www.google.com/search?q=java+jdk+1.8+download' target='x')
+  http://www.google.com/search?q=java+jdk+1.8+download
+
+%br/
+%br/
+
+The section below assumes the jdk from oracle is in ~root/
+
+%pre
+  =render 'pl_java_postgres_centos1c'
+
+The above commands get the download ready for a call to tar.
+%br/
+%br/
+
+I want postgres to run the tar command because I see this jdk as part of postgres rather than public.
+
+%pre
+  =render 'pl_java_postgres_centos1d'
+
+I want the jdk to reside in /opt/ so I rely on root to put it there.
+
+%pre
+  =render 'pl_java_postgres_centos1e'
+
+Next, I installed maven.
+
+%pre
+  =render 'pl_java_postgres_centos1f'
+
+Then, I installed a repo with PL/Java software.
+
+%pre
+  =render 'pl_java_postgres_centos1g'
+
+So, an install of PL/Java requires a number of steps but if you are careful it should not be very difficult.
+%br/
+%br/
+
+PL/Java gives you the ability to leverage a large amount of software written by other people and make your database applications much more powerful.
+
+%br/
+%br/
+
+
+If you have questions, e-me: bikle101@gmail.com
+
+%br/
+%br/
