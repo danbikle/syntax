@@ -1,4 +1,6 @@
 <code class='bash'>
+su
+cd ~root
 yum groupinstall  'Development Tools'
 yum install openssl-devel
 wget https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-6-x86_64/pgdg-centos95-9.5-2.noarch.rpm
@@ -18,10 +20,20 @@ sed -i '/128/s/md5/ident/'   pg_hba.conf
 diff pg_hba.conf.bak pg_hba.conf
 
 /etc/init.d/postgresql-9.5 start
+/etc/init.d/postgresql-9.5 reload
+
+su - postgres
+psql
+alter user postgres password 'hello';
+\q
+
+psql -U postgres -h localhost
+\q
+
 
 # Next I install jdk 1.8 which I get from oracle.com
-# Section below assumes the jdk from oracle is in ~root/
-
+# The section below assumes the jdk from oracle is in ~root/
+su
 cd ~root
 mkdir -p /opt/downloads
 ls -la jdk-8u92-linux-x64.tar.gz
