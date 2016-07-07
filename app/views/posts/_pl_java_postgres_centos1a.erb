@@ -7,4 +7,45 @@ yum list postgresql95*
 yum install postgresql95 postgresql95-server postgresql95-libs postgresql95-devel
 /etc/init.d/postgresql-9.5 initdb
 echo 'export PATH=/usr/pgsql-9.5/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin' >> ~postgres/.bash_profile
+
+cd /var/lib/pgsql/9.5/data/
+cp pg_hba.conf pg_hba.conf.bak
+chown postgres pg_hba.conf.bak
+
+sed -i '/^host/s/ident/md5/' pg_hba.conf
+sed -i '/128/s/md5/ident/'   pg_hba.conf
+
+diff pg_hba.conf.bak pg_hba.conf
+
+/etc/init.d/postgresql-9.5 start
+
+# Next I install jdk 1.8 which I get from oracle.com
+# Section below assumes the jdk from oracle is in ~root/
+
+cd ~root
+mkdir -p /opt/downloads
+ls -la jdk-8u92-linux-x64.tar.gz
+cp     jdk-8u92-linux-x64.tar.gz /opt/downloads
+chown -R postgres /opt/downloads
+su - postgres
+cd /opt/downloads
+tar zxf jdk-8u92-linux-x64.tar.gz
+su
+mv jdk1.8.0_92 /opt
+cd /opt
+ln -s jdk1.8.0_92 jdk
+echo 'export JAVA_HOME=/opt/jdk'            >> ~root/.bashrc
+echo 'export PATH=${JAVA_HOME}/bin:${PATH}' >> ~root/.bashrc
+bash
+javac              -version
+/opt/jdk/bin/javac -version
+
+echo 'export JAVA_HOME=/opt/jdk'            >> ~postgres/.bash_profile
+echo 'export PATH=${JAVA_HOME}/bin:${PATH}' >> ~postgres/.bash_profile
+
+su - postgres
+
+javac              -version
+/opt/jdk/bin/javac -version
+
 </code>
