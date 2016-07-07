@@ -60,4 +60,18 @@ su - postgres
 javac              -version
 /opt/jdk/bin/javac -version
 
+# Next, I installed maven:
+
+su
+cd /opt/downloads
+wget http://www-us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+cd /usr/local
+tar zxf /opt/downloads/apache-maven-3.3.9-bin.tar.gz 
+ln -s apache-maven-3.3.9 maven
+echo 'export PATH=/usr/local/maven/bin:$PATH' >> ~postgres/.bash_profile
+su - postgres
+which mvn
+mvn -version
+
+
 </code>
