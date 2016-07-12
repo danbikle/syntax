@@ -9,16 +9,103 @@
 
 %br/
 
-I bought a laptop recently with an Nvidia chip in it.
+I bought a laptop recently with an Nvidia GPU chip in it.
 
 %br/
 %br/
+
+I knew that a Nvidia GPU could speed up machine learning calculations via the Cuda API:
+
+%br/
+%br/
+
+%a(href='https://developer.nvidia.com/cuda-gpus' target='x')
+  https://developer.nvidia.com/cuda-gpus
+
+%br/
+%br/
+
+I could detect the chip with this shell command:
+
+%pre
+  %code.bash lspci | grep -i nvidia
+
+I saw this:
+
+%pre
+  %code.bash 01:00.0 3D controller: NVIDIA Corporation GM204M [GeForce GTX 980M] (rev a1)
 
 I was curious, 'How to install Cuda on this laptop?'
 
 %br/
 %br/
 
+I started by installation of Ubuntu 14.04 server:
+
+%br/
+%br/
+
+%a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.4-server-amd64.iso' target='x')
+  http://releases.ubuntu.com/14.04/ubuntu-14.04.4-server-amd64.iso
+
+%br/
+%br/
+
+I assumed that Ubuntu 14.04 desktop might interfere with Cuda.
+
+%br/
+%br/
+
+After installation I enhanced it:
+
+%pre
+  %code.bash sudo apt-get install xterm gitk build-essential openssh-server emacs 
+
+Then I downloaded a package:
+
+%br/
+%br/
+
+cuda-repo-ubuntu1404-7-5-local_7.5-18_amd64.deb
+
+%br/
+%br/
+
+Which I found at the URL listed below:
+
+%br/
+%br/
+
+%a(href='https://developer.nvidia.com/cuda-downloads' target='x')
+  https://developer.nvidia.com/cuda-downloads
+
+%br/
+%br/
+
+I installed it with this syntax:
+
+%pre
+  %code.bash dpkg -i cuda-repo-ubuntu1404-7-5-local_7.5-18_amd64.deb
+
+Next, I installed cuda:
+
+%pre
+  %code.bash sudo apt-get install cuda
+
+It installed software in this location:
+
+%pre
+  %code.bash /usr/local/cuda-7.5/
+
+Also it installed a convenient soft-link:
+
+%pre
+  %code.bash /usr/local/cuda
+
+It looked like this:
+
+%pre
+  =render 'nvidia_cuda75_ubuntu2a'
 
 %br/
 %br/
