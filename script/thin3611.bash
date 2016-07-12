@@ -4,6 +4,6 @@
 
 cd ~/sites/x611
 
-bin/thin -p 3611 start
+bin/thin -a 0.0.0.0 -p 3611 start
 
 exit
