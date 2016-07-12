@@ -112,6 +112,32 @@ I found useful html docs here:
 %pre
   =render 'nvidia_cuda75_ubuntu2b'
 
+Then, I added /usr/local/cuda/bin to my PATH in ~/.bashrc
+
+%pre
+  %code.bash export PATH=/usr/local/cuda/bin:$PATH
+
+I did . ~/.bashrc
+
+Next, I copied the samples to my home folder:
+
+%pre
+  %code.bash
+    cd /usr/local/cuda/
+    rsync -a samples ~/
+
+I found a Makefile there so I ran make:
+
+%pre
+  %code.bash
+    cd ~/samples/
+    make
+
+I saw this:
+
+%pre
+  =render 'nvidia_cuda75_ubuntu2c'
+  
 %br/
 %br/
 
