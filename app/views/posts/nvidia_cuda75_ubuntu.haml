@@ -25,7 +25,7 @@ I knew that a Nvidia GPU could speed up machine learning calculations via the Cu
 %br/
 %br/
 
-I could detect the chip with this shell command:
+I detected the chip with this shell command:
 
 %pre
   %code.bash lspci | grep -i nvidia
@@ -40,18 +40,18 @@ I was curious, 'How to install Cuda on this laptop?'
 %br/
 %br/
 
-I started by installation of Ubuntu 14.04 server:
+I wanted to run Ubuntu but I assumed that Ubuntu 14.04 Desktop might interfere with Cuda.
+
+%br/
+%br/
+
+So, I started by installation of Ubuntu 14.04 Server instead of Ubuntu-Desktop:
 
 %br/
 %br/
 
 %a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.4-server-amd64.iso' target='x')
   http://releases.ubuntu.com/14.04/ubuntu-14.04.4-server-amd64.iso
-
-%br/
-%br/
-
-I assumed that Ubuntu 14.04 desktop might interfere with Cuda.
 
 %br/
 %br/
@@ -92,7 +92,7 @@ Next, I installed cuda:
 %pre
   %code.bash sudo apt-get install cuda
 
-It installed software in this location:
+That command installed software in this location:
 
 %pre
   %code.bash /usr/local/cuda-7.5/
