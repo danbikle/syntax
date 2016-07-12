@@ -1,0 +1,198 @@
+.q1 Question:
+.q2 How to install Nvidia Cuda 7.5 on Ubuntu 14.04?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/nvidia') nvidia
+  %a.xtag(href='/tags/cuda') cuda
+  %a.xtag(href='/tags/ubunutu') ubunutu
+
+%br/
+
+I bought a laptop recently with an Nvidia GPU chip in it.
+
+%br/
+%br/
+
+I knew that a Nvidia GPU could speed up machine learning calculations via the Cuda API:
+
+%br/
+%br/
+
+%a(href='https://developer.nvidia.com/cuda-gpus' target='x')
+  https://developer.nvidia.com/cuda-gpus
+
+%br/
+%br/
+
+I detected the chip with this shell command:
+
+%pre
+  %code.bash lspci | grep -i nvidia
+
+I saw this:
+
+%pre
+  %code.bash 01:00.0 3D controller: NVIDIA Corporation GM204M [GeForce GTX 980M] (rev a1)
+
+I was curious, 'How to install Cuda on this laptop?'
+
+%br/
+%br/
+
+I wanted to run Ubuntu but I assumed that Ubuntu 14.04 Desktop might interfere with Cuda.
+
+%br/
+%br/
+
+So, I started by installation of Ubuntu 14.04 Server instead of Ubuntu-Desktop:
+
+%br/
+%br/
+
+%a(href='http://releases.ubuntu.com/14.04/ubuntu-14.04.4-server-amd64.iso' target='x')
+  http://releases.ubuntu.com/14.04/ubuntu-14.04.4-server-amd64.iso
+
+%br/
+%br/
+
+After installation I enhanced it:
+
+%pre
+  %code.bash sudo apt-get install xterm gitk build-essential openssh-server emacs 
+
+Then I downloaded a package:
+
+%br/
+%br/
+
+cuda-repo-ubuntu1404-7-5-local_7.5-18_amd64.deb
+
+%br/
+%br/
+
+Which I found at the URL listed below:
+
+%br/
+%br/
+
+%a(href='https://developer.nvidia.com/cuda-downloads' target='x')
+  https://developer.nvidia.com/cuda-downloads
+
+%br/
+%br/
+
+I installed it with this syntax:
+
+%pre
+  %code.bash dpkg -i cuda-repo-ubuntu1404-7-5-local_7.5-18_amd64.deb
+
+Next, I installed cuda:
+
+%pre
+  %code.bash sudo apt-get install cuda
+
+That command installed software in this location:
+
+%pre
+  %code.bash /usr/local/cuda-7.5/
+
+Also it installed a convenient soft-link:
+
+%pre
+  %code.bash /usr/local/cuda
+
+It looked like this:
+
+%pre
+  =render 'nvidia_cuda75_ubuntu2a'
+
+I found useful html docs here:
+
+%pre
+  =render 'nvidia_cuda75_ubuntu2b'
+
+Then, I added /usr/local/cuda/bin to my PATH in ~/.bashrc
+
+%pre
+  %code.bash export PATH=/usr/local/cuda/bin:$PATH
+
+I did:
+
+%pre
+  %code.bash . ~/.bashrc
+
+Next, I copied the samples to my home folder:
+
+%pre
+  %code.bash
+    cd /usr/local/cuda/
+    rsync -a samples ~/
+
+I found a Makefile there so I ran make:
+
+%pre
+  %code.bash
+    cd ~/samples/
+    make
+
+I saw this:
+
+%pre
+  =render 'nvidia_cuda75_ubuntu2c'
+
+The executables landed here:
+
+%pre
+  %code.bash ~/samples/bin/x86_64/linux/release/
+
+They looked like this:
+
+%pre
+  =render 'nvidia_cuda75_ubuntu2d'
+
+The oldest was this:
+
+%pre
+  %code.bash -rwxrwxr-x 1 dan dan     39640 Jul 11 16:07 simpleVoteIntrinsics_nvrtc
+
+The youngest was this:
+
+%pre
+  %code.bash -rwxrwxr-x 1 dan dan    592752 Jul 11 16:32 cuSolverSp_LinearSolver
+
+So it took about 25 minutes to run make.
+
+%br/
+%br/
+
+I read this page:
+
+%br/
+%br/
+
+%a(href='http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#running-binaries' target='x')
+  http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#running-binaries
+
+%br/
+%br/
+
+I tried this command line:
+
+%pre
+  =render 'nvidia_cuda75_ubuntu2e'
+
+I liked the look of that.
+
+%br/
+%br/
+
+Next, I worked on the task of connecting my Cuda software to Machine Learning software.
+
+%br/
+%br/
+
+If you have questions, e-me: bikle101@gmail.com
+
+%br/
+%br/

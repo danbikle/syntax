@@ -1,0 +1,39 @@
+<code class='bash'>
+dan@srvr1404:~ $ cd samples/
+dan@srvr1404:~/samples $ 
+dan@srvr1404:~/samples $ 
+dan@srvr1404:~/samples $ ll
+total 148
+drwxr-xr-x 12 dan dan  4096 Jul 11 16:07 ./
+drwxr-xr-x 10 dan dan  4096 Jul 11 16:47 ../
+drwxr-xr-x 47 dan dan  4096 Jun  8 00:10 0_Simple/
+drwxr-xr-x  6 dan dan  4096 Jun  8 00:10 1_Utilities/
+drwxr-xr-x 12 dan dan  4096 Jun  8 00:10 2_Graphics/
+drwxr-xr-x 20 dan dan  4096 Jun  8 00:10 3_Imaging/
+drwxr-xr-x 10 dan dan  4096 Jun  8 00:09 4_Finance/
+drwxr-xr-x  9 dan dan  4096 Jun  8 00:10 5_Simulations/
+drwxr-xr-x 30 dan dan  4096 Jun  8 00:10 6_Advanced/
+drwxr-xr-x 28 dan dan  4096 Jun  8 00:10 7_CUDALibraries/
+drwxrwxr-x  3 dan dan  4096 Jul 11 16:07 bin/
+drwxr-xr-x  6 dan dan  4096 Jun  8 00:10 common/
+-rw-r--r--  1 dan dan 96407 Aug 14  2015 EULA.txt
+-rw-r--r--  1 dan dan  2652 Jun  8 00:16 Makefile
+dan@srvr1404:~/samples $ 
+dan@srvr1404:~/samples $ 
+
+dan@srvr1404:~/samples $ make
+make[1]: Entering directory `/home/dan/samples/0_Simple/simpleVoteIntrinsics_nvrtc'
+g++ -I../../common/inc -I/usr/local/cuda-7.5/include   -o simpleVoteIntrinsics.o -c simpleVoteIntrinsics.cpp
+g++  -L/usr/local/cuda-7.5/lib64 -L/usr/local/cuda-7.5/lib64/stubs -o simpleVoteIntrinsics_nvrtc simpleVoteIntrinsics.o  -lcuda -lnvrtc
+mkdir -p ../../bin/x86_64/linux/release
+
+snip...
+
+mkdir -p ../../bin/x86_64/linux/release
+cp cuSolverSp_LinearSolver ../../bin/x86_64/linux/release
+make[1]: Leaving directory `/home/dan/samples/7_CUDALibraries/cuSolverSp_LinearSolver'
+Finished building CUDA samples
+dan@srvr1404:~/samples $ 
+dan@srvr1404:~/samples $ 
+dan@srvr1404:~/samples $ 
+</code>
