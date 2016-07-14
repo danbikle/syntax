@@ -133,11 +133,90 @@ After I downloaded cudnn-7.5-linux-x64-v5.1-rc.tgz I did this:
     rsync -av cuda/include/ /usr/local/cuda/include/
     rsync -av cuda/lib64/   /usr/local/cuda/lib64
 
-
-
+In my mind, that finished the installation of cuDNN 5.1 into my Cuda 7.5 environment.
 
 %br/
 %br/
+
+Next I tried to install this TensorFlow ubuntu package into my Anaconda Python environment:
+
+%br/
+%br/
+
+%a(href='https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp35-cp35m-linux_x86_64.whl' target='x')
+  https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp35-cp35m-linux_x86_64.whl
+  
+%br/
+%br/
+
+I failed to install the TensorFlow 0.9 Ubuntu package into my Anaconda Python environment.
+
+%br/
+%br/
+
+I like Anaconda but I am happy to use a plain install of Python so I moved Anaconda out of the way:
+
+%pre
+  %code.bash
+    cd ~/
+    mv anaconda3 anaconda3UNUSED
+    
+%br/
+%br/
+
+Next, I downloaded a copy of Python, installed it, downloaded pip, and installed that:
+
+%pre
+  =render 'tensorflow_cuda_ubuntu1'
+
+Then, I installed TensorFlow 0.9:
+
+%pre
+  %code.bash
+    export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp35-cp35m-linux_x86_64.whl
+    pip install --upgrade $TF_BINARY_URL
+
+Next, I tried to use it:
+
+%pre
+  =render 'tensorflow_cuda_ubuntu2'
+
+I went on a quest for libcudart.so.7.5 and found it here:
+
+%pre
+  %code.bash /usr/local/cuda/lib64/libcudart.so.7.5
+
+%br/
+%br/
+
+Long ago I learned that when Linux complains about a missing file which has a name like: libcudart.so.7.5, then I need to tell Linux where the file resides.
+
+%br/
+%br/
+
+I do this using an env-variable named: LD_LIBRARY_PATH
+
+%br/
+%br/
+
+I added some syntax to ${HOME}/.bashrc with this shell command:
+
+%pre
+  %code.bash
+    echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ${HOME}/.bashrc
+    bash
+
+Then, inside a Python prompt, I tried to import tensorflow again:
+
+%pre
+  =render 'tensorflow_cuda_ubuntu3'
+
+It worked.
+  
+%br/
+%br/
+
+Yay!
 
 %br/
 %br/

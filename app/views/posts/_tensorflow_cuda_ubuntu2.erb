@@ -1,0 +1,26 @@
+<code class='bash'>
+dan@srvr1404:~/dl $ 
+dan@srvr1404:~/dl $ python
+Python 3.5.2 (default, Jul 13 2016, 22:45:49) 
+[GCC 4.8.4] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+>>> import tensorflow as tf
+Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+  File "/home/dan/py35/lib/python3.5/site-packages/tensorflow/__init__.py", line 23, in &lt;module>
+    from tensorflow.python import *
+  File "/home/dan/py35/lib/python3.5/site-packages/tensorflow/python/__init__.py", line 48, in &lt;module>
+    from tensorflow.python import pywrap_tensorflow
+  File "/home/dan/py35/lib/python3.5/site-packages/tensorflow/python/pywrap_tensorflow.py", line 28, in &lt;module>
+    _pywrap_tensorflow = swig_import_helper()
+  File "/home/dan/py35/lib/python3.5/site-packages/tensorflow/python/pywrap_tensorflow.py", line 24, in swig_import_helper
+    _mod = imp.load_module('_pywrap_tensorflow', fp, pathname, description)
+  File "/home/dan/py35/lib/python3.5/imp.py", line 242, in load_module
+    return load_dynamic(name, filename, file)
+  File "/home/dan/py35/lib/python3.5/imp.py", line 342, in load_dynamic
+    return _load(spec)
+ImportError: libcudart.so.7.5: cannot open shared object file: No such file or directory
+>>> 
+>>> 
+</code>
