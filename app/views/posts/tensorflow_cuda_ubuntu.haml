@@ -1,0 +1,224 @@
+.q1 Question:
+.q2 How to install TensorFlow linked with Cuda 7.5 on Ubuntu 14.04?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/anaconda') anaconda
+  %a.xtag(href='/tags/cp34') cp34
+  %a.xtag(href='/tags/cuda') cuda
+  %a.xtag(href='/tags/googleapis') googleapis
+  %a.xtag(href='/tags/gpu') gpu
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/machine_learning') machine_learning
+  %a.xtag(href='/tags/nvidia') nvidia
+  %a.xtag(href='/tags/pip') pip
+  %a.xtag(href='/tags/python') python
+  %a.xtag(href='/tags/tensorflow') tensorflow
+  %a.xtag(href='/tags/ubuntu') ubuntu
+
+%br/
+
+I bought a laptop recently with an Nvidia GPU chip in it.
+
+%br/
+%br/
+
+I knew that a Nvidia GPU could speed up machine learning calculations via the Cuda API:
+
+%br/
+%br/
+
+%a(href='https://developer.nvidia.com/cuda-gpus' target='x')
+  https://developer.nvidia.com/cuda-gpus
+
+%br/
+%br/
+
+I detected the chip with this shell command:
+
+%pre
+  %code.bash lspci | grep -i nvidia
+
+I saw this:
+
+%pre
+  %code.bash 01:00.0 3D controller: NVIDIA Corporation GM204M [GeForce GTX 980M] (rev a1)
+
+I was curious, 'How to install Cuda on this laptop?'
+
+%br/
+%br/
+
+I wanted to run Ubuntu but I assumed that Ubuntu 14.04 Desktop might interfere with Cuda.
+
+%br/
+%br/
+
+So, I started by installation of Ubuntu 14.04 Server instead of Ubuntu-Desktop.
+
+%br/
+%br/
+
+The steps I followed to install Cuda 7.5 on my laptop running Ubuntu 14.04 Server are listed below:
+
+%br/
+%br/
+
+%a(href='/posts/nvidia_cuda75_ubuntu') nvidia_cuda75_ubuntu
+
+%br/
+%br/
+
+Next I studied TensorFlow instructions:
+
+%br/
+%br/
+
+%a(href='https://www.tensorflow.org/versions/r0.9/get_started/os_setup.html#requirements' target='x')
+  https://www.tensorflow.org/versions/r0.9/get_started/os_setup.html#requirements
+
+
+%br/
+%br/
+
+I noticed this statement:
+
+%br/
+%br/
+
+The GPU version (Linux only) works best with Cuda Toolkit 7.5 and cuDNN v4. other versions are supported .
+
+%br/
+%br/
+
+I found the cuDNN software at this URL:
+
+%br/
+%br/
+
+%a(href='https://developer.nvidia.com/rdp/cudnn-download' target='x')
+  https://developer.nvidia.com/rdp/cudnn-download
+  
+%br/
+%br/
+
+To get the cuDNN download I registered for a developer program.
+
+%br/
+%br/
+
+The site presented me a choice.
+
+%br/
+%br/
+
+Do I want cuDNN 4.0 or cuDNN 5.1?
+
+%br/
+%br/
+
+cuDNN 5.1 seemed the better choice due to the names of the available downloads:
+%ul
+  %li cudnn-7.0-linux-x64-v4.0-prod.tgz
+  %li cudnn-7.5-linux-x64-v5.1-rc.tgz
+
+After I downloaded cudnn-7.5-linux-x64-v5.1-rc.tgz I did this:
+
+%pre
+  %code.bash
+    cd ~/Downloads
+    mkdir tmp
+    cd tmp
+    tar zxf ../cudnn-7.5-linux-x64-v5.1-rc.tgz
+    su
+    rsync -av cuda/include/ /usr/local/cuda/include/
+    rsync -av cuda/lib64/   /usr/local/cuda/lib64
+
+In my mind, that finished the installation of cuDNN 5.1 into my Cuda 7.5 environment.
+
+%br/
+%br/
+
+Next I tried to install this TensorFlow ubuntu package into my Anaconda Python environment:
+
+%br/
+%br/
+
+%a(href='https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp35-cp35m-linux_x86_64.whl' target='x')
+  https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp35-cp35m-linux_x86_64.whl
+  
+%br/
+%br/
+
+The above package contains the token, 'gpu', it is designed to work with Cuda.
+
+%br/
+%br/
+
+I failed to install the above TensorFlow 0.9 Ubuntu package into my Anaconda Python environment.
+
+%br/
+%br/
+
+I like Anaconda but I am content to use a plain install of Python so I moved Anaconda out of the way:
+
+%pre
+  %code.bash
+    cd ~/
+    mv anaconda3 anaconda3UNUSED
+    
+%br/
+%br/
+
+Next, I downloaded a copy of Python, installed it, downloaded pip, and installed that:
+
+%pre
+  =render 'tensorflow_cuda_ubuntu1'
+
+Then, I installed TensorFlow 0.9:
+
+%pre
+  %code.bash
+    export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp35-cp35m-linux_x86_64.whl
+    pip install --upgrade $TF_BINARY_URL
+
+Next, I tried to use it:
+
+%pre
+  =render 'tensorflow_cuda_ubuntu2'
+
+I went on a quest for libcudart.so.7.5 and found it here:
+
+%pre
+  %code.bash /usr/local/cuda/lib64/libcudart.so.7.5
+
+Long ago I learned that when Linux complains about a missing file which has a name like: libcudart.so.7.5, then I need to tell Linux where the file resides.
+
+%br/
+%br/
+
+I do this using an env-variable named: LD_LIBRARY_PATH
+
+%br/
+%br/
+
+I added some syntax to ${HOME}/.bashrc with this shell command:
+
+%pre
+  %code.bash
+    echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ${HOME}/.bashrc
+    bash
+
+Then, inside a Python prompt, I tried to import tensorflow again:
+
+%pre
+  =render 'tensorflow_cuda_ubuntu3'
+
+It worked.
+  
+%br/
+%br/
+
+Yay!
+
+%br/
+%br/
