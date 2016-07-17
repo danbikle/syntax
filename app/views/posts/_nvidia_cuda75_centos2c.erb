@@ -1,0 +1,47 @@
+<code class='bash'>
+dan@localhost.localdomain:/usr/local/cuda $ 
+dan@localhost.localdomain:/usr/local/cuda $ 
+dan@localhost.localdomain:/usr/local/cuda $ rsync -a samples ~
+dan@localhost.localdomain:/usr/local/cuda $ cd ~/samples
+dan@localhost.localdomain:~/samples $ ll
+total 140
+drwxr-xr-x. 11 dan dan  4096 Jul 13 19:10 ./
+drwx------. 21 dan dan  4096 Jul 16 18:50 ../
+drwxr-xr-x. 47 dan dan  4096 Jul 13 19:10 0_Simple/
+drwxr-xr-x.  6 dan dan  4096 Jul 13 19:10 1_Utilities/
+drwxr-xr-x. 12 dan dan  4096 Jul 13 19:10 2_Graphics/
+drwxr-xr-x. 20 dan dan  4096 Jul 13 19:10 3_Imaging/
+drwxr-xr-x. 10 dan dan  4096 Jul 13 19:10 4_Finance/
+drwxr-xr-x.  9 dan dan  4096 Jul 13 19:10 5_Simulations/
+drwxr-xr-x. 30 dan dan  4096 Jul 13 19:10 6_Advanced/
+drwxr-xr-x. 28 dan dan  4096 Jul 13 19:10 7_CUDALibraries/
+drwxr-xr-x.  6 dan dan    90 Jul 13 19:10 common/
+-rw-r--r--.  1 dan dan 96407 Aug 14  2015 EULA.txt
+-rw-r--r--.  1 dan dan  2652 Jul 13 19:10 Makefile
+dan@localhost.localdomain:~/samples $ 
+dan@localhost.localdomain:~/samples $ 
+
+
+dan@localhost.localdomain:~/samples $ 
+dan@localhost.localdomain:~/samples $ 
+dan@localhost.localdomain:~/samples $ make
+make[1]: Entering directory `/home/dan/samples/0_Simple/UnifiedMemoryStreams'
+/usr/local/cuda-7.5/bin/nvcc -ccbin g++ -I../../common/inc -m64
+-Xcompiler -fopenmp -gencode arch=compute_30,code=sm_30 -gencode
+arch=compute_35,code=sm_35 -gencode arch=compute_37,code=sm_37
+-gencode arch=compute_50,code=sm_50 -gencode
+arch=compute_52,code=sm_52 -gencode arch=compute_52,code=compute_52 -o
+UnifiedMemoryStreams.o -c UnifiedMemoryStreams.cu
+
+snip ...
+
+ptxas info    : 'device-function-maxrregcount' is a BETA feature (target: sm_52)
+ptxas info    : 'device-function-maxrregcount' is a BETA feature (target: sm_52)
+mkdir -p ../../bin/x86_64/linux/release
+cp simpleDevLibCUBLAS ../../bin/x86_64/linux/release
+make[1]: Leaving directory `/home/dan/samples/7_CUDALibraries/simpleDevLibCUBLAS'
+Finished building CUDA samples
+dan@localhost.localdomain:~/samples $ 
+dan@localhost.localdomain:~/samples $ 
+dan@localhost.localdomain:~/samples $ 
+</code>
