@@ -209,17 +209,7 @@ They looked like this:
 %pre
   =render 'nvidia_cuda75_centos2d'
 
-The oldest was this:
-
-%pre
-  %code.bash -rwxrwxr-x 1 dan dan     39640 Jul 11 16:07 simpleVoteIntrinsics_nvrtc
-
-The youngest was this:
-
-%pre
-  %code.bash -rwxrwxr-x 1 dan dan    592752 Jul 11 16:32 cuSolverSp_LinearSolver
-
-So it took about 25 minutes to run make.
+I needed about 25 minutes to run make.
 
 %br/
 %br/
@@ -241,6 +231,16 @@ I tried this command line:
   =render 'nvidia_cuda75_centos2e'
 
 I liked the look of that.
+
+%br/
+%br/
+
+Also I compared it to similar output from my Alienware laptop:
+
+%pre
+  =render 'nvidia_cuda75_ubuntu2e'
+
+The GPU in the Alienware laptop looks more powerful.
 
 %br/
 %br/
