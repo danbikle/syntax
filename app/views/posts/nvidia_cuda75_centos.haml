@@ -1,0 +1,256 @@
+.q1 Question:
+.q2 How to install Nvidia Cuda 7.5 on CentOS 7?
+.tags
+  %span.tagtag Tags:
+  %a.xtag(href='/tags/linux') linux
+  %a.xtag(href='/tags/nvidia') nvidia
+  %a.xtag(href='/tags/cuda') cuda
+  %a.xtag(href='/tags/gpu') gpu
+  .tag centos
+
+%br/
+
+I encountered a desktop recently with an Nvidia GPU chip in it:
+
+%br/
+%br/
+
+%a(href='http://www.google.com/search?q=HP+Pavilion+All-in-One+PC+27-inch+intel-i7' target='x')
+  http://www.google.com/search?q=HP+Pavilion+All-in-One+PC+27-inch+intel-i7
+
+%br/
+%br/
+
+%a(href='http://www.google.com/search?q=HP+Pavilion+27-a027c+Nvidia+GT930A' target='x')
+  http://www.google.com/search?q=HP+Pavilion+27-a027c+Nvidia+GT930A
+
+%br/
+%br/
+
+%a(href='http://support.hp.com/us-en/product/HP-Pavilion-27-a000-All-in-One-Desktop-PC-series-(Touch)/11059032/document/c05145192/' target='x')
+  http://support.hp.com/us-en/product/HP-Pavilion-27-a000-All-in-One-Desktop-PC-series-(Touch)/11059032/document/c05145192/
+
+%br/
+%br/
+
+So I booted the desktop up on a copy of CentOS 7:
+
+%br/
+%br/
+
+%a(href='http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1511.iso' target='x')
+  http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1511.iso
+
+%br/
+%br/
+
+I configured CentOS so it offered a character-only UI, not GUI:
+
+%pre
+  %code.bash
+    sudo systemctl set-default multi-user.target
+    sudo shutdown -r now
+
+I did not want to deal with a broken CentOS GUI because of Cuda GPU contention issues.
+
+%br/
+%br/
+
+Eventually I may learn how to configure a host so it can support both Cuda and a GUI.
+
+%br/
+%br/
+
+Anyway, I knew that a Nvidia GPU could speed up machine learning calculations via the Cuda API:
+
+%br/
+%br/
+
+%a(href='https://developer.nvidia.com/cuda-gpus' target='x')
+  https://developer.nvidia.com/cuda-gpus
+
+%br/
+%br/
+
+I detected the chip with this shell command:
+
+%pre
+  %code.bash lspci | grep -i nvidia
+
+I saw this:
+
+%pre
+  %code.bash 
+    dan@localhost.localdomain:~ $ 
+    dan@localhost.localdomain:~ $ lspci | grep -i nvidia
+    01:00.0 3D controller: NVIDIA Corporation Device 134e (rev a2)
+    dan@localhost.localdomain:~ $ 
+    dan@localhost.localdomain:~ $ 
+
+
+
+I was curious, 'How to install Cuda on this desktop?'
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
+
+%br/
+%br/
+
+I started by enhancing CentOS:
+
+%pre
+  %code.bash
+    sudo yum groupinstall 'Development Tools'
+    sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
+    sudo yum install epel-release
+
+Then I downloaded an RPM from Nvidia:
+
+%pre
+  %code.bash
+    mkdir -p ~/Downloads
+    cd       ~/Downloads
+    wget http://developer.download.nvidia.com/compute/cuda/7.5/Prod/local_installers/cuda-repo-rhel7-7-5-local-7.5-18.x86_64.rpm
+
+%br/
+%br/
+
+%br/
+%br/
+
+Which I found at the URL listed below:
+
+%br/
+%br/
+
+%a(href='https://developer.nvidia.com/cuda-downloads' target='x')
+  https://developer.nvidia.com/cuda-downloads
+
+%br/
+%br/
+
+I installed it with this syntax:
+
+%pre
+  %code.bash
+    cd ~/Downloads
+    sudo rpm -i cuda-repo-rhel7-7-5-local-7.5-18.x86_64.rpm
+
+Next, I installed cuda:
+
+%pre
+  %code.bash
+    sudo yum clean all
+    sudo yum install cuda
+
+That command installed software in this location:
+
+%pre
+  %code.bash /usr/local/cuda-7.5/
+
+Also it installed a convenient soft-link:
+
+%pre
+  %code.bash /usr/local/cuda
+
+It looked like this:
+
+%pre
+  =render 'nvidia_cuda75_centos2a'
+
+I found useful html docs here:
+
+%pre
+  =render 'nvidia_cuda75_centos2b'
+
+Then, I added /usr/local/cuda/bin to my PATH in ~/.bashrc
+
+%pre
+  %code.bash export PATH=/usr/local/cuda/bin:$PATH
+
+I did:
+
+%pre
+  %code.bash . ~/.bashrc
+
+Next, I copied the samples to my home folder:
+
+%pre
+  %code.bash
+    cd /usr/local/cuda/
+    rsync -a samples ~/
+
+I found a Makefile there so I ran make:
+
+%pre
+  %code.bash
+    cd ~/samples/
+    make
+
+I saw this:
+
+%pre
+  =render 'nvidia_cuda75_centos2c'
+
+The executables landed here:
+
+%pre
+  %code.bash ~/samples/bin/x86_64/linux/release/
+
+They looked like this:
+
+%pre
+  =render 'nvidia_cuda75_centos2d'
+
+The oldest was this:
+
+%pre
+  %code.bash -rwxrwxr-x 1 dan dan     39640 Jul 11 16:07 simpleVoteIntrinsics_nvrtc
+
+The youngest was this:
+
+%pre
+  %code.bash -rwxrwxr-x 1 dan dan    592752 Jul 11 16:32 cuSolverSp_LinearSolver
+
+So it took about 25 minutes to run make.
+
+%br/
+%br/
+
+I read this page:
+
+%br/
+%br/
+
+%a(href='http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#running-binaries' target='x')
+  http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#running-binaries
+
+%br/
+%br/
+
+I tried this command line:
+
+%pre
+  =render 'nvidia_cuda75_centos2e'
+
+I liked the look of that.
+
+%br/
+%br/
+
+Next, I worked on the task of connecting my Cuda software to Machine Learning software.
+
+%br/
+%br/
+
+If you have questions, e-me: bikle101@gmail.com
+
+%br/
+%br/
