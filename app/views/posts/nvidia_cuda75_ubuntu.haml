@@ -64,7 +64,10 @@ So, I started by installation of Ubuntu 14.04 Server instead of Ubuntu-Desktop:
 After installation I enhanced it:
 
 %pre
-  %code.bash sudo apt-get install xterm gitk build-essential openssh-server emacs libssl-dev
+  %code.bash
+    sudo echo 'blacklist nouveau'         >  /etc/modprobe.d/blacklist-nouveau.conf
+    sudo echo 'options nouveau modeset=0' >> /etc/modprobe.d/blacklist-nouveau.conf
+    sudo apt-get install xterm gitk build-essential openssh-server emacs libssl-dev
 
 Then I downloaded a package:
 
