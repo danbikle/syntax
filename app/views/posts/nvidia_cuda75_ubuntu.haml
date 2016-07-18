@@ -98,7 +98,9 @@ I installed it with this syntax:
 Next, I installed cuda:
 
 %pre
-  %code.bash sudo apt-get install cuda
+  %code.bash
+    sudo apt-get update
+    sudo apt-get install cuda
 
 That command installed software in this location:
 
