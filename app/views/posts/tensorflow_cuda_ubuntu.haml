@@ -201,11 +201,25 @@ I do this using an env-variable named: LD_LIBRARY_PATH
 %br/
 %br/
 
-I added some syntax to ${HOME}/.bashrc with this shell command:
+Also I should point out that the TensorFlow documentation lists the variable:
+
+%br/
+%br/
+
+%a(href='https://www.tensorflow.org/versions/r0.9/get_started/os_setup.html#optional-linux-enable-gpu-support' target='x')
+  https://www.tensorflow.org/versions/r0.9/get_started/os_setup.html#optional-linux-enable-gpu-support
+
+%br/
+%br/
+
+
+
+I added some syntax to ${HOME}/.bashrc with these shell commands:
 
 %pre
   %code.bash
-    echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ${HOME}/.bashrc
+    echo 'export CUDA_HOME=/usr/local/cuda' >> ${HOME}/.bashrc
+    echo 'export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}' >> ${HOME}/.bashrc
     bash
 
 Then, inside a Python prompt, I tried to import tensorflow again:

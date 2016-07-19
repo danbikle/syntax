@@ -1,5 +1,6 @@
 <code class='bash'>
-dan@srvr1404:~/dl $ export LD_LIBRARY_PATH=/usr/local/cuda/lib64
+dan@srvr1404:~/dl $ export CUDA_HOME=/usr/local/cuda
+dan@srvr1404:~/dl $ export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
 dan@srvr1404:~/dl $ python
 Python 3.5.2 (default, Jul 13 2016, 22:45:49) 
 [GCC 4.8.4] on linux
