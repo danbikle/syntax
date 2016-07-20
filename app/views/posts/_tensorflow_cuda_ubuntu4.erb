@@ -11,7 +11,7 @@ mnist = input_data.read_data_sets("/tmp/MNIST_data/", one_hot=True)
 
 import tensorflow as tf
 
-# I will use x too hold image pixels:
+# I will use x to hold image pixels:
 x = tf.placeholder(tf.float32, [None, 784])
 
 W = tf.Variable(tf.zeros([784, 10]))
