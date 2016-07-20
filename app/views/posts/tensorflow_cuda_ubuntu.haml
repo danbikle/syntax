@@ -212,8 +212,6 @@ Also I should point out that the TensorFlow documentation lists the variable:
 %br/
 %br/
 
-
-
 I added some syntax to ${HOME}/.bashrc with these shell commands:
 
 %pre
@@ -233,6 +231,38 @@ It worked.
 %br/
 
 Yay!
+
+%br/
+%br/
+
+I wanted further evidence that TensorFlow would use Cuda and the GPU on my laptop.
+
+%br/
+%br/
+
+I started this effort by studying this page:
+
+%br/
+%br/
+
+%a(href='https://www.tensorflow.org/versions/r0.9/tutorials/mnist/beginners/index.html' target='x')
+  https://www.tensorflow.org/versions/r0.9/tutorials/mnist/beginners/index.html
+
+
+%br/
+%br/
+
+I copied syntax from the above page into a simple python script:
+
+%pre
+  =render 'tensorflow_cuda_ubuntu4'
+
+After I ran the above I saw this output:
+
+%pre
+  =render 'tensorflow_cuda_ubuntu5'
+
+It was obvious to me that, on my laptop, TensorFlow was using Cuda and my GPU.
 
 %br/
 %br/

@@ -1,0 +1,49 @@
+<code class='python'>
+# my_mnist.py
+
+# This script should use TensorFlow to learn from MNIST data and then calculate predictions.
+
+# Also my intent is to look for evidence that TensorFlow is using the GPU on my laptop.
+
+from tensorflow.examples.tutorials.mnist import input_data
+
+mnist = input_data.read_data_sets("/tmp/MNIST_data/", one_hot=True)
+
+import tensorflow as tf
+
+# I will use x too hold image pixels:
+x = tf.placeholder(tf.float32, [None, 784])
+
+W = tf.Variable(tf.zeros([784, 10]))
+b = tf.Variable(tf.zeros([10]))
+
+y = tf.nn.softmax(tf.matmul(x, W) + b)
+
+# y_ should hold observed y values.
+y_ = tf.placeholder(tf.float32, [None, 10])
+
+# Here the loss function is called cross_entropy
+cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y), reduction_indices=[1]))
+
+# tf,  can automatically use the backpropagation algorithm
+train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
+# 0.5 is the learning-rate
+
+init = tf.initialize_all_variables()
+
+# Launch the graph.
+sess = tf.Session()
+sess.run(init)
+
+for i in range(1000):
+  batch_xs, batch_ys = mnist.train.next_batch(100)
+  sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
+
+correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
+
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
+print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
+
+'bye'
+</code>
