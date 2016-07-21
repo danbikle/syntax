@@ -22,6 +22,7 @@
   %a.xtag(href='/tags/gtx_980m') gtx_980m
   %a.xtag(href='/tags/cross_entropy') cross_entropy
   %a.xtag(href='/tags/backpropagation') backpropagation
+  %a.xtag(href='/tags/cudnn') cudnn
 
 %br/
 
@@ -124,24 +125,25 @@ Do I want cuDNN 4.0 or cuDNN 5.1?
 %br/
 %br/
 
-cuDNN 5.1 seemed the better choice due to the names of the available downloads:
+cuDNN 4.0 seemed the better choice due to TensorFlow Requirements page.
+
 %ul
   %li cudnn-7.0-linux-x64-v4.0-prod.tgz
   %li cudnn-7.5-linux-x64-v5.1-rc.tgz
 
-After I downloaded cudnn-7.5-linux-x64-v5.1-rc.tgz I did this:
+After I downloaded cudnn-7.0-linux-x64-v4.0-prod.tgz I did this:
 
 %pre
   %code.bash
     cd ~/Downloads
     mkdir tmp
     cd tmp
-    tar zxf ../cudnn-7.5-linux-x64-v5.1-rc.tgz
+    tar zxf ../cudnn-7.0-linux-x64-v4.0-prod.tgz
     su
     rsync -av cuda/include/ /usr/local/cuda/include/
     rsync -av cuda/lib64/   /usr/local/cuda/lib64
 
-In my mind, that finished the installation of cuDNN 5.1 into my Cuda 7.5 environment.
+In my mind, that finished the installation of cuDNN 4.0 into my Cuda 7.5 environment.
 
 %br/
 %br/
