@@ -121,6 +121,11 @@ Then, I installed a repo with PL/Java software.
 %pre
   =render 'pl_java_postgres_centos1g'
 
+Next, I used one line of shell syntax to make the above changes persist between sessions:
+
+%pre
+  %code.bash echo "pljava.libjvm_location = '/opt/jdk1.8.0_92/jre/lib/amd64/server/libjvm.so'" >> /var/lib/pgsql/9.5/data/postgresql.conf
+
 So, an install of PL/Java requires a number of steps but if you are careful it should not be very difficult.
 %br/
 %br/

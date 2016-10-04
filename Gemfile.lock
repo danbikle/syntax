@@ -248,5 +248,8 @@ DEPENDENCIES
   websocket (= 1.2.2)
   xpath (= 2.0.0)
 
+RUBY VERSION
+   ruby 2.2.3p173
+
 BUNDLED WITH
-   1.10.4
+   1.13.2
