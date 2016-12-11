@@ -1,3 +1,7 @@
+exit
+
+# old script, dont run
+
 #!/bin/bash
 
 # ~/sites/x611/script/postem.bash
